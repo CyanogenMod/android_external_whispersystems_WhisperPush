@@ -18,7 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -167,9 +168,7 @@ public class RegistrationActivity extends Activity {
         return;
       }
 
-      try {
-        GCMRegistrar.checkDevice(self);
-      } catch (UnsupportedOperationException uoe) {
+      if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(self) != ConnectionResult.SUCCESS) {
         Util.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
                              getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
         return;

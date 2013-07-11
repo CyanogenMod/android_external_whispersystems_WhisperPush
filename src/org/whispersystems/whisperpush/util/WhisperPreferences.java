@@ -3,6 +3,7 @@ package org.whispersystems.whisperpush.util;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
+import android.util.Pair;
 
 /**
  * A layer of indirection in front of the app's SharedPreferences.
@@ -13,6 +14,8 @@ public class WhisperPreferences {
   private static final String PREF_REGISTRATION_COMPLETE = "pref_registration_complete";
   private static final String PREF_LOCAL_NUMBER          = "pref_registered_number";
   private static final String PREF_PUSH_PASSWORD         = "pref_push_password";
+  private static final String PREF_GCM_ID                = "pref_gcm_id";
+  private static final String PREF_GCM_VERSION           = "pref_gcm_version";
 
   public static boolean isRegistered(Context context) {
     return getBooleanPreference(context, PREF_REGISTRATION_COMPLETE, false);
@@ -46,6 +49,18 @@ public class WhisperPreferences {
     setStringPreference(context, PREF_PUSH_PASSWORD, password);
   }
 
+  public static Pair<String, Integer> getGcmRegistrationId(Context context) {
+    return new Pair<String, Integer>(getStringPreference(context, PREF_GCM_ID, null),
+                                     getIntegerPreference(context, PREF_GCM_VERSION, 0));
+  }
+
+  public static void setGcmRegistrationId(Context context, String gcmId, int version) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit()
+        .putString(PREF_GCM_ID, gcmId)
+        .putInt(PREF_GCM_VERSION, version)
+        .commit();
+  }
+
   private static String getStringPreference(Context context, String key, String defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
@@ -60,6 +75,10 @@ public class WhisperPreferences {
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).commit();
+  }
+
+  private static int getIntegerPreference(Context context, String key, int defaultValue) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
   }
 
 }

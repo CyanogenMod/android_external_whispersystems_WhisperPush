@@ -10,11 +10,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.google.android.gcm.GCMRegistrar;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.util.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
@@ -162,8 +162,7 @@ public class RegistrationService extends Service {
       PushServiceSocket socket = new PushServiceSocket(this, number, password);
 
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
-      GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
-      String gcmRegistrationId = waitForGcmRegistrationId();
+      String gcmRegistrationId = GcmHelper.getRegistrationId(this);
 
       socket.registerGcmId(gcmRegistrationId);
       socket.retrieveDirectory(this);
@@ -179,10 +178,6 @@ public class RegistrationService extends Service {
     } catch (IOException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-      broadcastComplete(false);
-    } catch (GcmRegistrationTimeoutException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
       broadcastComplete(false);
     } catch (RateLimitException e) {
       Log.w("RegistrationService", e);
@@ -212,8 +207,7 @@ public class RegistrationService extends Service {
       socket.verifyAccount(challenge);
 
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
-      GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
-      String gcmRegistrationId = waitForGcmRegistrationId();
+      String gcmRegistrationId = GcmHelper.getRegistrationId(this);
 
       socket.registerGcmId(gcmRegistrationId);
       socket.retrieveDirectory(this);
@@ -233,10 +227,6 @@ public class RegistrationService extends Service {
     } catch (IOException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-      broadcastComplete(false);
-    } catch (GcmRegistrationTimeoutException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
       broadcastComplete(false);
     } catch (RateLimitException e) {
       Log.w("RegistrationService", e);
@@ -263,21 +253,6 @@ public class RegistrationService extends Service {
       throw new AccountVerificationTimeoutException();
 
     return this.challenge;
-  }
-
-  private synchronized String waitForGcmRegistrationId() throws GcmRegistrationTimeoutException {
-    if (this.gcmRegistrationId == null) {
-      try {
-        wait(10 * 60 * 1000);
-      } catch (InterruptedException e) {
-        throw new IllegalArgumentException(e);
-      }
-    }
-
-    if (this.gcmRegistrationId == null)
-      throw new GcmRegistrationTimeoutException();
-
-    return this.gcmRegistrationId;
   }
 
   private synchronized void challengeReceived(String challenge) {
