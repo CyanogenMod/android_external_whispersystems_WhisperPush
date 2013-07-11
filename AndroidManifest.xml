@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
 
@@ -53,6 +54,13 @@
                   android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".service.RegistrationNotifier"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
             </intent-filter>
         </receiver>
 
