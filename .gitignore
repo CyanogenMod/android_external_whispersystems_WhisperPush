@@ -1,0 +1,10 @@
+.idea
+bin/
+gen/
+project.properties
+.idea
+WhisperPush.iml
+out
+local.properties
+ant.properties
+
