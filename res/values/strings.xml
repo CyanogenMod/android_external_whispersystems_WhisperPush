@@ -2,7 +2,6 @@
 <resources>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
     <string name="RegistrationActivity_select_your_country">Select Your Country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
         country code
