@@ -43,11 +43,19 @@
 
         <service android:enabled="true" android:name=".service.RegistrationService"/>
 
-        <receiver android:name=".service.SmsListener"
+        <receiver android:name=".sms.SmsListener"
                   android:enabled="true"
                   android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".gcm.GcmReceiver"
+                  android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="org.whispersystems.whisperpush" />
             </intent-filter>
         </receiver>
 
@@ -57,6 +65,11 @@
                 <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
             </intent-filter>
         </receiver>
+
+        <provider android:authorities="org.whispersystems.whisperpush.provider"
+                  android:name=".attachments.AttachmentProvider"
+                  android:protectionLevel="signatureOrSystem"
+                  android:exported="true" />
 
     </application>
 

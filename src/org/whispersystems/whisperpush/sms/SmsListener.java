@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.whispersystems.whisperpush.service;
+package org.whispersystems.whisperpush.sms;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,19 +21,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
+import org.whispersystems.textsecure.directory.NumberFilter;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.service.RegistrationService;
+import org.whispersystems.whisperpush.service.SendReceiveService;
+import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
-
 /**
- * A BroadcastReceiver that listens for incoming SMS events.  If the incoming SMS
- * is a registration challenge, it'll abort the broadcast and send a notification
- * to the RegistrationService.
+ * A BroadcastReceiver that listens for incoming and outgoing SMS events.
+ *
+ * If the incoming SMS is a registration challenge, it'll abort the broadcast and
+ * send a notification to the RegistrationService.
+ *
+ * If the outgoing SMS is to a participating destination, it'll attempt to deliver
+ * the message via the push channel and abort the broadcast if successful.
  *
  * @author Moxie Marlinspike
  */
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+  private static final String SMS_OUTGOING_ACTION = "android.intent.action.NEW_OUTGOING_SMS";
 
   private String getSmsMessageBodyFromIntent(Intent intent) {
     Bundle bundle             = intent.getExtras();
@@ -49,7 +58,7 @@ public class SmsListener extends BroadcastReceiver {
     return bodyBuilder.toString();
   }
 
-  private boolean isChallenge(Context context, Intent intent) {
+  private boolean isIncomingChallenge(Context context, Intent intent) {
     String messageBody = getSmsMessageBodyFromIntent(intent);
 
     if (messageBody == null)
@@ -58,6 +67,18 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
         WhisperPreferences.isVerifying(context))
     {
+      return true;
+    }
+
+    return false;
+  }
+
+  private boolean isRelevantOutgoingMessage(Context context, Intent intent) {
+    String destination  = intent.getStringExtra(SendReceiveService.DESTINATION);
+    String localNumber  = WhisperPreferences.getLocalNumber(context);
+    String number       = PhoneNumberFormatter.formatNumber(destination, localNumber);
+
+    if (NumberFilter.getInstance(context).containsNumber(number)) {
       return true;
     }
 
@@ -74,13 +95,21 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-
-    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
+    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
       challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
+    } else if (SMS_OUTGOING_ACTION.equals(intent.getAction()) && isRelevantOutgoingMessage(context, intent)) {
+      PendingResult            pendingResult = goAsync();
+      OutgoingMessageCandidate candidate     = new OutgoingMessageCandidate(intent, pendingResult);
+
+      OutgoingSmsQueue.getInstance().put(candidate);
+
+      Intent sendIntent = new Intent(context, SendReceiveService.class);
+      sendIntent.setAction(SendReceiveService.SEND_SMS);
+      context.startService(sendIntent);
     }
   }
 }

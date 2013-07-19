@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.whispersystems.whisperpush.util;
+package org.whispersystems.whisperpush.gcm;
 
 
 import android.content.Context;
@@ -22,6 +22,8 @@ import android.content.pm.PackageManager;
 import android.util.Pair;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
 

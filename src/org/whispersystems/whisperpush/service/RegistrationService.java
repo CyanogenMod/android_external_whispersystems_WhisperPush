@@ -24,14 +24,18 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.util.Pair;
 
+import org.whispersystems.textsecure.directory.DirectoryDescriptor;
+import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.util.GcmHelper;
+import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -178,9 +182,10 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
       String gcmRegistrationId = GcmHelper.getRegistrationId(this);
-
       socket.registerGcmId(gcmRegistrationId);
-      socket.retrieveDirectory(this);
+
+      Pair<DirectoryDescriptor, File> directory =  socket.retrieveDirectory();
+      NumberFilter.getInstance(this).update(directory.first, directory.second);
 
       markAsVerified(number, password);
 
@@ -193,10 +198,6 @@ public class RegistrationService extends Service {
     } catch (IOException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-      broadcastComplete(false);
-    } catch (RateLimitException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
       broadcastComplete(false);
     } finally {
       shutdownGcmRegistrationListener();
@@ -223,9 +224,10 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
       String gcmRegistrationId = GcmHelper.getRegistrationId(this);
-
       socket.registerGcmId(gcmRegistrationId);
-      socket.retrieveDirectory(this);
+
+      Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
+      NumberFilter.getInstance(this).update(directory.first, directory.second);
 
       markAsVerified(number, password);
 
@@ -242,10 +244,6 @@ public class RegistrationService extends Service {
     } catch (IOException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-      broadcastComplete(false);
-    } catch (RateLimitException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
       broadcastComplete(false);
     } finally {
       shutdownChallengeListener();
