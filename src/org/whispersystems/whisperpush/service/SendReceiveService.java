@@ -2,6 +2,7 @@ package org.whispersystems.whisperpush.service;
 
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver.PendingResult;
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class SendReceiveService extends Service {
   public static final String RECEIVE_SMS = "org.whispersystems.SendReceiveService.RECEIVE_SMS";
   public static final String SEND_SMS    = "org.whispersystems.SendReceiveService.SEND_SMS";
 
-  public  static final String DESTINATION  = "dstAddr";
+  public  static final String DESTINATION  = "destAddr";
   private static final String PARTS        = "parts";
   private static final String SENT_INTENTS = "sentIntents";
 
@@ -82,6 +83,8 @@ public class SendReceiveService extends Service {
   private void handleSendSms() {
     OutgoingMessageCandidate candidate = OutgoingSmsQueue.getInstance().get();
 
+    Log.w("SendReceiveService", "Got outgoing message candidate: " + candidate);
+
     if (candidate == null)
       return;
 
@@ -89,11 +92,11 @@ public class SendReceiveService extends Service {
     PendingResult pendingResult = candidate.getPendingResult();
 
     try {
-      List<String>  messageParts   = sendIntent.getStringArrayListExtra(PARTS);
-      String        destination    = sendIntent.getStringExtra(DESTINATION);
-      List<Intent>  sentIntents    = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
-      String        localNumber    = WhisperPreferences.getLocalNumber(this);
-      String        pushPassphrase = WhisperPreferences.getPushServerPassword(this);
+      List<String>        messageParts   = sendIntent.getStringArrayListExtra(PARTS);
+      String              destination    = sendIntent.getStringExtra(DESTINATION);
+      List<PendingIntent> sentIntents    = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
+      String              localNumber    = WhisperPreferences.getLocalNumber(this);
+      String              pushPassphrase = WhisperPreferences.getPushServerPassword(this);
 
       PushServiceSocket socket    = new PushServiceSocket(this, localNumber, pushPassphrase);
       String formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
@@ -101,12 +104,16 @@ public class SendReceiveService extends Service {
 
       socket.sendMessage(formattedDestination, message);
 
-      for (Intent sentIntent : sentIntents) {
-        sendBroadcast(sentIntent);
+      for (PendingIntent sentIntent : sentIntents) {
+        try {
+          sentIntent.send(Activity.RESULT_OK);
+        } catch (PendingIntent.CanceledException e) {
+          Log.w("SendReceiveService", e);
+        }
       }
 
       pendingResult.abortBroadcast();
-      pendingResult.setResultCode(Activity.RESULT_OK);
+      pendingResult.setResultCode(Activity.RESULT_CANCELED);
       pendingResult.finish();
     } catch (IOException e) {
       Log.w("SendReceiveService", e);

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -64,25 +65,20 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
-        WhisperPreferences.isVerifying(context))
-    {
-      return true;
-    }
-
-    return false;
+    return messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+           WhisperPreferences.isVerifying(context);
   }
 
   private boolean isRelevantOutgoingMessage(Context context, Intent intent) {
-    String destination  = intent.getStringExtra(SendReceiveService.DESTINATION);
-    String localNumber  = WhisperPreferences.getLocalNumber(context);
-    String number       = PhoneNumberFormatter.formatNumber(destination, localNumber);
+    String destination = intent.getStringExtra(SendReceiveService.DESTINATION);
 
-    if (NumberFilter.getInstance(context).containsNumber(number)) {
-      return true;
-    }
+    if (destination == null)
+      return false;
 
-    return false;
+    String localNumber = WhisperPreferences.getLocalNumber(context);
+    String number      = PhoneNumberFormatter.formatNumber(destination, localNumber);
+
+    return NumberFilter.getInstance(context).containsNumber(number);
   }
 
   private String parseChallenge(Intent intent) {
@@ -95,6 +91,7 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
+
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
       challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
