@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 The CyanogenMod Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.whispersystems.whisperpush.sms;
 
 
@@ -6,6 +21,18 @@ import android.content.Intent;
 
 import java.util.LinkedList;
 
+/**
+ * A singleton queue that allows for passing data between the incoming broadcast
+ * receiver and the service that processes that incoming data.  This is necessary
+ * because the PendingResult for a broadcast that is being handled asynchronously
+ * isn't parcelable and can't be passed through the standard intent communication
+ * interface.
+ *
+ * Messages received by the broadcast receiver are appended to this queue, the service
+ * is started, and the latter then pulls off this queue.
+ *
+ * @author Moxie Marlinspike
+ */
 public class OutgoingSmsQueue {
 
   private static final OutgoingSmsQueue instance = new OutgoingSmsQueue();
