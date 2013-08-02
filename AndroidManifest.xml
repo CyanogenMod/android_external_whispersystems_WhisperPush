@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERCEPT_SMS"/>
+    <uses-permission android:name="android.permission.BROADCAST_SMS"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE"
