@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERCEPT_SMS"/>
+    <uses-permission android:name="android.permission.BROADCAST_SMS"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE"
@@ -42,12 +44,22 @@
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <service android:enabled="true" android:name=".service.RegistrationService"/>
+        <service android:enabled="true" android:name=".service.SendReceiveService"/>
 
-        <receiver android:name=".service.SmsListener"
+        <receiver android:name=".sms.SmsListener"
                   android:enabled="true"
                   android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.intent.action.NEW_OUTGOING_SMS"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".gcm.GcmReceiver"
+                  android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="org.whispersystems.whisperpush" />
             </intent-filter>
         </receiver>
 
@@ -57,6 +69,11 @@
                 <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
             </intent-filter>
         </receiver>
+
+        <provider android:authorities="org.whispersystems.whisperpush.provider"
+                  android:name=".attachments.AttachmentProvider"
+                  android:protectionLevel="signatureOrSystem"
+                  android:exported="true" />
 
     </application>
 
