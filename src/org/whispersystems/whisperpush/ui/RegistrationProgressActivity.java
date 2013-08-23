@@ -79,15 +79,18 @@ public class RegistrationProgressActivity extends Activity {
   private ProgressBar registrationProgress;
   private ProgressBar connectingProgress;
   private ProgressBar verificationProgress;
+  private ProgressBar generatingKeysProgress;
   private ProgressBar gcmRegistrationProgress;
 
   private ImageView   connectingCheck;
   private ImageView   verificationCheck;
+  private ImageView   generatingKeysCheck;
   private ImageView   gcmRegistrationCheck;
 
   private TextView    connectingText;
   private TextView    verificationText;
   private TextView    registrationTimerText;
+  private TextView    generatingKeysText;
   private TextView    gcmRegistrationText;
 
   private Button      verificationFailureButton;
@@ -145,13 +148,16 @@ public class RegistrationProgressActivity extends Activity {
     this.registrationProgress      = (ProgressBar) findViewById(R.id.registration_progress);
     this.connectingProgress        = (ProgressBar) findViewById(R.id.connecting_progress);
     this.verificationProgress      = (ProgressBar) findViewById(R.id.verification_progress);
+    this.generatingKeysProgress    = (ProgressBar) findViewById(R.id.generating_keys_progress);
     this.gcmRegistrationProgress   = (ProgressBar) findViewById(R.id.gcm_registering_progress);
     this.connectingCheck           = (ImageView)   findViewById(R.id.connecting_complete);
     this.verificationCheck         = (ImageView)   findViewById(R.id.verification_complete);
+    this.generatingKeysCheck       = (ImageView)   findViewById(R.id.generating_keys_complete);
     this.gcmRegistrationCheck      = (ImageView)   findViewById(R.id.gcm_registering_complete);
     this.connectingText            = (TextView)    findViewById(R.id.connecting_text);
     this.verificationText          = (TextView)    findViewById(R.id.verification_text);
     this.registrationTimerText     = (TextView)    findViewById(R.id.registration_timer);
+    this.generatingKeysText        = (TextView)    findViewById(R.id.generating_keys_text);
     this.gcmRegistrationText       = (TextView)    findViewById(R.id.gcm_registering_text);
     this.verificationFailureButton = (Button)      findViewById(R.id.verification_failure_edit_button);
     this.connectivityFailureButton = (Button)      findViewById(R.id.connectivity_failure_edit_button);
@@ -217,10 +223,13 @@ public class RegistrationProgressActivity extends Activity {
     this.connectingCheck.setVisibility(View.INVISIBLE);
     this.verificationProgress.setVisibility(View.INVISIBLE);
     this.verificationCheck.setVisibility(View.INVISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(FOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
@@ -233,13 +242,37 @@ public class RegistrationProgressActivity extends Activity {
     this.connectingCheck.setVisibility(View.VISIBLE);
     this.verificationProgress.setVisibility(View.VISIBLE);
     this.verificationCheck.setVisibility(View.INVISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(FOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.VISIBLE);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
+  }
+
+  private void handleStateGeneratingKeys() {
+    this.registrationLayout.setVisibility(View.VISIBLE);
+    this.verificationFailureLayout.setVisibility(View.GONE);
+    this.connectivityFailureLayout.setVisibility(View.GONE);
+    this.connectingProgress.setVisibility(View.INVISIBLE);
+    this.connectingCheck.setVisibility(View.VISIBLE);
+    this.verificationProgress.setVisibility(View.INVISIBLE);
+    this.verificationCheck.setVisibility(View.VISIBLE);
+    this.generatingKeysProgress.setVisibility(View.VISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
+    this.connectingText.setTextColor(UNFOCUSED_COLOR);
+    this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(FOCUSED_COLOR);
+    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.registrationProgress.setVisibility(View.VISIBLE);
+    this.timeoutProgressLayout.setVisibility(View.VISIBLE);
+
   }
 
   private void handleStateGcmRegistering() {
@@ -250,10 +283,13 @@ public class RegistrationProgressActivity extends Activity {
     this.connectingCheck.setVisibility(View.VISIBLE);
     this.verificationProgress.setVisibility(View.INVISIBLE);
     this.verificationCheck.setVisibility(View.VISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.VISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.VISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(FOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.INVISIBLE);
     this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
@@ -368,16 +404,17 @@ public class RegistrationProgressActivity extends Activity {
       RegistrationState state = (RegistrationState)message.obj;
 
       switch (message.what) {
-      case RegistrationState.STATE_IDLE:                 handleStateIdle();                       break;
-      case RegistrationState.STATE_CONNECTING:           handleStateConnecting();                 break;
-      case RegistrationState.STATE_VERIFYING:            handleStateVerifying();                  break;
-      case RegistrationState.STATE_TIMER:                handleTimerUpdate();                     break;
-      case RegistrationState.STATE_GCM_REGISTERING:      handleStateGcmRegistering();             break;
-      case RegistrationState.STATE_TIMEOUT:              handleVerificationTimeout(state);        break;
-      case RegistrationState.STATE_COMPLETE:             handleVerificationComplete();            break;
-      case RegistrationState.STATE_GCM_TIMEOUT:          handleGcmTimeout(state);                 break;
-      case RegistrationState.STATE_NETWORK_ERROR:        handleConnectivityError(state);          break;
-      case RegistrationState.STATE_VOICE_REQUESTED:      handleVerificationRequestedVoice(state); break;
+      case RegistrationState.STATE_IDLE:            handleStateIdle();                       break;
+      case RegistrationState.STATE_CONNECTING:      handleStateConnecting();                 break;
+      case RegistrationState.STATE_VERIFYING:       handleStateVerifying();                  break;
+      case RegistrationState.STATE_GENERATING_KEYS: handleStateGeneratingKeys();             break;
+      case RegistrationState.STATE_TIMER:           handleTimerUpdate();                     break;
+      case RegistrationState.STATE_GCM_REGISTERING: handleStateGcmRegistering();             break;
+      case RegistrationState.STATE_TIMEOUT:         handleVerificationTimeout(state);        break;
+      case RegistrationState.STATE_COMPLETE:        handleVerificationComplete();            break;
+      case RegistrationState.STATE_GCM_TIMEOUT:     handleGcmTimeout(state);                 break;
+      case RegistrationState.STATE_NETWORK_ERROR:   handleConnectivityError(state);          break;
+      case RegistrationState.STATE_VOICE_REQUESTED: handleVerificationRequestedVoice(state); break;
       }
     }
   }

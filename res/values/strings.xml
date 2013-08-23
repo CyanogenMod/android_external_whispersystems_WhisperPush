@@ -144,5 +144,6 @@
     <string name="registration_progress_activity__sms_verification_failed">SMS verification
         failed.
     </string>
+    <string name="registration_progress_activity__generating_keys">Generating keys...</string>
 
 </resources>

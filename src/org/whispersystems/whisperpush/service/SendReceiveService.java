@@ -26,6 +26,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
@@ -123,7 +124,7 @@ public class SendReceiveService extends Service {
       String formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
       String message              = Util.join(messageParts, "");
 
-      socket.sendMessage(formattedDestination, message);
+      socket.sendMessage(formattedDestination, message, OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
 
       for (PendingIntent sentIntent : sentIntents) {
         try {
