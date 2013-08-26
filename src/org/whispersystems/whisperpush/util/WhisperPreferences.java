@@ -33,6 +33,33 @@ public class WhisperPreferences {
   private static final String PREF_PUSH_PASSWORD         = "pref_push_password";
   private static final String PREF_GCM_ID                = "pref_gcm_id";
   private static final String PREF_GCM_VERSION           = "pref_gcm_version";
+  private static final String PREF_IDENTITY_PUBLIC_KEY   = "pref_identity_public";
+  private static final String PREF_IDENTITY_PRIVATE_KEY  = "pref_identity_private";
+  private static final String PREF_MASTER_SECRET         = "pref_master_secret";
+
+  public static void setMasterSecret(Context context, String value) {
+    setStringPreference(context, PREF_MASTER_SECRET, value);
+  }
+
+  public static String getMasterSecret(Context context) {
+    return getStringPreference(context, PREF_MASTER_SECRET, null);
+  }
+
+  public static String getIdentityKeyPublic(Context context) {
+    return getStringPreference(context, PREF_IDENTITY_PUBLIC_KEY, null);
+  }
+
+  public static void setIdentityKeyPublic(Context context, String value) {
+    setStringPreference(context, PREF_IDENTITY_PUBLIC_KEY, value);
+  }
+
+  public static String getIdentityKeyPrivate(Context context) {
+    return getStringPreference(context, PREF_IDENTITY_PRIVATE_KEY, null);
+  }
+
+  public static void setIdentityKeyPrivate(Context context, String value) {
+    setStringPreference(context, PREF_IDENTITY_PRIVATE_KEY, value);
+  }
 
   public static boolean isRegistered(Context context) {
     return getBooleanPreference(context, PREF_REGISTRATION_COMPLETE, false);
