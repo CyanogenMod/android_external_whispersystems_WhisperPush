@@ -446,14 +446,16 @@ public class RegistrationProgressActivity extends Activity {
 
     private final String e164number;
     private final String password;
+    private final String signalingKey;
     private final Context context;
 
     private ProgressDialog progressDialog;
 
     public VerifyClickListener(String e164number, String password) {
-      this.e164number = e164number;
-      this.password   = password;
-      this.context    = RegistrationProgressActivity.this;
+      this.e164number   = e164number;
+      this.password     = password;
+      this.signalingKey = Util.getSecret(52);
+      this.context      = RegistrationProgressActivity.this;
     }
 
     @Override
@@ -487,6 +489,7 @@ public class RegistrationProgressActivity extends Activity {
               intent.setAction(RegistrationService.VOICE_REGISTER_ACTION);
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
+              intent.putExtra("signaling_key", signalingKey);
               startService(intent);
               break;
             case NETWORK_ERROR:
@@ -508,7 +511,7 @@ public class RegistrationProgressActivity extends Activity {
         protected Integer doInBackground(Void... params) {
           try {
             PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
-            socket.verifyAccount(code);
+            socket.verifyAccount(code, signalingKey);
             return SUCCESS;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);

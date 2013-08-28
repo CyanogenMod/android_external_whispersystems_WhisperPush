@@ -189,8 +189,9 @@ public class RegistrationService extends Service {
   private void handleVoiceRegisterIntent(Intent intent) {
     markAsVerifying(true);
 
-    String number   = intent.getStringExtra("e164number");
-    String password = intent.getStringExtra("password");
+    String number       = intent.getStringExtra("e164number"   );
+    String password     = intent.getStringExtra("password"     );
+    String signalingKey = intent.getStringExtra("signaling_key");
 
     try {
       initializePreKeyGenerator();
@@ -198,7 +199,7 @@ public class RegistrationService extends Service {
       PushServiceSocket socket = new PushServiceSocket(this, number, password);
       handleCommonRegistration(socket, number);
 
-      markAsVerified(number, password);
+      markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
       broadcastComplete(true);
@@ -219,7 +220,9 @@ public class RegistrationService extends Service {
     String number = intent.getStringExtra("e164number");
 
     try {
-      String password = Util.getSecret(18);
+      String password     = Util.getSecret(18);
+      String signalingKey = Util.getSecret(52);
+
       initializeChallengeListener();
       initializePreKeyGenerator();
 
@@ -229,11 +232,11 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      socket.verifyAccount(challenge);
+      socket.verifyAccount(challenge, signalingKey);
 
       handleCommonRegistration(socket, number);
 
-      markAsVerified(number, password);
+      markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
       broadcastComplete(true);
@@ -258,9 +261,11 @@ public class RegistrationService extends Service {
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    List<PreKeyRecord> records     = waitForPreKeys(MasterSecretUtil.getMasterSecret(this));
-    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
-    socket.registerPreKeys(identityKey, records);
+    MasterSecret       masterSecret  = MasterSecretUtil.getMasterSecret(this);
+    List<PreKeyRecord> records       = waitForPreKeys(masterSecret);
+    PreKeyRecord       lastResortKey = PreKeyUtil.generateLastResortKey(this, masterSecret);
+    IdentityKey        identityKey   = IdentityKeyUtil.getIdentityKey(this);
+    socket.registerPreKeys(identityKey, lastResortKey, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
     String gcmRegistrationId = GcmHelper.getRegistrationId(this);
@@ -311,11 +316,12 @@ public class RegistrationService extends Service {
     WhisperPreferences.setRegistered(this, false);
   }
 
-  private void markAsVerified(String number, String password) {
+  private void markAsVerified(String number, String password, String signalingKey) {
     WhisperPreferences.setVerifying(this, false);
     WhisperPreferences.setRegistered(this, true);
     WhisperPreferences.setLocalNumber(this, number);
     WhisperPreferences.setPushServerPassword(this, password);
+    WhisperPreferences.setSignalingKey(this, signalingKey);
   }
 
   private void setState(RegistrationState state) {

@@ -36,6 +36,7 @@ public class WhisperPreferences {
   private static final String PREF_IDENTITY_PUBLIC_KEY   = "pref_identity_public";
   private static final String PREF_IDENTITY_PRIVATE_KEY  = "pref_identity_private";
   private static final String PREF_MASTER_SECRET         = "pref_master_secret";
+  private static final String PREF_SIGNALING_KEY         = "pref_signaling_key";
 
   public static void setMasterSecret(Context context, String value) {
     setStringPreference(context, PREF_MASTER_SECRET, value);
@@ -91,6 +92,10 @@ public class WhisperPreferences {
 
   public static void setPushServerPassword(Context context, String password) {
     setStringPreference(context, PREF_PUSH_PASSWORD, password);
+  }
+
+  public static void setSignalingKey(Context context, String signalingKey) {
+    setStringPreference(context, PREF_SIGNALING_KEY, signalingKey);
   }
 
   public static Pair<String, Integer> getGcmRegistrationId(Context context) {
