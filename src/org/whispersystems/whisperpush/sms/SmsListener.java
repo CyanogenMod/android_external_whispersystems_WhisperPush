@@ -75,8 +75,15 @@ public class SmsListener extends BroadcastReceiver {
     if (destination == null)
       return false;
 
+    if (!WhisperPreferences.isRegistered(context))
+      return false;
+
     String localNumber = WhisperPreferences.getLocalNumber(context);
-    String number      = PhoneNumberFormatter.formatNumber(destination, localNumber);
+
+    if (localNumber == null)
+      return false;
+
+    String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
 
     return NumberFilter.getInstance(context).containsNumber(number);
   }
