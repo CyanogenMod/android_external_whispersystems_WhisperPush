@@ -25,9 +25,14 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonSyntaxException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.service.SendReceiveService;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
+import java.io.IOException;
 
 /**
  * The broadcast receiver that handles GCM events, such as incoming GCM messages.
@@ -48,13 +53,17 @@ public class GcmReceiver extends BroadcastReceiver {
         if (Util.isEmpty(data))
           return;
 
-        IncomingPushMessage message = new Gson().fromJson(data, IncomingPushMessage.class);
+        String                       signalingKey     = WhisperPreferences.getSignalingKey(context);
+        IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, signalingKey);
+        IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
 
         Intent serviceIntent = new Intent(context, SendReceiveService.class);
         serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
         serviceIntent.putExtra("message", message);
         context.startService(serviceIntent);
-      } catch (JsonSyntaxException e) {
+      } catch (IOException e) {
+        Log.w("GcmReceiver", e);
+      } catch (InvalidVersionException e) {
         Log.w("GcmReceiver", e);
       }
     }

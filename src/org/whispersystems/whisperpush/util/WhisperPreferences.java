@@ -98,6 +98,10 @@ public class WhisperPreferences {
     setStringPreference(context, PREF_SIGNALING_KEY, signalingKey);
   }
 
+  public static String getSignalingKey(Context context) {
+    return getStringPreference(context, PREF_SIGNALING_KEY, null);
+  }
+
   public static Pair<String, Integer> getGcmRegistrationId(Context context) {
     return new Pair<String, Integer>(getStringPreference(context, PREF_GCM_ID, null),
                                      getIntegerPreference(context, PREF_GCM_VERSION, 0));
