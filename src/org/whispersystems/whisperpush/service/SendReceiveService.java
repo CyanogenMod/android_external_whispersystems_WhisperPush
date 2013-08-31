@@ -25,12 +25,16 @@ import android.os.IBinder;
 import android.util.Log;
 import android.util.Pair;
 
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
+import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
+import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
+import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
@@ -76,7 +80,8 @@ public class SendReceiveService extends Service {
   }
 
   private void handleReceiveSms(Intent intent) {
-    IncomingPushMessage message = intent.getParcelableExtra("message");
+    MasterSecret        masterSecret = MasterSecretUtil.getMasterSecret(this);
+    IncomingPushMessage message      = intent.getParcelableExtra("message");
 
     if (message == null)
       return;
@@ -97,9 +102,24 @@ public class SendReceiveService extends Service {
       }
     }
 
-    SmsServiceBridge.receivedPushMessage(message.getSource(), message.getDestinations(),
-                                         message.getMessageText(), attachmentTokens,
-                                         attachmentContentTypes, message.getTimestampMillis());
+    try {
+      WhisperCipher whisperCipher = new WhisperCipher(this, masterSecret, message.getSource());
+      String        plaintext     = whisperCipher.getDecryptedMessage(message);
+
+      Log.w("SendReceiveService", "Passing plaintext to bridge: " + plaintext);
+
+      SmsServiceBridge.receivedPushMessage(message.getSource(),
+                                           message.getDestinations(),
+                                           plaintext, attachmentTokens,
+                                           attachmentContentTypes,
+                                           message.getTimestampMillis());
+    } catch (IdentityMismatchException e) {
+      Log.w("SendReceiveService", e);
+      // XXX
+    } catch (InvalidMessageException e) {
+      Log.w("SendReceiveService", e);
+      // XXX
+    }
   }
 
   private void handleSendSms() {
@@ -119,12 +139,21 @@ public class SendReceiveService extends Service {
       List<PendingIntent> sentIntents    = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
       String              localNumber    = WhisperPreferences.getLocalNumber(this);
       String              pushPassphrase = WhisperPreferences.getPushServerPassword(this);
+      MasterSecret        masterSecret   = MasterSecretUtil.getMasterSecret(this);
 
-      PushServiceSocket socket    = new PushServiceSocket(this, localNumber, pushPassphrase);
-      String formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
-      String message              = Util.join(messageParts, "");
 
-      socket.sendMessage(formattedDestination, message.getBytes(), PushMessage.TYPE_MESSAGE_PLAINTEXT);
+      PushServiceSocket socket               = new PushServiceSocket(this, localNumber, pushPassphrase);
+      String            formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
+      String            message              = Util.join(messageParts, "");
+      WhisperCipher     whisperCipher        = new WhisperCipher(this, masterSecret, formattedDestination);
+
+      Pair<Integer, byte[]> typeAndEncryptedMessage = whisperCipher.getEncryptedMessage(socket,
+                                                                                        formattedDestination,
+                                                                                        message);
+
+      socket.sendMessage(formattedDestination,
+                         typeAndEncryptedMessage.second,
+                         typeAndEncryptedMessage.first);
 
       for (PendingIntent sentIntent : sentIntents) {
         try {
