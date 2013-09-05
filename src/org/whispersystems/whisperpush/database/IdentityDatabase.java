@@ -52,7 +52,7 @@ public class IdentityDatabase {
 
     try {
       cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?",
-                              new String[] {addressId+""}, null, null,null);
+                              new String[] {String.valueOf(addressId)}, null, null,null);
 
       if (cursor != null && cursor.moveToFirst()) {
         String serializedIdentity = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));

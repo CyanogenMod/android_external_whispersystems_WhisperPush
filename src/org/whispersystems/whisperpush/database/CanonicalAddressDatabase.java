@@ -103,7 +103,8 @@ public class CanonicalAddressDatabase {
     try {
       SQLiteDatabase db = databaseHelper.getReadableDatabase();
       cursor            = db.query(TABLE_NAME, null, ID_COLUMN + " = ?",
-                                   new String[] {canonicalAddress+""}, null, null, null);
+                                   new String[] {String.valueOf(canonicalAddress)},
+                                   null, null, null);
 
       if (!cursor.moveToFirst())
         throw new NoSuchAddressException();
