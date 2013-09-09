@@ -25,9 +25,12 @@ import android.os.IBinder;
 import android.util.Log;
 import android.util.Pair;
 
+import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
+import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
@@ -86,37 +89,25 @@ public class SendReceiveService extends Service {
     if (message == null)
       return;
 
-    List<String> attachmentTokens       = new LinkedList<String>();
-    List<String> attachmentContentTypes = new LinkedList<String>();
-
-    if (message.hasAttachments()) {
-      try {
-        String                   localNumber    = WhisperPreferences.getLocalNumber(this);
-        String                   pushPassphrase = WhisperPreferences.getPushServerPassword(this);
-        PushServiceSocket        socket         = new PushServiceSocket(this, localNumber, pushPassphrase);
-        List<Pair<File, String>> attachments    = socket.retrieveAttachments(message.getAttachments());
-
-        storeAttachments(attachments, attachmentTokens, attachmentContentTypes);
-      } catch (IOException e) {
-        Log.w("SendReceiveService", e);
-      }
-    }
-
     try {
-      WhisperCipher whisperCipher = new WhisperCipher(this, masterSecret, message.getSource());
-      String        plaintext     = whisperCipher.getDecryptedMessage(message);
+      WhisperCipher              whisperCipher = new WhisperCipher(this, masterSecret, message.getSource());
+      PushMessageContent         content       = whisperCipher.getDecryptedMessage(message);
+      List<Pair<String, String>> attachments   = new LinkedList<Pair<String, String>>();
 
-      Log.w("SendReceiveService", "Passing plaintext to bridge: " + plaintext);
+      if (content.getAttachmentsCount() > 0) {
+        attachments = retrieveAttachments(content.getAttachmentsList());
+      }
 
-      SmsServiceBridge.receivedPushMessage(message.getSource(),
-                                           message.getDestinations(),
-                                           plaintext, attachmentTokens,
-                                           attachmentContentTypes,
+      SmsServiceBridge.receivedPushMessage(message.getSource(), message.getDestinations(),
+                                           content.getBody(), attachments,
                                            message.getTimestampMillis());
     } catch (IdentityMismatchException e) {
       Log.w("SendReceiveService", e);
       // XXX
     } catch (InvalidMessageException e) {
+      Log.w("SendReceiveService", e);
+      // XXX
+    } catch (IOException e) {
       Log.w("SendReceiveService", e);
       // XXX
     }
@@ -172,18 +163,26 @@ public class SendReceiveService extends Service {
     }
   }
 
-  private void storeAttachments(List<Pair<File, String>> attachments,
-                                List<String> attachmentTokens,
-                                List<String> attachmentContentTypes)
-      throws IOException
+  private List<Pair<String, String>> retrieveAttachments(List<AttachmentPointer> attachments)
+      throws IOException, InvalidMessageException
   {
-    AttachmentManager attachmentManager = AttachmentManager.getInstance(this);
+    AttachmentManager          attachmentManager = AttachmentManager.getInstance(this);
+    String                     localNumber       = WhisperPreferences.getLocalNumber(this);
+    String                     pushPassphrase    = WhisperPreferences.getPushServerPassword(this);
+    PushServiceSocket          socket            = new PushServiceSocket(this, localNumber, pushPassphrase);
+    List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
 
-    for (Pair<File, String> attachment : attachments) {
-      String token = attachmentManager.store(attachment.first);
-      attachmentTokens.add(token);
-      attachmentContentTypes.add(attachment.second);
+    for (AttachmentPointer attachment : attachments) {
+      byte[]                      key              = attachment.getKey().toByteArray();
+      File                        file             = socket.retrieveAttachment(attachment.getId());
+      AttachmentCipherInputStream attachmentStream = new AttachmentCipherInputStream(file, key);
+      String                      storedToken      = attachmentManager.store(attachmentStream);
+
+      file.delete();
+      results.add(new Pair<String, String>(storedToken, attachment.getContentType()));
     }
+
+    return results;
   }
 
   @Override

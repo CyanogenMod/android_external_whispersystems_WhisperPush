@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -16,6 +17,7 @@ import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushMessage;
+import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.push.RawTransportDetails;
@@ -36,24 +38,30 @@ public class WhisperCipher {
     this.address      = new MessagePeer(context, canonicalRecipientNumber);
   }
 
-  public String getDecryptedMessage(IncomingPushMessage message)
+  public PushMessageContent getDecryptedMessage(IncomingPushMessage message)
       throws IdentityMismatchException, InvalidMessageException
   {
     try {
-      byte[] body = message.getBody();
       Log.w("WhisperCipher", "Message type: " + message.getType());
 
+      byte[] ciphertext = message.getBody();
+      byte[] plaintext;
+
       switch (message.getType()) {
-        case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE: return getDecryptedMessageForNewSession(body);
-        case PushMessage.TYPE_MESSAGE_CIPHERTEXT:    return getDecryptedMessageForExistingSession(body);
-        case PushMessage.TYPE_MESSAGE_PLAINTEXT:     return new String(body);
+        case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE: plaintext = getDecryptedMessageForNewSession(ciphertext);      break;
+        case PushMessage.TYPE_MESSAGE_CIPHERTEXT:    plaintext = getDecryptedMessageForExistingSession(ciphertext); break;
+        case PushMessage.TYPE_MESSAGE_PLAINTEXT:     plaintext = ciphertext;                                        break;
         default:                                     throw new InvalidVersionException("Unknown type: " + message.getType());
       }
+
+      return PushMessageContent.parseFrom(plaintext);
     } catch (InvalidKeyException e) {
       throw new InvalidMessageException(e);
     } catch (InvalidVersionException e) {
       throw new InvalidMessageException(e);
     } catch (InvalidKeyIdException e) {
+      throw new InvalidMessageException(e);
+    } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -78,7 +86,7 @@ public class WhisperCipher {
     }
   }
 
-  private String getDecryptedMessageForNewSession(byte[] ciphertext)
+  private byte[] getDecryptedMessageForNewSession(byte[] ciphertext)
       throws InvalidVersionException, InvalidKeyException,
       InvalidKeyIdException, IdentityMismatchException, InvalidMessageException
   {
@@ -94,13 +102,13 @@ public class WhisperCipher {
     throw new IdentityMismatchException("Bad identity key!");
   }
 
-  private String getDecryptedMessageForExistingSession(byte[] ciphertext)
+  private byte[] getDecryptedMessageForExistingSession(byte[] ciphertext)
       throws InvalidMessageException
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair,
                                                         new PushTransportDetails());
-    return new String(messageCipher.decrypt(address, ciphertext));
+    return messageCipher.decrypt(address, ciphertext);
   }
 
   private byte[] getEncryptedPrekeyBundleMessageForExistingSession(CanonicalRecipientAddress address,
