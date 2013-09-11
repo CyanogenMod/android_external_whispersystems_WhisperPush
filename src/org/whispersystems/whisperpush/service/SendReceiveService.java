@@ -38,6 +38,7 @@ import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
+import org.whispersystems.whisperpush.database.DatabaseFactory;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
@@ -103,7 +104,8 @@ public class SendReceiveService extends Service {
                                            message.getTimestampMillis());
     } catch (IdentityMismatchException e) {
       Log.w("SendReceiveService", e);
-      // XXX
+      DatabaseFactory.getPendingApprovalDatabase(this).insert(message);
+      MessageNotifier.updateNotifications(this);
     } catch (InvalidMessageException e) {
       Log.w("SendReceiveService", e);
       // XXX

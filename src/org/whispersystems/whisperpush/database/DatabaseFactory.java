@@ -12,7 +12,8 @@ public class DatabaseFactory {
   private static DatabaseFactory instance;
 
   private final CanonicalAddressDatabase addressDatabase;
-  private final IdentityDatabase identityDatabase;
+  private final IdentityDatabase         identityDatabase;
+  private final PendingApprovalDatabase  pendingApprovalDatabase;
 
   public synchronized static DatabaseFactory getInstance(Context context) {
     if (instance == null)
@@ -24,8 +25,9 @@ public class DatabaseFactory {
   private DatabaseFactory(Context context) {
     DatabaseHelper databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-    this.identityDatabase = new IdentityDatabase(context, databaseHelper);
-    this.addressDatabase  = new CanonicalAddressDatabase(context, databaseHelper);
+    this.identityDatabase        = new IdentityDatabase(context, databaseHelper);
+    this.addressDatabase         = new CanonicalAddressDatabase(context, databaseHelper);
+    this.pendingApprovalDatabase = new PendingApprovalDatabase(context, databaseHelper);
   }
 
 
@@ -35,6 +37,10 @@ public class DatabaseFactory {
 
   public static IdentityDatabase getIdentityDatabase(Context context) {
     return getInstance(context).identityDatabase;
+  }
+
+  public static PendingApprovalDatabase getPendingApprovalDatabase(Context context) {
+    return getInstance(context).pendingApprovalDatabase;
   }
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -50,6 +56,7 @@ public class DatabaseFactory {
     public void onCreate(SQLiteDatabase db) {
       CanonicalAddressDatabase.onCreate(db);
       IdentityDatabase.onCreate(db);
+      PendingApprovalDatabase.onCreate(db);
     }
 
     @Override

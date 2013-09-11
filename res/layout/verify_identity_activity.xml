@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true"
+            android:background="@drawable/background_pattern_repeat">
+
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="16dip"
+                  android:paddingRight="16dip"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  android:orientation="vertical">
+
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <ImageView android:id="@+id/avatar"
+                       android:layout_width="60dp"
+                       android:layout_height="60dp"
+                       android:cropToPadding="true"
+                       android:scaleType="centerCrop"
+                       android:contentDescription="@string/verify_identity_activity__avatar_icon"/>
+
+            <TextView android:id="@+id/contact_name"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceLarge"
+                      android:paddingLeft="10dip"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  style="@style/Registration.Description"
+                  android:paddingTop="15dip"
+                  android:paddingBottom="15dip"
+                  android:text="@string/verify_identity_activity__this_contacts_identity_fingerprint_has_changed"/>
+
+        <TextView style="@style/Registration.Label"
+                  android:layout_width="fill_parent"
+                  android:textAllCaps="true"
+                  android:text="@string/verify_identity_activity__their_fingerprint" />
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:typeface="monospace"
+                android:id="@+id/identity_fingerprint"
+                android:text=""
+                android:padding="7dip" />
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dip">
+
+            <Button android:id="@+id/valid_button"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dip"
+                    android:layout_weight="1"
+                    android:text="@string/verify_identity_activity__valid"/>
+
+            <Button android:id="@+id/invalid_button"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dip"
+                    android:layout_weight="1"
+                    android:text="@string/verify_identity__invalid"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

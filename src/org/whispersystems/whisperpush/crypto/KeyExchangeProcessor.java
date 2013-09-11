@@ -19,6 +19,7 @@ import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.whispersystems.textsecure.storage.SessionRecord;
 import org.whispersystems.textsecure.util.Medium;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
+import org.whispersystems.whisperpush.database.IdentityDatabase;
 
 public class KeyExchangeProcessor {
 
@@ -56,8 +57,10 @@ public class KeyExchangeProcessor {
   }
 
   public void processKeyExchangeMessage(PreKeyBundleMessage message) throws InvalidKeyIdException {
-    int preKeyId               = message.getPreKeyId();
-    PublicKey remoteKey      = message.getPublicKey();
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+
+    int         preKeyId       = message.getPreKeyId ();
+    PublicKey   remoteKey      = message.getPublicKey();
     IdentityKey remoteIdentity = message.getIdentityKey();
 
     Log.w("KeyExchangeProcessor", "Received pre-key with remote key ID: " + remoteKey.getId());
@@ -93,8 +96,10 @@ public class KeyExchangeProcessor {
       PreKeyRecord.delete(context, preKeyId);
     }
 
-    DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(masterSecret, address, remoteIdentity);
+    if (identityDatabase.isFreshIdentity(address)) {
+      DatabaseFactory.getIdentityDatabase(context)
+                     .saveIdentity(masterSecret, address, remoteIdentity);
+    }
   }
 
   public void processKeyExchangeMessage(PreKeyEntity message) {
