@@ -68,7 +68,7 @@ public class WhisperCipher {
 
   public Pair<Integer, byte[]> getEncryptedMessage(PushServiceSocket socket,
                                                    String canonicalRecipientNumber,
-                                                   String plaintext)
+                                                   byte[] plaintext)
       throws IOException
   {
     if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, address)) {
@@ -112,13 +112,13 @@ public class WhisperCipher {
   }
 
   private byte[] getEncryptedPrekeyBundleMessageForExistingSession(CanonicalRecipientAddress address,
-                                                                   String plaintext)
+                                                                   byte[] plaintext)
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     IdentityKey identityKey         = identityKeyPair.getPublicKey();
 
     MessageCipher message = new MessageCipher(context, masterSecret, identityKeyPair, new RawTransportDetails());
-    byte[] bundledMessage = message.encrypt(address, plaintext.getBytes());
+    byte[] bundledMessage = message.encrypt(address, plaintext);
 
     PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
     return preKeyBundleMessage.serialize();
@@ -127,7 +127,7 @@ public class WhisperCipher {
   private byte[] getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
                                                               CanonicalRecipientAddress address,
                                                               String canonicalRecipientNumber,
-                                                              String plaintext)
+                                                              byte[] plaintext)
       throws IOException
   {
     IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
@@ -142,20 +142,20 @@ public class WhisperCipher {
     }
 
     MessageCipher message = new MessageCipher(context, masterSecret, identityKeyPair, new RawTransportDetails());
-    byte[] bundledMessage = message.encrypt(address, plaintext.getBytes());
+    byte[] bundledMessage = message.encrypt(address, plaintext);
 
     PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
     return preKeyBundleMessage.serialize();
   }
 
-  private byte[] getEncryptedMessageForExistingSession(CanonicalRecipientAddress address, String plaintext)
+  private byte[] getEncryptedMessageForExistingSession(CanonicalRecipientAddress address, byte[] plaintext)
       throws IOException
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair,
                                                         new PushTransportDetails());
 
-    return messageCipher.encrypt(address, plaintext.getBytes());
+    return messageCipher.encrypt(address, plaintext);
   }
 
 }

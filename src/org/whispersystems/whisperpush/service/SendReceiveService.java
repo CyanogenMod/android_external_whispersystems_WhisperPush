@@ -138,11 +138,12 @@ public class SendReceiveService extends Service {
       PushServiceSocket socket               = new PushServiceSocket(this, localNumber, pushPassphrase);
       String            formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
       String            message              = Util.join(messageParts, "");
+      byte[]            plaintext            = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
       WhisperCipher     whisperCipher        = new WhisperCipher(this, masterSecret, formattedDestination);
 
       Pair<Integer, byte[]> typeAndEncryptedMessage = whisperCipher.getEncryptedMessage(socket,
                                                                                         formattedDestination,
-                                                                                        message);
+                                                                                        plaintext);
 
       socket.sendMessage(formattedDestination,
                          typeAndEncryptedMessage.second,
