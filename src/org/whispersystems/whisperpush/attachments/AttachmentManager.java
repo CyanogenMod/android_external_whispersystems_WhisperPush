@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * The manager responsible for storing and retrieving received attachments.
@@ -46,17 +47,16 @@ public class AttachmentManager {
     this.context = context;
   }
 
-  public String store(File attachment) throws IOException {
+  public String store(InputStream attachment) throws IOException {
     File attachmentDirectory = new File(context.getFilesDir(), "attachments");
     attachmentDirectory.mkdirs();
 
     File            stored = File.createTempFile("attachment", ".store", attachmentDirectory);
-    FileInputStream fin    = new FileInputStream(attachment);
     FileOutputStream fout  = new FileOutputStream(stored);
 
-    Util.copy(fin, fout);
+    Util.copy(attachment, fout);
 
-    return attachment.getName();
+    return stored.getName();
   }
 
   public File get(String token) {
