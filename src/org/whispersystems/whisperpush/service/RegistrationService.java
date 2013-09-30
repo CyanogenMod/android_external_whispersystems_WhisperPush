@@ -29,6 +29,7 @@ import android.util.Pair;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
 import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -43,6 +44,7 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -271,8 +273,12 @@ public class RegistrationService extends Service {
     String gcmRegistrationId = GcmHelper.getRegistrationId(this);
     socket.registerGcmId(gcmRegistrationId);
 
-    Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
-    NumberFilter.getInstance(this).update(directory.first, directory.second);
+    Set<String>  eligibleContactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
+    List<String> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
+
+    if (activeTokens != null) {
+      Directory.getInstance(this).setActiveTokens(activeTokens);
+    }
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {
