@@ -24,14 +24,11 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.Pair;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.DirectoryDescriptor;
-import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
@@ -41,7 +38,6 @@ import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
@@ -277,7 +273,8 @@ public class RegistrationService extends Service {
     List<String> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
 
     if (activeTokens != null) {
-      Directory.getInstance(this).setActiveTokens(activeTokens);
+      eligibleContactTokens.removeAll(activeTokens);
+      Directory.getInstance(this).setTokens(activeTokens, eligibleContactTokens);
     }
   }
 

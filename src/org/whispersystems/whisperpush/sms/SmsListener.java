@@ -20,9 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
-import org.whispersystems.textsecure.directory.NumberFilter;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.SendReceiveService;
@@ -85,7 +85,11 @@ public class SmsListener extends BroadcastReceiver {
 
     String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
 
-    return NumberFilter.getInstance(context).containsNumber(number);
+    try {
+      return Directory.getInstance(context).isActiveNumber(number);
+    } catch (NotInDirectoryException e) {
+      return true;
+    }
   }
 
   private String parseChallenge(Intent intent) {

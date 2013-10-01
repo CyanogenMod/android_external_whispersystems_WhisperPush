@@ -28,6 +28,8 @@ import android.util.Pair;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
@@ -127,16 +129,21 @@ public class SendReceiveService extends Service {
     PendingResult pendingResult = candidate.getPendingResult();
 
     try {
-      List<String>        messageParts   = sendIntent.getStringArrayListExtra(PARTS);
-      String              destination    = sendIntent.getStringExtra(DESTINATION);
-      List<PendingIntent> sentIntents    = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
-      String              localNumber    = WhisperPreferences.getLocalNumber(this);
-      String              pushPassphrase = WhisperPreferences.getPushServerPassword(this);
-      MasterSecret        masterSecret   = MasterSecretUtil.getMasterSecret(this);
+      List<String>        messageParts         = sendIntent.getStringArrayListExtra(PARTS);
+      String              destination          = sendIntent.getStringExtra(DESTINATION);
+      List<PendingIntent> sentIntents          = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
+      String              localNumber          = WhisperPreferences.getLocalNumber(this);
+      String              formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
+      String              pushPassphrase       = WhisperPreferences.getPushServerPassword(this);
+      MasterSecret        masterSecret         = MasterSecretUtil.getMasterSecret(this);
 
+      if (!isRegisteredUser(formattedDestination)) {
+        Log.w("SendReceiveService", "Not a registered user...");
+        pendingResult.finish();
+        return;
+      }
 
       PushServiceSocket socket               = new PushServiceSocket(this, localNumber, pushPassphrase);
-      String            formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
       String            message              = Util.join(messageParts, "");
       byte[]            plaintext            = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
       WhisperCipher     whisperCipher        = new WhisperCipher(this, masterSecret, formattedDestination);
@@ -163,6 +170,29 @@ public class SendReceiveService extends Service {
     } catch (IOException e) {
       Log.w("SendReceiveService", e);
       pendingResult.finish();
+    }
+  }
+
+  private boolean isRegisteredUser(String e164number) {
+    Directory directory = Directory.getInstance(this);
+
+    try {
+      return directory.isActiveNumber(e164number);
+    } catch (NotInDirectoryException e) {
+      try {
+        String            localNumber  = WhisperPreferences.getLocalNumber(this);
+        String            password     = WhisperPreferences.getPushServerPassword(this);
+        PushServiceSocket socket       = new PushServiceSocket(this, localNumber, password);
+        String            contactToken = directory.getToken(e164number);
+        boolean           isActive     = socket.isRegisteredUser(contactToken);
+
+        directory.setToken(contactToken, isActive);
+
+        return isActive;
+      } catch (IOException e1) {
+        Log.w("SendReceiveService", e1);
+        return false;
+      }
     }
   }
 
