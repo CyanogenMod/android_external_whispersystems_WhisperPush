@@ -313,7 +313,10 @@ public class RegistrationService extends Service {
 
   private void markAsVerifying(boolean verifying) {
     WhisperPreferences.setVerifying(this, verifying);
-    WhisperPreferences.setRegistered(this, false);
+
+    if (verifying) {
+      WhisperPreferences.setRegistered(this, false);
+    }
   }
 
   private void markAsVerified(String number, String password, String signalingKey) {

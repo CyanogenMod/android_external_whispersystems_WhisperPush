@@ -18,6 +18,7 @@ package org.whispersystems.whisperpush.util;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.util.Pair;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -31,8 +32,7 @@ import com.android.internal.telephony.ISms;
 public class SmsServiceBridge {
 
   public static void receivedPushMessage(String source, List<String> destinations,
-                                         String message, List<String> attachments,
-                                         List<String> attachmentContentTypes,
+                                         String message, List<Pair<String,String>> attachments,
                                          long timestampSent)
   {
     try {
@@ -40,7 +40,7 @@ public class SmsServiceBridge {
       Method getService     = serviceManager.getMethod("getService", String.class);
       ISms   framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
 
-      logReceived(source, destinations, message, attachments, attachmentContentTypes, timestampSent);
+      logReceived(source, destinations, message, attachments, timestampSent);
       framework.synthesizeMessages(source, null, getAsList(message), timestampSent);
     } catch (ClassNotFoundException e) {
       throw new AssertionError(e);
@@ -62,8 +62,7 @@ public class SmsServiceBridge {
   }
 
   private static void logReceived(String source, List<String> destinations, String message,
-                                  List<String> attachments, List<String> attachmentContentTypes,
-                                  long timestampSent)
+                                  List<Pair<String,String>> attachments, long timestampSent)
   {
     Log.w("SmsServiceBridge", "Incoming Message Source: " + source);
 
@@ -73,8 +72,8 @@ public class SmsServiceBridge {
 
     Log.w("SmsServiceBridge", "Incoming Message Body: " + message);
 
-    for (String attachment : attachments) {
-      Log.w("SmsServiceBridge", "Incoming Message Attachment: " + attachment);
+    for (Pair<String, String> attachment : attachments) {
+      Log.w("SmsServiceBridge", String.format("Incoming Message Attachment: %s, %s", attachment.first, attachment.second));
     }
 
     Log.w("SmsServiceBridge", "Incoming Message Sent Time: " + timestampSent);
