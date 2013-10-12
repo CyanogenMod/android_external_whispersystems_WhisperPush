@@ -92,6 +92,9 @@ public class SendReceiveService extends Service {
     if (message == null)
       return;
 
+    Directory directory = Directory.getInstance(this);
+    directory.setToken(directory.getToken(message.getSource()), true);
+
     try {
       WhisperCipher              whisperCipher = new WhisperCipher(this, masterSecret, message.getSource());
       PushMessageContent         content       = whisperCipher.getDecryptedMessage(message);
