@@ -24,6 +24,7 @@ import android.telephony.SmsMessage;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.SendReceiveService;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
@@ -102,6 +103,7 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
+    DirectoryRefreshListener.schedule(context);
 
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);

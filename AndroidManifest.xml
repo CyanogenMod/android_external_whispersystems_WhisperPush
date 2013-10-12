@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="org.whispersystems.whisperpush">
 
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="17"/>
@@ -11,9 +12,11 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERCEPT_SMS"/>
-    <uses-permission android:name="android.permission.BROADCAST_SMS"/>
+    <uses-permission android:name="android.permission.BROADCAST_SMS"
+                     tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
@@ -63,6 +66,7 @@
 
         <service android:enabled="true" android:name=".service.RegistrationService"/>
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
+        <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
 
         <receiver android:name=".sms.SmsListener"
                   android:enabled="true"
@@ -87,6 +91,14 @@
                 <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".service.DirectoryRefreshListener">
+            <intent-filter>
+                <action android:name="org.whispersystems.whisperpush.DIRECTORY_REFRESH"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
 
         <provider android:authorities="org.whispersystems.whisperpush.provider"
                   android:name=".attachments.AttachmentProvider"

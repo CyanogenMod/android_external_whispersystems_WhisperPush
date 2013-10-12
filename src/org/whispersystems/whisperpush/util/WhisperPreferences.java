@@ -27,16 +27,25 @@ import android.util.Pair;
  */
 public class WhisperPreferences {
 
-  private static final String PREF_VERIFYING             = "pref_verifying";
-  private static final String PREF_REGISTRATION_COMPLETE = "pref_registration_complete";
-  private static final String PREF_LOCAL_NUMBER          = "pref_registered_number";
-  private static final String PREF_PUSH_PASSWORD         = "pref_push_password";
-  private static final String PREF_GCM_ID                = "pref_gcm_id";
-  private static final String PREF_GCM_VERSION           = "pref_gcm_version";
-  private static final String PREF_IDENTITY_PUBLIC_KEY   = "pref_identity_public";
-  private static final String PREF_IDENTITY_PRIVATE_KEY  = "pref_identity_private";
-  private static final String PREF_MASTER_SECRET         = "pref_master_secret";
-  private static final String PREF_SIGNALING_KEY         = "pref_signaling_key";
+  private static final String PREF_VERIFYING              = "pref_verifying";
+  private static final String PREF_REGISTRATION_COMPLETE  = "pref_registration_complete";
+  private static final String PREF_LOCAL_NUMBER           = "pref_registered_number";
+  private static final String PREF_PUSH_PASSWORD          = "pref_push_password";
+  private static final String PREF_GCM_ID                 = "pref_gcm_id";
+  private static final String PREF_GCM_VERSION            = "pref_gcm_version";
+  private static final String PREF_IDENTITY_PUBLIC_KEY    = "pref_identity_public";
+  private static final String PREF_IDENTITY_PRIVATE_KEY   = "pref_identity_private";
+  private static final String PREF_MASTER_SECRET          = "pref_master_secret";
+  private static final String PREF_SIGNALING_KEY          = "pref_signaling_key";
+  private static final String PREF_DIRECTORY_REFRESH_TIME = "pref_directory_refresh";
+
+  public static long getDirectoryRefreshTime(Context context) {
+    return getLongPreference(context, PREF_DIRECTORY_REFRESH_TIME, 0);
+  }
+
+  public static void setDirectoryRefreshTime(Context context, long value) {
+    setLongPreference(context, PREF_DIRECTORY_REFRESH_TIME, value);
+  }
 
   public static void setMasterSecret(Context context, String value) {
     setStringPreference(context, PREF_MASTER_SECRET, value);
@@ -132,6 +141,14 @@ public class WhisperPreferences {
 
   private static int getIntegerPreference(Context context, String key, int defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
+  }
+
+  private static long getLongPreference(Context context, String key, long defaultValue) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getLong(key, defaultValue);
+  }
+
+  private static void setLongPreference(Context context, String key, long value) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
   }
 
 }

@@ -29,6 +29,7 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
 import org.whispersystems.whisperpush.service.SendReceiveService;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -42,6 +43,7 @@ import java.io.IOException;
 public class GcmReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
+    DirectoryRefreshListener.schedule(context);
     GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(gcm.getMessageType(intent))) {
