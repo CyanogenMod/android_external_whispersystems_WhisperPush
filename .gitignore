@@ -7,4 +7,5 @@ WhisperPush.iml
 out
 local.properties
 ant.properties
-
+.gradle
+build
