@@ -29,6 +29,7 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
@@ -96,7 +97,8 @@ public class RegistrationService extends Service {
       executor.execute(new Runnable() {
         @Override
         public void run() {
-          if      (intent.getAction().equals(REGISTER_NUMBER_ACTION)) handleRegistrationIntent(intent);
+          if      (intent.getAction() == null)                        return;
+          else if (intent.getAction().equals(REGISTER_NUMBER_ACTION)) handleRegistrationIntent(intent);
           else if (intent.getAction().equals(VOICE_REQUESTED_ACTION)) handleVoiceRequestedIntent(intent);
           else if (intent.getAction().equals(VOICE_REGISTER_ACTION))  handleVoiceRegisterIntent(intent);
         }
@@ -269,11 +271,13 @@ public class RegistrationService extends Service {
     String gcmRegistrationId = GcmHelper.getRegistrationId(this);
     socket.registerGcmId(gcmRegistrationId);
 
-    Set<String>  eligibleContactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
-    List<String> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
+    Set<String>               eligibleContactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
+    List<ContactTokenDetails> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
 
     if (activeTokens != null) {
-      eligibleContactTokens.removeAll(activeTokens);
+      for (ContactTokenDetails activeToken : activeTokens) {
+        eligibleContactTokens.remove(activeToken.getToken());
+      }
       Directory.getInstance(this).setTokens(activeTokens, eligibleContactTokens);
     }
 

@@ -30,6 +30,7 @@ import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
@@ -92,8 +93,14 @@ public class SendReceiveService extends Service {
     if (message == null)
       return;
 
-    Directory directory = Directory.getInstance(this);
-    directory.setToken(directory.getToken(message.getSource()), true);
+    if (!isActiveNumber(message.getSource())) {
+      Directory           directory           = Directory.getInstance(this);
+      String              contactToken        = directory.getToken(message.getSource());
+      String              relay               = message.getRelay();
+      ContactTokenDetails contactTokenDetails = new ContactTokenDetails(contactToken, relay);
+
+      directory.setToken(contactTokenDetails, true);
+    }
 
     try {
       WhisperCipher              whisperCipher = new WhisperCipher(this, masterSecret, message.getSource());
@@ -146,16 +153,17 @@ public class SendReceiveService extends Service {
         return;
       }
 
-      PushServiceSocket socket               = new PushServiceSocket(this, localNumber, pushPassphrase);
-      String            message              = Util.join(messageParts, "");
-      byte[]            plaintext            = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
-      WhisperCipher     whisperCipher        = new WhisperCipher(this, masterSecret, formattedDestination);
+      PushServiceSocket socket        = new PushServiceSocket(this, localNumber, pushPassphrase);
+      String            message       = Util.join(messageParts, "");
+      String            relay         = Directory.getInstance(this).getRelay(formattedDestination);
+      byte[]            plaintext     = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
+      WhisperCipher     whisperCipher = new WhisperCipher(this, masterSecret, formattedDestination);
 
       Pair<Integer, byte[]> typeAndEncryptedMessage = whisperCipher.getEncryptedMessage(socket,
                                                                                         formattedDestination,
                                                                                         plaintext);
 
-      socket.sendMessage(formattedDestination,
+      socket.sendMessage(relay, formattedDestination,
                          typeAndEncryptedMessage.second,
                          typeAndEncryptedMessage.first);
 
@@ -183,19 +191,32 @@ public class SendReceiveService extends Service {
       return directory.isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
       try {
-        String            localNumber  = WhisperPreferences.getLocalNumber(this);
-        String            password     = WhisperPreferences.getPushServerPassword(this);
-        PushServiceSocket socket       = new PushServiceSocket(this, localNumber, password);
-        String            contactToken = directory.getToken(e164number);
-        boolean           isActive     = socket.isRegisteredUser(contactToken);
+        String              localNumber         = WhisperPreferences.getLocalNumber(this);
+        String              password            = WhisperPreferences.getPushServerPassword(this);
+        PushServiceSocket   socket              = new PushServiceSocket(this, localNumber, password);
+        String              contactToken        = directory.getToken(e164number);
+        ContactTokenDetails contactTokenDetails = socket.getContactTokenDetails(contactToken);
 
-        directory.setToken(contactToken, isActive);
-
-        return isActive;
+        if (contactTokenDetails != null) {
+          directory.setToken(contactTokenDetails, true);
+          return true;
+        } else {
+          contactTokenDetails = new ContactTokenDetails(contactToken);
+          directory.setToken(contactTokenDetails, false);
+          return false;
+        }
       } catch (IOException e1) {
         Log.w("SendReceiveService", e1);
         return false;
       }
+    }
+  }
+
+  private boolean isActiveNumber(String e164number) {
+    try {
+      return Directory.getInstance(this).isActiveNumber(e164number);
+    } catch (NotInDirectoryException e) {
+      return false;
     }
   }
 
@@ -225,4 +246,5 @@ public class SendReceiveService extends Service {
   public IBinder onBind(Intent intent) {
     return null;
   }
+
 }

@@ -14,6 +14,7 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushMessage;
@@ -132,7 +133,8 @@ public class WhisperCipher {
   {
     IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     IdentityKey          identityKey     = identityKeyPair.getPublicKey();
-    PreKeyEntity         preKey          = socket.getPreKey(canonicalRecipientNumber);
+    String               relay           = Directory.getInstance(context).getRelay(canonicalRecipientNumber);
+    PreKeyEntity         preKey          = socket.getPreKey(relay, canonicalRecipientNumber);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, address);
 
     if (processor.isTrusted(preKey)) {
