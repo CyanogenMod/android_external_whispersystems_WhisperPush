@@ -46,6 +46,7 @@ import org.whispersystems.whisperpush.sms.OutgoingSmsQueue;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperPushCredentials;
 
 import java.io.File;
 import java.io.IOException;
@@ -144,7 +145,6 @@ public class SendReceiveService extends Service {
       List<PendingIntent> sentIntents          = sendIntent.getParcelableArrayListExtra(SENT_INTENTS);
       String              localNumber          = WhisperPreferences.getLocalNumber(this);
       String              formattedDestination = PhoneNumberFormatter.formatNumber(destination, localNumber);
-      String              pushPassphrase       = WhisperPreferences.getPushServerPassword(this);
       MasterSecret        masterSecret         = MasterSecretUtil.getMasterSecret(this);
 
       if (!isRegisteredUser(formattedDestination)) {
@@ -153,7 +153,7 @@ public class SendReceiveService extends Service {
         return;
       }
 
-      PushServiceSocket socket        = new PushServiceSocket(this, localNumber, pushPassphrase);
+      PushServiceSocket socket        = new PushServiceSocket(this, WhisperPushCredentials.getInstance());
       String            message       = Util.join(messageParts, "");
       String            relay         = Directory.getInstance(this).getRelay(formattedDestination);
       byte[]            plaintext     = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
@@ -191,9 +191,7 @@ public class SendReceiveService extends Service {
       return directory.isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
       try {
-        String              localNumber         = WhisperPreferences.getLocalNumber(this);
-        String              password            = WhisperPreferences.getPushServerPassword(this);
-        PushServiceSocket   socket              = new PushServiceSocket(this, localNumber, password);
+        PushServiceSocket   socket              = new PushServiceSocket(this, WhisperPushCredentials.getInstance());
         String              contactToken        = directory.getToken(e164number);
         ContactTokenDetails contactTokenDetails = socket.getContactTokenDetails(contactToken);
 
@@ -224,9 +222,7 @@ public class SendReceiveService extends Service {
       throws IOException, InvalidMessageException
   {
     AttachmentManager          attachmentManager = AttachmentManager.getInstance(this);
-    String                     localNumber       = WhisperPreferences.getLocalNumber(this);
-    String                     pushPassphrase    = WhisperPreferences.getPushServerPassword(this);
-    PushServiceSocket          socket            = new PushServiceSocket(this, localNumber, pushPassphrase);
+    PushServiceSocket          socket            = new PushServiceSocket(this, WhisperPushCredentials.getInstance());
     List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
 
     for (AttachmentPointer attachment : attachments) {
