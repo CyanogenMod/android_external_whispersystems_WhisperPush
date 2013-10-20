@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -14,9 +15,9 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
-import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
+import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -32,11 +33,13 @@ public class WhisperCipher {
   private final Context context;
   private final MasterSecret masterSecret;
   private final CanonicalRecipientAddress address;
+  private final PushDestination pushDestination;
 
-  public WhisperCipher(Context context, MasterSecret masterSecret, String canonicalRecipientNumber) {
-    this.context      = context.getApplicationContext();
-    this.masterSecret = masterSecret;
-    this.address      = new MessagePeer(context, canonicalRecipientNumber);
+  public WhisperCipher(Context context, MasterSecret masterSecret, PushDestination pushDestination) {
+    this.context         = context.getApplicationContext();
+    this.masterSecret    = masterSecret;
+    this.address         = new MessagePeer(context, pushDestination.getNumber());
+    this.pushDestination = pushDestination;
   }
 
   public PushMessageContent getDecryptedMessage(IncomingPushMessage message)
@@ -68,7 +71,6 @@ public class WhisperCipher {
   }
 
   public Pair<Integer, byte[]> getEncryptedMessage(PushServiceSocket socket,
-                                                   String canonicalRecipientNumber,
                                                    byte[] plaintext)
       throws IOException
   {
@@ -82,7 +84,7 @@ public class WhisperCipher {
       return new Pair<Integer, byte[]>(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     } else {
       Log.w("WhisperCipher", "Encrypting prekeybundle ciphertext message for new session...");
-      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, address, canonicalRecipientNumber, plaintext);
+      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, address, pushDestination, plaintext);
       return new Pair<Integer, byte[]>(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     }
   }
@@ -127,14 +129,13 @@ public class WhisperCipher {
 
   private byte[] getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
                                                               CanonicalRecipientAddress address,
-                                                              String canonicalRecipientNumber,
+                                                              PushDestination pushDestination,
                                                               byte[] plaintext)
       throws IOException
   {
     IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     IdentityKey          identityKey     = identityKeyPair.getPublicKey();
-    String               relay           = Directory.getInstance(context).getRelay(canonicalRecipientNumber);
-    PreKeyEntity         preKey          = socket.getPreKey(relay, canonicalRecipientNumber);
+    PreKeyEntity         preKey          = socket.getPreKey(pushDestination);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, address);
 
     if (processor.isTrusted(preKey)) {
