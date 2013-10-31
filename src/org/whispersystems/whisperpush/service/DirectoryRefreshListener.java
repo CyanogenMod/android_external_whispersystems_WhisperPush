@@ -12,7 +12,7 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 public class DirectoryRefreshListener extends BroadcastReceiver {
 
   private static final String REFRESH_EVENT = "org.whispersystems.whisperpush.DIRECTORY_REFRESH";
-  private static final String BOOT_EVENT    = "android.intent.action.BOOT_COMPLETED";
+  private static final String BOOT_EVENT    = Intent.ACTION_BOOT_COMPLETED;
 
   private static final long   INTERVAL      = 24 * 60 * 60 * 1000; // 24 hours.
 
