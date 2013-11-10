@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.KeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
@@ -56,7 +58,9 @@ public class KeyExchangeProcessor {
                                                                         identityKey);
   }
 
-  public void processKeyExchangeMessage(PreKeyBundleMessage message) throws InvalidKeyIdException {
+  public void processKeyExchangeMessage(PreKeyBundleMessage message)
+      throws InvalidKeyIdException, InvalidKeyException
+  {
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
 
     int         preKeyId       = message.getPreKeyId ();
@@ -86,7 +90,7 @@ public class KeyExchangeProcessor {
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(remoteIdentity);
-    sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), MessageCipher.SUPPORTED_VERSION));
+    sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), CiphertextMessage.SUPPORTED_VERSION));
 
     localKeyRecord.save();
     remoteKeyRecord.save();
@@ -109,14 +113,14 @@ public class KeyExchangeProcessor {
     remoteKeyRecord.setLastRemoteKey(remoteKey);
     remoteKeyRecord.save();
 
-    localKeyRecord = KeyUtil.initializeRecordFor(address, context, masterSecret);
+    localKeyRecord = KeyUtil.initializeRecordFor(context, masterSecret, address, CiphertextMessage.SUPPORTED_VERSION);
     localKeyRecord.setNextKeyPair(localKeyRecord.getCurrentKeyPair());
     localKeyRecord.save();
 
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
-    sessionRecord.setSessionVersion(MessageCipher.SUPPORTED_VERSION);
+    sessionRecord.setSessionVersion(CiphertextMessage.SUPPORTED_VERSION);
     sessionRecord.setPrekeyBundleRequired(true);
     sessionRecord.save();
 

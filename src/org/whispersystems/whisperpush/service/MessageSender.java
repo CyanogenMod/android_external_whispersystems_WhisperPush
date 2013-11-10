@@ -6,12 +6,12 @@ import android.content.BroadcastReceiver.PendingResult;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.util.Pair;
 
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -57,9 +57,9 @@ public class MessageSender {
       PushCredentials   credentials     = WhisperPushCredentials.getInstance();
       PushDestination   pushDestination = PushDestination.create(context, credentials, destination);
       PushServiceSocket socket          = new PushServiceSocket(context, credentials);
+      PushBody          body            = getEncryptedMessage(pushDestination, messageParts);
 
-      Pair<Integer, byte[]> typeAndEncryptedMessage = getEncryptedMessage(pushDestination, messageParts);
-      socket.sendMessage(pushDestination, typeAndEncryptedMessage.second, typeAndEncryptedMessage.first);
+      socket.sendMessage(pushDestination, body);
 
       notifySendComplete(sendIntent);
       completeSendOperation(candidate);
@@ -98,7 +98,7 @@ public class MessageSender {
     }
   }
 
-  private Pair<Integer, byte[]> getEncryptedMessage(PushDestination pushDestination,
+  private PushBody getEncryptedMessage(PushDestination pushDestination,
                                                     List<String> messageParts)
       throws IOException
   {

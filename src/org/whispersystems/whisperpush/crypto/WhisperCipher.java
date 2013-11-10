@@ -2,7 +2,6 @@ package org.whispersystems.whisperpush.crypto;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -14,15 +13,15 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
+import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.PushTransportDetails;
-import org.whispersystems.textsecure.push.RawTransportDetails;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
@@ -70,22 +69,22 @@ public class WhisperCipher {
     }
   }
 
-  public Pair<Integer, byte[]> getEncryptedMessage(PushServiceSocket socket,
+  public PushBody getEncryptedMessage(PushServiceSocket socket,
                                                    byte[] plaintext)
       throws IOException
   {
     if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, address)) {
       Log.w("WhisperCipher", "Encrypting standard ciphertext message...");
       byte[] ciphertext = getEncryptedMessageForExistingSession(address, plaintext);
-      return new Pair<Integer, byte[]>(PushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
+      return new PushBody(PushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
     } else if (KeyUtil.isSessionFor(context, address)) {
       Log.w("WhisperCipher", "Encrypting prekeybundle ciphertext message for existing session...");
       byte[] ciphertext = getEncryptedPrekeyBundleMessageForExistingSession(address, plaintext);
-      return new Pair<Integer, byte[]>(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      return new PushBody(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     } else {
       Log.w("WhisperCipher", "Encrypting prekeybundle ciphertext message for new session...");
       byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, address, pushDestination, plaintext);
-      return new Pair<Integer, byte[]>(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      return new PushBody(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     }
   }
 
@@ -99,7 +98,7 @@ public class WhisperCipher {
     if (processor.isTrusted(bundleMessage)) {
       Log.w("WhisperCipher", "Trusted, processing...");
       processor.processKeyExchangeMessage(bundleMessage);
-      return getDecryptedMessageForExistingSession(bundleMessage.getBundledMessage());
+      return getDecryptedMessageForExistingSession(bundleMessage.getBundledMessage().serialize());
     }
 
     throw new IdentityMismatchException("Bad identity key!");
@@ -109,21 +108,20 @@ public class WhisperCipher {
       throws InvalidMessageException
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair,
-                                                        new PushTransportDetails());
+    MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair);
     return messageCipher.decrypt(address, ciphertext);
   }
 
   private byte[] getEncryptedPrekeyBundleMessageForExistingSession(CanonicalRecipientAddress address,
                                                                    byte[] plaintext)
   {
-    IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    IdentityKey identityKey         = identityKeyPair.getPublicKey();
+    IdentityKeyPair   identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKey       identityKey     = identityKeyPair.getPublicKey();
 
-    MessageCipher message = new MessageCipher(context, masterSecret, identityKeyPair, new RawTransportDetails());
-    byte[] bundledMessage = message.encrypt(address, plaintext);
+    MessageCipher     message         = new MessageCipher(context, masterSecret, identityKeyPair);
+    CiphertextMessage bundledMessage  = message.encrypt(address, plaintext);
 
-    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
+    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(bundledMessage, identityKey);
     return preKeyBundleMessage.serialize();
   }
 
@@ -144,21 +142,21 @@ public class WhisperCipher {
       throw new IdentityMismatchException("Retrieved identity is untrusted!");
     }
 
-    MessageCipher message = new MessageCipher(context, masterSecret, identityKeyPair, new RawTransportDetails());
-    byte[] bundledMessage = message.encrypt(address, plaintext);
+    MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKeyPair);
+    CiphertextMessage   bundledMessage      = messageCipher.encrypt(address, plaintext);
+    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(bundledMessage, identityKey);
 
-    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
     return preKeyBundleMessage.serialize();
   }
 
   private byte[] getEncryptedMessageForExistingSession(CanonicalRecipientAddress address, byte[] plaintext)
       throws IOException
   {
-    IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair,
-                                                        new PushTransportDetails());
+    IdentityKeyPair   identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    MessageCipher     messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair);
+    CiphertextMessage message         = messageCipher.encrypt(address, plaintext);
 
-    return messageCipher.encrypt(address, plaintext);
+    return message.serialize();
   }
 
 }

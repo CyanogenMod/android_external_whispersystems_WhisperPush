@@ -19,15 +19,14 @@ package org.whispersystems.whisperpush.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -66,15 +65,17 @@ public class IdentityKeyUtil {
       return null;
 
     try {
-      MasterCipher           masterCipher    = new MasterCipher(masterSecret);
-      IdentityKey            publicKey       = getIdentityKey(context);
-      byte[]                 privateKeyBytes = Base64.decode(WhisperPreferences.getIdentityKeyPrivate(context));
-      ECPrivateKeyParameters privateKey      = masterCipher.decryptKey(privateKeyBytes);
+      MasterCipher masterCipher    = new MasterCipher(masterSecret);
+      IdentityKey  publicKey       = getIdentityKey(context);
+      byte[]       privateKeyBytes = Base64.decode(WhisperPreferences.getIdentityKeyPrivate(context));
+      ECPrivateKey privateKey      = masterCipher.decryptKey(publicKey.getPublicKey().getType(), privateKeyBytes);
 
       return new IdentityKeyPair(publicKey, privateKey);
     } catch (IOException e) {
       Log.w("IdentityKeyUtil", e);
       return null;
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
     }
   }
 
@@ -88,11 +89,11 @@ public class IdentityKeyUtil {
   }
 
   public static void generateIdentityKeys(Context context, MasterSecret masterSecret) {
-    MasterCipher masterCipher       = new MasterCipher(masterSecret);
-    AsymmetricCipherKeyPair keyPair = KeyUtil.generateKeyPair();
-    IdentityKey identityKey         = new IdentityKey((ECPublicKeyParameters)keyPair.getPublic());
-    byte[] serializedPublicKey      = identityKey.serialize();
-    byte[] serializedPrivateKey     = masterCipher.encryptKey((ECPrivateKeyParameters)keyPair.getPrivate());
+    MasterCipher masterCipher         = new MasterCipher(masterSecret);
+    ECKeyPair    keyPair              = Curve.generateKeyPairForType(Curve.DJB_TYPE);
+    IdentityKey  identityKey          = new IdentityKey(keyPair.getPublicKey());
+    byte[]       serializedPublicKey  = identityKey.serialize();
+    byte[]       serializedPrivateKey = masterCipher.encryptKey(keyPair.getPrivateKey());
 
     WhisperPreferences.setIdentityKeyPublic(context, Base64.encodeBytes(serializedPublicKey));
     WhisperPreferences.setIdentityKeyPrivate(context, Base64.encodeBytes(serializedPrivateKey));
