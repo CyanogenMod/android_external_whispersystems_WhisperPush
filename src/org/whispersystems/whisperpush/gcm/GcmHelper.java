@@ -23,6 +23,7 @@ import android.util.Pair;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
@@ -34,13 +35,11 @@ import java.io.IOException;
  */
 public class GcmHelper {
 
-  private static final String GCM_SENDER_ID = "312334754206";
-
   public static String getRegistrationId(Context context) throws IOException {
     String registrationId = getCurrentRegistrationId(context);
 
     if (registrationId == null) {
-      registrationId = GoogleCloudMessaging.getInstance(context).register(GCM_SENDER_ID);
+      registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
       setCurrentRegistrationId(context, registrationId);
     }
 

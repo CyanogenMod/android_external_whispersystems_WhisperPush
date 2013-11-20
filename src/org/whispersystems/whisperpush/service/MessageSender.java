@@ -18,6 +18,7 @@ import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
@@ -56,7 +57,7 @@ public class MessageSender {
       List<String>      messageParts    = sendIntent.getStringArrayListExtra(PARTS);
       PushCredentials   credentials     = WhisperPushCredentials.getInstance();
       PushDestination   pushDestination = PushDestination.create(context, credentials, destination);
-      PushServiceSocket socket          = new PushServiceSocket(context, credentials);
+      PushServiceSocket socket          = new PushServiceSocket(context, Release.PUSH_URL, credentials);
       PushBody          body            = getEncryptedMessage(pushDestination, messageParts);
 
       socket.sendMessage(pushDestination, body);
@@ -102,7 +103,7 @@ public class MessageSender {
                                                     List<String> messageParts)
       throws IOException
   {
-    PushServiceSocket socket        = new PushServiceSocket(context, WhisperPushCredentials.getInstance());
+    PushServiceSocket socket        = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
     String            message       = Util.join(messageParts, "");
     byte[]            plaintext     = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
     MasterSecret      masterSecret  = MasterSecretUtil.getMasterSecret(context);
@@ -121,7 +122,7 @@ public class MessageSender {
       return directory.isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket   socket              = new PushServiceSocket(context, WhisperPushCredentials.getInstance());
+        PushServiceSocket   socket              = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
         Log.w("MessageSender", "Getting contact token for: " + e164number);
         String              contactToken        = directory.getToken(e164number);
         ContactTokenDetails contactTokenDetails = socket.getContactTokenDetails(contactToken);
@@ -131,8 +132,7 @@ public class MessageSender {
           return true;
         } else {
           contactTokenDetails = new ContactTokenDetails(contactToken);
-          Log.w("MessageSender", "Would be setting token to false...");
-//          directory.setToken(contactTokenDetails, false);
+          directory.setToken(contactTokenDetails, false);
           return false;
         }
       } catch (IOException e1) {

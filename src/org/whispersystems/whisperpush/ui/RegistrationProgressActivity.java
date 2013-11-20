@@ -49,6 +49,7 @@ import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.RegistrationService.RegistrationState;
 
@@ -510,7 +511,7 @@ public class RegistrationProgressActivity extends Activity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
+            PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, e164number, password);
             socket.verifyAccount(code, signalingKey);
             return SUCCESS;
           } catch (RateLimitException e) {
@@ -596,7 +597,7 @@ public class RegistrationProgressActivity extends Activity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
+            PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, e164number, password);
             socket.createAccount(true);
 
             return SUCCESS;

@@ -34,6 +34,7 @@ import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
@@ -196,7 +197,7 @@ public class RegistrationService extends Service {
     try {
       initializePreKeyGenerator();
 
-      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
       handleCommonRegistration(socket, number);
 
       markAsVerified(number, password, signalingKey);
@@ -227,7 +228,7 @@ public class RegistrationService extends Service {
       initializePreKeyGenerator();
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
       socket.createAccount(false);
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));

@@ -16,6 +16,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
+import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
@@ -82,7 +83,7 @@ public class MessageReceiver {
       throws IOException, InvalidMessageException
   {
     AttachmentManager          attachmentManager = AttachmentManager.getInstance(context);
-    PushServiceSocket          socket            = new PushServiceSocket(context, WhisperPushCredentials.getInstance());
+    PushServiceSocket          socket            = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
     List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
 
     for (AttachmentPointer attachment : attachments) {
