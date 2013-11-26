@@ -44,7 +44,7 @@
                       android:layout_height="wrap_content"
                       android:textSize="20sp"
                       style="@style/Registration.Constant"
-                      android:text="+" />
+                      android:text="@string/generic__plus" />
 
             <EditText android:id="@+id/country_code"
                       android:layout_width="55dip"

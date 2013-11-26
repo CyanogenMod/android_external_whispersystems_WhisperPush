@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Generic Strings -->
+    <string translatable="false" name="generic__plus">+</string>
+    <string translatable="false" name="generic__dot">•</string>
+
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_pending_messages_require_validation">%d pending messages require
         validation
@@ -179,6 +183,10 @@
         failed.
     </string>
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
+    <string name="registration_progress_activity__alert">Alert</string>
+    <string name="registration_progress_activity__check">Check</string>
+    <string name="registration_progress_activity__telephone">Telephone</string>
+    <string name="registration_progress_activity__timer_default">1:57</string>
 
     <!-- review_identities_activity -->
     <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identities in your trust database</string>

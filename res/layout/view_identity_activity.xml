@@ -16,7 +16,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:typeface="monospace"
                 android:id="@+id/identity_fingerprint"
-                android:text=""
                 android:padding="7dip" />
 
     </LinearLayout>
