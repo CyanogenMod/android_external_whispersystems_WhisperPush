@@ -16,9 +16,10 @@ import android.widget.TextView;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
@@ -118,14 +119,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
         while ((message = reader.getNext()) != null) {
           try {
-            PreKeyBundleMessage keyExchangeMessage = new PreKeyBundleMessage(message.getBody());
+            PreKeyWhisperMessage keyExchangeMessage = new PreKeyWhisperMessage(message.getBody());
 
             if (keyExchangeMessage.getIdentityKey().equals(identityKey)) {
               database.delete(reader.getCurrentId());
             }
-          } catch (InvalidKeyException e) {
-            Log.w("VerifyIdentityActivity", e);
           } catch (InvalidVersionException e) {
+            Log.w("VerifyIdentityActivity", e);
+          } catch (InvalidMessageException e) {
             Log.w("VerifyIdentityActivity", e);
           }
         }
@@ -188,7 +189,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
       while ((message = reader.getNext()) != null) {
         try {
-          PreKeyBundleMessage keyExchange = new PreKeyBundleMessage(message.getBody());
+          PreKeyWhisperMessage keyExchange = new PreKeyWhisperMessage(message.getBody());
 
           if (keyExchange.getIdentityKey().equals(identityKey)) {
             Intent intent = new Intent(context, SendReceiveService.class);
@@ -197,9 +198,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
             context.startService(intent);
             database.delete(reader.getCurrentId());
           }
-        } catch (InvalidKeyException e) {
-          Log.w("VerifyIdentityActivity", e);
         } catch (InvalidVersionException e) {
+          Log.w("VerifyIdentityActivity", e);
+        } catch (InvalidMessageException e) {
           Log.w("VerifyIdentityActivity", e);
         }
       }

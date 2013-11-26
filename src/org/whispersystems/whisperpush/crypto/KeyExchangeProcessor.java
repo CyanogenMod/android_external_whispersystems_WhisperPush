@@ -4,51 +4,44 @@ import android.content.Context;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.KeyPair;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
-import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.crypto.ratchet.RatchetingSession;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
-import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.storage.RemoteKeyRecord;
-import org.whispersystems.textsecure.storage.SessionRecord;
+import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Medium;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
-import org.whispersystems.whisperpush.database.IdentityDatabase;
 
 public class KeyExchangeProcessor {
 
-  private Context context;
+  private Context                   context;
   private CanonicalRecipientAddress address;
-  private MasterSecret masterSecret;
-  private LocalKeyRecord localKeyRecord;
-  private RemoteKeyRecord remoteKeyRecord;
-  private SessionRecord sessionRecord;
+  private MasterSecret              masterSecret;
+  private SessionRecordV2           sessionRecord;
 
   public KeyExchangeProcessor(Context context, MasterSecret masterSecret,
                               CanonicalRecipientAddress address)
   {
-    this.context      = context;
-    this.address      = address;
-    this.masterSecret = masterSecret;
-
-    this.remoteKeyRecord = new RemoteKeyRecord(context, address);
-    this.localKeyRecord  = new LocalKeyRecord(context, masterSecret, address);
-    this.sessionRecord   = new SessionRecord(context, masterSecret, address);
+    this.context       = context;
+    this.address       = address;
+    this.masterSecret  = masterSecret;
+    this.sessionRecord = new SessionRecordV2(context, masterSecret, address);
   }
 
   public boolean isTrusted(PreKeyEntity message) {
     return isTrusted(message.getIdentityKey());
   }
 
-  public boolean isTrusted(PreKeyBundleMessage message) {
+  public boolean isTrusted(PreKeyWhisperMessage message) {
     return isTrusted(message.getIdentityKey());
   }
 
@@ -58,19 +51,17 @@ public class KeyExchangeProcessor {
                                                                         identityKey);
   }
 
-  public void processKeyExchangeMessage(PreKeyBundleMessage message)
+  public void processKeyExchangeMessage(PreKeyWhisperMessage message)
       throws InvalidKeyIdException, InvalidKeyException
   {
-    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+    int         preKeyId          = message.getPreKeyId();
+    ECPublicKey theirBaseKey      = message.getBaseKey();
+    ECPublicKey theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
+    IdentityKey theirIdentityKey  = message.getIdentityKey();
 
-    int         preKeyId       = message.getPreKeyId ();
-    PublicKey   remoteKey      = message.getPublicKey();
-    IdentityKey remoteIdentity = message.getIdentityKey();
-
-    Log.w("KeyExchangeProcessor", "Received pre-key with remote key ID: " + remoteKey.getId());
     Log.w("KeyExchangeProcessor", "Received pre-key with local key ID: " + preKeyId);
 
-    if (!PreKeyRecord.hasRecord(context, preKeyId) && KeyUtil.isSessionFor(context, address)) {
+    if (!PreKeyRecord.hasRecord(context, preKeyId) && Session.hasSession(context, masterSecret, address)) {
       Log.w("KeyExchangeProcessor", "We've already processed the prekey part, letting bundled message fall through...");
       return;
     }
@@ -78,53 +69,46 @@ public class KeyExchangeProcessor {
     if (!PreKeyRecord.hasRecord(context, preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
-    PreKeyRecord preKeyRecord = new PreKeyRecord(context, masterSecret, preKeyId);
-    KeyPair      preKeyPair   = new KeyPair(preKeyId, preKeyRecord.getKeyPair().getKeyPair(), masterSecret);
+    PreKeyRecord    preKeyRecord    = new PreKeyRecord(context, masterSecret, preKeyId);
+    ECKeyPair       ourBaseKey      = preKeyRecord.getKeyPair().getKeyPair();
+    ECKeyPair       ourEphemeralKey = ourBaseKey;
+    IdentityKeyPair ourIdentityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
-    localKeyRecord.setCurrentKeyPair(preKeyPair);
-    localKeyRecord.setNextKeyPair(preKeyPair);
+    sessionRecord.clear();
 
-    remoteKeyRecord.setCurrentRemoteKey(remoteKey);
-    remoteKeyRecord.setLastRemoteKey(remoteKey);
+    RatchetingSession.initializeSession(sessionRecord, ourBaseKey, theirBaseKey, ourEphemeralKey,
+                                        theirEphemeralKey, ourIdentityKey, theirIdentityKey);
 
-    sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
-                               remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
-    sessionRecord.setIdentityKey(remoteIdentity);
-    sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), CiphertextMessage.SUPPORTED_VERSION));
-
-    localKeyRecord.save();
-    remoteKeyRecord.save();
     sessionRecord.save();
 
     if (preKeyId != Medium.MAX_VALUE) {
       PreKeyRecord.delete(context, preKeyId);
     }
 
-    if (identityDatabase.isFreshIdentity(address)) {
-      DatabaseFactory.getIdentityDatabase(context)
-                     .saveIdentity(masterSecret, address, remoteIdentity);
-    }
+    DatabaseFactory.getIdentityDatabase(context)
+                   .saveIdentity(masterSecret, address, theirIdentityKey);
   }
 
-  public void processKeyExchangeMessage(PreKeyEntity message) {
-    PublicKey remoteKey = new PublicKey(message.getKeyId(), message.getPublicKey());
+  public void processKeyExchangeMessage(PreKeyEntity message)
+      throws InvalidKeyException
+  {
+    ECKeyPair       ourBaseKey        = Curve.generateKeyPairForSession(2);
+    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPairForSession(2);
+    ECPublicKey     theirBaseKey      = message.getPublicKey().getPublicKey();
+    ECPublicKey     theirEphemeralKey = theirBaseKey;
+    IdentityKey     theirIdentityKey  = message.getIdentityKey();
+    IdentityKeyPair ourIdentityKey    = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
-    remoteKeyRecord.setCurrentRemoteKey(remoteKey);
-    remoteKeyRecord.setLastRemoteKey(remoteKey);
-    remoteKeyRecord.save();
+    sessionRecord.clear();
 
-    localKeyRecord = KeyUtil.initializeRecordFor(context, masterSecret, address, CiphertextMessage.SUPPORTED_VERSION);
-    localKeyRecord.setNextKeyPair(localKeyRecord.getCurrentKeyPair());
-    localKeyRecord.save();
+    RatchetingSession.initializeSession(sessionRecord, ourBaseKey, theirBaseKey, ourEphemeralKey,
+                                        theirEphemeralKey, ourIdentityKey, theirIdentityKey);
 
-    sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
-                               remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
-    sessionRecord.setIdentityKey(message.getIdentityKey());
-    sessionRecord.setSessionVersion(CiphertextMessage.SUPPORTED_VERSION);
-    sessionRecord.setPrekeyBundleRequired(true);
+    sessionRecord.setPendingPreKey(message.getKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.save();
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, address, message.getIdentityKey());
   }
+
 }

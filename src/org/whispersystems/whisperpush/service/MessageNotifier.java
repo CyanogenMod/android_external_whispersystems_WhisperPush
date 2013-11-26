@@ -10,9 +10,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
@@ -81,7 +81,7 @@ public class MessageNotifier {
       Notification.Builder builder = new Notification.Builder(context);
 
       Intent intent = new Intent(context, VerifyIdentityActivity.class);
-      intent.putExtra("identity_key", new PreKeyBundleMessage(message.getBody()).getIdentityKey());
+      intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getBody()).getIdentityKey());
       intent.putExtra("contact", contact);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
@@ -93,9 +93,9 @@ public class MessageNotifier {
 
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .notify(NOTIFICATION_ID, builder.build());
-    } catch (InvalidKeyException e) {
-      Log.w("MessageNotifier", e);
     } catch (InvalidVersionException e) {
+      Log.w("MessageNotifier", e);
+    } catch (InvalidMessageException e) {
       Log.w("MessageNotifier", e);
     }
   }

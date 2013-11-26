@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
@@ -50,7 +51,7 @@ public class PendingIdentityItemView extends RelativeLayout
   public void set(IncomingPushMessage message) {
     try {
       this.contact     = ContactsFactory.getContactFromNumber(getContext(), message.getSource(), true);
-      this.identityKey = new PreKeyBundleMessage(message.getBody()).getIdentityKey();
+      this.identityKey = new PreKeyWhisperMessage(message.getBody()).getIdentityKey();
 
       identityName.setText(contact.getNumber());
       details.setText(String.format(getContext().getString(R.string.PendingIdentityItemView_received_s),
@@ -61,9 +62,9 @@ public class PendingIdentityItemView extends RelativeLayout
       contactBadge.assignContactFromPhone(contact.getNumber(), true);
 
       contact.addListener(this);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
     } catch (InvalidVersionException e) {
+      throw new AssertionError(e);
+    } catch (InvalidMessageException e) {
       throw new AssertionError(e);
     }
   }
