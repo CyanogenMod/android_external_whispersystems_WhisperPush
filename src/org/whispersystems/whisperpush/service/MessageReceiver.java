@@ -16,6 +16,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
@@ -71,12 +72,16 @@ public class MessageReceiver {
   private PushMessageContent getPlaintext(IncomingPushMessage message)
       throws IdentityMismatchException, InvalidMessageException
   {
-    MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
-    PushCredentials credentials     = WhisperPushCredentials.getInstance();
-    PushDestination pushDestination = PushDestination.create(context, credentials, message.getSource());
-    WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
+    try {
+      MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
+      PushCredentials credentials     = WhisperPushCredentials.getInstance();
+      PushDestination pushDestination = PushDestination.create(context, credentials, message.getSource());
+      WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
 
-    return whisperCipher.getDecryptedMessage(message);
+      return whisperCipher.getDecryptedMessage(message);
+    } catch (InvalidNumberException e) {
+      throw new InvalidMessageException(e);
+    }
   }
 
   private List<Pair<String, String>> retrieveAttachments(String relay, List<AttachmentPointer> attachments)

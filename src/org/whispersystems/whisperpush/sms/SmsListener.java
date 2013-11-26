@@ -20,9 +20,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
 import org.whispersystems.whisperpush.service.RegistrationService;
@@ -84,12 +86,14 @@ public class SmsListener extends BroadcastReceiver {
     if (localNumber == null)
       return false;
 
-    String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
-
     try {
+      String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
       return Directory.getInstance(context).isActiveNumber(number);
     } catch (NotInDirectoryException e) {
       return true;
+    } catch (InvalidNumberException e) {
+      Log.w("SmsListener", e);
+      return false;
     }
   }
 

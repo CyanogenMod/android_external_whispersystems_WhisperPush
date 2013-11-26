@@ -16,6 +16,7 @@ import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.Release;
@@ -67,6 +68,9 @@ public class MessageSender {
     } catch (IOException e) {
       Log.w("MessageSender", e);
       abortSendOperation(candidate);
+    } catch (InvalidNumberException e) {
+      Log.w("MessageSender", e);
+      abortSendOperation(candidate);
     }
   }
 
@@ -113,10 +117,18 @@ public class MessageSender {
   }
 
   private boolean isRegisteredUser(String number) {
-    PushCredentials credentials = WhisperPushCredentials.getInstance();
     Log.w("MessageSender", "Number to canonicalize: " + number);
-    String          e164number  = PhoneNumberFormatter.formatNumber(number, credentials.getLocalNumber(context));
+    PushCredentials credentials = WhisperPushCredentials.getInstance();
     Directory       directory   = Directory.getInstance(context);
+
+    String e164number;
+
+    try {
+      e164number  = PhoneNumberFormatter.formatNumber(number, credentials.getLocalNumber(context));
+    } catch (InvalidNumberException e) {
+      Log.w("MessageSender", e);
+      return false;
+    }
 
     try {
       return directory.isActiveNumber(e164number);
