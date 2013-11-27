@@ -15,16 +15,15 @@ import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
 import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
+import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
-import org.whispersystems.whisperpush.util.WhisperPushCredentials;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.File;
 import java.io.IOException;
@@ -74,8 +73,8 @@ public class MessageReceiver {
   {
     try {
       MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
-      PushCredentials credentials     = WhisperPushCredentials.getInstance();
-      PushDestination pushDestination = PushDestination.create(context, credentials, message.getSource());
+      String          localNumber     = WhisperPreferences.getLocalNumber(context);
+      PushDestination pushDestination = PushDestination.create(context, localNumber, message.getSource());
       WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
 
       return whisperCipher.getDecryptedMessage(message);
@@ -88,7 +87,7 @@ public class MessageReceiver {
       throws IOException, InvalidMessageException
   {
     AttachmentManager          attachmentManager = AttachmentManager.getInstance(context);
-    PushServiceSocket          socket            = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
+    PushServiceSocket          socket            = PushServiceSocketFactory.create(context);
     List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
 
     for (AttachmentPointer attachment : attachments) {

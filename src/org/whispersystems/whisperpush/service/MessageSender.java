@@ -15,15 +15,14 @@ import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.PushServiceSocket.PushCredentials;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
-import org.whispersystems.whisperpush.util.WhisperPushCredentials;
+import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
 import java.util.List;
@@ -56,9 +55,9 @@ public class MessageSender {
 
     try {
       List<String>      messageParts    = sendIntent.getStringArrayListExtra(PARTS);
-      PushCredentials   credentials     = WhisperPushCredentials.getInstance();
-      PushDestination   pushDestination = PushDestination.create(context, credentials, destination);
-      PushServiceSocket socket          = new PushServiceSocket(context, Release.PUSH_URL, credentials);
+      String            localNumber     = WhisperPreferences.getLocalNumber(context);
+      PushDestination   pushDestination = PushDestination.create(context, localNumber, destination);
+      PushServiceSocket socket          = PushServiceSocketFactory.create(context);
       PushBody          body            = getEncryptedMessage(pushDestination, messageParts);
 
       socket.sendMessage(pushDestination, body);
@@ -107,7 +106,7 @@ public class MessageSender {
                                                     List<String> messageParts)
       throws IOException
   {
-    PushServiceSocket socket        = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
+    PushServiceSocket socket        = PushServiceSocketFactory.create(context);
     String            message       = Util.join(messageParts, "");
     byte[]            plaintext     = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
     MasterSecret      masterSecret  = MasterSecretUtil.getMasterSecret(context);
@@ -118,13 +117,13 @@ public class MessageSender {
 
   private boolean isRegisteredUser(String number) {
     Log.w("MessageSender", "Number to canonicalize: " + number);
-    PushCredentials credentials = WhisperPushCredentials.getInstance();
-    Directory       directory   = Directory.getInstance(context);
+    String    localNumber = WhisperPreferences.getLocalNumber(context);
+    Directory directory   = Directory.getInstance(context);
 
     String e164number;
 
     try {
-      e164number  = PhoneNumberFormatter.formatNumber(number, credentials.getLocalNumber(context));
+      e164number  = PhoneNumberFormatter.formatNumber(number, localNumber);
     } catch (InvalidNumberException e) {
       Log.w("MessageSender", e);
       return false;
@@ -134,7 +133,7 @@ public class MessageSender {
       return directory.isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket   socket              = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
+        PushServiceSocket   socket              = PushServiceSocketFactory.create(context);
         Log.w("MessageSender", "Getting contact token for: " + e164number);
         String              contactToken        = directory.getToken(e164number);
         ContactTokenDetails contactTokenDetails = socket.getContactTokenDetails(contactToken);

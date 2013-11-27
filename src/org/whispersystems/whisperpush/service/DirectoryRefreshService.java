@@ -10,9 +10,8 @@ import android.util.Log;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.whisperpush.Release;
+import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
-import org.whispersystems.whisperpush.util.WhisperPushCredentials;
 
 import java.util.List;
 import java.util.Set;
@@ -60,7 +59,7 @@ public class DirectoryRefreshService extends Service {
         Log.w("DirectoryRefreshService", "Refreshing directory...");
         Directory         directory   = Directory.getInstance(context);
         String            localNumber = WhisperPreferences.getLocalNumber(context);
-        PushServiceSocket socket      = new PushServiceSocket(context, Release.PUSH_URL, WhisperPushCredentials.getInstance());
+        PushServiceSocket socket      = PushServiceSocketFactory.create(context);
 
         Set<String>               eligibleContactTokens = directory.getPushEligibleContactTokens(localNumber);
         List<ContactTokenDetails> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
