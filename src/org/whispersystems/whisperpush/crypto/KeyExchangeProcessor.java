@@ -70,7 +70,7 @@ public class KeyExchangeProcessor {
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
     PreKeyRecord    preKeyRecord    = new PreKeyRecord(context, masterSecret, preKeyId);
-    ECKeyPair       ourBaseKey      = preKeyRecord.getKeyPair().getKeyPair();
+    ECKeyPair       ourBaseKey      = preKeyRecord.getKeyPair();
     ECKeyPair       ourEphemeralKey = ourBaseKey;
     IdentityKeyPair ourIdentityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
@@ -94,7 +94,7 @@ public class KeyExchangeProcessor {
   {
     ECKeyPair       ourBaseKey        = Curve.generateKeyPairForSession(2);
     ECKeyPair       ourEphemeralKey   = Curve.generateKeyPairForSession(2);
-    ECPublicKey     theirBaseKey      = message.getPublicKey().getPublicKey();
+    ECPublicKey     theirBaseKey      = message.getPublicKey();
     ECPublicKey     theirEphemeralKey = theirBaseKey;
     IdentityKey     theirIdentityKey  = message.getIdentityKey();
     IdentityKeyPair ourIdentityKey    = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
