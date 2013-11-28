@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.ui.RegistrationCompletedActivity;
 
 /**
  * Catch registration complete broadcasts and display a notification if there is no visible
@@ -39,7 +40,7 @@ public class RegistrationNotifier extends BroadcastReceiver {
     builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
     builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
 
-    // TODO Connect to upcoming settings UI
+    // TODO Connect to upcoming settings UI, for now, open RegistrationCompletedActivity
     //builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SettingsActivity.class), 0));
 
     builder.setWhen(System.currentTimeMillis());

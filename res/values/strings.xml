@@ -51,7 +51,6 @@
     <!-- RegistrationProgressActivity -->
     <string name="RegistrationProgressActivity_verifying_number">Verifying number</string>
     <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
-    <string name="RegistrationProgressActivity_registration_complete">Registration complete!</string>
     <string name="RegistrationProgressActivity_possible_problems">Possible problems.</string>
     <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first…</string>
     <string name="RegistrationProgressActivity_connecting">Connecting</string>
@@ -187,6 +186,13 @@
     <string name="registration_progress_activity__check">Check</string>
     <string name="registration_progress_activity__telephone">Telephone</string>
     <string name="registration_progress_activity__timer_default">1:57</string>
+
+    <!-- registration_completed_activity -->
+    <string name="registration_completed_activity__registration_completed">Registration Completed</string>
+    <string name="registration_completed_activity__body">
+        You have successfully registered with TextSecure.
+    </string>
+    <string name="registration_completed_activity__register_again">Register Again</string>
 
     <!-- review_identities_activity -->
     <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identities in your trust database</string>

@@ -48,6 +48,9 @@
                   android:theme="@android:style/Theme.Holo.Light.Dialog"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+        <activity android:name=".ui.RegistrationCompletedActivity"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
         <activity android:name=".ui.ReviewIdentitiesActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 

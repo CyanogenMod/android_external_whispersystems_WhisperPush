@@ -42,6 +42,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -65,6 +66,11 @@ public class RegistrationActivity extends Activity {
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
+
+    if (WhisperPreferences.isRegistered(this)) {
+        startActivity(new Intent(this, RegistrationCompletedActivity.class));
+        finish();
+    }
 
     getActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
 

@@ -52,6 +52,7 @@ import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.RegistrationService.RegistrationState;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
 
@@ -328,9 +329,8 @@ public class RegistrationProgressActivity extends Activity {
 
   private void handleVerificationComplete() {
     if (visible) {
-      Toast.makeText(this,
-                     R.string.RegistrationProgressActivity_registration_complete,
-                     Toast.LENGTH_LONG).show();
+      startActivity(new Intent(this, RegistrationCompletedActivity.class));
+      finish();
     }
 
     shutdownService();
