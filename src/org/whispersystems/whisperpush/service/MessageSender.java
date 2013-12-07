@@ -129,6 +129,10 @@ public class MessageSender {
       return false;
     }
 
+    if (e164number.equals(localNumber)) {
+      return false;
+    }
+
     try {
       return directory.isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
