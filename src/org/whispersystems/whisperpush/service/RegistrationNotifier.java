@@ -40,9 +40,7 @@ public class RegistrationNotifier extends BroadcastReceiver {
     builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
     builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
 
-    // TODO Connect to upcoming settings UI, for now, open RegistrationCompletedActivity
-    //builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SettingsActivity.class), 0));
-
+    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RegistrationCompletedActivity.class), 0));
     builder.setWhen(System.currentTimeMillis());
     builder.setDefaults(Notification.DEFAULT_VIBRATE);
     builder.setAutoCancel(true);

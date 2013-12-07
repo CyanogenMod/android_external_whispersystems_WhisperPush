@@ -330,11 +330,9 @@ public class RegistrationProgressActivity extends Activity {
   private void handleVerificationComplete() {
     if (visible) {
       startActivity(new Intent(this, RegistrationCompletedActivity.class));
-      finish();
     }
 
     shutdownService();
-//    startActivity(new Intent(this, RoutingActivity.class));
     finish();
   }
 

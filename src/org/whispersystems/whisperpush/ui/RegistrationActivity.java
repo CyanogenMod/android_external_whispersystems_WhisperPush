@@ -65,13 +65,13 @@ public class RegistrationActivity extends Activity {
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    setContentView(R.layout.registration_activity);
 
     if (WhisperPreferences.isRegistered(this)) {
-        startActivity(new Intent(this, RegistrationCompletedActivity.class));
-        finish();
+      startActivity(new Intent(this, RegistrationCompletedActivity.class));
+      finish();
     }
 
+    setContentView(R.layout.registration_activity);
     getActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
 
     initializeResources();
