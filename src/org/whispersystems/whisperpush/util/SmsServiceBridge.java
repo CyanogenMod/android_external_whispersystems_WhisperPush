@@ -15,6 +15,7 @@
  */
 package org.whispersystems.whisperpush.util;
 
+import android.content.Context;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -26,12 +27,17 @@ import java.util.LinkedList;
 import java.util.List;
 import com.android.internal.telephony.ISms;
 
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.contacts.Contact;
+import org.whispersystems.whisperpush.contacts.ContactsFactory;
+import org.whispersystems.whisperpush.service.MessageNotifier;
+
 /**
  * A helper class to handle the WhisperPush --> System Framework binding.
  */
 public class SmsServiceBridge {
 
-  public static void receivedPushMessage(String source, List<String> destinations,
+  public static void receivedPushMessage(Context context, String source, List<String> destinations,
                                          String message, List<Pair<String,String>> attachments,
                                          long timestampSent)
   {
@@ -40,7 +46,12 @@ public class SmsServiceBridge {
       Method getService     = serviceManager.getMethod("getService", String.class);
       ISms   framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
 
-      logReceived(source, destinations, message, attachments, timestampSent);
+      if (attachments != null && attachments.size() != 0) {
+        Contact contact = ContactsFactory.getContactFromNumber(context, source, false);
+        MessageNotifier.notifyProblem(context, contact,
+                                      context.getString(R.string.SmsServiceBridge_received_encrypted_attachment));
+      }
+
       framework.synthesizeMessages(source, null, getAsList(message), timestampSent);
     } catch (ClassNotFoundException e) {
       throw new AssertionError(e);

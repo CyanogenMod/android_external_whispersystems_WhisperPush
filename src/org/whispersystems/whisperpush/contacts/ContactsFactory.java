@@ -85,7 +85,7 @@ public class ContactsFactory {
         cursor.close();
     }
 
-    return null;
+    return new ContactDetails(null, null, getDefaultContactPhoto(context));
   }
 
   private static Bitmap getContactPhoto(Context context, Uri uri) {

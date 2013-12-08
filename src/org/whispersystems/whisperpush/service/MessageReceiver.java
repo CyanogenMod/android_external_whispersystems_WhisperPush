@@ -16,7 +16,10 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
+import org.whispersystems.whisperpush.contacts.Contact;
+import org.whispersystems.whisperpush.contacts.ContactsFactory;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
@@ -49,10 +52,17 @@ public class MessageReceiver {
       List<Pair<String, String>> attachments = new LinkedList<Pair<String, String>>();
 
       if (content.getAttachmentsCount() > 0) {
-        attachments = retrieveAttachments(message.getRelay(), content.getAttachmentsList());
+        try {
+          attachments = retrieveAttachments(message.getRelay(), content.getAttachmentsList());
+        } catch (IOException e) {
+          Log.w("MessageReceiver", e);
+          Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
+          MessageNotifier.notifyProblem(context, contact,
+                                        context.getString(R.string.MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message));
+        }
       }
 
-      SmsServiceBridge.receivedPushMessage(message.getSource(), message.getDestinations(),
+      SmsServiceBridge.receivedPushMessage(context, message.getSource(), message.getDestinations(),
                                            content.getBody(), attachments,
                                            message.getTimestampMillis());
     } catch (IdentityMismatchException e) {
@@ -61,10 +71,9 @@ public class MessageReceiver {
       MessageNotifier.updateNotifications(context);
     } catch (InvalidMessageException e) {
       Log.w("MessageReceiver", e);
-      // XXX
-    } catch (IOException e) {
-      Log.w("MessageReceiver", e);
-      // XXX
+      Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
+      MessageNotifier.notifyProblem(context, contact,
+                                    context.getString(R.string.MessageReceiver_received_badly_encrypted_message));
     }
   }
 
@@ -92,7 +101,7 @@ public class MessageReceiver {
 
     for (AttachmentPointer attachment : attachments) {
       byte[]                      key              = attachment.getKey().toByteArray();
-      File file             = socket.retrieveAttachment(relay, attachment.getId());
+      File                        file             = socket.retrieveAttachment(relay, attachment.getId());
       AttachmentCipherInputStream attachmentStream = new AttachmentCipherInputStream(file, key);
       String                      storedToken      = attachmentManager.store(attachmentStream);
 

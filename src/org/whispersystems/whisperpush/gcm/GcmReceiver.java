@@ -29,7 +29,9 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
+import org.whispersystems.whisperpush.service.MessageNotifier;
 import org.whispersystems.whisperpush.service.SendReceiveService;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -50,8 +52,6 @@ public class GcmReceiver extends BroadcastReceiver {
       try {
         String data = intent.getStringExtra("message");
 
-        Log.w("GcmReceiver", "GCM message: " + data);
-
         if (Util.isEmpty(data))
           return;
 
@@ -65,8 +65,12 @@ public class GcmReceiver extends BroadcastReceiver {
         context.startService(serviceIntent);
       } catch (IOException e) {
         Log.w("GcmReceiver", e);
+        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_invalid_push_message),
+                                      context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
       } catch (InvalidVersionException e) {
         Log.w("GcmReceiver", e);
+        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_unsupported_push_version),
+                                      context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
       }
     }
 

@@ -25,6 +25,7 @@ import org.whispersystems.whisperpush.ui.VerifyIdentityActivity;
 public class MessageNotifier {
 
   private static final int NOTIFICATION_ID = 31339;
+  private static final int PROBLEM_ID      = 31334;
 
   public static void updateNotifications(Context context) {
     Cursor cursor = null;
@@ -39,6 +40,33 @@ public class MessageNotifier {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public static void notifyProblem(Context context, Contact contact, String description) {
+    Notification notification = new Notification.BigTextStyle(
+        new Notification.Builder(context)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setLargeIcon(contact.getAvatar())
+            .setContentTitle(contact.toShortString())
+            .setContentText(description)
+    ).bigText(description).build();
+
+    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+        .notify(PROBLEM_ID, notification);
+  }
+
+  public static void notifyProblem(Context context, String title, String description) {
+    Notification notification = new Notification.BigTextStyle(
+        new Notification.Builder(context)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                                       android.R.drawable.ic_dialog_alert))
+            .setContentTitle(title)
+            .setContentText(description)
+    ).bigText(description).build();
+
+    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                                 .notify(PROBLEM_ID, notification);
   }
 
   private static void handleMultipleMessagesNotification(Context context, Cursor cursor) {
