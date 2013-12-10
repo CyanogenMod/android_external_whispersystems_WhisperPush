@@ -76,6 +76,7 @@ public class ContactsFactory {
 
     ListenableFutureTask<ContactDetails> future = new ListenableFutureTask<ContactDetails>(task, null);
 
+    System.out.println("async loading " + number);
     asyncRecipientResolver.submit(future);
 
     Contact contact = new Contact(number, getDefaultContactPhoto(context), future);
