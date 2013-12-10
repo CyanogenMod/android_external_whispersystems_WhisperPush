@@ -39,6 +39,7 @@ public class IdentityKeyItemView extends RelativeLayout
 {
 
   private TextView          identityName;
+  private TextView          identityPhone;
   private TextView          fingerprint;
   private QuickContactBadge contactBadge;
 
@@ -57,9 +58,10 @@ public class IdentityKeyItemView extends RelativeLayout
 
   @Override
   public void onFinishInflate() {
-    this.identityName = (TextView)findViewById(R.id.identity_name);
-    this.fingerprint  = (TextView)findViewById(R.id.fingerprint);
-    this.contactBadge = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
+    this.identityName  = (TextView)findViewById(R.id.identity_name);
+    this.identityPhone = (TextView)findViewById(R.id.identity_phone);
+    this.fingerprint   = (TextView)findViewById(R.id.fingerprint);
+    this.contactBadge  = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
   }
 
   public void set(Pair<String, IdentityKey> identity) {
@@ -88,7 +90,13 @@ public class IdentityKeyItemView extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        IdentityKeyItemView.this.identityName.setText(contact.toShortString());
+        if (contact.getName() != null) {
+            IdentityKeyItemView.this.identityName.setText(contact.getName());
+            IdentityKeyItemView.this.identityPhone.setText(contact.getNumber());
+        } else {
+            IdentityKeyItemView.this.identityName.setText(contact.toShortString());
+        }
+
         IdentityKeyItemView.this.contactBadge.setImageBitmap(contact.getAvatar());
       }
     });
