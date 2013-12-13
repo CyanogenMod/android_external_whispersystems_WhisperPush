@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources>
+    <string name="GcmReceiver_invalid_push_message">Ongeldig push-bericht</string>
+    <string name="GcmReceiver_received_badly_formatted_push_message">Onjuist opgemaakt push-bericht ontvangen.</string>
+    <string name="GcmReceiver_unsupported_push_version">Push-versie niet ondersteund</string>
+    <string name="GcmReceiver_received_push_message_with_unknown_version">Push-bericht ontvangen met onbekende versie. Moet u uw app updaten?</string>
+
+    <string name="MessageNotifier_d_pending_messages_require_validation">%d berichten vereisen bevestiging</string>
+    <string name="MessageNotifier_pending_message_requires_validation">Bericht vereist bevestiging</string>
+    <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">U heeft een bericht ontvangen dat u dient te bevestigen.</string>
+
+    <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Kan versleutelde bijlage van inkomend bericht niet ophalen.</string>
+    <string name="MessageReceiver_received_badly_encrypted_message">Onjuist versleuteld bericht ontvangen of bericht versleuteld voor niet-bestaande sessie.</string>
+
+    <string name="PendingIdentityItemView_received_s">%s ontvangen</string>
+
+    <string name="RegistrationActivity_select_your_country">Uw land selecteren</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">U moet een landcode invoeren.</string>
+    <string name="RegistrationActivity_you_must_specify_your_phone_number">U moet een telefoonnummer invoeren.</string>
+    <string name="RegistrationActivity_invalid_number">Ongeldig nummer</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Het ingevoerde nummer (%s) is ongeldig.</string>
+    <string name="RegistrationActivity_unsupported">Niet ondersteund</string>
+    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Uw apparaat kan geen internetberichten versturen. Apparaten met een lagere versie dan Android 4.0 vereisen een geregistreerd Google-account. Dit geldt niet voor Android 4.0 en hoger, maar de Play Store-app moet wel geïnstalleerd zijn.</string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Er wordt gecontroleerd of dit nummer bij uw apparaat hoort:\n\n%s\n\nIs dit nummer juist of wilt u het wijzigen?</string>
+    <string name="RegistrationActivity_continue">Verder</string>
+    <string name="RegistrationActivity_edit">Wijzigen</string>
+    <string name="RegistrationActivity_connect_with_textsecure">Verbinding maken met TextSecure</string>
+
+    <string name="RegistrationProblemsActivity_possible_problems">Mogelijke problemen</string>
+
+    <string name="RegistrationProgressActivity_verifying_number">Nummer verifiëren</string>
+    <string name="RegistrationProgressActivity_edit_s">%s wijzigen</string>
+    <string name="RegistrationProgressActivity_possible_problems">Mogelijke problemen.</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">U moet eerst de code invoeren die u heeft ontvangen\u2026</string>
+    <string name="RegistrationProgressActivity_connecting">Verbinding maken</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Verbinding maken voor verificatie\u2026</string>
+    <string name="RegistrationProgressActivity_network_error">Netwerkfout</string>
+    <string name="RegistrationProgressActivity_unable_to_connect">Kan geen verbinding maken. Controleer uw internetverbinding en probeer het opnieuw.</string>
+    <string name="RegistrationProgressActivity_verification_failed">Verificatie mislukt</string>
+    <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De ingevoerde code is onjuist. Probeer het opnieuw.</string>
+    <string name="RegistrationProgressActivity_too_many_attempts">Te veel pogingen</string>
+    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Te vaak een onjuiste code ingevoerd. Probeer het over een minuut opnieuw.</string>
+    <string name="RegistrationProgressActivity_requesting_call">Gesprek aanvragen</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Verificatiegesprek aanvragen\u2026</string>
+    <string name="RegistrationProgressActivity_server_error">Serverfout</string>
+    <string name="RegistrationProgressActivity_the_server_encountered_an_error">Er is een serverfout opgetreden. Probeer het opnieuw.</string>
+    <string name="RegistrationProgressActivity_too_many_requests">Te veel verzoeken</string>
+    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">U heeft al een gesprek aangevraagd. U kunt een nieuwe aanvragen over 20 minuten.</string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Gesprekscode verifiëren\u2026</string>
+
+    <string name="RegistrationService_registration_complete">Registratie voltooid</string>
+    <string name="RegistrationService_push_messaging_registration_has_successfully_completed">De registratie voor push-berichten is succesvol voltooid.</string>
+    <string name="RegistrationService_registration_error">Registratiefout</string>
+    <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Er is een fout opgetreden tijdens het registreren voor push-berichten.</string>
+
+    <string name="SmsServiceBridge_received_encrypted_attachment">Kan ontvangen versleutelde bijlage niet weergeven, omdat Koush een luilak is.</string>
+
+    <string name="VerifyIdentityActivity_discard_messages">Berichten verwijderen?</string>
+    <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Weet u zeker dat u deze identiteitsvingerafdruk ongeldig wilt verklaren en daarvan afhankelijke berichten wilt verwijderen?</string>
+    <string name="VerifyIdentityActivity_processing">Verwerken</string>
+    <string name="VerifyIdentityActivity_discarding_messages">Berichten verwijderen\u2026</string>
+    <string name="VerifyIdentityActivity_processing_identity_key">Identiteitssleutel verwerken\u2026</string>
+
+    <string name="ViewIdentityActivity_verified">Geverifieerd</string>
+    <string name="ViewIdentityActivity_the_scanned_key_matches">Gescande sleutel komt overeen</string>
+    <string name="ViewIdentityActivity_not_verified">Niet geverifieerd</string>
+    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">De gescande sleutel komt niet overeen</string>
+    <string name="ViewIdentityActivity_no_scanned_key_found">Geen sleutel gevonden</string>
+
+    <string name="country_selection_fragment__search">Zoeken</string>
+    <string name="country_selection_fragment__loading_countries">Landen laden\u2026</string>
+
+    <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Bevestig uw landcode en telefoonnummer.</string>
+    <string name="registration_activity__your_country">UW LAND</string>
+    <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN TELEFOONNUMMER</string>
+    <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
+    <string name="registration_activity__register">Registreren</string>
+
+    <string name="registration_problems__some_possible_problems_include">Enkele mogelijke problemen:</string>
+    <string name="registration_problems__sms_interceptors">Onderscheppen van sms-berichten.</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Enkele berichten-apps van derde partijen, zoals Handcent en GoSMS, gedragen zich onjuist en onderscheppen alle inkomende sms-berichten. Controleer of u een bericht heeft ontvangen dat begint met \'Your TextSecure verification code:\'. Indien dat het geval is, moet u uw berichten-app instellen om tekstberichten door te geven.</string>
+    <string name="registration_problems__incorrect_number">Onjuist nummer.</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Controleer of uw nummer correct is ingevoerd en dat het in de juiste notatie voor uw regio is opgemaakt.</string>
+    <string name="registration_problems__google_voice">Google Voice.</string>
+    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure werkt niet met Google Voice-nummers.</string>
+
+    <string name="registration_progress_activity__voice_verification">Geluidsverificatie</string>
+    <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure kan u ook bellen om uw nummer te verifiëren. Tik \'Bel mij\' en voer hieronder het zes-cijferige nummer in dat u hoort.</string>
+    <string name="registration_progress_activity__verify">Verifiëren</string>
+    <string name="registration_progress_activity__call_me">Bel mij</string>
+    <string name="registration_progress_activity__edit_number">Nummer wijzigen</string>
+    <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
+    <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">Kan geen verbinding maken met de push-dienst.</string>
+    <string name="registration_progress_activity__some_possible_problems_include">Enkele mogelijke problemen:</string>
+    <string name="registration_progress_activity__no_network_connectivity">Geen internetverbinding.</string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Een internetverbinding is vereist om deze functie van TextSecure te gebruiken. Controleer of u een mobiele gegevensverbinding of een wifi-verbinding heeft.</string>
+    <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Bij een wifi-verbinding is het mogelijk dat een firewall de toegang tot de TextSecure-server verhindert. Probeer een ander netwerk of uw mobiele gegevensverbinding.</string>
+    <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">Uw nummer wordt geverifieerd met een bevestigingsbericht.</string>
+    <string name="registration_progress_activity__connecting">Verbinding maken\u2026</string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Wachten op sms-verificatie\u2026</string>
+    <string name="registration_progress_activity__registering_with_server">Registreren bij server\u2026</string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dit kan enige tijd in beslag nemen. Een ogenblik geduld, u krijgt een melding wanneer de verificatie is voltooid.</string>
+    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">Time-out opgetreden tijdens het wachten op het verificatiebericht.</string>
+    <string name="registration_progress_activity__sms_verification_failed">Sms-verificatie mislukt.</string>
+    <string name="registration_progress_activity__generating_keys">Sleutels genereren\u2026</string>
+    <string name="registration_progress_activity__alert">Melding</string>
+    <string name="registration_progress_activity__check">Controleren</string>
+    <string name="registration_progress_activity__telephone">Telefoon</string>
+
+    <string name="registration_completed_activity__registration_completed">Registratie voltooid</string>
+    <string name="registration_completed_activity__body">U bent succesvol geregistreerd bij TextSecure.</string>
+    <string name="registration_completed_activity__register_again">Opnieuw registreren</string>
+
+    <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">U heeft momenteel geen identiteiten in uw vertrouwensdatabase.</string>
+
+    <string name="verify_identities_activity__no_pending_messages_that_require_validation">Geen berichten die bevestigd moeten worden.</string>
+    <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">De identiteitsvingerafdruk van deze contactpersoon is gewijzigd. Dit kan betekenen dat iemand de communicatie probeert te onderscheppen of dat deze contactpersoon een nieuwe telefoon heeft. Wellicht wilt u deze persoon bellen om de onderstaande vingerafdruk te controleren door deze hardop voor te lezen. Berichten van deze persoon worden tegengehouden, totdat ze bevestigd zijn.</string>
+    <string name="verify_identity_activity__their_fingerprint">Vingerafdruk contact:</string>
+    <string name="verify_identity_activity__valid">Geldig</string>
+    <string name="verify_identity__invalid">Ongeldig</string>
+    <string name="verify_identity_activity__avatar_icon">Afbeelding</string>
+
+    <string name="view_identity_activity_menu__compare">Vergelijken</string>
+    <string name="view_identity_activity_menu__scan_to_compare">Scannen om te vergelijken</string>
+    <string name="view_identity_activity_menu__get_scanned_to_compare">Gescand worden om te vergelijken</string>
+</resources>
