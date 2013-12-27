@@ -140,10 +140,10 @@
     </string>
     <string name="registration_problems__incorrect_number">Incorrect number.</string>
     <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-        Please check to make sure you entered your number correctly, and that it is formatted for
-        correctly your region.
+        Please check to make sure you entered your number correctly, and that it is formatted
+        correctly for your region.
     </string>
-    <string name="registration_problems__google_voice">Google Voice.</string>
+    <string name="registration_problems__google_voice">Google Voice</string>
     <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
         TextSecure will not work with Google Voice numbers.
     </string>
@@ -198,7 +198,7 @@
     <string name="registration_progress_activity__alert">Alert</string>
     <string name="registration_progress_activity__check">Check</string>
     <string name="registration_progress_activity__telephone">Telephone</string>
-    <string name="registration_progress_activity__timer_default">1:57</string>
+    <string name="registration_progress_activity__timer_default" translatable="false">1:57</string>
 
     <!-- registration_completed_activity -->
     <string name="registration_completed_activity__registration_completed">Registration Completed</string>
