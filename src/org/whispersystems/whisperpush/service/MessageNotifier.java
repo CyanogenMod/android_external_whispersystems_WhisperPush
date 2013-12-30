@@ -92,8 +92,8 @@ public class MessageNotifier {
     builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                       android.R.drawable.ic_dialog_alert));
-    builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_pending_messages_require_validation),
-                                          cursor.getCount()));
+    builder.setContentTitle(String.format(context.getQuantityString(R.string.MessageNotifier_d_pending_messages_require_validation),
+                                          cursor.getCount(), cursor.getCount()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, VerifyIdentitiesActivity.class), 0));
 
     Notification.InboxStyle style = new Notification.InboxStyle();
@@ -106,7 +106,7 @@ public class MessageNotifier {
 
     builder.setStyle(style);
 
-    builder.setTicker(context.getString(R.string.MessageNotifier_pending_message_requires_validation));
+    builder.setTicker(context.getQuantityString(R.string.MessageNotifier_d_pending_messages_require_validation), cursor.getCount(), cursor.getCount());
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
         .notify(NOTIFICATION_ID, builder.build());
