@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2014 The CyanogenMod Project
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+    <string name="GcmReceiver_invalid_push_message">Ungültige Push-Nachricht</string>
+    <string name="GcmReceiver_received_badly_formatted_push_message">Eine falsch formatierte Push-Nachricht wurde empfangen</string>
+    <string name="GcmReceiver_unsupported_push_version">Nicht unterstützte Push-Version</string>
+    <string name="GcmReceiver_received_push_message_with_unknown_version">Eine Push-Nachricht mit unbekannter Version wurde empfangen. Eventuell muss Ihr CLient aktualisiert werden?</string>
+    <string name="MessageNotifier_d_pending_messages_require_validation">%d ausstehende Nachrichten benötigen Validierung</string>
+    <string name="MessageNotifier_pending_message_requires_validation">Ausstehende Nachricht benötigt Validierung</string>
+    <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Sie haben eine Nachricht erhalten, welche von Ihnen validiert werden muss</string>
+    <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Unable to retrieve encrypted attachment for incoming message.</string>
+    <string name="MessageReceiver_received_badly_encrypted_message">Received badly encrypted message, or message encrypted for non-existing session.</string>
+    <string name="PendingIdentityItemView_received_s">Empfangen %s</string>
+    <string name="RegistrationActivity_select_your_country">Wählen Sie Ihr Land aus</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">Sie müssen Ihren Ländercode angeben</string>
+    <string name="RegistrationActivity_you_must_specify_your_phone_number">Sie müssen Ihre Telefonnummer angeben</string>
+    <string name="RegistrationActivity_invalid_number">Ungültige Telefonnummer</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die von Ihnen angegebene Telefonnummer (%s) ist ungültig</string>
+    <string name="RegistrationActivity_unsupported">Nicht unterstützt</string>
+    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Dieses Gerät unterstützt keine Daten-Nachrichten.
+        Geräte mit einer Android-Version kleiner als 4.0 müssen ein Google-Konto besitzen.
+        Geräte mit einer Android-Version ab 4.0 müssen kein Google-Konto besitzen,
+        aber die PlayStore-App muss installiert sein.
+    </string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        We will now verify that the following number is associated with this device:\n\n%s\n\n
+        Is this number correct, or would you like to edit it before continuing?
+    </string>
+    <string name="RegistrationActivity_continue">Fortfahren</string>
+    <string name="RegistrationActivity_edit">Ändern</string>
+    <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
+    <string name="RegistrationProblemsActivity_possible_problems">Mögliche Fehlerursachen:</string>
+    <string name="RegistrationProgressActivity_verifying_number">Verifying number</string>
+    <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
+    <string name="RegistrationProgressActivity_possible_problems">Mögliche Fehlerursachen:</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first\u2026</string>
+    <string name="RegistrationProgressActivity_connecting">Connecting</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification\u2026</string>
+    <string name="RegistrationProgressActivity_network_error">Netzwerkfehler</string>
+    <string name="RegistrationProgressActivity_unable_to_connect">Keine Verbindung möglich. Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen es erneut</string>
+    <string name="RegistrationProgressActivity_verification_failed">Verification Failed!</string>
+    <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der von Ihnen eingegeben Verifizierungscode ist falsch.
+        Bitte versuchen sie es erneut
+    </string>
+    <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
+    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">
+        Sie haben zu oft einen falschen Verifizierungscode eingegeben. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen
+    </string>
+    <string name="RegistrationProgressActivity_requesting_call">Requesting Call</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call\u2026</string>
+    <string name="RegistrationProgressActivity_server_error">Serverfehler</string>
+    <string name="RegistrationProgressActivity_the_server_encountered_an_error">Ein Serverfehler ist aufgetreten. Bitte versuchen Sie es erneut</string>
+    <string name="RegistrationProgressActivity_too_many_requests">Zu viele Anfragen</string>
+    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Sie haben bereits einen Anruf angefordert.
+        Sie können in 20 Minuten einen neuen Anruf anfordern.
+    </string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code\u2026</string>
+    <string name="RegistrationService_registration_complete">Registrierung vollständig</string>
+    <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Die Registrierung für Push-Nachrichten wurde erfolgreich abgeschlossen</string>
+    <string name="RegistrationService_registration_error">Registrierungsfehler</string>
+    <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Bei der Registrierung für Push-Nachrichten ist ein Fehler aufgetreten</string>
+    <string name="SmsServiceBridge_received_encrypted_attachment">Received encrypted attachment, but we can\'t display it because Koush is a slacker.</string>
+    <string name="VerifyIdentityActivity_discard_messages">Nachrichten verwerfen?</string>
+    <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">
+        Are you sure you would like to mark this identity fingerprint as invalid and discard all
+        pending messages associated with it?
+    </string>
+    <string name="VerifyIdentityActivity_processing">Processing</string>
+    <string name="VerifyIdentityActivity_discarding_messages">Nachrichten werden verworfen\u2026</string>
+    <string name="VerifyIdentityActivity_processing_identity_key">Processing identity key\u2026</string>
+    <string name="ViewIdentityActivity_verified">Verifiziert</string>
+    <string name="ViewIdentityActivity_the_scanned_key_matches">The scanned key matches!</string>
+    <string name="ViewIdentityActivity_not_verified">NICHT verifiziert</string>
+    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">WARNING, the scanned key does not match!</string>
+    <string name="ViewIdentityActivity_no_scanned_key_found">No scanned key found!</string>
+    <string name="country_selection_fragment__search">Suche</string>
+    <string name="country_selection_fragment__loading_countries">Länder werden geladen\u2026</string>
+    <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Bitte bestätigen Sie Ihren Ländercode und Ihre Telefonnummer</string>
+    <string name="registration_activity__your_country">IHR LÄNDERCODE</string>
+    <string name="registration_activity__your_country_code_and_phone_number">IHR LÄNDERCODE UND TELEFONNUMMER</string>
+    <string name="registration_activity__phone_number">TELEFONNUMMER</string>
+    <string name="registration_activity__register">Registrieren</string>
+    <string name="registration_problems__some_possible_problems_include">Mögliche Fehlerursachen:</string>
+    <string name="registration_problems__sms_interceptors">SMS Interceptors</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
+        intercept all incoming SMS messages. Check to see if you received a text message that starts
+        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
+        third party text messaging app to let text messages through.
+    </string>
+    <string name="registration_problems__incorrect_number">Falsche Telefonnummer</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Bitte überprüfen Sie, ob Sie Ihre Telefonnummer richtig eingegeben haben und sie das richtige Format für Ihr Land besitzt
+    </string>
+    <string name="registration_problems__google_voice">Google Voice</string>
+    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        TextSecure funktioniert nicht mit \'Google Voice\'-Nummern
+    </string>
+    <string name="registration_progress_activity__voice_verification">Sprach-Verifizierung</string>
+    <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+        TextSecure kann Sie auch anrufen, um Ihre Telefonnummer zu verifizieren. Berühren Sie \'Anrufen\'
+        und geben Sie unten den sechstelligen Code, welcher Ihnen vorgelesen wird ein.
+    </string>
+    <string name="registration_progress_activity__verify">Verifizieren</string>
+    <string name="registration_progress_activity__call_me">Anrufen</string>
+    <string name="registration_progress_activity__edit_number">Telefonnummer ändern</string>
+    <string name="registration_progress_activity__connectivity_error">Verbindungsfehler</string>
+    <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+        TextSecure kann keine Verbindung zum Push-Dienst herstellen
+    </string>
+    <string name="registration_progress_activity__some_possible_problems_include">Mögliche Fehlerursachen:</string>
+    <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerkverbindung</string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Ihr Gerät benötigt eine Netzwerkverbindung, um diese
+        TextSecure-Funktion nutzen zu können. Bitte überprüfen Sie, dass eine 3G- oder WLAN-Verbindung besteht.
+    </string>
+    <string name="registration_progress_activity__restrictive_firewall">Durch Firewall eingeschränkt</string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+        Wenn Sie über WLAN verbunden sind, ist es möglich, dass eine Firewall den Zugriff auf den TextSecure-Server verhindert.
+        Versuchen Sie ein anderes Netzwerk oder eine Verbindung über mobile Daten aus.
+    </string>
+    <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        Ihre Nummer wird von TextSecure automatisch durch eine Bestätigungs-SMS verifiziert
+    </string>
+    <string name="registration_progress_activity__connecting">Verbinde\u2026</string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Warte auf SMS-Verifikation\u2026</string>
+    <string name="registration_progress_activity__registering_with_server">Anmeldung am Server\u2026</string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies kann einige Zeit dauern.
+        Sie werden benachrichtigt, sobald die Verifikation abgeschlossen ist
+    </string>
+    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+        Beim Empfang der Verifikations-SMS ist eine Zeitüberschreitung aufgetreten
+    </string>
+    <string name="registration_progress_activity__sms_verification_failed">SMS-Verifikation fehlgeschlagen</string>
+    <string name="registration_progress_activity__generating_keys">Schlüssel werden generiert\u2026</string>
+    <string name="registration_progress_activity__alert">Alert</string>
+    <string name="registration_progress_activity__check">Check</string>
+    <string name="registration_progress_activity__telephone">Telefon</string>
+    <string name="registration_completed_activity__registration_completed">Registrierung vollständig</string>
+    <string name="registration_completed_activity__body">Sie haben sich erfolgreich bei TextSecure registriert</string>
+    <string name="registration_completed_activity__register_again">Erneut registrieren</string>
+    <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identities in your trust database</string>
+    <string name="verify_identities_activity__no_pending_messages_that_require_validation">No pending messages that require validation.</string>
+    <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Der Fingerabdruck dieses Kontakts hat sich geändert.
+        Dies kann bedeuten, dass jemand versucht Ihre Nachrichten abzufangen oder, dass der Kontakt ein neues Telefon hat.
+        Bitte rufen Sie diesen Kontakt an und verifizieren Sie den unten dargestellten Fingerabdruck indem Sie ihn vorlesen
+    </string>
+    <string name="verify_identity_activity__their_fingerprint">Their Fingerprint:</string>
+    <string name="verify_identity_activity__valid">Valid</string>
+    <string name="verify_identity__invalid">Invalid</string>
+    <string name="verify_identity_activity__avatar_icon">Avatar Icon</string>
+    <string name="view_identity_activity_menu__compare">Compare</string>
+    <string name="view_identity_activity_menu__scan_to_compare">Scan to compare</string>
+    <string name="view_identity_activity_menu__get_scanned_to_compare">Get scanned to compare</string>
+</resources>
