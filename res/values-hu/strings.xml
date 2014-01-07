@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- GcmReceiver -->
+    <string name="GcmReceiver_invalid_push_message">Érvénytelen Push Üzenet</string>
+    <string name="GcmReceiver_received_badly_formatted_push_message">Rossz formátumú push üzenet érkezett.</string>
+    <string name="GcmReceiver_unsupported_push_version">Nem támogatott Push verzió</string>
+    <string name="GcmReceiver_received_push_message_with_unknown_version">Ismeretlen verziójú push üzenet érkezett. Szeretné frissíteni a kliensét?</string>
+
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_pending_messages_require_validation">%d várakozó üzenetet kell ellenőrizni.
+    </string>
+    <string name="MessageNotifier_pending_message_requires_validation">A várakozó üzenetet ellenőrizni kell.
+    </string>
+    <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Kapott egy üzenetet, melyet ellenőriznie kell.
+    </string>
+
+    <!-- MessageReceiver -->
+    <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nem lehet fogadni a bejövő üzenet kódolt csatolmányát.</string>
+    <string name="MessageReceiver_received_badly_encrypted_message">A fogadott üzenet rosszul, vagy nem létező munkamenet számára lett kódolva.</string>
+
+    <!-- PendingIdentityItemView -->
+    <string name="PendingIdentityItemView_received_s">%s fogadva</string>
+
+    <!-- RegistrationActivity -->
+    <string name="RegistrationActivity_select_your_country">Válassza ki országát.</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnia az országa előhívóját.
+    </string>
+    <string name="RegistrationActivity_you_must_specify_your_phone_number">Meg kell adnia a telefonszámát.
+    </string>
+    <string name="RegistrationActivity_invalid_number">Érvénytelen szám</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">A megadott szám (%s) érvénytelen.
+    </string>
+    <string name="RegistrationActivity_unsupported">Nem támogatott</string>
+    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sajnáljuk, de ez az eszköz nem támogatja az internetes üzenetküldést. 4.0-nál régebbi verziójú Android rendszer esetén szüksége van egy regisztrált Google Fiókra. Újabb rendszereken nem szükséges a Google Fiók megléte, de telepítve kell lennie a Play Áruháznak.
+    </string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        Most ellenőrizzük, hogy az alábbi szám ehhez az eszközhöz tartozik:\n\n%s\n\n
+        Helyes a szám, vagy szeretne visszalépni és szerkeszteni, mielőtt folytatná?
+    </string>
+    <string name="RegistrationActivity_continue">Tovább</string>
+    <string name="RegistrationActivity_edit">Szerkeszt</string>
+    <string name="RegistrationActivity_connect_with_textsecure">Kapcsolódás TextSecure-ral</string>
+
+    <!-- RegistrationProblemsActivity -->
+    <string name="RegistrationProblemsActivity_possible_problems">Lehetséges problémák</string>
+
+    <!-- RegistrationProgressActivity -->
+    <string name="RegistrationProgressActivity_verifying_number">Szám ellenőrzése</string>
+    <string name="RegistrationProgressActivity_edit_s">%s szerkesztése</string>
+    <string name="RegistrationProgressActivity_possible_problems">Lehetséges problémák.</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Először be kell írnia a kapott kódot…</string>
+    <string name="RegistrationProgressActivity_connecting">Kapcsolódás</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Kapcsolódás ellenőrzéshez…</string>
+    <string name="RegistrationProgressActivity_network_error">Hálózati hiba!</string>
+    <string name="RegistrationProgressActivity_unable_to_connect">Nem sikerült csatlakozni. Kérem, ellenőrizze internetkapcsolatát, majd próbálja újra.</string>
+    <string name="RegistrationProgressActivity_verification_failed">Ellenőrzés sikertelen!</string>
+    <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">A beküldött ellenőrző kód érvénytelen. Kérem, próbálja meg újra.</string>
+    <string name="RegistrationProgressActivity_too_many_attempts">Túl sok próbálkozás történt</string>
+    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Túl sokszor próbált meg érvénytelen ellenőrző kódot beküldeni. Kérem várjon egy percet, mielőtt újra megpróbálja.</string>
+    <string name="RegistrationProgressActivity_requesting_call">Hívás kérése</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Bejövő ellenőrző hívás kezdeményezése…</string>
+    <string name="RegistrationProgressActivity_server_error">Szerverhiba</string>
+    <string name="RegistrationProgressActivity_the_server_encountered_an_error">A szerver hibába ütközött. Kérem, próbálja meg újra.</string>
+    <string name="RegistrationProgressActivity_too_many_requests">Túl sok kérés!</string>
+    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Már kért hívást. A következőt 20 perc múlva kérheti.</string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Hang kód ellenőrzése…</string>
+
+    <!-- RegistrationService -->
+    <string name="RegistrationService_registration_complete">Regisztráció kész</string>
+    <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Push
+        üzenetküldő regisztrációja sikeresen befejeződött.
+    </string>
+    <string name="RegistrationService_registration_error">Regisztrációs hiba</string>
+    <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Push
+        üzenetküldő regisztrációja problémába ütközött.
+    </string>
+
+    <!-- SmsServiceBridge -->
+    <string name="SmsServiceBridge_received_encrypted_attachment">Kódolt csatolmány érkezett, de nem lehet megjeleníteni, mert Koush lógós.</string>
+
+    <!-- VerifyIdentityActivity -->
+    <string name="VerifyIdentityActivity_discard_messages">Eldobja az üzeneteket?</string>
+    <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">
+        Biztos, hogy érvénytelennek jelöli ezt az azonosítót és az összes hozzá rendelt várakozó üzenetet?
+    </string>
+    <string name="VerifyIdentityActivity_processing">Feldolgozás</string>
+    <string name="VerifyIdentityActivity_discarding_messages">Üzenetek eldobása...</string>
+    <string name="VerifyIdentityActivity_processing_identity_key">Azonosító feldolgozása...
+    </string>
+
+    <!-- ViewIdentityActivity -->
+    <string name="ViewIdentityActivity_verified">Hitelesítve!</string>
+    <string name="ViewIdentityActivity_the_scanned_key_matches">A beolvasott kulcs egyezik!</string>
+    <string name="ViewIdentityActivity_not_verified">Nincs hitelesítve!</string>
+    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">FIGYELEM, a beolvasott kulcs nem egyezik!
+    </string>
+    <string name="ViewIdentityActivity_no_scanned_key_found">Nem található beolvasott kulcs!</string>
+
+    <!-- country_selection_fragment -->
+    <string name="country_selection_fragment__search">Keresés</string>
+    <string name="country_selection_fragment__loading_countries">Országok betöltése…</string>
+
+    <!-- registration_activity -->
+    <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Kérem, erősítse meg előhívóját és telefonszámát.
+    </string>
+    <string name="registration_activity__your_country">ORSZÁG</string>
+    <string name="registration_activity__your_country_code_and_phone_number">ELŐHÍVÓ ÉS TELEFONSZÁM
+    </string>
+    <string name="registration_activity__phone_number">TELEFONSZÁM</string>
+    <string name="registration_activity__register">Regisztráció</string>
+
+    <!-- registration_problems -->
+    <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma:
+    </string>
+    <string name="registration_problems__sms_interceptors">SMS elfogók.</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Néhány SMS alkalmazás, mint például a Handcent, vagy a GoSMS rosszul viselkedik és elfog minden bejövő SMS üzenetet. Ellenőrizze, hogy nem kapott-e üzenetet, ami a \'Your TextSecure verification code:\' mondattal kezdődik. Ez esetben be kell állítania az üzenetküldő alkalmazását, hogy ne fogja ez az üzeneteket.
+    </string>
+    <string name="registration_problems__incorrect_number">Érvénytelen szám.</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Kérem, ellenőrizze, hogy jól adta-e meg a számát, és hogy azt megfelelően formázta.
+    </string>
+    <string name="registration_problems__google_voice">Google Voice</string>
+    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        A TextSecure nem működik Google Voice számokkal.
+    </string>
+
+    <!-- registration_progress_activity -->
+    <string name="registration_progress_activity__voice_verification">Hang ellenőrzés</string>
+    <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+        A TextSecure telefonhívással is ellenőrizheti a számát. Érintse meg a \'Hívjon fel\' gombot és adja meg a hat számjegyet, amit ekkor hall.
+    </string>
+    <string name="registration_progress_activity__verify">Ellenőrzés</string>
+    <string name="registration_progress_activity__call_me">Hívjon fel</string>
+    <string name="registration_progress_activity__edit_number">Szám módosítása</string>
+    <string name="registration_progress_activity__connectivity_error">Csatlakozási hiba.</string>
+    <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+        Nem sikerült csatlakozni a push szolgáltatáshoz.
+    </string>
+    <string name="registration_progress_activity__some_possible_problems_include">Néhány lehetséges probléma:
+    </string>
+    <string name="registration_progress_activity__no_network_connectivity">Nincs internetkapcsolat.
+    </string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Az eszközének internetkapcsolatra van szüksége a TextSecure e funkciójának használatához. Kérem, ellenőrizze internetkapcsolatát.
+    </string>
+    <string name="registration_progress_activity__restrictive_firewall">Tűzfal blokkolja a kommunikációt.
+    </string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+        Ha Wi-Fin kapcsolódik, lehetséges, hogy egy tűzfal blokkolja a TextSecure szerver elérését. Kérem, próbálkozzon másik hálózattal, vagy mobil internettel.
+    </string>
+    <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        A TextSecure most ellenőrzi a számát egy megerősítő SMS segítségével.
+    </string>
+    <string name="registration_progress_activity__connecting">Kapcsolódás…</string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Várakozás SMS ellenőrzésre…
+    </string>
+    <string name="registration_progress_activity__registering_with_server">Regisztrálás a szerveren…</string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Ez eltarthat egy ideig. Kérem, legyen türelemmel, értesítjük, ha a folyamat befejeződött.
+    </string>
+    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+        Nem érkezett időben ellenőrző SMS üzenet.
+    </string>
+    <string name="registration_progress_activity__sms_verification_failed">Sikertelen SMS ellenőrzés.
+    </string>
+    <string name="registration_progress_activity__generating_keys">Kulcsok generálása...</string>
+    <string name="registration_progress_activity__alert">Riasztás</string>
+    <string name="registration_progress_activity__check">Ellenőrzés</string>
+    <string name="registration_progress_activity__telephone">Telefon</string>
+
+    <!-- registration_completed_activity -->
+    <string name="registration_completed_activity__registration_completed">Regisztráció kész</string>
+    <string name="registration_completed_activity__body">
+        Sikeresen regisztrált a TextSecure szolgáltatásban.
+    </string>
+    <string name="registration_completed_activity__register_again">Újra regisztrálás</string>
+
+    <!-- review_identities_activity -->
+    <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Még nincs azonosítója a megbízható azonosítók adatbázisában.</string>
+
+    <!-- verify_identities_activity -->
+    <string name="verify_identities_activity__no_pending_messages_that_require_validation">Nincs ellenőrzésre váró üzenet.</string>
+    <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Az alábbi partnerek azonosítói megváltoztak. Ez azt jelenti, hogy valaki le akarja önöket hallgatni, vagy a partnereinek új telefonja van. Hívja fel őket és ellenőrizze az azonosítókat annak hangos felolvasásával. Az ellenőrzés végéig a partnerektől kapott üzenetek vissza lesznek tartva.
+    </string>
+    <string name="verify_identity_activity__their_fingerprint">Azonosítóik:</string>
+    <string name="verify_identity_activity__valid">Érvényes</string>
+    <string name="verify_identity__invalid">Érvénytelen</string>
+    <string name="verify_identity_activity__avatar_icon">Avatár ikon</string>
+
+    <!-- view_identity_activity_menu -->
+    <string name="view_identity_activity_menu__compare">Összehasonlítás</string>
+    <string name="view_identity_activity_menu__scan_to_compare">Beolvasás összehasonlításhoz</string>
+    <string name="view_identity_activity_menu__get_scanned_to_compare">Beolvastatás összehasonlításhoz</string>
+
+
+</resources>
