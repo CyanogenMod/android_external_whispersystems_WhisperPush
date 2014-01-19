@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013-2014 The CyanogenMod Project
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+  <string name="GcmReceiver_invalid_push_message">הודעת Push לא חוקית</string>
+  <string name="GcmReceiver_received_badly_formatted_push_message">קיבל הודעת push לא בתבנית נכונה.</string>
+  <string name="GcmReceiver_unsupported_push_version">גירסת push לא נתמכת</string>
+  <string name="GcmReceiver_received_push_message_with_unknown_version">התקבלה הודעה עם גרסה לא ידועה. האם אתה רוצה לעדכן את התוכנה?</string>
+  <string name="MessageNotifier_d_pending_messages_require_validation">%d הודעות דורשות אימות</string>
+  <string name="MessageNotifier_pending_message_requires_validation">יש הודעות ממתינות לאימות.</string>
+  <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">קיבלת הודעה הדורשת ממך לאמת אותה.</string>
+  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">אין אפשרות לשחזר קבצים מצורפים מוצפנים עבור ההודעה הנכנסת.</string>
+  <string name="MessageReceiver_received_badly_encrypted_message">קיבל הודעה שהוצפנה לא נכון, או שההודעה הוצפנה עם מפתח לא ידוע.</string>
+  <string name="PendingIdentityItemView_received_s">התקבל %s</string>
+  <string name="RegistrationActivity_select_your_country">בחר את המדינה שלך</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">עליך לציין את קוד המדינה שלך</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">עליך לציין את מספר הטלפון שלך</string>
+  <string name="RegistrationActivity_invalid_number">מספר לא חוקי</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">המספר שציינת (%s) אינו חוקי.</string>
+  <string name="RegistrationActivity_unsupported">לא נתמך</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">סליחה, מכשיר זה אינו נתמך להעברת הודעות. מכשירים המריצים גרסת אנדרואיד ישנה מ-4.0 חייבים חשבון גוגל רשום. מכשירים המריצים גרסה 4.0 או יותר חדשהלא צריכים חשבון גוגל, אבל חייבים את חנות ה-Play מותקנת.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">אנחנו עכשיו נוודא כי המספר קשורה ל-מכשיר :\n\n%s\n\n האם המספר נכון, או שברצונכם לערוך אותו לפני שתמשיך?     </string>
+  <string name="RegistrationActivity_continue">המשך</string>
+  <string name="RegistrationActivity_edit">ערוך</string>
+  <string name="RegistrationActivity_connect_with_textsecure">צור קשר עם TextSecure</string>
+  <string name="RegistrationProblemsActivity_possible_problems">בעיות אפשריות</string>
+  <string name="RegistrationProgressActivity_verifying_number">אימות מספר</string>
+  <string name="RegistrationProgressActivity_edit_s">עריכה %s</string>
+  <string name="RegistrationProgressActivity_possible_problems">בעיות אפשריות.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">עליך להזין את הקוד שקיבלת קודם…</string>
+  <string name="RegistrationProgressActivity_connecting">מתחבר</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">מתחבר לצורך אימות…</string>
+  <string name="RegistrationProgressActivity_network_error">שגיאת רשת!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">אין אפשרות להתחבר. בדוק את חיבור הרשת ונסה שוב.</string>
+  <string name="RegistrationProgressActivity_verification_failed">אימות נכשל!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">קוד האימות שמסרת אינו נכון. נסה שוב.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">ניסיונות רבים מדי</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">הכנסת קוד אימות שגוי יותר מדי פעמים. חכה דקה לפני ניסיון חדש.</string>
+  <string name="RegistrationProgressActivity_requesting_call">בקש שיחה</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">מבקש אימות שיחה נכנסת…</string>
+  <string name="RegistrationProgressActivity_server_error">שגיאת שרת</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">השרת נתקל בשגיאה. נסה שוב.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">בקשות רבות מדי!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">כבר ביקשתה שיחת אימות לאחרונה. אתה יכול לבקש שיחה כל 20 דקות.</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">בודק קוד קולי…</string>
+  <string name="RegistrationService_registration_complete">הרשמה הושלמה</string>
+  <string name="RegistrationService_push_messaging_registration_has_successfully_completed">הרשמת שירות הודעות הושלמה בהצלחה.</string>
+  <string name="RegistrationService_registration_error">שגיאת רישום</string>
+  <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">במהלך שירות ההודעות אירעה שגיאה.</string>
+  <string name="SmsServiceBridge_received_encrypted_attachment">קיבל קובץ מצורף מוצפן, אבל אי אפשר להציג אותה כי Koush בטלן.</string>
+  <string name="VerifyIdentityActivity_discard_messages">למחוק הודעות?</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">האם אתה בטוח שאתה רוצה לסמן חתימה זו כלא בתוקף ולמחוק את כל ההודעות הממתינות המשויכות אליה?</string>
+  <string name="VerifyIdentityActivity_processing">מעבד</string>
+  <string name="VerifyIdentityActivity_discarding_messages">מחיקת הודעות...</string>
+  <string name="VerifyIdentityActivity_processing_identity_key">מעבד מפתח זהות...     </string>
+  <string name="ViewIdentityActivity_verified">אומת!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">המפתח הסרוק מתאים!</string>
+  <string name="ViewIdentityActivity_not_verified">לא מאומת!</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">אזהרה, המפתח הסרוק לא מתאים!</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">לא נמצא מפתח סרוק!</string>
+  <string name="country_selection_fragment__search">חיפוש</string>
+  <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
+  <string name="registration_activity__please_confirm_your_country_code_and_phone_number">אנא אשר את קוד המדינה ואת מספר הטלפון.     </string>
+  <string name="registration_activity__your_country">המדינה שלך</string>
+  <string name="registration_activity__your_country_code_and_phone_number">קוד המדינה ומספר הטלפון שלך     </string>
+  <string name="registration_activity__phone_number">מספר טלפון</string>
+  <string name="registration_activity__register">הרשם</string>
+  <string name="registration_problems__some_possible_problems_include">בעיות אפשריות כוללות:     </string>
+  <string name="registration_problems__sms_interceptors">מיירטי SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">כמה תוכנות SMS צד שלישי, כמו Handcent או GoSMS, תופסות את כל הודעות ה-SMS. בדוק אם קיבלת הודעה שמתחילה ב-\"קודם ה-TextSecure שלך הוא:\", ובמקרה כזה אתה תצטרך להגדיר את התוכנה לאפשר להעביר הודעות SMS הלאה.</string>
+  <string name="registration_problems__incorrect_number">מספר שגוי.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">בדוק שהזנת את המספר שלך בצורה נכונה, ואת זה הוא שהוא מעוצב בצורה נכונה עבור האזור שלך.     </string>
+  <string name="registration_problems__google_voice">Google Voice</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">         TextSecure לא יעבוד עם מספרי Google Voice.  </string>
+  <string name="registration_progress_activity__voice_verification">בדיקת קול</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure יכול גם להתקשר אליך בשביל אימות מספר. לחץ על \"התקשר אלי\" והכנס את 6 הספרות שאתה שומע.</string>
+  <string name="registration_progress_activity__verify">אמת</string>
+  <string name="registration_progress_activity__call_me">התקשר אלי</string>
+  <string name="registration_progress_activity__edit_number">עריכת מספר</string>
+  <string name="registration_progress_activity__connectivity_error">שגיאת קישור.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure לא הצליח להתחבר לשירות ההודעות.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">בעיות אפשריות כוללות:     </string>
+  <string name="registration_progress_activity__no_network_connectivity">אין חיבור רשת.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">המכשיר שלך צריך חיבור לרשת במטרה להשתמש באפשריות TextSecure. בדוק שאתה מחובר ל-3G או ל-Wi-Fi.</string>
+  <string name="registration_progress_activity__restrictive_firewall">חומת אש מגבילה.     </string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">אם אתה מחובר באמצעות Wi-Fi, ייתכן ויש חומת אש החוסמת גישה לשרת TextSecure. נסה עוד רשת או נתונים חברת סלולר.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure יוודא כעת באופן אוטומטי את המספר שלך באמצעות הודעת SMS.    </string>
+  <string name="registration_progress_activity__connecting">מתחבר…</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">מחכה לאימות SMS…</string>
+  <string name="registration_progress_activity__registering_with_server">הרשמה באמצעות השרת…</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">זה יכול לקחת קצת זמן. היה סבלן, ואנו נודיע על השלמת התהליך. </string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">נגמר זמן ההמתנה להודעת SMS האימות.</string>
+  <string name="registration_progress_activity__sms_verification_failed">אימות SMS נכשל.</string>
+  <string name="registration_progress_activity__generating_keys">יוצר מפתחות...</string>
+  <string name="registration_progress_activity__alert">התראה</string>
+  <string name="registration_progress_activity__check">בדוק</string>
+  <string name="registration_progress_activity__telephone">טלפון</string>
+  <string name="registration_completed_activity__registration_completed">הרשמה הושלמה</string>
+  <string name="registration_completed_activity__body">נרשמת בהצלחה עם TextSecure.</string>
+  <string name="registration_completed_activity__register_again">הירשם שוב</string>
+  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">כרגע אין לך שום זהויות מאומתות במסד נתונים</string>
+  <string name="verify_identities_activity__no_pending_messages_that_require_validation">לא ממתינים הודעות הדורשות אימות.</string>
+  <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">חתימה איש הקשר הזה שונתה, ולכן יתכן שמישהו מנסה לשבש את התקשורת, או שהאדם החליף מכשיר. אנו ממליצים להתקשר אליו ולבדוק את החתימה על ידי קריאתה בקול. הודעות מאיש קשר זה יוחזקו עד האימות.</string>
+  <string name="verify_identity_activity__their_fingerprint">החתימה שלהם:</string>
+  <string name="verify_identity_activity__valid">בתוקף</string>
+  <string name="verify_identity__invalid">לא בתוקף</string>
+  <string name="verify_identity_activity__avatar_icon">סמלך</string>
+  <string name="view_identity_activity_menu__compare">השווה</string>
+  <string name="view_identity_activity_menu__scan_to_compare">סרוק להשוואה</string>
+  <string name="view_identity_activity_menu__get_scanned_to_compare">קבל סריקה להשוואה</string>
+</resources>
