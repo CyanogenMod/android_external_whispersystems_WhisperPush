@@ -73,5 +73,12 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="20dip"
                 android:layout_marginBottom="20dip"/>
+
+        <ImageButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@null"
+            android:src="@drawable/twilio_powered_by"
+            android:id="@+id/twilio_button" />
     </LinearLayout>
 </ScrollView>

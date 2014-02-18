@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
@@ -30,6 +31,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +57,7 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 public class RegistrationActivity extends Activity {
 
   private static final int PICK_COUNTRY = 1;
+  private static final String TWILIO_URL = "http://twilio.com/?utm_source=cyanogenmod&utm_medium=appbadge&utm_campaign=cyanogenverify";
 
   private AsYouTypeFormatter   countryFormatter;
   private ArrayAdapter<String> countrySpinnerAdapter;
@@ -62,6 +65,7 @@ public class RegistrationActivity extends Activity {
   private TextView             countryCode;
   private TextView             number;
   private Button               createButton;
+  private ImageButton          twilioButton;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -94,10 +98,12 @@ public class RegistrationActivity extends Activity {
     this.countryCode    = (TextView)findViewById(R.id.country_code);
     this.number         = (TextView)findViewById(R.id.number);
     this.createButton   = (Button)findViewById(R.id.registerButton);
+    this.twilioButton   = (ImageButton) findViewById(R.id.twilio_button);
 
     this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
     this.number.addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(new CreateButtonListener());
+    this.twilioButton.setOnClickListener(new TwilioButtonListener());
   }
 
   private void initializeSpinner() {
@@ -274,6 +280,15 @@ public class RegistrationActivity extends Activity {
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+    }
+  }
+
+  private class TwilioButtonListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(TWILIO_URL));
+        startActivity(intent);
     }
   }
 }
