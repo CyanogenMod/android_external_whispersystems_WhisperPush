@@ -35,70 +35,70 @@ import org.whispersystems.whisperpush.contacts.ContactsFactory;
  * @author Moxie Marlinspike
  */
 public class IdentityKeyItemView extends RelativeLayout
-    implements Contact.ContactModifiedListener
+        implements Contact.ContactModifiedListener
 {
 
-  private TextView          identityName;
-  private TextView          identityPhone;
-  private TextView          fingerprint;
-  private QuickContactBadge contactBadge;
+    private TextView          identityName;
+    private TextView          identityPhone;
+    private TextView          fingerprint;
+    private QuickContactBadge contactBadge;
 
-  private Contact contact;
-  private IdentityKey identityKey;
+    private Contact contact;
+    private IdentityKey identityKey;
 
-  private final Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
-  public IdentityKeyItemView(Context context) {
-    super(context);
-  }
+    public IdentityKeyItemView(Context context) {
+        super(context);
+    }
 
-  public IdentityKeyItemView(Context context, AttributeSet attributeSet) {
-    super(context, attributeSet);
-  }
+    public IdentityKeyItemView(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
 
-  @Override
-  public void onFinishInflate() {
-    this.identityName  = (TextView)findViewById(R.id.identity_name);
-    this.identityPhone = (TextView)findViewById(R.id.identity_phone);
-    this.fingerprint   = (TextView)findViewById(R.id.fingerprint);
-    this.contactBadge  = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
-  }
+    @Override
+    public void onFinishInflate() {
+        this.identityName  = (TextView)findViewById(R.id.identity_name);
+        this.identityPhone = (TextView)findViewById(R.id.identity_phone);
+        this.fingerprint   = (TextView)findViewById(R.id.fingerprint);
+        this.contactBadge  = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
+    }
 
-  public void set(Pair<String, IdentityKey> identity) {
-    this.contact     = ContactsFactory.getContactFromNumber(getContext(), identity.first, true);
-    this.identityKey = identity.second;
+    public void set(Pair<String, IdentityKey> identity) {
+        this.contact     = ContactsFactory.getContactFromNumber(getContext(), identity.first, true);
+        this.identityKey = identity.second;
 
-    identityName.setText(contact.getNumber());
-    fingerprint.setText(this.identityKey.getFingerprint());
+        identityName.setText(contact.getNumber());
+        fingerprint.setText(this.identityKey.getFingerprint());
 
-    contactBadge.setImageBitmap(contact.getAvatar());
-    contactBadge.assignContactFromPhone(contact.getNumber(), true);
+        contactBadge.setImageBitmap(contact.getAvatar());
+        contactBadge.assignContactFromPhone(contact.getNumber(), true);
 
-    contact.addListener(this);
-  }
+        contact.addListener(this);
+    }
 
-  public IdentityKey getIdentityKey() {
-    return this.identityKey;
-  }
+    public IdentityKey getIdentityKey() {
+        return this.identityKey;
+    }
 
-  public Contact getContact() {
-    return this.contact;
-  }
+    public Contact getContact() {
+        return this.contact;
+    }
 
-  @Override
-  public void onModified(final Contact contact) {
-    handler.post(new Runnable() {
-      @Override
-      public void run() {
-        if (contact.getName() != null) {
-            IdentityKeyItemView.this.identityName.setText(contact.getName());
-            IdentityKeyItemView.this.identityPhone.setText(contact.getNumber());
-        } else {
-            IdentityKeyItemView.this.identityName.setText(contact.toShortString());
-        }
+    @Override
+    public void onModified(final Contact contact) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (contact.getName() != null) {
+                    IdentityKeyItemView.this.identityName.setText(contact.getName());
+                    IdentityKeyItemView.this.identityPhone.setText(contact.getNumber());
+                } else {
+                    IdentityKeyItemView.this.identityName.setText(contact.toShortString());
+                }
 
-        IdentityKeyItemView.this.contactBadge.setImageBitmap(contact.getAvatar());
-      }
-    });
-  }
+                IdentityKeyItemView.this.contactBadge.setImageBitmap(contact.getAvatar());
+            }
+        });
+    }
 }

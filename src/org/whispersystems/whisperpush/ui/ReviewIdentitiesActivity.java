@@ -38,77 +38,77 @@ import org.whispersystems.whisperpush.database.IdentityDatabase;
 import org.whispersystems.whisperpush.loaders.IdentityLoader;
 
 public class ReviewIdentitiesActivity extends ListActivity
-    implements LoaderManager.LoaderCallbacks<Cursor>
+        implements LoaderManager.LoaderCallbacks<Cursor>
 {
 
-  @Override
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.review_identities_activity);
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.review_identities_activity);
 
-    initializeListAdapter();
-    getLoaderManager().initLoader(0, null, this);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
-    }
-
-    return false;
-  }
-
-  @Override
-  public void onListItemClick(ListView listView, View view, int position, long id) {
-    Intent viewIntent = new Intent(this, ViewIdentityActivity.class);
-    viewIntent.putExtra("identity_key", ((IdentityKeyItemView)view).getIdentityKey());
-    startActivity(viewIntent);
-  }
-
-  private void initializeListAdapter() {
-    MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this);
-    this.setListAdapter(new IdentitiesListAdapter(this, null, masterSecret));
-    getLoaderManager().restartLoader(0, null, this);
-  }
-
-  @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new IdentityLoader(this);
-  }
-
-  @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
-  }
-
-  @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
-  }
-
-  private class IdentitiesListAdapter extends CursorAdapter {
-    private final MasterSecret   masterSecret;
-    private final LayoutInflater inflater;
-
-    public IdentitiesListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
-      super(context, cursor);
-      this.masterSecret = masterSecret;
-      this.inflater     = LayoutInflater.from(context);
+        initializeListAdapter();
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-      IdentityDatabase.Reader reader = DatabaseFactory.getIdentityDatabase(context)
-                                                      .readerFor(masterSecret, cursor);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: finish(); return true;
+        }
 
-      ((IdentityKeyItemView)view).set(reader.getCurrent());
+        return false;
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return inflater.inflate(R.layout.identity_key_item_view, parent, false);
+    public void onListItemClick(ListView listView, View view, int position, long id) {
+        Intent viewIntent = new Intent(this, ViewIdentityActivity.class);
+        viewIntent.putExtra("identity_key", ((IdentityKeyItemView)view).getIdentityKey());
+        startActivity(viewIntent);
     }
-  }
+
+    private void initializeListAdapter() {
+        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this);
+        this.setListAdapter(new IdentitiesListAdapter(this, null, masterSecret));
+        getLoaderManager().restartLoader(0, null, this);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new IdentityLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        ((CursorAdapter)getListAdapter()).changeCursor(null);
+    }
+
+    private class IdentitiesListAdapter extends CursorAdapter {
+        private final MasterSecret   masterSecret;
+        private final LayoutInflater inflater;
+
+        public IdentitiesListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
+            super(context, cursor);
+            this.masterSecret = masterSecret;
+            this.inflater     = LayoutInflater.from(context);
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+            IdentityDatabase.Reader reader = DatabaseFactory.getIdentityDatabase(context)
+                    .readerFor(masterSecret, cursor);
+
+            ((IdentityKeyItemView)view).set(reader.getCurrent());
+        }
+
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            return inflater.inflate(R.layout.identity_key_item_view, parent, false);
+        }
+    }
 }

@@ -36,75 +36,75 @@ import org.whispersystems.whisperpush.database.PendingApprovalDatabase;
 import org.whispersystems.whisperpush.loaders.PendingLoader;
 
 public class VerifyIdentitiesActivity extends ListActivity
-    implements LoaderManager.LoaderCallbacks<Cursor>
+        implements LoaderManager.LoaderCallbacks<Cursor>
 {
 
-  @Override
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.verify_identities_activity);
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.verify_identities_activity);
 
-    initializeListAdapter();
-    getLoaderManager().initLoader(0, null, this);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
-    }
-
-    return false;
-  }
-
-  @Override
-  public void onListItemClick(ListView listView, View view, int position, long id) {
-    Intent viewIntent = new Intent(this, VerifyIdentityActivity.class);
-    viewIntent.putExtra("identity_key", ((PendingIdentityItemView)view).getIdentityKey());
-    viewIntent.putExtra("contact", ((PendingIdentityItemView)view).getContact());
-    startActivity(viewIntent);
-  }
-
-  private void initializeListAdapter() {
-    this.setListAdapter(new PendingListAdapter(this, null));
-    getLoaderManager().restartLoader(0, null, this);
-  }
-
-  @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new PendingLoader(this);
-  }
-
-  @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
-  }
-
-  @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
-  }
-
-  private class PendingListAdapter extends CursorAdapter {
-    private final LayoutInflater inflater;
-
-    public PendingListAdapter(Context context, Cursor cursor) {
-      super(context, cursor);
-      this.inflater = LayoutInflater.from(context);
+        initializeListAdapter();
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-      PendingApprovalDatabase.Reader reader = DatabaseFactory.getPendingApprovalDatabase(context)
-                                                             .readerFor(cursor);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: finish(); return true;
+        }
 
-      ((PendingIdentityItemView)view).set(reader.getCurrent());
+        return false;
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return inflater.inflate(R.layout.pending_identity_item_view, parent, false);
+    public void onListItemClick(ListView listView, View view, int position, long id) {
+        Intent viewIntent = new Intent(this, VerifyIdentityActivity.class);
+        viewIntent.putExtra("identity_key", ((PendingIdentityItemView)view).getIdentityKey());
+        viewIntent.putExtra("contact", ((PendingIdentityItemView)view).getContact());
+        startActivity(viewIntent);
     }
-  }
+
+    private void initializeListAdapter() {
+        this.setListAdapter(new PendingListAdapter(this, null));
+        getLoaderManager().restartLoader(0, null, this);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new PendingLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        ((CursorAdapter)getListAdapter()).changeCursor(null);
+    }
+
+    private class PendingListAdapter extends CursorAdapter {
+        private final LayoutInflater inflater;
+
+        public PendingListAdapter(Context context, Cursor cursor) {
+            super(context, cursor);
+            this.inflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+            PendingApprovalDatabase.Reader reader = DatabaseFactory.getPendingApprovalDatabase(context)
+                    .readerFor(cursor);
+
+            ((PendingIdentityItemView)view).set(reader.getCurrent());
+        }
+
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            return inflater.inflate(R.layout.pending_identity_item_view, parent, false);
+        }
+    }
 }

@@ -34,19 +34,19 @@ import org.whispersystems.whisperpush.ui.RegistrationCompletedActivity;
  * @author Moxie Marlinspike
  */
 public class RegistrationNotifier extends BroadcastReceiver {
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    Notification.Builder builder = new Notification.Builder(context);
-    builder.setSmallIcon(R.drawable.icon);
-    builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
-    builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Notification.Builder builder = new Notification.Builder(context);
+        builder.setSmallIcon(R.drawable.icon);
+        builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
+        builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
 
-    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RegistrationCompletedActivity.class), 0));
-    builder.setWhen(System.currentTimeMillis());
-    builder.setDefaults(Notification.DEFAULT_VIBRATE);
-    builder.setAutoCancel(true);
+        builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RegistrationCompletedActivity.class), 0));
+        builder.setWhen(System.currentTimeMillis());
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+        builder.setAutoCancel(true);
 
-    Notification notification = builder.getNotification();
-    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(31337, notification);
-  }
+        Notification notification = builder.getNotification();
+        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(31337, notification);
+    }
 }

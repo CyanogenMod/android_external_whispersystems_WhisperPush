@@ -36,47 +36,47 @@ import java.util.concurrent.Executors;
  */
 public class SendReceiveService extends Service {
 
-  public static final String RECEIVE_SMS = "org.whispersystems.SendReceiveService.RECEIVE_SMS";
-  public static final String SEND_SMS    = "org.whispersystems.SendReceiveService.SEND_SMS";
+    public static final String RECEIVE_SMS = "org.whispersystems.SendReceiveService.RECEIVE_SMS";
+    public static final String SEND_SMS    = "org.whispersystems.SendReceiveService.SEND_SMS";
 
-  public  static final String DESTINATION  = "destAddr";
+    public  static final String DESTINATION  = "destAddr";
 
-  private final ExecutorService  executor    = Executors.newCachedThreadPool();
-  private final OutgoingSmsQueue outgoingQuue = OutgoingSmsQueue.getInstance();
+    private final ExecutorService  executor    = Executors.newCachedThreadPool();
+    private final OutgoingSmsQueue outgoingQuue = OutgoingSmsQueue.getInstance();
 
-  private MessageSender   messageSender;
-  private MessageReceiver messageReceiver;
+    private MessageSender   messageSender;
+    private MessageReceiver messageReceiver;
 
-  @Override
-  public void onCreate() {
-    this.messageSender   = new MessageSender(this);
-    this.messageReceiver = new MessageReceiver(this);
-  }
-
-
-  @Override
-  public int onStartCommand(final Intent intent, int flags, int startId) {
-    if (intent != null) {
-      executor.execute(new Runnable() {
-        @Override
-        public void run() {
-          if (RECEIVE_SMS.equals(intent.getAction())) {
-            IncomingPushMessage message = intent.getParcelableExtra("message");
-            messageReceiver.handleReceiveMessage(message);
-          } else if (SEND_SMS.equals(intent.getAction())) {
-            OutgoingMessageCandidate message = outgoingQuue.get();
-            messageSender.handleSendMessage(message);
-          }
-        }
-      });
+    @Override
+    public void onCreate() {
+        this.messageSender   = new MessageSender(this);
+        this.messageReceiver = new MessageReceiver(this);
     }
 
-    return START_NOT_STICKY;
-  }
 
-  @Override
-  public IBinder onBind(Intent intent) {
-    return null;
-  }
+    @Override
+    public int onStartCommand(final Intent intent, int flags, int startId) {
+        if (intent != null) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    if (RECEIVE_SMS.equals(intent.getAction())) {
+                        IncomingPushMessage message = intent.getParcelableExtra("message");
+                        messageReceiver.handleReceiveMessage(message);
+                    } else if (SEND_SMS.equals(intent.getAction())) {
+                        OutgoingMessageCandidate message = outgoingQuue.get();
+                        messageSender.handleSendMessage(message);
+                    }
+                }
+            });
+        }
+
+        return START_NOT_STICKY;
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
 }

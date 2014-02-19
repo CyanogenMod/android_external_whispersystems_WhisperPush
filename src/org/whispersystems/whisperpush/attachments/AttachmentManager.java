@@ -33,35 +33,35 @@ import java.io.InputStream;
  */
 public class AttachmentManager {
 
-  private static AttachmentManager instance;
+    private static AttachmentManager instance;
 
-  public static synchronized AttachmentManager getInstance(Context context) {
-    if (instance == null)
-      instance = new AttachmentManager(context);
+    public static synchronized AttachmentManager getInstance(Context context) {
+        if (instance == null)
+            instance = new AttachmentManager(context);
 
-    return instance;
-  }
+        return instance;
+    }
 
-  private final Context context;
+    private final Context context;
 
-  private AttachmentManager(Context context) {
-    this.context = context;
-  }
+    private AttachmentManager(Context context) {
+        this.context = context;
+    }
 
-  public String store(InputStream attachment) throws IOException {
-    File attachmentDirectory = new File(context.getFilesDir(), "attachments");
-    attachmentDirectory.mkdirs();
+    public String store(InputStream attachment) throws IOException {
+        File attachmentDirectory = new File(context.getFilesDir(), "attachments");
+        attachmentDirectory.mkdirs();
 
-    File            stored = File.createTempFile("attachment", ".store", attachmentDirectory);
-    FileOutputStream fout  = new FileOutputStream(stored);
+        File            stored = File.createTempFile("attachment", ".store", attachmentDirectory);
+        FileOutputStream fout  = new FileOutputStream(stored);
 
-    Util.copy(attachment, fout);
+        Util.copy(attachment, fout);
 
-    return stored.getName();
-  }
+        return stored.getName();
+    }
 
-  public File get(String token) {
-    File attachmentDirectory = new File(context.getFilesDir(), "attachments");
-    return new File(attachmentDirectory, token);
-  }
+    public File get(String token) {
+        File attachmentDirectory = new File(context.getFilesDir(), "attachments");
+        return new File(attachmentDirectory, token);
+    }
 }

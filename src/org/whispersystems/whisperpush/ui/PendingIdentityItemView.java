@@ -37,70 +37,70 @@ import org.whispersystems.whisperpush.contacts.ContactsFactory;
 
 
 public class PendingIdentityItemView extends RelativeLayout
-    implements Contact.ContactModifiedListener
+        implements Contact.ContactModifiedListener
 {
 
-  private TextView          identityName;
-  private TextView          details;
-  private QuickContactBadge contactBadge;
+    private TextView          identityName;
+    private TextView          details;
+    private QuickContactBadge contactBadge;
 
-  private Contact contact;
-  private IdentityKey identityKey;
+    private Contact contact;
+    private IdentityKey identityKey;
 
-  private final Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
-  public PendingIdentityItemView(Context context) {
-    super(context);
-  }
-
-  public PendingIdentityItemView(Context context, AttributeSet attributeSet) {
-    super(context, attributeSet);
-  }
-
-  @Override
-  public void onFinishInflate() {
-    this.identityName = (TextView         ) findViewById(R.id.identity_name);
-    this.details      = (TextView         ) findViewById(R.id.pending_details);
-    this.contactBadge = (QuickContactBadge) findViewById(R.id.contact_photo_badge);
-  }
-
-  public void set(IncomingPushMessage message) {
-    try {
-      this.contact     = ContactsFactory.getContactFromNumber(getContext(), message.getSource(), true);
-      this.identityKey = new PreKeyWhisperMessage(message.getBody()).getIdentityKey();
-
-      identityName.setText(contact.getNumber());
-      details.setText(String.format(getContext().getString(R.string.PendingIdentityItemView_received_s),
-                                    DateUtils.getRelativeTimeSpanString(getContext(),
-                                                                        message.getTimestampMillis(),
-                                                                        false)));
-      contactBadge.setImageBitmap(contact.getAvatar());
-      contactBadge.assignContactFromPhone(contact.getNumber(), true);
-
-      contact.addListener(this);
-    } catch (InvalidVersionException e) {
-      throw new AssertionError(e);
-    } catch (InvalidMessageException e) {
-      throw new AssertionError(e);
+    public PendingIdentityItemView(Context context) {
+        super(context);
     }
-  }
 
-  public IdentityKey getIdentityKey() {
-    return this.identityKey;
-  }
+    public PendingIdentityItemView(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
 
-  public Contact getContact() {
-    return this.contact;
-  }
+    @Override
+    public void onFinishInflate() {
+        this.identityName = (TextView         ) findViewById(R.id.identity_name);
+        this.details      = (TextView         ) findViewById(R.id.pending_details);
+        this.contactBadge = (QuickContactBadge) findViewById(R.id.contact_photo_badge);
+    }
 
-  @Override
-  public void onModified(final Contact contact) {
-    handler.post(new Runnable() {
-      @Override
-      public void run() {
-        PendingIdentityItemView.this.identityName.setText(contact.toShortString());
-        PendingIdentityItemView.this.contactBadge.setImageBitmap(contact.getAvatar());
-      }
-    });
-  }
+    public void set(IncomingPushMessage message) {
+        try {
+            this.contact     = ContactsFactory.getContactFromNumber(getContext(), message.getSource(), true);
+            this.identityKey = new PreKeyWhisperMessage(message.getBody()).getIdentityKey();
+
+            identityName.setText(contact.getNumber());
+            details.setText(String.format(getContext().getString(R.string.PendingIdentityItemView_received_s),
+                    DateUtils.getRelativeTimeSpanString(getContext(),
+                            message.getTimestampMillis(),
+                            false)));
+            contactBadge.setImageBitmap(contact.getAvatar());
+            contactBadge.assignContactFromPhone(contact.getNumber(), true);
+
+            contact.addListener(this);
+        } catch (InvalidVersionException e) {
+            throw new AssertionError(e);
+        } catch (InvalidMessageException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    public IdentityKey getIdentityKey() {
+        return this.identityKey;
+    }
+
+    public Contact getContact() {
+        return this.contact;
+    }
+
+    @Override
+    public void onModified(final Contact contact) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                PendingIdentityItemView.this.identityName.setText(contact.toShortString());
+                PendingIdentityItemView.this.contactBadge.setImageBitmap(contact.getAvatar());
+            }
+        });
+    }
 }

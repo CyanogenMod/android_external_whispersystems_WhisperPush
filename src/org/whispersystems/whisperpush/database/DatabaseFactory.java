@@ -22,62 +22,62 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseFactory {
 
-  private static final String DATABASE_NAME    = "whisper_push";
-  private static final int    DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME    = "whisper_push";
+    private static final int    DATABASE_VERSION = 1;
 
-  private static DatabaseFactory instance;
+    private static DatabaseFactory instance;
 
-  private final CanonicalAddressDatabase addressDatabase;
-  private final IdentityDatabase         identityDatabase;
-  private final PendingApprovalDatabase  pendingApprovalDatabase;
+    private final CanonicalAddressDatabase addressDatabase;
+    private final IdentityDatabase         identityDatabase;
+    private final PendingApprovalDatabase  pendingApprovalDatabase;
 
-  public synchronized static DatabaseFactory getInstance(Context context) {
-    if (instance == null)
-      instance = new DatabaseFactory(context);
+    public synchronized static DatabaseFactory getInstance(Context context) {
+        if (instance == null)
+            instance = new DatabaseFactory(context);
 
-    return instance;
-  }
-
-  private DatabaseFactory(Context context) {
-    DatabaseHelper databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-
-    this.identityDatabase        = new IdentityDatabase(context, databaseHelper);
-    this.addressDatabase         = new CanonicalAddressDatabase(context, databaseHelper);
-    this.pendingApprovalDatabase = new PendingApprovalDatabase(context, databaseHelper);
-  }
-
-
-  public static CanonicalAddressDatabase getAddressDatabase(Context context) {
-    return getInstance(context).addressDatabase;
-  }
-
-  public static IdentityDatabase getIdentityDatabase(Context context) {
-    return getInstance(context).identityDatabase;
-  }
-
-  public static PendingApprovalDatabase getPendingApprovalDatabase(Context context) {
-    return getInstance(context).pendingApprovalDatabase;
-  }
-
-  private static class DatabaseHelper extends SQLiteOpenHelper {
-
-    public DatabaseHelper(Context context, String name,
-                          SQLiteDatabase.CursorFactory factory,
-                          int version)
-    {
-      super(context, name, factory, version);
+        return instance;
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-      CanonicalAddressDatabase.onCreate(db);
-      IdentityDatabase.onCreate(db);
-      PendingApprovalDatabase.onCreate(db);
+    private DatabaseFactory(Context context) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        this.identityDatabase        = new IdentityDatabase(context, databaseHelper);
+        this.addressDatabase         = new CanonicalAddressDatabase(context, databaseHelper);
+        this.pendingApprovalDatabase = new PendingApprovalDatabase(context, databaseHelper);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    public static CanonicalAddressDatabase getAddressDatabase(Context context) {
+        return getInstance(context).addressDatabase;
     }
-  }
+
+    public static IdentityDatabase getIdentityDatabase(Context context) {
+        return getInstance(context).identityDatabase;
+    }
+
+    public static PendingApprovalDatabase getPendingApprovalDatabase(Context context) {
+        return getInstance(context).pendingApprovalDatabase;
+    }
+
+    private static class DatabaseHelper extends SQLiteOpenHelper {
+
+        public DatabaseHelper(Context context, String name,
+                              SQLiteDatabase.CursorFactory factory,
+                              int version)
+        {
+            super(context, name, factory, version);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            CanonicalAddressDatabase.onCreate(db);
+            IdentityDatabase.onCreate(db);
+            PendingApprovalDatabase.onCreate(db);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
+    }
 }

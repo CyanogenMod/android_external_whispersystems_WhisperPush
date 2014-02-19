@@ -27,49 +27,49 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 public class DirectoryRefreshListener extends BroadcastReceiver {
 
-  private static final String REFRESH_EVENT = "org.whispersystems.whisperpush.DIRECTORY_REFRESH";
-  private static final String BOOT_EVENT    = Intent.ACTION_BOOT_COMPLETED;
+    private static final String REFRESH_EVENT = "org.whispersystems.whisperpush.DIRECTORY_REFRESH";
+    private static final String BOOT_EVENT    = Intent.ACTION_BOOT_COMPLETED;
 
-  private static final long   INTERVAL      = 24 * 60 * 60 * 1000; // 24 hours.
+    private static final long   INTERVAL      = 24 * 60 * 60 * 1000; // 24 hours.
 
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    if      (REFRESH_EVENT.equals(intent.getAction())) handleRefreshAction(context);
-    else if (BOOT_EVENT.equals(intent.getAction()))    handleBootEvent(context);
-  }
-
-  private void handleBootEvent(Context context) {
-    schedule(context);
-  }
-
-  private void handleRefreshAction(Context context) {
-    schedule(context);
-  }
-
-  public static void schedule(Context context) {
-    if (!WhisperPreferences.isRegistered(context)) return;
-
-    AlarmManager      alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-    Intent            intent        = new Intent(DirectoryRefreshListener.REFRESH_EVENT);
-    PendingIntent     pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-    long              time          = WhisperPreferences.getDirectoryRefreshTime(context);
-
-    if (time <= System.currentTimeMillis()) {
-      if (time != 0) {
-        Intent serviceIntent = new Intent(context, DirectoryRefreshService.class);
-        serviceIntent.setAction(DirectoryRefreshService.REFRESH_ACTION);
-        context.startService(serviceIntent);
-      }
-
-      time = System.currentTimeMillis() + INTERVAL;
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if      (REFRESH_EVENT.equals(intent.getAction())) handleRefreshAction(context);
+        else if (BOOT_EVENT.equals(intent.getAction()))    handleBootEvent(context);
     }
 
-    Log.w("DirectoryRefreshService", "Scheduling for: " + time);
+    private void handleBootEvent(Context context) {
+        schedule(context);
+    }
 
-    alarmManager.cancel(pendingIntent);
-    alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+    private void handleRefreshAction(Context context) {
+        schedule(context);
+    }
 
-    WhisperPreferences.setDirectoryRefreshTime(context, time);
-  }
+    public static void schedule(Context context) {
+        if (!WhisperPreferences.isRegistered(context)) return;
+
+        AlarmManager      alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent            intent        = new Intent(DirectoryRefreshListener.REFRESH_EVENT);
+        PendingIntent     pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        long              time          = WhisperPreferences.getDirectoryRefreshTime(context);
+
+        if (time <= System.currentTimeMillis()) {
+            if (time != 0) {
+                Intent serviceIntent = new Intent(context, DirectoryRefreshService.class);
+                serviceIntent.setAction(DirectoryRefreshService.REFRESH_ACTION);
+                context.startService(serviceIntent);
+            }
+
+            time = System.currentTimeMillis() + INTERVAL;
+        }
+
+        Log.w("DirectoryRefreshService", "Scheduling for: " + time);
+
+        alarmManager.cancel(pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+
+        WhisperPreferences.setDirectoryRefreshTime(context, time);
+    }
 
 }

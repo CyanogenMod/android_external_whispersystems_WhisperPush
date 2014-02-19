@@ -46,81 +46,81 @@ import java.security.SecureRandom;
  */
 public class MasterSecretUtil {
 
-  public static synchronized MasterSecret getMasterSecret(Context context) {
-    if (WhisperPreferences.getMasterSecret(context) == null) {
-      return generateMasterSecret(context);
-    } else {
-      MasterSecret masterSecret = retrieveMasterSecret(context);
-      return masterSecret == null ? generateMasterSecret(context) : masterSecret;
+    public static synchronized MasterSecret getMasterSecret(Context context) {
+        if (WhisperPreferences.getMasterSecret(context) == null) {
+            return generateMasterSecret(context);
+        } else {
+            MasterSecret masterSecret = retrieveMasterSecret(context);
+            return masterSecret == null ? generateMasterSecret(context) : masterSecret;
+        }
     }
-  }
 
-  private static MasterSecret generateMasterSecret(Context context) {
-    byte[] encryptionSecret = generateEncryptionSecret();
-    byte[] macSecret        = generateMacSecret();
-    byte[] masterSecret     = Util.combine(encryptionSecret, macSecret);
+    private static MasterSecret generateMasterSecret(Context context) {
+        byte[] encryptionSecret = generateEncryptionSecret();
+        byte[] macSecret        = generateMacSecret();
+        byte[] masterSecret     = Util.combine(encryptionSecret, macSecret);
 
-    WhisperPreferences.setMasterSecret(context, Base64.encodeBytes(masterSecret));
+        WhisperPreferences.setMasterSecret(context, Base64.encodeBytes(masterSecret));
 
-    return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
-                            new SecretKeySpec(macSecret, "HmacSHA1"));
-  }
-
-  private static MasterSecret retrieveMasterSecret(Context context) {
-    try {
-      byte[] combinedSecrets  = Base64.decode(WhisperPreferences.getMasterSecret(context));
-      byte[] encryptionSecret = getEncryptionSecret(combinedSecrets);
-      byte[] macSecret        = getMacSecret(combinedSecrets);
-
-      return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
-                              new SecretKeySpec(macSecret, "HmacSHA1"));
-    } catch (IOException e) {
-      Log.w("MasterSecretUtil", e);
-      return null;
+        return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
+                new SecretKeySpec(macSecret, "HmacSHA1"));
     }
-  }
 
-  private static byte[] getEncryptionSecret(byte[] combinedSecrets) {
-    byte[] encryptionSecret = new byte[16];
-    System.arraycopy(combinedSecrets, 0, encryptionSecret, 0, encryptionSecret.length);
-    return encryptionSecret;
-  }
+    private static MasterSecret retrieveMasterSecret(Context context) {
+        try {
+            byte[] combinedSecrets  = Base64.decode(WhisperPreferences.getMasterSecret(context));
+            byte[] encryptionSecret = getEncryptionSecret(combinedSecrets);
+            byte[] macSecret        = getMacSecret(combinedSecrets);
 
-  private static byte[] getMacSecret(byte[] combinedSecrets) {
-    byte[] macSecret = new byte[20];
-    System.arraycopy(combinedSecrets, 16, macSecret, 0, macSecret.length);
-    return macSecret;
-  }
-
-  private static byte[] generateEncryptionSecret() {
-    try {
-      KeyGenerator generator = KeyGenerator.getInstance("AES");
-      generator.init(128);
-
-      SecretKey key = generator.generateKey();
-      return key.getEncoded();
-    } catch (NoSuchAlgorithmException ex) {
-      Log.w("keyutil", ex);
-      return null;
+            return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
+                    new SecretKeySpec(macSecret, "HmacSHA1"));
+        } catch (IOException e) {
+            Log.w("MasterSecretUtil", e);
+            return null;
+        }
     }
-  }
 
-  private static byte[] generateMacSecret() {
-    try {
-      KeyGenerator generator = KeyGenerator.getInstance("HmacSHA1");
-      return generator.generateKey().getEncoded();
-    } catch (NoSuchAlgorithmException e) {
-      Log.w("keyutil", e);
-      return null;
+    private static byte[] getEncryptionSecret(byte[] combinedSecrets) {
+        byte[] encryptionSecret = new byte[16];
+        System.arraycopy(combinedSecrets, 0, encryptionSecret, 0, encryptionSecret.length);
+        return encryptionSecret;
     }
-  }
 
-  private static byte[] generateSalt() throws NoSuchAlgorithmException {
-    SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-    byte[] salt         = new byte[8];
-    random.nextBytes(salt);
+    private static byte[] getMacSecret(byte[] combinedSecrets) {
+        byte[] macSecret = new byte[20];
+        System.arraycopy(combinedSecrets, 16, macSecret, 0, macSecret.length);
+        return macSecret;
+    }
 
-    return salt;
-  }
+    private static byte[] generateEncryptionSecret() {
+        try {
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(128);
+
+            SecretKey key = generator.generateKey();
+            return key.getEncoded();
+        } catch (NoSuchAlgorithmException ex) {
+            Log.w("keyutil", ex);
+            return null;
+        }
+    }
+
+    private static byte[] generateMacSecret() {
+        try {
+            KeyGenerator generator = KeyGenerator.getInstance("HmacSHA1");
+            return generator.generateKey().getEncoded();
+        } catch (NoSuchAlgorithmException e) {
+            Log.w("keyutil", e);
+            return null;
+        }
+    }
+
+    private static byte[] generateSalt() throws NoSuchAlgorithmException {
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt         = new byte[8];
+        random.nextBytes(salt);
+
+        return salt;
+    }
 
 }

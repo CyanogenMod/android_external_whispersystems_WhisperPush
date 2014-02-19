@@ -51,101 +51,101 @@ import java.util.List;
 
 public class MessageReceiver {
 
-  private final Context context;
+    private final Context context;
 
-  public MessageReceiver(Context context) {
-    this.context = context;
-  }
+    public MessageReceiver(Context context) {
+        this.context = context;
+    }
 
-  public void handleReceiveMessage(IncomingPushMessage message) {
-    if (message == null)
-      return;
+    public void handleReceiveMessage(IncomingPushMessage message) {
+        if (message == null)
+            return;
 
-    updateDirectoryIfNecessary(message);
+        updateDirectoryIfNecessary(message);
 
-    try {
-      PushMessageContent         content     = getPlaintext(message);
-      List<Pair<String, String>> attachments = new LinkedList<Pair<String, String>>();
-
-      if (content.getAttachmentsCount() > 0) {
         try {
-          attachments = retrieveAttachments(message.getRelay(), content.getAttachmentsList());
-        } catch (IOException e) {
-          Log.w("MessageReceiver", e);
-          Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
-          MessageNotifier.notifyProblem(context, contact,
-                                        context.getString(R.string.MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message));
+            PushMessageContent         content     = getPlaintext(message);
+            List<Pair<String, String>> attachments = new LinkedList<Pair<String, String>>();
+
+            if (content.getAttachmentsCount() > 0) {
+                try {
+                    attachments = retrieveAttachments(message.getRelay(), content.getAttachmentsList());
+                } catch (IOException e) {
+                    Log.w("MessageReceiver", e);
+                    Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
+                    MessageNotifier.notifyProblem(context, contact,
+                            context.getString(R.string.MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message));
+                }
+            }
+
+            SmsServiceBridge.receivedPushMessage(context, message.getSource(), message.getDestinations(),
+                    content.getBody(), attachments,
+                    message.getTimestampMillis());
+        } catch (IdentityMismatchException e) {
+            Log.w("MessageReceiver", e);
+            DatabaseFactory.getPendingApprovalDatabase(context).insert(message);
+            MessageNotifier.updateNotifications(context);
+        } catch (InvalidMessageException e) {
+            Log.w("MessageReceiver", e);
+            Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
+            MessageNotifier.notifyProblem(context, contact,
+                    context.getString(R.string.MessageReceiver_received_badly_encrypted_message));
         }
-      }
-
-      SmsServiceBridge.receivedPushMessage(context, message.getSource(), message.getDestinations(),
-                                           content.getBody(), attachments,
-                                           message.getTimestampMillis());
-    } catch (IdentityMismatchException e) {
-      Log.w("MessageReceiver", e);
-      DatabaseFactory.getPendingApprovalDatabase(context).insert(message);
-      MessageNotifier.updateNotifications(context);
-    } catch (InvalidMessageException e) {
-      Log.w("MessageReceiver", e);
-      Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
-      MessageNotifier.notifyProblem(context, contact,
-                                    context.getString(R.string.MessageReceiver_received_badly_encrypted_message));
-    }
-  }
-
-  private PushMessageContent getPlaintext(IncomingPushMessage message)
-      throws IdentityMismatchException, InvalidMessageException
-  {
-    try {
-      MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
-      String          localNumber     = WhisperPreferences.getLocalNumber(context);
-      PushDestination pushDestination = PushDestination.create(context, localNumber, message.getSource());
-      WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
-
-      return whisperCipher.getDecryptedMessage(message);
-    } catch (InvalidNumberException e) {
-      throw new InvalidMessageException(e);
-    }
-  }
-
-  private List<Pair<String, String>> retrieveAttachments(String relay, List<AttachmentPointer> attachments)
-      throws IOException, InvalidMessageException
-  {
-    AttachmentManager          attachmentManager = AttachmentManager.getInstance(context);
-    PushServiceSocket          socket            = PushServiceSocketFactory.create(context);
-    List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
-
-    for (AttachmentPointer attachment : attachments) {
-      byte[]                      key              = attachment.getKey().toByteArray();
-      File                        file             = socket.retrieveAttachment(relay, attachment.getId());
-      AttachmentCipherInputStream attachmentStream = new AttachmentCipherInputStream(file, key);
-      String                      storedToken      = attachmentManager.store(attachmentStream);
-
-      file.delete();
-      results.add(new Pair<String, String>(storedToken, attachment.getContentType()));
     }
 
-    return results;
-  }
+    private PushMessageContent getPlaintext(IncomingPushMessage message)
+            throws IdentityMismatchException, InvalidMessageException
+    {
+        try {
+            MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
+            String          localNumber     = WhisperPreferences.getLocalNumber(context);
+            PushDestination pushDestination = PushDestination.create(context, localNumber, message.getSource());
+            WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
 
-  private void updateDirectoryIfNecessary(IncomingPushMessage message) {
-    if (!isActiveNumber(message.getSource())) {
-      Directory           directory           = Directory.getInstance(context);
-      String              contactToken        = directory.getToken(message.getSource());
-      String              relay               = message.getRelay();
-      ContactTokenDetails contactTokenDetails = new ContactTokenDetails(contactToken, relay);
-
-      directory.setToken(contactTokenDetails, true);
+            return whisperCipher.getDecryptedMessage(message);
+        } catch (InvalidNumberException e) {
+            throw new InvalidMessageException(e);
+        }
     }
-  }
 
-  private boolean isActiveNumber(String e164number) {
-    try {
-      return Directory.getInstance(context).isActiveNumber(e164number);
-    } catch (NotInDirectoryException e) {
-      return false;
+    private List<Pair<String, String>> retrieveAttachments(String relay, List<AttachmentPointer> attachments)
+            throws IOException, InvalidMessageException
+    {
+        AttachmentManager          attachmentManager = AttachmentManager.getInstance(context);
+        PushServiceSocket          socket            = PushServiceSocketFactory.create(context);
+        List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
+
+        for (AttachmentPointer attachment : attachments) {
+            byte[]                      key              = attachment.getKey().toByteArray();
+            File                        file             = socket.retrieveAttachment(relay, attachment.getId());
+            AttachmentCipherInputStream attachmentStream = new AttachmentCipherInputStream(file, key);
+            String                      storedToken      = attachmentManager.store(attachmentStream);
+
+            file.delete();
+            results.add(new Pair<String, String>(storedToken, attachment.getContentType()));
+        }
+
+        return results;
     }
-  }
+
+    private void updateDirectoryIfNecessary(IncomingPushMessage message) {
+        if (!isActiveNumber(message.getSource())) {
+            Directory           directory           = Directory.getInstance(context);
+            String              contactToken        = directory.getToken(message.getSource());
+            String              relay               = message.getRelay();
+            ContactTokenDetails contactTokenDetails = new ContactTokenDetails(contactToken, relay);
+
+            directory.setToken(contactTokenDetails, true);
+        }
+    }
+
+    private boolean isActiveNumber(String e164number) {
+        try {
+            return Directory.getInstance(context).isActiveNumber(e164number);
+        } catch (NotInDirectoryException e) {
+            return false;
+        }
+    }
 
 
 
