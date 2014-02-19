@@ -23,15 +23,15 @@ import org.whispersystems.whisperpush.database.DatabaseFactory;
 
 public class MessagePeer implements CanonicalRecipientAddress {
 
-  private final long canonicalAddress;
+    private final long canonicalAddress;
 
-  public MessagePeer(Context context, String canonicalPeerNumber) {
-    this.canonicalAddress = DatabaseFactory.getAddressDatabase(context)
-                                           .getCanonicalAddressFromNumber(canonicalPeerNumber);
-  }
+    public MessagePeer(Context context, String canonicalPeerNumber) {
+        this.canonicalAddress = DatabaseFactory.getAddressDatabase(context)
+                .getCanonicalAddressFromNumber(canonicalPeerNumber);
+    }
 
-  @Override
-  public long getCanonicalAddress(Context context) {
-    return canonicalAddress;
-  }
+    @Override
+    public long getCanonicalAddress(Context context) {
+        return canonicalAddress;
+    }
 }

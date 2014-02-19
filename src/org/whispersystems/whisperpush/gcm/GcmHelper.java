@@ -36,42 +36,42 @@ import java.io.IOException;
  */
 public class GcmHelper {
 
-  public static String getRegistrationId(Context context) throws IOException {
-    String registrationId = getCurrentRegistrationId(context);
+    public static String getRegistrationId(Context context) throws IOException {
+        String registrationId = getCurrentRegistrationId(context);
 
-    if (registrationId == null) {
-      registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
-      setCurrentRegistrationId(context, registrationId);
+        if (registrationId == null) {
+            registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
+            setCurrentRegistrationId(context, registrationId);
+        }
+
+        return registrationId;
     }
 
-    return registrationId;
-  }
-
-  private static void setCurrentRegistrationId(Context context, String registrationId) {
-    int currentVersion = getCurrentAppVersion(context);
-    WhisperPreferences.setGcmRegistrationId(context, registrationId, currentVersion);
-  }
-
-  private static String getCurrentRegistrationId(Context context) {
-    int                   currentVersion          = getCurrentAppVersion(context);
-    Pair<String, Integer> currentRegistrationInfo = WhisperPreferences.getGcmRegistrationId(context);
-
-    if (currentVersion != currentRegistrationInfo.second) {
-      return null;
+    private static void setCurrentRegistrationId(Context context, String registrationId) {
+        int currentVersion = getCurrentAppVersion(context);
+        WhisperPreferences.setGcmRegistrationId(context, registrationId, currentVersion);
     }
 
-    return currentRegistrationInfo.first;
-  }
+    private static String getCurrentRegistrationId(Context context) {
+        int                   currentVersion          = getCurrentAppVersion(context);
+        Pair<String, Integer> currentRegistrationInfo = WhisperPreferences.getGcmRegistrationId(context);
 
-  private static int getCurrentAppVersion(Context context) {
-    try {
-      PackageManager manager     = context.getPackageManager();
-      PackageInfo    packageInfo = manager.getPackageInfo(context.getPackageName(), 0);
+        if (currentVersion != currentRegistrationInfo.second) {
+            return null;
+        }
 
-      return packageInfo.versionCode;
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
+        return currentRegistrationInfo.first;
     }
-  }
+
+    private static int getCurrentAppVersion(Context context) {
+        try {
+            PackageManager manager     = context.getPackageManager();
+            PackageInfo    packageInfo = manager.getPackageInfo(context.getPackageName(), 0);
+
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new AssertionError(e);
+        }
+    }
 
 }

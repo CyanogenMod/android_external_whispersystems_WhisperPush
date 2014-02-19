@@ -43,121 +43,121 @@ import java.io.IOException;
 
 public class WhisperCipher {
 
-  private final Context context;
-  private final MasterSecret masterSecret;
-  private final CanonicalRecipientAddress address;
-  private final PushDestination pushDestination;
+    private final Context context;
+    private final MasterSecret masterSecret;
+    private final CanonicalRecipientAddress address;
+    private final PushDestination pushDestination;
 
-  public WhisperCipher(Context context, MasterSecret masterSecret, PushDestination pushDestination) {
-    this.context         = context.getApplicationContext();
-    this.masterSecret    = masterSecret;
-    this.address         = new MessagePeer(context, pushDestination.getNumber());
-    this.pushDestination = pushDestination;
-  }
-
-  public PushMessageContent getDecryptedMessage(IncomingPushMessage message)
-      throws IdentityMismatchException, InvalidMessageException
-  {
-    try {
-      Log.w("WhisperCipher", "Message type: " + message.getType());
-
-      byte[] ciphertext = message.getBody();
-      byte[] plaintext;
-
-      switch (message.getType()) {
-        case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
-          plaintext = getDecryptedMessageForNewSession(ciphertext);      break;
-        case PushMessage.TYPE_MESSAGE_CIPHERTEXT:
-          plaintext = getDecryptedMessageForExistingSession(ciphertext); break;
-        case PushMessage.TYPE_MESSAGE_PLAINTEXT:
-          plaintext = ciphertext;                                        break;
-        default:
-          throw new InvalidVersionException("Unknown type: " + message.getType());
-      }
-
-      return PushMessageContent.parseFrom(plaintext);
-    } catch (InvalidKeyException e) {
-      throw new InvalidMessageException(e);
-    } catch (InvalidVersionException e) {
-      throw new InvalidMessageException(e);
-    } catch (InvalidKeyIdException e) {
-      throw new InvalidMessageException(e);
-    } catch (InvalidProtocolBufferException e) {
-      throw new InvalidMessageException(e);
-    }
-  }
-
-  public PushBody getEncryptedMessage(PushServiceSocket socket, byte[] plaintext)
-      throws IOException
-  {
-    if (Session.hasSession(context, masterSecret, address)) {
-      Log.w("WhisperCipher", "Encrypting ciphertext message for existing session...");
-      return getEncryptedMessageForExistingSession(address, plaintext);
-    } else {
-      Log.w("WhisperCipher", "Encrypting prekeybundle ciphertext message for new session...");
-      return getEncryptedMessageForNewSession(socket, address, pushDestination, plaintext);
-    }
-  }
-
-  private byte[] getDecryptedMessageForNewSession(byte[] ciphertext)
-      throws InvalidVersionException, InvalidKeyException,
-      InvalidKeyIdException, IdentityMismatchException, InvalidMessageException
-  {
-    KeyExchangeProcessor processor     = new KeyExchangeProcessor(context, masterSecret, address);
-    PreKeyWhisperMessage bundleMessage = new PreKeyWhisperMessage(ciphertext);
-
-    if (processor.isTrusted(bundleMessage)) {
-      Log.w("WhisperCipher", "Trusted, processing...");
-      processor.processKeyExchangeMessage(bundleMessage);
-      return getDecryptedMessageForExistingSession(bundleMessage.getWhisperMessage().serialize());
+    public WhisperCipher(Context context, MasterSecret masterSecret, PushDestination pushDestination) {
+        this.context         = context.getApplicationContext();
+        this.masterSecret    = masterSecret;
+        this.address         = new MessagePeer(context, pushDestination.getNumber());
+        this.pushDestination = pushDestination;
     }
 
-    throw new IdentityMismatchException("Bad identity key!");
-  }
+    public PushMessageContent getDecryptedMessage(IncomingPushMessage message)
+            throws IdentityMismatchException, InvalidMessageException
+    {
+        try {
+            Log.w("WhisperCipher", "Message type: " + message.getType());
 
-  private byte[] getDecryptedMessageForExistingSession(byte[] ciphertext)
-      throws InvalidMessageException
-  {
-    SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, address);
-    return sessionCipher.decrypt(ciphertext);
-  }
-  private PushBody getEncryptedMessageForNewSession(PushServiceSocket socket,
-                                                             CanonicalRecipientAddress address,
-                                                             PushDestination pushDestination,
-                                                             byte[] plaintext)
-      throws IOException
-  {
-    try {
-      PreKeyEntity         preKey    = socket.getPreKey(pushDestination);
-      KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, address);
+            byte[] ciphertext = message.getBody();
+            byte[] plaintext;
 
-      if (processor.isTrusted(preKey)) {
-        processor.processKeyExchangeMessage(preKey);
-      } else {
-        throw new IdentityMismatchException("Retrieved identity is untrusted!");
-      }
+            switch (message.getType()) {
+                case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
+                    plaintext = getDecryptedMessageForNewSession(ciphertext);      break;
+                case PushMessage.TYPE_MESSAGE_CIPHERTEXT:
+                    plaintext = getDecryptedMessageForExistingSession(ciphertext); break;
+                case PushMessage.TYPE_MESSAGE_PLAINTEXT:
+                    plaintext = ciphertext;                                        break;
+                default:
+                    throw new InvalidVersionException("Unknown type: " + message.getType());
+            }
 
-      return getEncryptedMessageForExistingSession(address, plaintext);
-    } catch (InvalidKeyException e) {
-      throw new IOException(e);
-    }
-  }
-
-  private PushBody getEncryptedMessageForExistingSession(CanonicalRecipientAddress address,
-                                                         byte[] plaintext)
-      throws IOException
-  {
-    SessionCipher     sessionCipher = SessionCipher.createFor(context, masterSecret, address);
-    CiphertextMessage message       = sessionCipher.encrypt(plaintext);
-
-    if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
-      return new PushBody(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, message.serialize());
-    } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
-      return new PushBody(PushMessage.TYPE_MESSAGE_CIPHERTEXT, message.serialize());
-    } else {
-      throw new AssertionError("Unknown ciphertext type: " + message.getType());
+            return PushMessageContent.parseFrom(plaintext);
+        } catch (InvalidKeyException e) {
+            throw new InvalidMessageException(e);
+        } catch (InvalidVersionException e) {
+            throw new InvalidMessageException(e);
+        } catch (InvalidKeyIdException e) {
+            throw new InvalidMessageException(e);
+        } catch (InvalidProtocolBufferException e) {
+            throw new InvalidMessageException(e);
+        }
     }
 
-  }
+    public PushBody getEncryptedMessage(PushServiceSocket socket, byte[] plaintext)
+            throws IOException
+    {
+        if (Session.hasSession(context, masterSecret, address)) {
+            Log.w("WhisperCipher", "Encrypting ciphertext message for existing session...");
+            return getEncryptedMessageForExistingSession(address, plaintext);
+        } else {
+            Log.w("WhisperCipher", "Encrypting prekeybundle ciphertext message for new session...");
+            return getEncryptedMessageForNewSession(socket, address, pushDestination, plaintext);
+        }
+    }
+
+    private byte[] getDecryptedMessageForNewSession(byte[] ciphertext)
+            throws InvalidVersionException, InvalidKeyException,
+            InvalidKeyIdException, IdentityMismatchException, InvalidMessageException
+    {
+        KeyExchangeProcessor processor     = new KeyExchangeProcessor(context, masterSecret, address);
+        PreKeyWhisperMessage bundleMessage = new PreKeyWhisperMessage(ciphertext);
+
+        if (processor.isTrusted(bundleMessage)) {
+            Log.w("WhisperCipher", "Trusted, processing...");
+            processor.processKeyExchangeMessage(bundleMessage);
+            return getDecryptedMessageForExistingSession(bundleMessage.getWhisperMessage().serialize());
+        }
+
+        throw new IdentityMismatchException("Bad identity key!");
+    }
+
+    private byte[] getDecryptedMessageForExistingSession(byte[] ciphertext)
+            throws InvalidMessageException
+    {
+        SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, address);
+        return sessionCipher.decrypt(ciphertext);
+    }
+    private PushBody getEncryptedMessageForNewSession(PushServiceSocket socket,
+                                                      CanonicalRecipientAddress address,
+                                                      PushDestination pushDestination,
+                                                      byte[] plaintext)
+            throws IOException
+    {
+        try {
+            PreKeyEntity         preKey    = socket.getPreKey(pushDestination);
+            KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, address);
+
+            if (processor.isTrusted(preKey)) {
+                processor.processKeyExchangeMessage(preKey);
+            } else {
+                throw new IdentityMismatchException("Retrieved identity is untrusted!");
+            }
+
+            return getEncryptedMessageForExistingSession(address, plaintext);
+        } catch (InvalidKeyException e) {
+            throw new IOException(e);
+        }
+    }
+
+    private PushBody getEncryptedMessageForExistingSession(CanonicalRecipientAddress address,
+                                                           byte[] plaintext)
+            throws IOException
+    {
+        SessionCipher     sessionCipher = SessionCipher.createFor(context, masterSecret, address);
+        CiphertextMessage message       = sessionCipher.encrypt(plaintext);
+
+        if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
+            return new PushBody(PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, message.serialize());
+        } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
+            return new PushBody(PushMessage.TYPE_MESSAGE_CIPHERTEXT, message.serialize());
+        } else {
+            throw new AssertionError("Unknown ciphertext type: " + message.getType());
+        }
+
+    }
 
 }

@@ -40,18 +40,18 @@ import org.whispersystems.whisperpush.R;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  @Override
-  public void onCreate(Bundle state) {
-    super.onCreate(state);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.view_identity_activity);
+    @Override
+    public void onCreate(Bundle state) {
+        super.onCreate(state);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.view_identity_activity);
 
-    initializeResources();
-  }
+        initializeResources();
+    }
 
-  private void initializeResources() {
-    TextView identityFingerprint = (TextView) findViewById(R.id.identity_fingerprint);
-    identityFingerprint.setText(identityKey.getFingerprint());
-  }
+    private void initializeResources() {
+        TextView identityFingerprint = (TextView) findViewById(R.id.identity_fingerprint);
+        identityFingerprint.setText(identityKey.getFingerprint());
+    }
 
 }

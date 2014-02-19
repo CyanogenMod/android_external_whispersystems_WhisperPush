@@ -20,18 +20,18 @@ package org.whispersystems.whisperpush.service;
  * @author Moxie Marlinspike
  */
 public class AccountVerificationTimeoutException extends Exception {
-  public AccountVerificationTimeoutException() {
-  }
+    public AccountVerificationTimeoutException() {
+    }
 
-  public AccountVerificationTimeoutException(String detailMessage) {
-    super(detailMessage);
-  }
+    public AccountVerificationTimeoutException(String detailMessage) {
+        super(detailMessage);
+    }
 
-  public AccountVerificationTimeoutException(String detailMessage, Throwable throwable) {
-    super(detailMessage, throwable);
-  }
+    public AccountVerificationTimeoutException(String detailMessage, Throwable throwable) {
+        super(detailMessage, throwable);
+    }
 
-  public AccountVerificationTimeoutException(Throwable throwable) {
-    super(throwable);
-  }
+    public AccountVerificationTimeoutException(Throwable throwable) {
+        super(throwable);
+    }
 }

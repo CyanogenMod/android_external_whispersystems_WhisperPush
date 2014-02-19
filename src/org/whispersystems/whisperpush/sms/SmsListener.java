@@ -46,85 +46,85 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
  */
 public class SmsListener extends BroadcastReceiver {
 
-  private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
-  private static final String SMS_OUTGOING_ACTION = "android.intent.action.NEW_OUTGOING_SMS";
+    private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+    private static final String SMS_OUTGOING_ACTION = "android.intent.action.NEW_OUTGOING_SMS";
 
-  private String getSmsMessageBodyFromIntent(Intent intent) {
-    Bundle bundle             = intent.getExtras();
-    Object[] pdus             = (Object[])bundle.get("pdus");
-    StringBuilder bodyBuilder = new StringBuilder();
+    private String getSmsMessageBodyFromIntent(Intent intent) {
+        Bundle bundle             = intent.getExtras();
+        Object[] pdus             = (Object[])bundle.get("pdus");
+        StringBuilder bodyBuilder = new StringBuilder();
 
-    if (pdus == null)
-      return null;
+        if (pdus == null)
+            return null;
 
-    for (Object pdu : pdus)
-      bodyBuilder.append(SmsMessage.createFromPdu((byte[]) pdu).getDisplayMessageBody());
+        for (Object pdu : pdus)
+            bodyBuilder.append(SmsMessage.createFromPdu((byte[]) pdu).getDisplayMessageBody());
 
-    return bodyBuilder.toString();
-  }
-
-  private boolean isIncomingChallenge(Context context, Intent intent) {
-    String messageBody = getSmsMessageBodyFromIntent(intent);
-
-    if (messageBody == null)
-      return false;
-
-    return messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
-           WhisperPreferences.isVerifying(context);
-  }
-
-  private boolean isRelevantOutgoingMessage(Context context, Intent intent) {
-    String destination = intent.getStringExtra(SendReceiveService.DESTINATION);
-
-    if (destination == null)
-      return false;
-
-    if (!WhisperPreferences.isRegistered(context))
-      return false;
-
-    String localNumber = WhisperPreferences.getLocalNumber(context);
-
-    if (localNumber == null)
-      return false;
-
-    try {
-      String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
-      return Directory.getInstance(context).isActiveNumber(number);
-    } catch (NotInDirectoryException e) {
-      return true;
-    } catch (InvalidNumberException e) {
-      Log.w("SmsListener", e);
-      return false;
+        return bodyBuilder.toString();
     }
-  }
 
-  private String parseChallenge(Intent intent) {
-    String messageBody    = getSmsMessageBodyFromIntent(intent);
-    String[] messageParts = messageBody.split(":");
-    String[] codeParts    = messageParts[1].trim().split("-");
+    private boolean isIncomingChallenge(Context context, Intent intent) {
+        String messageBody = getSmsMessageBodyFromIntent(intent);
 
-    return codeParts[0] + codeParts[1];
-  }
+        if (messageBody == null)
+            return false;
 
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    DirectoryRefreshListener.schedule(context);
-
-    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
-      Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
-      context.sendBroadcast(challengeIntent);
-
-      abortBroadcast();
-    } else if (SMS_OUTGOING_ACTION.equals(intent.getAction()) && isRelevantOutgoingMessage(context, intent)) {
-      PendingResult            pendingResult = goAsync();
-      OutgoingMessageCandidate candidate     = new OutgoingMessageCandidate(intent, pendingResult);
-
-      OutgoingSmsQueue.getInstance().put(candidate);
-
-      Intent sendIntent = new Intent(context, SendReceiveService.class);
-      sendIntent.setAction(SendReceiveService.SEND_SMS);
-      context.startService(sendIntent);
+        return messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+                WhisperPreferences.isVerifying(context);
     }
-  }
+
+    private boolean isRelevantOutgoingMessage(Context context, Intent intent) {
+        String destination = intent.getStringExtra(SendReceiveService.DESTINATION);
+
+        if (destination == null)
+            return false;
+
+        if (!WhisperPreferences.isRegistered(context))
+            return false;
+
+        String localNumber = WhisperPreferences.getLocalNumber(context);
+
+        if (localNumber == null)
+            return false;
+
+        try {
+            String number = PhoneNumberFormatter.formatNumber(destination, localNumber);
+            return Directory.getInstance(context).isActiveNumber(number);
+        } catch (NotInDirectoryException e) {
+            return true;
+        } catch (InvalidNumberException e) {
+            Log.w("SmsListener", e);
+            return false;
+        }
+    }
+
+    private String parseChallenge(Intent intent) {
+        String messageBody    = getSmsMessageBodyFromIntent(intent);
+        String[] messageParts = messageBody.split(":");
+        String[] codeParts    = messageParts[1].trim().split("-");
+
+        return codeParts[0] + codeParts[1];
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        DirectoryRefreshListener.schedule(context);
+
+        if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
+            Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
+            challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
+            context.sendBroadcast(challengeIntent);
+
+            abortBroadcast();
+        } else if (SMS_OUTGOING_ACTION.equals(intent.getAction()) && isRelevantOutgoingMessage(context, intent)) {
+            PendingResult            pendingResult = goAsync();
+            OutgoingMessageCandidate candidate     = new OutgoingMessageCandidate(intent, pendingResult);
+
+            OutgoingSmsQueue.getInstance().put(candidate);
+
+            Intent sendIntent = new Intent(context, SendReceiveService.class);
+            sendIntent.setAction(SendReceiveService.SEND_SMS);
+            context.startService(sendIntent);
+        }
+    }
 }

@@ -36,6 +36,6 @@ interface ISms {
                            in String message, in List<String> attachments,
                            in List<String> attachmentContentTypes, long timestampMillis);
                            */
-  void synthesizeMessages(String originatingAddress, String scAddress,
+    void synthesizeMessages(String originatingAddress, String scAddress,
                           in List<String> messages, long timestampMillis);
 }

@@ -24,16 +24,16 @@ import org.whispersystems.whisperpush.database.DatabaseFactory;
 
 public class PendingLoader extends CursorLoader {
 
-  private final Context context;
+    private final Context context;
 
-  public PendingLoader(Context context) {
-    super(context);
-    this.context = context.getApplicationContext();
-  }
+    public PendingLoader(Context context) {
+        super(context);
+        this.context = context.getApplicationContext();
+    }
 
-  @Override
-  public Cursor loadInBackground() {
-    return DatabaseFactory.getPendingApprovalDatabase(context).getPending();
-  }
+    @Override
+    public Cursor loadInBackground() {
+        return DatabaseFactory.getPendingApprovalDatabase(context).getPending();
+    }
 
 }

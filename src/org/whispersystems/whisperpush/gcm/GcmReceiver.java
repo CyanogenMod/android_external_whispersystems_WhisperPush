@@ -44,37 +44,37 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  */
 public class GcmReceiver extends BroadcastReceiver {
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    DirectoryRefreshListener.schedule(context);
-    GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        DirectoryRefreshListener.schedule(context);
+        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 
-    if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(gcm.getMessageType(intent))) {
-      try {
-        String data = intent.getStringExtra("message");
+        if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(gcm.getMessageType(intent))) {
+            try {
+                String data = intent.getStringExtra("message");
 
-        if (Util.isEmpty(data))
-          return;
+                if (Util.isEmpty(data))
+                    return;
 
-        String                       signalingKey     = WhisperPreferences.getSignalingKey(context);
-        IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, signalingKey);
-        IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
+                String                       signalingKey     = WhisperPreferences.getSignalingKey(context);
+                IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, signalingKey);
+                IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
 
-        Intent serviceIntent = new Intent(context, SendReceiveService.class);
-        serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
-        serviceIntent.putExtra("message", message);
-        context.startService(serviceIntent);
-      } catch (IOException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_invalid_push_message),
-                                      context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
-      } catch (InvalidVersionException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_unsupported_push_version),
-                                      context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
-      }
+                Intent serviceIntent = new Intent(context, SendReceiveService.class);
+                serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
+                serviceIntent.putExtra("message", message);
+                context.startService(serviceIntent);
+            } catch (IOException e) {
+                Log.w("GcmReceiver", e);
+                MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_invalid_push_message),
+                        context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
+            } catch (InvalidVersionException e) {
+                Log.w("GcmReceiver", e);
+                MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_unsupported_push_version),
+                        context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
+            }
+        }
+
+        setResultCode(Activity.RESULT_OK);
     }
-
-    setResultCode(Activity.RESULT_OK);
-  }
 }

@@ -38,57 +38,57 @@ import org.whispersystems.whisperpush.service.MessageNotifier;
  */
 public class SmsServiceBridge {
 
-  public static void receivedPushMessage(Context context, String source, List<String> destinations,
-                                         String message, List<Pair<String,String>> attachments,
-                                         long timestampSent)
-  {
-    try {
-      Class  serviceManager = Class.forName("android.os.ServiceManager");
-      Method getService     = serviceManager.getMethod("getService", String.class);
-      ISms   framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
+    public static void receivedPushMessage(Context context, String source, List<String> destinations,
+                                           String message, List<Pair<String,String>> attachments,
+                                           long timestampSent)
+    {
+        try {
+            Class  serviceManager = Class.forName("android.os.ServiceManager");
+            Method getService     = serviceManager.getMethod("getService", String.class);
+            ISms   framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
 
-      if (attachments != null && attachments.size() != 0) {
-        Contact contact = ContactsFactory.getContactFromNumber(context, source, false);
-        MessageNotifier.notifyProblem(context, contact,
-                                      context.getString(R.string.SmsServiceBridge_received_encrypted_attachment));
-      }
+            if (attachments != null && attachments.size() != 0) {
+                Contact contact = ContactsFactory.getContactFromNumber(context, source, false);
+                MessageNotifier.notifyProblem(context, contact,
+                        context.getString(R.string.SmsServiceBridge_received_encrypted_attachment));
+            }
 
-      framework.synthesizeMessages(source, null, getAsList(message), timestampSent);
-    } catch (ClassNotFoundException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchMethodException e) {
-      throw new AssertionError(e);
-    } catch (IllegalAccessException e) {
-      throw new AssertionError(e);
-    } catch (InvocationTargetException e) {
-      throw new AssertionError(e);
-    } catch (RemoteException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  private static List<String> getAsList(String message) {
-    List<String> messages = new LinkedList<String>();
-    messages.add(message == null ? "" : message);
-    return messages;
-  }
-
-  private static void logReceived(String source, List<String> destinations, String message,
-                                  List<Pair<String,String>> attachments, long timestampSent)
-  {
-    Log.w("SmsServiceBridge", "Incoming Message Source: " + source);
-
-    for (String destination : destinations) {
-      Log.w("SmsServiceBridge", "Incoming Message Destination: " + destination);
+            framework.synthesizeMessages(source, null, getAsList(message), timestampSent);
+        } catch (ClassNotFoundException e) {
+            throw new AssertionError(e);
+        } catch (NoSuchMethodException e) {
+            throw new AssertionError(e);
+        } catch (IllegalAccessException e) {
+            throw new AssertionError(e);
+        } catch (InvocationTargetException e) {
+            throw new AssertionError(e);
+        } catch (RemoteException e) {
+            throw new AssertionError(e);
+        }
     }
 
-    Log.w("SmsServiceBridge", "Incoming Message Body: " + message);
-
-    for (Pair<String, String> attachment : attachments) {
-      Log.w("SmsServiceBridge", String.format("Incoming Message Attachment: %s, %s", attachment.first, attachment.second));
+    private static List<String> getAsList(String message) {
+        List<String> messages = new LinkedList<String>();
+        messages.add(message == null ? "" : message);
+        return messages;
     }
 
-    Log.w("SmsServiceBridge", "Incoming Message Sent Time: " + timestampSent);
-  }
+    private static void logReceived(String source, List<String> destinations, String message,
+                                    List<Pair<String,String>> attachments, long timestampSent)
+    {
+        Log.w("SmsServiceBridge", "Incoming Message Source: " + source);
+
+        for (String destination : destinations) {
+            Log.w("SmsServiceBridge", "Incoming Message Destination: " + destination);
+        }
+
+        Log.w("SmsServiceBridge", "Incoming Message Body: " + message);
+
+        for (Pair<String, String> attachment : attachments) {
+            Log.w("SmsServiceBridge", String.format("Incoming Message Attachment: %s, %s", attachment.first, attachment.second));
+        }
+
+        Log.w("SmsServiceBridge", "Incoming Message Sent Time: " + timestampSent);
+    }
 
 }

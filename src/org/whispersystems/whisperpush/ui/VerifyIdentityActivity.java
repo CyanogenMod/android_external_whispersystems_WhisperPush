@@ -48,189 +48,189 @@ import org.whispersystems.whisperpush.service.SendReceiveService;
 
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
-  private Contact contact;
+    private Contact contact;
 
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.verify_identity_activity);
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.verify_identity_activity);
 
-    initializeResources();
-  }
-
-  private void initializeResources() {
-    ImageView imageView       = (ImageView) findViewById(R.id.avatar              );
-    TextView  contactText     = (TextView ) findViewById(R.id.contact_name        );
-    TextView  fingerprintText = (TextView ) findViewById(R.id.identity_fingerprint);
-    Button    validButton     = (Button   ) findViewById(R.id.valid_button        );
-    Button    invalidButton   = (Button   ) findViewById(R.id.invalid_button      );
-
-    contact = getIntent().getParcelableExtra("contact");
-
-    imageView.setImageBitmap(contact.getAvatar());
-    contactText.setText(contact.toShortString());
-    fingerprintText.setText(identityKey.getFingerprint());
-    validButton.setOnClickListener(new MarkValidListener());
-    invalidButton.setOnClickListener(new MarkInvalidListener());
-  }
-
-  private class MarkValidListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      new ReleaseMatchingKeysTask(VerifyIdentityActivity.this, identityKey, contact).execute();
+        initializeResources();
     }
-  }
 
-  private class MarkInvalidListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      final Context context = VerifyIdentityActivity.this;
-      AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle(getString(R.string.VerifyIdentityActivity_discard_messages));
-      builder.setMessage(getString(R.string.VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard));
-      builder.setIcon(android.R.drawable.ic_dialog_alert);
-      builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+    private void initializeResources() {
+        ImageView imageView       = (ImageView) findViewById(R.id.avatar              );
+        TextView  contactText     = (TextView ) findViewById(R.id.contact_name        );
+        TextView  fingerprintText = (TextView ) findViewById(R.id.identity_fingerprint);
+        Button    validButton     = (Button   ) findViewById(R.id.valid_button        );
+        Button    invalidButton   = (Button   ) findViewById(R.id.invalid_button      );
+
+        contact = getIntent().getParcelableExtra("contact");
+
+        imageView.setImageBitmap(contact.getAvatar());
+        contactText.setText(contact.toShortString());
+        fingerprintText.setText(identityKey.getFingerprint());
+        validButton.setOnClickListener(new MarkValidListener());
+        invalidButton.setOnClickListener(new MarkInvalidListener());
+    }
+
+    private class MarkValidListener implements View.OnClickListener {
         @Override
-        public void onClick(DialogInterface dialog, int which) {
-          new DiscardMatchingKeysTask(VerifyIdentityActivity.this, contact, identityKey).execute();
+        public void onClick(View v) {
+            new ReleaseMatchingKeysTask(VerifyIdentityActivity.this, identityKey, contact).execute();
         }
-      });
-      builder.setNegativeButton(android.R.string.cancel, null);
-      builder.show();
-    }
-  }
-
-  private class DiscardMatchingKeysTask extends AsyncTask<Void, Void, Void> {
-
-    private final Context      context;
-    private final Contact      contact;
-    private final IdentityKey  identityKey;
-
-    private ProgressDialog progressDialog;
-
-    public DiscardMatchingKeysTask(Context context, Contact contact, IdentityKey identityKey) {
-      this.context      = context;
-      this.contact      = contact;
-      this.identityKey  = identityKey;
     }
 
-    @Override
-    protected void onPreExecute() {
-      progressDialog = ProgressDialog.show(context,
-                                           getString(R.string.VerifyIdentityActivity_processing),
-                                           getString(R.string.VerifyIdentityActivity_discarding_messages));
+    private class MarkInvalidListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            final Context context = VerifyIdentityActivity.this;
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(getString(R.string.VerifyIdentityActivity_discard_messages));
+            builder.setMessage(getString(R.string.VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard));
+            builder.setIcon(android.R.drawable.ic_dialog_alert);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    new DiscardMatchingKeysTask(VerifyIdentityActivity.this, contact, identityKey).execute();
+                }
+            });
+            builder.setNegativeButton(android.R.string.cancel, null);
+            builder.show();
+        }
     }
 
-    @Override
-    protected Void doInBackground(Void... params) {
-      final PendingApprovalDatabase database = DatabaseFactory.getPendingApprovalDatabase(context);
+    private class DiscardMatchingKeysTask extends AsyncTask<Void, Void, Void> {
 
-      Cursor cursor = null;
+        private final Context      context;
+        private final Contact      contact;
+        private final IdentityKey  identityKey;
 
-      try {
-        cursor = database.getPending(contact.getNumber());
+        private ProgressDialog progressDialog;
 
-        PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
-        IncomingPushMessage message;
+        public DiscardMatchingKeysTask(Context context, Contact contact, IdentityKey identityKey) {
+            this.context      = context;
+            this.contact      = contact;
+            this.identityKey  = identityKey;
+        }
 
-        while ((message = reader.getNext()) != null) {
-          try {
-            PreKeyWhisperMessage keyExchangeMessage = new PreKeyWhisperMessage(message.getBody());
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(context,
+                    getString(R.string.VerifyIdentityActivity_processing),
+                    getString(R.string.VerifyIdentityActivity_discarding_messages));
+        }
 
-            if (keyExchangeMessage.getIdentityKey().equals(identityKey)) {
-              database.delete(reader.getCurrentId());
+        @Override
+        protected Void doInBackground(Void... params) {
+            final PendingApprovalDatabase database = DatabaseFactory.getPendingApprovalDatabase(context);
+
+            Cursor cursor = null;
+
+            try {
+                cursor = database.getPending(contact.getNumber());
+
+                PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
+                IncomingPushMessage message;
+
+                while ((message = reader.getNext()) != null) {
+                    try {
+                        PreKeyWhisperMessage keyExchangeMessage = new PreKeyWhisperMessage(message.getBody());
+
+                        if (keyExchangeMessage.getIdentityKey().equals(identityKey)) {
+                            database.delete(reader.getCurrentId());
+                        }
+                    } catch (InvalidVersionException e) {
+                        Log.w("VerifyIdentityActivity", e);
+                    } catch (InvalidMessageException e) {
+                        Log.w("VerifyIdentityActivity", e);
+                    }
+                }
+            } finally {
+                if (cursor != null)
+                    cursor.close();
             }
-          } catch (InvalidVersionException e) {
-            Log.w("VerifyIdentityActivity", e);
-          } catch (InvalidMessageException e) {
-            Log.w("VerifyIdentityActivity", e);
-          }
+
+            MessageNotifier.updateNotifications(context);
+            return null;
         }
-      } finally {
-        if (cursor != null)
-          cursor.close();
-      }
 
-      MessageNotifier.updateNotifications(context);
-      return null;
-    }
+        @Override
+        protected void onPostExecute(Void result) {
+            if (progressDialog != null)
+                progressDialog.dismiss();
 
-    @Override
-    protected void onPostExecute(Void result) {
-      if (progressDialog != null)
-        progressDialog.dismiss();
-
-      finish();
-    }
-  }
-
-  private class ReleaseMatchingKeysTask extends AsyncTask<Void, Void, Void> {
-
-    private final Context     context;
-    private final MasterSecret masterSecret;
-    private final IdentityKey identityKey;
-    private final Contact     contact;
-
-    private ProgressDialog progressDialog;
-
-    public ReleaseMatchingKeysTask(Context context,
-                                   IdentityKey identityKey,
-                                   Contact contact)
-    {
-      this.context     = context;
-      this.masterSecret = MasterSecretUtil.getMasterSecret(context);
-      this.identityKey = identityKey;
-      this.contact     = contact;
-    }
-
-    @Override
-    protected void onPreExecute() {
-      progressDialog = ProgressDialog.show(context,
-                                           getString(R.string.VerifyIdentityActivity_processing),
-                                           getString(R.string.VerifyIdentityActivity_processing_identity_key),
-                                           true, false);
-    }
-
-    @Override
-    protected Void doInBackground(Void... params) {
-      PendingApprovalDatabase database = DatabaseFactory.getPendingApprovalDatabase(context);
-      MessagePeer             address  = new MessagePeer(context, contact.getNumber());
-
-      DatabaseFactory.getIdentityDatabase(context).saveIdentity(masterSecret, address, identityKey);
-
-      Cursor                         cursor = database.getPending(contact.getNumber());
-      PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
-
-      IncomingPushMessage message;
-
-      while ((message = reader.getNext()) != null) {
-        try {
-          PreKeyWhisperMessage keyExchange = new PreKeyWhisperMessage(message.getBody());
-
-          if (keyExchange.getIdentityKey().equals(identityKey)) {
-            Intent intent = new Intent(context, SendReceiveService.class);
-            intent.setAction(SendReceiveService.RECEIVE_SMS);
-            intent.putExtra("message", message);
-            context.startService(intent);
-            database.delete(reader.getCurrentId());
-          }
-        } catch (InvalidVersionException e) {
-          Log.w("VerifyIdentityActivity", e);
-        } catch (InvalidMessageException e) {
-          Log.w("VerifyIdentityActivity", e);
+            finish();
         }
-      }
-
-      MessageNotifier.updateNotifications(context);
-      return null;
     }
 
-    @Override
-    protected void onPostExecute(Void results) {
-      if (progressDialog != null)
-        progressDialog.dismiss();
+    private class ReleaseMatchingKeysTask extends AsyncTask<Void, Void, Void> {
 
-      finish();
+        private final Context     context;
+        private final MasterSecret masterSecret;
+        private final IdentityKey identityKey;
+        private final Contact     contact;
+
+        private ProgressDialog progressDialog;
+
+        public ReleaseMatchingKeysTask(Context context,
+                                       IdentityKey identityKey,
+                                       Contact contact)
+        {
+            this.context     = context;
+            this.masterSecret = MasterSecretUtil.getMasterSecret(context);
+            this.identityKey = identityKey;
+            this.contact     = contact;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(context,
+                    getString(R.string.VerifyIdentityActivity_processing),
+                    getString(R.string.VerifyIdentityActivity_processing_identity_key),
+                    true, false);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            PendingApprovalDatabase database = DatabaseFactory.getPendingApprovalDatabase(context);
+            MessagePeer             address  = new MessagePeer(context, contact.getNumber());
+
+            DatabaseFactory.getIdentityDatabase(context).saveIdentity(masterSecret, address, identityKey);
+
+            Cursor                         cursor = database.getPending(contact.getNumber());
+            PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
+
+            IncomingPushMessage message;
+
+            while ((message = reader.getNext()) != null) {
+                try {
+                    PreKeyWhisperMessage keyExchange = new PreKeyWhisperMessage(message.getBody());
+
+                    if (keyExchange.getIdentityKey().equals(identityKey)) {
+                        Intent intent = new Intent(context, SendReceiveService.class);
+                        intent.setAction(SendReceiveService.RECEIVE_SMS);
+                        intent.putExtra("message", message);
+                        context.startService(intent);
+                        database.delete(reader.getCurrentId());
+                    }
+                } catch (InvalidVersionException e) {
+                    Log.w("VerifyIdentityActivity", e);
+                } catch (InvalidMessageException e) {
+                    Log.w("VerifyIdentityActivity", e);
+                }
+            }
+
+            MessageNotifier.updateNotifications(context);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void results) {
+            if (progressDialog != null)
+                progressDialog.dismiss();
+
+            finish();
+        }
     }
-  }
 }

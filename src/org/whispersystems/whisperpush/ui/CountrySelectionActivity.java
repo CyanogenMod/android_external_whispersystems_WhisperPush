@@ -30,22 +30,22 @@ import org.whispersystems.whisperpush.R;
  * @author Moxie Marlinspike
  */
 public class CountrySelectionActivity extends Activity
-    implements CountrySelectionFragment.CountrySelectedListener
+        implements CountrySelectionFragment.CountrySelectedListener
 {
 
-  @Override
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
-    this.setContentView(R.layout.country_selection);
-  }
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        this.setContentView(R.layout.country_selection);
+    }
 
-  @Override
-  public void countrySelected(String countryName, int countryCode) {
-    Intent result = getIntent();
-    result.putExtra("country_name", countryName);
-    result.putExtra("country_code", countryCode);
+    @Override
+    public void countrySelected(String countryName, int countryCode) {
+        Intent result = getIntent();
+        result.putExtra("country_name", countryName);
+        result.putExtra("country_code", countryCode);
 
-    this.setResult(RESULT_OK, result);
-    this.finish();
-  }
+        this.setResult(RESULT_OK, result);
+        this.finish();
+    }
 }
