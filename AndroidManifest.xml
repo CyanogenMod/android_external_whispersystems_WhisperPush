@@ -22,7 +22,11 @@
                 android:protectionLevel="signature" />
     <uses-permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE" />
 
-    <application android:icon="@drawable/icon"
+    <permission android:name="org.whispersystems.whisperpush.permissions.REGISTER"
+                android:protectionLevel="signature" />
+
+    <application android:name=".WhisperPush"
+                 android:icon="@drawable/icon"
                  android:label="WhisperPush"
                  android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
 
@@ -37,6 +41,8 @@
 
 
         </activity>
+
+        <activity android:name=".ui.GooglePlayServicesUpdateActivity" />
 
         <activity android:name=".ui.CountrySelectionActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -65,13 +71,17 @@
 
         <activity android:name=".ui.VerifyIdentitiesActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
+              
         <activity android:name=".ui.PreferenceActivity"
                   android:exported="true"
                   android:label="@string/pref_activity_title"
                   android:theme="@android:style/Theme.Holo"/>
 
-        <service android:enabled="true" android:name=".service.RegistrationService"/>
+        <service android:enabled="true"
+                 android:exported="true"
+                 android:name=".service.RegistrationService"
+                 android:permission="org.whispersystems.whisperpush.permissions.REGISTER"/>
+
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
         <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
 
@@ -89,13 +99,6 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="org.whispersystems.whisperpush" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".service.RegistrationNotifier"
-                  android:exported="false">
-            <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
             </intent-filter>
         </receiver>
 

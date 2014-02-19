@@ -50,6 +50,7 @@ import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.WhisperPush;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.RegistrationService.RegistrationState;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
@@ -70,7 +71,6 @@ public class RegistrationProgressActivity extends Activity {
 
     private ServiceConnection    serviceConnection        = new RegistrationServiceConnection();
     private Handler              registrationStateHandler = new RegistrationStateHandler();
-    private RegistrationReceiver registrationReceiver     = new RegistrationReceiver();
 
     private RegistrationService registrationService;
 
@@ -125,13 +125,13 @@ public class RegistrationProgressActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        handleActivityVisible();
+        WhisperPush.activityResumed();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        handleActivityNotVisible();
+        WhisperPush.activityPaused();
     }
 
     @Override
@@ -192,18 +192,6 @@ public class RegistrationProgressActivity extends Activity {
 
         failureText.setText(spannableString);
         failureText.setMovementMethod(LinkMovementMethod.getInstance());
-    }
-
-    private void handleActivityVisible() {
-        IntentFilter filter = new IntentFilter(RegistrationService.REGISTRATION_EVENT);
-        filter.setPriority(1000);
-        registerReceiver(registrationReceiver, filter);
-        visible = true;
-    }
-
-    private void handleActivityNotVisible() {
-        unregisterReceiver(registrationReceiver);
-        visible = false;
     }
 
     private void handleStateIdle() {
