@@ -150,6 +150,7 @@
     <string name="registration_completed_activity__registration_completed">Registration Completed</string>
     <string name="registration_completed_activity__body">You have successfully registered with TextSecure.</string>
     <string name="registration_completed_activity__register_again">Register Again</string>
+    <string name="registration_completed_activity__unregister">Unregister</string>
 
     <!-- review_identities_activity -->
     <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identities in your trust database</string>

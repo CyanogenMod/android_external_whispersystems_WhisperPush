@@ -28,4 +28,12 @@
         android:id="@+id/registerAgainButton"
         android:layout_gravity="center"
         android:layout_marginTop="20dip" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_completed_activity__unregister"
+        android:id="@+id/unregisterButton"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dip" />
 </LinearLayout>
