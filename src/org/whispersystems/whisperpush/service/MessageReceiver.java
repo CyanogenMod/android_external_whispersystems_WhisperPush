@@ -40,6 +40,7 @@ import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
+import org.whispersystems.whisperpush.db.CMDatabase;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
@@ -51,6 +52,8 @@ import java.util.List;
 
 public class MessageReceiver {
 
+    private static final String TAG = MessageReceiver.class.getSimpleName();
+
     private final Context context;
 
     public MessageReceiver(Context context) {
@@ -61,6 +64,11 @@ public class MessageReceiver {
         if (message == null)
             return;
 
+        if (!hasActiveSession(message.getSource())) {
+            Log.d(TAG, "New session detected for " + message.getSource());
+            setActiveSession(message.getSource());
+            MessageNotifier.notifyNewSessionIncoming(context, message);
+        }
         updateDirectoryIfNecessary(message);
 
         try {
@@ -145,6 +153,16 @@ public class MessageReceiver {
         } catch (NotInDirectoryException e) {
             return false;
         }
+    }
+
+    private boolean hasActiveSession(String e164number) {
+        String token = Directory.getInstance(context).getToken(e164number);
+        return CMDatabase.getInstance(context).hasActiveSession(token);
+    }
+
+    private void setActiveSession(String e164number) {
+        String token = Directory.getInstance(context).getToken(e164number);
+        CMDatabase.getInstance(context).setActiveSession(token);
     }
 
 
