@@ -33,6 +33,10 @@
     <string name="MessageNotifier_d_pending_messages_require_validation">%d pending messages require validation</string>
     <string name="MessageNotifier_pending_message_requires_validation">Pending message requires verification.</string>
     <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">You have received a message that requires you to validate it.</string>
+    <string name="MessageNotifier_new_session_title">New Encrypted SMS</string>
+    <string name="MessageNotifier_new_session__incoming_text">You have received a new encrypted SMS message from %s.  All further conversations will be automatically encrypted.</string>
+    <string name="MessageNotifier_new_session__view_identity">View Identity</string>
+    <string name="MessageNotifier_new_session__outgoing_toast">Message to %s was encrypted.</string>
 
     <!-- MessageReceiver -->
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Unable to retrieve encrypted attachment for incoming message.</string>
@@ -162,6 +166,10 @@
     <string name="verify_identity_activity__valid">Valid</string>
     <string name="verify_identity__invalid">Invalid</string>
     <string name="verify_identity_activity__avatar_icon">Avatar Icon</string>
+
+    <!-- view_new_identity_activity -->
+    <string name="view_new_identity_activity__verify_fingerprint">This contact has sent you a new encrypted message. Consider calling this contact and validating the fingerprint below by reading it aloud.</string>
+    <string name="view_new_identity_activity__continue">Continue</string>
 
     <!-- view_identity_activity_menu -->
     <string name="view_identity_activity_menu__compare">Compare</string>

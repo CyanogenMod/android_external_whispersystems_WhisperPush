@@ -25,18 +25,26 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.push.PushBody;
+import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
 import org.whispersystems.whisperpush.contacts.ContactsFactory;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
 import org.whispersystems.whisperpush.database.PendingApprovalDatabase;
+import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.ui.VerifyIdentitiesActivity;
 import org.whispersystems.whisperpush.ui.VerifyIdentityActivity;
+import org.whispersystems.whisperpush.ui.ViewNewIdentityActivity;
+
+import java.util.Date;
 
 public class MessageNotifier {
 
@@ -147,6 +155,41 @@ public class MessageNotifier {
     private static void clearNotifications(Context context) {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
                 .cancel(NOTIFICATION_ID);
+    }
+
+    public static void notifyNewSessionIncoming(Context context, IncomingPushMessage message) {
+        Notification.Builder builder = new Notification.Builder(context);
+
+        try {
+            Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
+
+            Intent intent = new Intent(context, ViewNewIdentityActivity.class);
+            intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getBody()).getIdentityKey());
+            intent.putExtra("contact", contact);
+            intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+            PendingIntent verifyPi = PendingIntent.getActivity(context, 0, intent, 0);
+
+            builder.setSmallIcon(R.drawable.ic_notify);
+            builder.setLargeIcon(contact.getAvatar());
+            builder.setContentTitle(context.getString(R.string.MessageNotifier_new_session_title));
+
+            String notificationText = String.format(context.getString(R.string.MessageNotifier_new_session__incoming_text), contact.toShortString());
+            builder.setContentText(notificationText);
+            builder.setStyle(new Notification.BigTextStyle().bigText(notificationText));
+
+            // Add verify pending intent
+            builder.setContentIntent(verifyPi);
+
+            builder.setAutoCancel(true);
+            builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS);
+
+            ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                    .notify((int) new Date().getTime(), builder.build());
+        } catch (InvalidVersionException e) {
+            Log.w("MessageNotifier", e);
+        } catch (InvalidMessageException e) {
+            Log.w("MessageNotifier", e);
+        }
     }
 
 }

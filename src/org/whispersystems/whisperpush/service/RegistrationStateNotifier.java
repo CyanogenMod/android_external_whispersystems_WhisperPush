@@ -48,7 +48,7 @@ public class RegistrationStateNotifier {
 
     private void resetBuilder() {
         this.builder = new Notification.Builder(context);
-        this.builder.setSmallIcon(R.drawable.icon);
+        this.builder.setSmallIcon(R.drawable.ic_notify);
         this.builder.setAutoCancel(true);
         this.builder.setOngoing(true);
         this.builder.setContentTitle(context.getString(R.string.registration_progress_notification__title_registering));
