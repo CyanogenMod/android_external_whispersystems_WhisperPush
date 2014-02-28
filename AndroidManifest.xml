@@ -55,7 +55,6 @@
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
 
-
         </activity>
 
         <activity android:name=".ui.ViewIdentityActivity"
@@ -66,6 +65,11 @@
 
         <activity android:name=".ui.VerifyIdentitiesActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+        <activity android:name=".ui.PreferenceActivity"
+                  android:exported="true"
+                  android:label="@string/pref_activity_title"
+                  android:theme="@android:style/Theme.Holo"/>
 
         <service android:enabled="true" android:name=".service.RegistrationService"/>
         <service android:enabled="true" android:name=".service.SendReceiveService"/>

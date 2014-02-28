@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2014 The CyanogenMod Project
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:key="pref_registration_category"
+                        android:title="@string/pref_registration_category__title">
+        <PreferenceScreen
+            android:key="pref_register"
+            android:title="@string/pref_register__title"
+            android:summary="@string/pref_register__summary">
+
+            <intent android:targetPackage="org.whispersystems.whisperpush"
+                    android:targetClass="org.whispersystems.whisperpush.ui.RegistrationActivity"/>
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="pref_unregister"
+            android:title="@string/pref_unregister__title"
+            android:summary="@string/pref_unregister__summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_other_category__title">
+        <PreferenceScreen
+            android:title="@string/pref_review_keys__title">
+
+            <intent android:targetPackage="org.whispersystems.whisperpush"
+                    android:targetClass="org.whispersystems.whisperpush.ui.ReviewIdentitiesActivity"/>
+
+    </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

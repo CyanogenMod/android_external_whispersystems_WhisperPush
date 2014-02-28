@@ -21,6 +21,7 @@
     <!-- Generic Strings -->
     <string translatable="false" name="generic__plus">+</string>
     <string translatable="false" name="generic__dot">•</string>
+    <string name="generic__please_wait">Please wait.</string>
 
     <!-- GcmReceiver -->
     <string name="GcmReceiver_invalid_push_message">Invalid Push Message</string>
@@ -166,4 +167,19 @@
     <string name="view_identity_activity_menu__compare">Compare</string>
     <string name="view_identity_activity_menu__scan_to_compare">Scan to compare</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Get scanned to compare</string>
+
+    <!-- preferences -->
+    <string name="pref_activity_title">WhisperPush Preferences</string>
+    <string name="pref_registration_category__title">Registration</string>
+    <string name="pref_other_category__title">Other</string>
+
+    <string name="pref_register__title">Register</string>
+    <string name="pref_register__summary">Register for WhisperPush to enable encrypted SMS.</string>
+
+    <string name="pref_unregister__title">Unregister</string>
+    <string name="pref_unregister__summary">Unregister from WhisperPush to disable encrypted SMS.</string>
+    <string name="pref_unregister__progress_title">Unregistering</string>
+
+    <string name="pref_review_keys__title">Review identity keys</string>
+
 </resources>
