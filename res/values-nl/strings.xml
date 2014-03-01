@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2013 The CyanogenMod Project
+     Copyright (C) 2013 Whisper Systems
+     Copyright (C) 2014 The CyanogenMod Project
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by
@@ -15,7 +16,8 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="generic__please_wait">Even geduld.</string>
     <string name="GcmReceiver_invalid_push_message">Ongeldig push-bericht</string>
     <string name="GcmReceiver_received_badly_formatted_push_message">Onjuist opgemaakt push-bericht ontvangen.</string>
     <string name="GcmReceiver_unsupported_push_version">Push-versie niet ondersteund</string>
@@ -140,4 +142,17 @@
     <string name="view_identity_activity_menu__compare">Vergelijken</string>
     <string name="view_identity_activity_menu__scan_to_compare">Scannen om te vergelijken</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Gescand worden om te vergelijken</string>
+
+    <string name="pref_activity_title">WhisperPush</string>
+    <string name="pref_registration_category__title">Registratie</string>
+    <string name="pref_other_category__title">Meer</string>
+
+    <string name="pref_register__title">Registreren</string>
+    <string name="pref_register__summary">Registreren voor WhisperPush om versleutelde sms-berichten in te schakelen.</string>
+
+    <string name="pref_unregister__title">Afmelden</string>
+    <string name="pref_unregister__summary">Afmelden bij WhisperPush om versleutelde sms-berichten uit te schakelen.</string>
+    <string name="pref_unregister__progress_title">Afmelden\u2026</string>
+
+    <string name="pref_review_keys__title">Identiteitssleutels bekijken</string>
 </resources>
