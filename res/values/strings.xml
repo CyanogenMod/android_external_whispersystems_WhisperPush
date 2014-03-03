@@ -197,4 +197,5 @@
     <string name="pref_unregister__progress_title">Unregistering</string>
 
     <string name="pref_review_keys__title">Review identity keys</string>
+    <string name="pref_my_identity__title">View my identity key</string>
 </resources>

@@ -36,6 +36,13 @@
 
     <PreferenceCategory android:title="@string/pref_other_category__title">
         <PreferenceScreen
+            android:title="@string/pref_my_identity__title">
+
+            <intent android:targetPackage="org.whispersystems.whisperpush"
+                    android:targetClass="org.whispersystems.whisperpush.ui.ViewMyIdentityActivity"/>
+
+        </PreferenceScreen>
+        <PreferenceScreen
             android:title="@string/pref_review_keys__title">
 
             <intent android:targetPackage="org.whispersystems.whisperpush"
