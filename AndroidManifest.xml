@@ -58,13 +58,21 @@
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".ui.ReviewIdentitiesActivity"
-                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+                  android:label="@string/pref_review_keys__title"
+                  android:theme="@android:style/Theme.Holo">
 
 
         </activity>
 
         <activity android:name=".ui.ViewIdentityActivity"
-                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+                  android:theme="@android:style/Theme.Holo"/>
+
+        <activity android:name=".ui.ViewMyIdentityActivity"
+                  android:label="@string/pref_my_identity__title"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+                  android:theme="@android:style/Theme.Holo"/>
 
         <activity android:name=".ui.ViewNewIdentityActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
