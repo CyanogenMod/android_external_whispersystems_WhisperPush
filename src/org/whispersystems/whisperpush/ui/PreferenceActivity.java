@@ -47,7 +47,7 @@ public class PreferenceActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(android.R.id.content, new WhisperPushPreferenceFragment(this));
+        fragmentTransaction.replace(android.R.id.content, new WhisperPushPreferenceFragment());
         fragmentTransaction.commit();
 
         ActionBar actionBar = getActionBar();
@@ -75,16 +75,13 @@ public class PreferenceActivity extends Activity {
         private static final String PREF_REGISTER = "pref_register";
         private static final String PREF_UNREGISTER = "pref_unregister";
 
-        private final Context mContext;
         private ProgressDialog mProgressDialog;
 
         private PreferenceCategory mRegistrationCategory;
         private Preference mRegisterPreference;
         private Preference mUnregisterPreference;
 
-        public WhisperPushPreferenceFragment(Context context) {
-            super();
-            mContext = context;
+        public WhisperPushPreferenceFragment() {
         }
 
         @Override
@@ -112,7 +109,7 @@ public class PreferenceActivity extends Activity {
             mUnregisterPreference = findPreference(PREF_UNREGISTER);
             mUnregisterPreference.setOnPreferenceClickListener(this);
 
-            if (WhisperPreferences.isRegistered(mContext)) {
+            if (WhisperPreferences.isRegistered(getActivity())) {
                 Log.d(TAG, "WhisperPush is registered");
                 mRegistrationCategory.removePreference(mRegisterPreference);
             } else {
@@ -131,9 +128,9 @@ public class PreferenceActivity extends Activity {
         }
 
         private void handleUnregister() {
-            mProgressDialog = new ProgressDialog(mContext);
-            mProgressDialog.setTitle(mContext.getString(R.string.pref_unregister__progress_title));
-            mProgressDialog.setMessage(mContext.getString(R.string.generic__please_wait));
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setTitle(getActivity().getString(R.string.pref_unregister__progress_title));
+            mProgressDialog.setMessage(getActivity().getString(R.string.generic__please_wait));
             mProgressDialog.setCancelable(false);
             mProgressDialog.setIndeterminate(true);
             mProgressDialog.show();
@@ -141,13 +138,13 @@ public class PreferenceActivity extends Activity {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... param) {
-                    PushServiceSocket socket = PushServiceSocketFactory.create(mContext.getApplicationContext());
+                    PushServiceSocket socket = PushServiceSocketFactory.create(getActivity());
                     try {
                         socket.unregisterGcmId();
                     } catch (IOException e) {
                         return null;
                     }
-                    WhisperPreferences.setRegistered(mContext.getApplicationContext(), false);
+                    WhisperPreferences.setRegistered(getActivity(), false);
                     return null;
                 }
 
