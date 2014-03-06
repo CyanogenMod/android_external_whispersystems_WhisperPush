@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -34,8 +35,6 @@ import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.Release;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
@@ -73,11 +72,7 @@ public class RegistrationService extends Service {
     public static final String VOICE_REQUESTED_ACTION = "org.thoughtcrime.securesms.RegistrationService.VOICE_REQUESTED";
     public static final String VOICE_REGISTER_ACTION  = "org.thoughtcrime.securesms.RegistrationService.VOICE_REGISTER";
 
-    public static final String NOTIFICATION_TITLE     = "org.thoughtcrime.securesms.NOTIFICATION_TITLE";
-    public static final String NOTIFICATION_TEXT      = "org.thoughtcrime.securesms.NOTIFICATION_TEXT";
     public static final String CHALLENGE_EVENT        = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
-    public static final String REGISTRATION_EVENT     = "org.thoughtcrime.securesms.REGISTRATION_EVENT";
-
     public static final String CHALLENGE_EXTRA        = "CAAChallenge";
 
     private static final long   REGISTRATION_TIMEOUT_MILLIS = 120000;
@@ -88,11 +83,21 @@ public class RegistrationService extends Service {
 
     private volatile RegistrationState registrationState = new RegistrationState(RegistrationState.STATE_IDLE);
 
-    private volatile Handler                 registrationStateHandler;
-    private volatile ChallengeReceiver       challengeReceiver;
-    private          String                  challenge;
-    private          long                    verificationStartTime;
-    private          boolean                 generatingPreKeys;
+    private volatile Handler                      registrationStateHandler;
+    private          RegistrationTimerHandler     registrationTimerHandler;
+    private volatile ChallengeReceiver            challengeReceiver;
+    private          String                       challenge;
+    private          long                         verificationStartTime;
+    private          boolean                      generatingPreKeys;
+    private          RegistrationStateNotifier    registrationStateNotifier;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        registrationStateNotifier = new RegistrationStateNotifier(this);
+        registrationTimerHandler = new RegistrationTimerHandler();
+    }
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
@@ -100,6 +105,15 @@ public class RegistrationService extends Service {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
+                    // Check for Play Services
+                    switch (GcmHelper.checkPlayServices(RegistrationService.this)) {
+                        case GcmHelper.RESULT_USER_RECOVERABLE:
+                            setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED_RECOVERABLE));
+                            return;
+                        case GcmHelper.RESULT_UNSUPPORTED:
+                            setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED));
+                            return;
+                    }
                     if      (intent.getAction() == null)                        return;
                     else if (intent.getAction().equals(REGISTER_NUMBER_ACTION)) handleRegistrationIntent(intent);
                     else if (intent.getAction().equals(VOICE_REQUESTED_ACTION)) handleVoiceRequestedIntent(intent);
@@ -205,15 +219,12 @@ public class RegistrationService extends Service {
             markAsVerified(number, password, signalingKey);
 
             setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
-            broadcastComplete(true);
         } catch (UnsupportedOperationException uoe) {
             Log.w("RegistrationService", uoe);
             setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED, number));
-            broadcastComplete(false);
         } catch (IOException e) {
             Log.w("RegistrationService", e);
             setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-            broadcastComplete(false);
         }
     }
 
@@ -235,6 +246,7 @@ public class RegistrationService extends Service {
 
             setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
             String challenge = waitForChallenge();
+            registrationTimerHandler.stop();
             socket.verifyAccount(challenge, signalingKey);
 
             handleCommonRegistration(socket, number);
@@ -242,19 +254,16 @@ public class RegistrationService extends Service {
             markAsVerified(number, password, signalingKey);
 
             setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
-            broadcastComplete(true);
         } catch (UnsupportedOperationException uoe) {
             Log.w("RegistrationService", uoe);
             setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED, number));
-            broadcastComplete(false);
         } catch (AccountVerificationTimeoutException avte) {
             Log.w("RegistrationService", avte);
+            registrationTimerHandler.stop();
             setState(new RegistrationState(RegistrationState.STATE_TIMEOUT, number));
-            broadcastComplete(false);
         } catch (IOException e) {
             Log.w("RegistrationService", e);
             setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
-            broadcastComplete(false);
         } finally {
             shutdownChallengeListener();
         }
@@ -289,6 +298,7 @@ public class RegistrationService extends Service {
 
     private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {
         this.verificationStartTime = System.currentTimeMillis();
+        registrationTimerHandler.sendEmptyMessageDelayed(0, 1000);
 
         if (this.challenge == null) {
             try {
@@ -344,22 +354,9 @@ public class RegistrationService extends Service {
 
         if (registrationStateHandler != null) {
             registrationStateHandler.obtainMessage(state.state, state).sendToTarget();
-        }
-    }
-
-    private void broadcastComplete(boolean success) {
-        Intent intent = new Intent();
-        intent.setAction(REGISTRATION_EVENT);
-
-        if (success) {
-            intent.putExtra(NOTIFICATION_TITLE, getString(R.string.RegistrationService_registration_complete));
-            intent.putExtra(NOTIFICATION_TEXT, getString(R.string.RegistrationService_push_messaging_registration_has_successfully_completed));
         } else {
-            intent.putExtra(NOTIFICATION_TITLE, getString(R.string.RegistrationService_registration_error));
-            intent.putExtra(NOTIFICATION_TEXT, getString(R.string.RegistrationService_push_messaging_registration_has_encountered_a_problem));
+            registrationStateNotifier.notify(state);
         }
-
-        this.sendOrderedBroadcast(intent, null);
     }
 
     public void setRegistrationStateHandler(Handler registrationStateHandler) {
@@ -382,20 +379,21 @@ public class RegistrationService extends Service {
 
     public static class RegistrationState {
 
-        public static final int STATE_IDLE                 =  0;
-        public static final int STATE_CONNECTING           =  1;
-        public static final int STATE_VERIFYING            =  2;
-        public static final int STATE_TIMER                =  3;
-        public static final int STATE_COMPLETE             =  4;
-        public static final int STATE_TIMEOUT              =  5;
-        public static final int STATE_NETWORK_ERROR        =  6;
+        public static final int STATE_IDLE                        =  0;
+        public static final int STATE_CONNECTING                  =  1;
+        public static final int STATE_VERIFYING                   =  2;
+        public static final int STATE_TIMER                       =  3;
+        public static final int STATE_COMPLETE                    =  4;
+        public static final int STATE_TIMEOUT                     =  5;
+        public static final int STATE_NETWORK_ERROR               =  6;
 
-        public static final int STATE_GCM_UNSUPPORTED      =  8;
-        public static final int STATE_GCM_REGISTERING      =  9;
-        public static final int STATE_GCM_TIMEOUT          = 10;
+        public static final int STATE_GCM_UNSUPPORTED             =  8;
+        public static final int STATE_GCM_UNSUPPORTED_RECOVERABLE = 9;
+        public static final int STATE_GCM_REGISTERING             =  10;
+        public static final int STATE_GCM_TIMEOUT                 = 11;
 
-        public static final int STATE_VOICE_REQUESTED      = 12;
-        public static final int STATE_GENERATING_KEYS      = 13;
+        public static final int STATE_VOICE_REQUESTED             = 12;
+        public static final int STATE_GENERATING_KEYS             = 13;
 
         public final int    state;
         public final String number;
@@ -413,6 +411,30 @@ public class RegistrationService extends Service {
             this.state    = state;
             this.number   = number;
             this.password = password;
+        }
+    }
+
+    private class RegistrationTimerHandler extends Handler {
+
+        private boolean running = true;
+        private int lastProgress = -1;
+
+        @Override
+        public void handleMessage(Message message) {
+            long millis = REGISTRATION_TIMEOUT_MILLIS - (getSecondsRemaining() * 1000);
+            int progress = (int)((millis * 100.0f) / REGISTRATION_TIMEOUT_MILLIS);
+
+            if (progress != lastProgress) registrationStateNotifier.updateProgress(progress);
+            lastProgress = progress;
+
+            if (running) {
+                registrationTimerHandler.sendEmptyMessageDelayed(0, 1000);
+            }
+        }
+
+        public void stop() {
+            running = false;
+            this.removeMessages(0);
         }
     }
 }

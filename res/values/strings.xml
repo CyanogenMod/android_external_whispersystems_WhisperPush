@@ -168,6 +168,14 @@
     <string name="view_identity_activity_menu__scan_to_compare">Scan to compare</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Get scanned to compare</string>
 
+    <!-- registration_progress_notification -->
+    <string name="registration_progress_notification__title_registering">Registering with WhisperPush</string>
+    <string name="registration_progress_notification__title_complete">WhisperPush Enabled</string>
+    <string name="registration_progress_notification__title_failure">WhisperPush Registration Failed</string>
+    <string name="registration_progress_notification__complete">Successfully registered</string>
+    <string name="registration_progress_notification__failure">There was a problem registering</string>
+    <string name="registration_progress_notification__gms_update">An update is required to use WhisperPush</string>
+
     <!-- preferences -->
     <string name="pref_activity_title">WhisperPush Preferences</string>
     <string name="pref_registration_category__title">Registration</string>
@@ -181,5 +189,4 @@
     <string name="pref_unregister__progress_title">Unregistering</string>
 
     <string name="pref_review_keys__title">Review identity keys</string>
-
 </resources>
