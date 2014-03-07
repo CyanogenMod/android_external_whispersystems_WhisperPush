@@ -190,10 +190,10 @@
     <string name="pref_other_category__title">Other</string>
 
     <string name="pref_register__title">Register</string>
-    <string name="pref_register__summary">Register for WhisperPush to enable encrypted SMS.</string>
+    <string name="pref_register__summary">Register for WhisperPush to enable encrypted SMS</string>
 
     <string name="pref_unregister__title">Unregister</string>
-    <string name="pref_unregister__summary">Unregister from WhisperPush to disable encrypted SMS.</string>
+    <string name="pref_unregister__summary">Unregister from WhisperPush to disable encrypted SMS</string>
     <string name="pref_unregister__progress_title">Unregistering</string>
 
     <string name="pref_review_keys__title">Review identity keys</string>
