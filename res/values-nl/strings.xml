@@ -26,6 +26,10 @@
     <string name="MessageNotifier_d_pending_messages_require_validation">%d berichten vereisen bevestiging</string>
     <string name="MessageNotifier_pending_message_requires_validation">Bericht vereist bevestiging</string>
     <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">U heeft een bericht ontvangen dat u dient te bevestigen.</string>
+    <string name="MessageNotifier_new_session_title">Nieuw versleuteld sms-bericht</string>
+    <string name="MessageNotifier_new_session__incoming_text">U heeft een versleuteld sms-bericht ontvangen van %s. Alle volgende gesprekken zullen automatisch worden versleuteld.</string>
+    <string name="MessageNotifier_new_session__view_identity">Identiteit bekijken</string>
+    <string name="MessageNotifier_new_session__outgoing_toast">Bericht naar %s is versleuteld.</string>
 
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Kan versleutelde bijlage van inkomend bericht niet ophalen.</string>
     <string name="MessageReceiver_received_badly_encrypted_message">Onjuist versleuteld bericht ontvangen of bericht versleuteld voor niet-bestaande sessie.</string>
@@ -139,16 +143,26 @@
     <string name="verify_identity__invalid">Ongeldig</string>
     <string name="verify_identity_activity__avatar_icon">Afbeelding</string>
 
+    <string name="view_new_identity_activity__verify_fingerprint">Deze contactpersoon heeft u een nieuw versleuteld bericht gestuurd. Overweeg om deze persoon te bellen en de onderstaande vingerafdruk te valideren door deze hardop te lezen.</string>
+    <string name="view_new_identity_activity__continue">Verder</string>
+
     <string name="view_identity_activity_menu__compare">Vergelijken</string>
     <string name="view_identity_activity_menu__scan_to_compare">Scannen om te vergelijken</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Gescand worden om te vergelijken</string>
+
+    <string name="registration_progress_notification__title_registering">Registreren bij WhisperPush</string>
+    <string name="registration_progress_notification__title_complete">WhisperPush ingeschakeld</string>
+    <string name="registration_progress_notification__title_failure">Registratie mislukt</string>
+    <string name="registration_progress_notification__complete">Registratie succesvol</string>
+    <string name="registration_progress_notification__failure">Er was een probleem tijdens het registreren</string>
+    <string name="registration_progress_notification__gms_update">Een update is vereist om WhisperPush te kunnen gebruiken</string>
 
     <string name="pref_activity_title">WhisperPush</string>
     <string name="pref_registration_category__title">Registratie</string>
     <string name="pref_other_category__title">Meer</string>
 
     <string name="pref_register__title">Registreren</string>
-    <string name="pref_register__summary">Registreren voor WhisperPush om versleutelde sms-berichten in te schakelen.</string>
+    <string name="pref_register__summary">Registreren bij WhisperPush om versleutelde sms-berichten in te schakelen.</string>
 
     <string name="pref_unregister__title">Afmelden</string>
     <string name="pref_unregister__summary">Afmelden bij WhisperPush om versleutelde sms-berichten uit te schakelen.</string>
