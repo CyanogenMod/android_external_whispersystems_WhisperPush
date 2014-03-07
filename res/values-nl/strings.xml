@@ -143,12 +143,19 @@
     <string name="view_identity_activity_menu__scan_to_compare">Scannen om te vergelijken</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Gescand worden om te vergelijken</string>
 
+    <string name="registration_progress_notification__title_registering">Registreren bij WhisperPush</string>
+    <string name="registration_progress_notification__title_complete">WhisperPush ingeschakeld</string>
+    <string name="registration_progress_notification__title_failure">Registratie mislukt</string>
+    <string name="registration_progress_notification__complete">Registratie succesvol</string>
+    <string name="registration_progress_notification__failure">Er was een probleem tijdens het registreren</string>
+    <string name="registration_progress_notification__gms_update">Een update is vereist om WhisperPush te kunnen gebruiken</string>
+
     <string name="pref_activity_title">WhisperPush</string>
     <string name="pref_registration_category__title">Registratie</string>
     <string name="pref_other_category__title">Meer</string>
 
     <string name="pref_register__title">Registreren</string>
-    <string name="pref_register__summary">Registreren voor WhisperPush om versleutelde sms-berichten in te schakelen.</string>
+    <string name="pref_register__summary">Registreren bij WhisperPush om versleutelde sms-berichten in te schakelen.</string>
 
     <string name="pref_unregister__title">Afmelden</string>
     <string name="pref_unregister__summary">Afmelden bij WhisperPush om versleutelde sms-berichten uit te schakelen.</string>
