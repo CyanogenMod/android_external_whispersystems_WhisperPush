@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2013 The CyanogenMod Project
+     Copyright (C) 2013 Whisper Systems
+     Copyright (C) 2014 The CyanogenMod Project
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by
@@ -16,6 +17,7 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+    <string name="generic__please_wait">Espera por favor.</string>
     <string name="GcmReceiver_invalid_push_message">Mensaje inválido</string>
     <string name="GcmReceiver_received_badly_formatted_push_message">Recibido un mensaje con formato inválido.</string>
     <string name="GcmReceiver_unsupported_push_version">Versión no soportada</string>
@@ -23,6 +25,10 @@
     <string name="MessageNotifier_d_pending_messages_require_validation">%d mensajes pendientes de validación</string>
     <string name="MessageNotifier_pending_message_requires_validation">Mensaje pendiente de verificación.</string>
     <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Has recibido un mensaje que requiere tu validación.</string>
+    <string name="MessageNotifier_new_session_title">Nuevo SMS cifrado</string>
+    <string name="MessageNotifier_new_session__incoming_text">Recibido un nuevo mensaje SMS cifrado de %s. Todas las conversaciones siguientes serán cifradas automáticamente.</string>
+    <string name="MessageNotifier_new_session__view_identity">Mostrar identidad</string>
+    <string name="MessageNotifier_new_session__outgoing_toast">Mensaje para %s ha sido cifrado.</string>
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">No se puede recuperar el archivo adjunto cifrado para el mensaje entrante.</string>
     <string name="MessageReceiver_received_badly_encrypted_message">Recibido mensaje indescifrable o no perteneciente a ninguna sesión.</string>
     <string name="PendingIdentityItemView_received_s">Recibido %s</string>
@@ -119,7 +125,25 @@
     <string name="verify_identity_activity__valid">Válida</string>
     <string name="verify_identity__invalid">Inválida</string>
     <string name="verify_identity_activity__avatar_icon">Imagen</string>
+    <string name="view_new_identity_activity__verify_fingerprint">Este contacto te ha enviado un nuevo mensaje cifrado. Considera llamar a este contacto y validar la huella digital mediante su lectura en voz alta.</string>
+    <string name="view_new_identity_activity__continue">Continuar</string>
     <string name="view_identity_activity_menu__compare">Comparar</string>
     <string name="view_identity_activity_menu__scan_to_compare">Explorar para comparar</string>
     <string name="view_identity_activity_menu__get_scanned_to_compare">Permitir explorar para comparar</string>
+    <string name="registration_progress_notification__title_registering">Registrando WhisperPush\u2026</string>
+    <string name="registration_progress_notification__title_complete">WhisperPush habilitado</string>
+    <string name="registration_progress_notification__title_failure">Falló el registro de WhisperPush</string>
+    <string name="registration_progress_notification__complete">Registro completado</string>
+    <string name="registration_progress_notification__failure">Ha habido un problema durante el registro</string>
+    <string name="registration_progress_notification__gms_update">Se necesita una actualización para usar WhisperPush</string>
+    <string name="pref_activity_title">Preferencias</string>
+    <string name="pref_registration_category__title">Registro</string>
+    <string name="pref_other_category__title">Otros</string>
+    <string name="pref_register__title">Registrar</string>
+    <string name="pref_register__summary">Registrar WhisperPush para habilitar el cifrado de SMS</string>
+    <string name="pref_unregister__title">Quitar registro</string>
+    <string name="pref_unregister__summary">Quitar registro de WhisperPush para deshabilitar el cifrado de SMS</string>
+    <string name="pref_unregister__progress_title">Quitando registro\u2026</string>
+    <string name="pref_review_keys__title">Revisar claves de identidad</string>
+    <string name="pref_my_identity__title">Mostrar mi clave de identidad</string>
 </resources>
