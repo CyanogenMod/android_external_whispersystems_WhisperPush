@@ -18,5 +18,5 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-  <string name="pref_other_category__title">Outro</string>
+  <string name="pref_other_category__title">Anderes</string>
 </resources>
