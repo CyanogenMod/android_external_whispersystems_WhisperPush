@@ -72,14 +72,18 @@ public class PreferenceActivity extends Activity {
         private static final String TAG = WhisperPushPreferenceFragment.class.getSimpleName();
 
         private static final String PREF_REGISTRATION_CATEGORY = "pref_registration_category";
+        private static final String PREF_OTHER_CATEGORY = "pref_other_category";
         private static final String PREF_REGISTER = "pref_register";
         private static final String PREF_UNREGISTER = "pref_unregister";
+        private static final String PREF_MYIDENTITY = "pref_myIdentity_setting";
 
         private ProgressDialog mProgressDialog;
 
         private PreferenceCategory mRegistrationCategory;
+        private PreferenceCategory mOtherCategory;
         private Preference mRegisterPreference;
         private Preference mUnregisterPreference;
+        private Preference mMyIdentityPreference;
 
         public WhisperPushPreferenceFragment() {
         }
@@ -109,12 +113,16 @@ public class PreferenceActivity extends Activity {
             mUnregisterPreference = findPreference(PREF_UNREGISTER);
             mUnregisterPreference.setOnPreferenceClickListener(this);
 
+            mOtherCategory = (PreferenceCategory) findPreference(PREF_OTHER_CATEGORY);
+            mMyIdentityPreference = findPreference(PREF_MYIDENTITY);
+
             if (WhisperPreferences.isRegistered(getActivity())) {
                 Log.d(TAG, "WhisperPush is registered");
                 mRegistrationCategory.removePreference(mRegisterPreference);
             } else {
                 Log.d(TAG, "WhisperPush is not registered");
                 mRegistrationCategory.removePreference(mUnregisterPreference);
+                mOtherCategory.removePreference(mMyIdentityPreference);
             }
         }
 
