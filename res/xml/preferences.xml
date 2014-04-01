@@ -34,9 +34,11 @@
             android:summary="@string/pref_unregister__summary"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_other_category__title">
+    <PreferenceCategory android:key="pref_other_category"
+                        android:title="@string/pref_other_category__title">
         <PreferenceScreen
-            android:title="@string/pref_my_identity__title">
+            android:title="@string/pref_my_identity__title"
+            android:key="pref_myIdentity_setting">
 
             <intent android:targetPackage="org.whispersystems.whisperpush"
                     android:targetClass="org.whispersystems.whisperpush.ui.ViewMyIdentityActivity"/>
