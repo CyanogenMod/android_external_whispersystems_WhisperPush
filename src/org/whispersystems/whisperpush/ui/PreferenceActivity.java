@@ -22,6 +22,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -29,6 +31,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -39,6 +43,9 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 import java.io.IOException;
 
 public class PreferenceActivity extends Activity {
+
+    private static final String PRIVACY_POLICY_URL = "http://www.cyanogenmod.org/docs/privacy";
+    private static final String TERMS_OF_SERVICE_URL = "http://www.cyanogenmod.org/docs/terms";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,10 +64,27 @@ public class PreferenceActivity extends Activity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.preferences_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
             finish();
+            return true;
+        } else if (itemId == R.id.privacy_policy) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(PRIVACY_POLICY_URL));
+            startActivity(intent);
+            return true;
+        } else if (itemId == R.id.terms_of_service) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(TERMS_OF_SERVICE_URL));
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

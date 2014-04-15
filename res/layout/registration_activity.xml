@@ -79,5 +79,13 @@
                      android:background="@null"
                      android:src="@drawable/twilio_powered_by"
                      android:id="@+id/twilio_button" />
+
+        <TextView android:id="@+id/privacy_policy"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dip"
+                  android:layout_marginBottom="20dip"
+                  android:text="@string/registration_activity__privacy_policy"
+                  />
     </LinearLayout>
 </ScrollView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/pref_menu__privacy_policy"
+          android:id="@+id/privacy_policy"
+          android:showAsAction="never" />
+    <item android:title="@string/pref_menu__terms_of_service"
+          android:id="@+id/terms_of_service"
+          android:showAsAction="never" />
+</menu>
