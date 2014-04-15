@@ -115,6 +115,7 @@
     <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND PHONE NUMBER</string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
+    <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Privacy policy</a></string>
 
     <!-- registration_problems -->
     <string name="registration_problems__some_possible_problems_include">Some possible problems include:</string>
@@ -188,6 +189,8 @@
     <string name="pref_activity_title">WhisperPush Preferences</string>
     <string name="pref_registration_category__title">Registration</string>
     <string name="pref_other_category__title">Other</string>
+    <string name="pref_menu__privacy_policy">Privacy policy</string>
+    <string name="pref_menu__terms_of_service">Terms of Service</string>
 
     <string name="pref_register__title">Register</string>
     <string name="pref_register__summary">Register for WhisperPush to enable encrypted SMS</string>
@@ -198,4 +201,5 @@
 
     <string name="pref_review_keys__title">Review identity keys</string>
     <string name="pref_my_identity__title">View my identity key</string>
+
 </resources>

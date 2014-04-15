@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +43,7 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 import org.whispersystems.whisperpush.R;
@@ -66,6 +68,7 @@ public class RegistrationActivity extends Activity {
     private TextView             number;
     private Button               createButton;
     private ImageButton          twilioButton;
+    private TextView             privacyPolicy;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -99,11 +102,13 @@ public class RegistrationActivity extends Activity {
         this.number         = (TextView)findViewById(R.id.number);
         this.createButton   = (Button)findViewById(R.id.registerButton);
         this.twilioButton   = (ImageButton) findViewById(R.id.twilio_button);
+        this.privacyPolicy  = (TextView) findViewById(R.id.privacy_policy);
 
         this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
         this.number.addTextChangedListener(new NumberChangedListener());
         this.createButton.setOnClickListener(new CreateButtonListener());
         this.twilioButton.setOnClickListener(new TwilioButtonListener());
+        this.privacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void initializeSpinner() {
