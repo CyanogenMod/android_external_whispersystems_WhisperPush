@@ -16,6 +16,7 @@
  */
 package org.whispersystems.whisperpush.ui;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -28,6 +29,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -80,11 +82,25 @@ public class RegistrationActivity extends Activity {
         }
 
         setContentView(R.layout.registration_activity);
-        getActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
+        }
 
         initializeResources();
         initializeSpinner();
         initializeNumber();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

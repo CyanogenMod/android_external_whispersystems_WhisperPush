@@ -66,8 +66,8 @@ import java.io.IOException;
  */
 public class RegistrationProgressActivity extends Activity {
 
-    private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
-    private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
+    private static final int FOCUSED_COLOR   = Color.parseColor("#fff0f0f0");
+    private static final int UNFOCUSED_COLOR = Color.parseColor("#ff9c9c9c");
 
     private ServiceConnection    serviceConnection        = new RegistrationServiceConnection();
     private Handler              registrationStateHandler = new RegistrationStateHandler();
