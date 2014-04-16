@@ -28,7 +28,7 @@
     <application android:name=".WhisperPush"
                  android:icon="@drawable/icon"
                  android:label="WhisperPush"
-                 android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+                 android:theme="@android:style/Theme.Holo">
 
         <activity android:name=".ui.RegistrationActivity"
                   android:windowSoftInputMode="stateUnchanged"
