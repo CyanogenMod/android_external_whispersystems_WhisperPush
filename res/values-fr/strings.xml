@@ -130,7 +130,6 @@
   <string name="verify_identity__invalid">Invalide</string>
   <string name="verify_identity_activity__avatar_icon">Avatar</string>
   <string name="view_new_identity_activity__verify_fingerprint">Ce contact vous a envoyé un nouveau message crypté. Envisager d\'appeler ce contact et de valider avec lui l\'empreinte digitale ci-dessous.</string>
-  <string name="view_new_identity_activity__continue">Continuer</string>
   <string name="view_identity_activity_menu__compare">Comparer</string>
   <string name="view_identity_activity_menu__scan_to_compare">Scanner pour comparer</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">Faites scanner pour comparer</string>
@@ -142,8 +141,6 @@
   <string name="registration_progress_notification__gms_update">Une mise à jour est nécessaire pour utiliser WhisperPush</string>
   <string name="pref_activity_title">Préférences WhisperPush</string>
   <string name="pref_registration_category__title">Inscription</string>
-  <string name="pref_other_category__title">Autres</string>
-  <string name="pref_register__title">Inscription</string>
   <string name="pref_register__summary">S\'inscrire à WhisperPush pour activer les SMS cryptés</string>
   <string name="pref_unregister__title">Désinscription</string>
   <string name="pref_unregister__summary">Se désinscrire de WhisperPush pour désactiver les SMS cryptés</string>

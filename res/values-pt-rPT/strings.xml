@@ -39,11 +39,11 @@
   <string name="RegistrationActivity_invalid_number">Número inválido</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número especificado (%s) é inválido.</string>
   <string name="RegistrationActivity_unsupported">Não suportado</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Desculpe, este aparelho não é suportado para mensagens de dados. Aparelhos que executam uma versão do Android inferior a 4.0 devem ter uma conta Google, registada. Aparelhos com Android 4.0 ou superior não requerem uma conta Google, mas devem ter a  aplicação Play Store instalada.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Desculpe, este dispositivo não é suportado para mensagens de dados. Dispositivos que executam uma versão do Android inferior a 4.0 devem ter uma conta Google, registada. Aparelhos com Android 4.0 ou superior não requerem uma conta Google, mas devem ter a  aplicação Play Store instalada.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Iremos agora verificar que o número está associado a este aparelho:\n\n%s\n\n Este número está correto, ou gostaria de o alterar antes de continuar?</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
-  <string name="RegistrationActivity_connect_with_textsecure">Conectar-se com TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Conetar-se com TextSecure</string>
   <string name="RegistrationProblemsActivity_possible_problems">Problemas possíveis</string>
   <string name="RegistrationProgressActivity_verifying_number">A verificar o número</string>
   <string name="RegistrationProgressActivity_edit_s">Editar %s</string>

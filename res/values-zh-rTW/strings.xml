@@ -18,5 +18,13 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-  <string name="pref_other_category__title">其他</string>
+  <string name="generic__please_wait">請稍候。</string>
+  <string name="MessageNotifier_d_pending_messages_require_validation">%d 則待驗證的訊息</string>
+  <string name="MessageNotifier_pending_message_requires_validation">有訊息待驗證。</string>
+  <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">您收到一則需要您驗證的訊息。</string>
+  <string name="MessageNotifier_new_session_title">新加密簡訊</string>
+  <string name="MessageNotifier_new_session__incoming_text">你收到一則來自 %s 的新加密簡訊。所有之後的對話都將被自動加密。</string>
+  <string name="MessageNotifier_new_session__outgoing_toast">已加密送到 %s 的訊息。</string>
+  <string name="registration_activity__register">註冊</string>
+  <string name="registration_problems__some_possible_problems_include">一些可能的問題包括：</string>
 </resources>

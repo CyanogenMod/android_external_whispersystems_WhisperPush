@@ -140,7 +140,7 @@
   <string name="pref_activity_title">Preferències WhisperPush</string>
   <string name="pref_registration_category__title">Registre</string>
   <string name="pref_other_category__title">Altres</string>
-  <string name="pref_register__title">Registra</string>
+  <string name="pref_register__title">Registre</string>
   <string name="pref_register__summary">Registra\'t a WhisperPush per activar els SMS encriptats</string>
   <string name="pref_unregister__title">Des-registra</string>
   <string name="pref_unregister__summary">Des-registra\'t de WhisperPush per desactivar els SMS encriptats</string>

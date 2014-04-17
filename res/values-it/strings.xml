@@ -140,7 +140,6 @@
   <string name="pref_activity_title">Preferenze WhisperPush</string>
   <string name="pref_registration_category__title">Registrazione</string>
   <string name="pref_other_category__title">Altro</string>
-  <string name="pref_register__title">Registrazione</string>
   <string name="pref_register__summary">Registrati a WhisperPush per attivare gli SMS cifrati</string>
   <string name="pref_unregister__title">Annulla registrazione</string>
   <string name="pref_unregister__summary">Annulla la registrazione a WhisperPush per disattivare gli SMS cifrati</string>
