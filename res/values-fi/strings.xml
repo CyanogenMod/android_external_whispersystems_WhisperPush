@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">MAAKOODISI JA PUHELINNUMERO</string>
   <string name="registration_activity__phone_number">PUHELINNUMERO</string>
   <string name="registration_activity__register">Rekisteröidy</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Tietosuojakäytäntö</a></string>
   <string name="registration_problems__some_possible_problems_include">Mahdollisia ongelmia ovat:</string>
   <string name="registration_problems__sms_interceptors">Tekstiviestin pysäyttäjät.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Jotkut kolmannen osapuolen tekstiviestiohjelmat, kuten Handcent tai GoSMS pysäyttää kaikki saapuvat tekstiviestit. Tarkista, jos sait tekstiviestin joka alkaa \'Your TextSecure verification code:\', jolloin sinun tulee määrittää kolmannen osapuolen tekstiviestiohjelma päästämään viestit läpi.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPushin asetukset</string>
   <string name="pref_registration_category__title">Rekisteröinti</string>
   <string name="pref_other_category__title">Muu</string>
+  <string name="pref_menu__privacy_policy">Tietosuojakäytäntö</string>
+  <string name="pref_menu__terms_of_service">Käyttöehdot</string>
   <string name="pref_register__title">Rekisteröidy</string>
   <string name="pref_register__summary">Rekisteröidy WhisperPushiin ottaaksesi salatut tekstiviestit käyttöön</string>
   <string name="pref_unregister__title">Peru rekisteröiminen</string>
