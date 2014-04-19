@@ -42,6 +42,7 @@
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sentímoslo abondo, esti preséu nun tien sofitu pa mensaxería de datos. Los preseos qu\'executen versiones d\'Android más vieyes que la  4.0 tienen que tener una cuenta Google rexistrada. Los preseos qu\'executen una versión Android 4.0 o posterior nun necesiten una cuenta Google, pero necesiten tener l\'app de la Play Store instalada.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Agora vamos verificar que\'l siguiente númberu ta asociáu con esti preséu:\n\n%s\n\n¿Ye esti númberu correutu o quies editalu enantes de siguir?</string>
   <string name="RegistrationActivity_continue">Siguir</string>
+  <string name="RegistrationActivity_edit">Editar</string>
   <string name="RegistrationActivity_connect_with_textsecure">Coneutar con TextSecure</string>
   <string name="RegistrationProblemsActivity_possible_problems">Posibles problemes</string>
   <string name="RegistrationProgressActivity_verifying_number">Verificando\'l númberu</string>
@@ -78,13 +79,14 @@
   <string name="ViewIdentityActivity_not_verified">¡NUN comprobada!</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">AVISU, ¡la clave esplorada nun coincide!</string>
   <string name="ViewIdentityActivity_no_scanned_key_found">¡Nun s\'alcontró nenguna clave al esplorar!</string>
+  <string name="country_selection_fragment__search">Guetar</string>
   <string name="country_selection_fragment__loading_countries">Cargando paises\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Por favor, confirme\'l país y númberu de teléfonu.</string>
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">CÓDIGU DE PAÍS Y NÚMBERU DE TELÉFONU</string>
   <string name="registration_activity__phone_number">NÚMBERU DE TELÉFONU</string>
   <string name="registration_activity__register">Rexistrar</string>
-  <string name="registration_problems__some_possible_problems_include">Algunos posibles problemes incluyen:</string>
+  <string name="registration_problems__some_possible_problems_include">Dalgunos posibles problemes inclúin:</string>
   <string name="registration_problems__sms_interceptors">Interceptadores de SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Algunos clientes de mensaxería de testu de terceros, como Handcent o GoSMS, puen funcionar mal ya interceptar tolos mensaxes SMS entrantes. Compruebe si recibió un mensaxe que principie con «Your TextSecure verification code:», nesi casu necesitará configurar esa app pa que dexe pasar los mensaxes SMS.</string>
   <string name="registration_problems__incorrect_number">Númberu incorreutu.</string>
@@ -98,6 +100,7 @@
   <string name="registration_progress_activity__edit_number">Editar númberu</string>
   <string name="registration_progress_activity__connectivity_error">Error de conexón.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure nun pudo coneutar col serviciu push.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Dalgunos posibles problemes inclúin:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nun hai conexón de rede.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">El to preséu necesita coneutividá de rede pa usar les carauterístiques de TextSecure. Comprueba que ta correutamente coneutáu a 3G o Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restricción del tornafueos.</string>
@@ -136,6 +139,8 @@
   <string name="registration_progress_notification__gms_update">Necesítase un anovamientu pa usar WhisperPush</string>
   <string name="pref_activity_title">Preferencies WhisperPush</string>
   <string name="pref_registration_category__title">Rexistru</string>
+  <string name="pref_other_category__title">Otros</string>
+  <string name="pref_register__title">Rexistrar</string>
   <string name="pref_register__summary">Rexistrar WhisperPush p\'habilitar el cifráu de SMS</string>
   <string name="pref_unregister__title">Desrexistrar</string>
   <string name="pref_unregister__summary">Desrexistrar WhisperPush pa deshabilitar el cifráu de SMS</string>
