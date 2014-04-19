@@ -20,18 +20,18 @@
 <resources>
   <string name="generic__please_wait">נא להמתין.</string>
   <string name="GcmReceiver_invalid_push_message">הודעת Push לא חוקית</string>
-  <string name="GcmReceiver_received_badly_formatted_push_message">קיבל הודעת push לא בתבנית נכונה.</string>
+  <string name="GcmReceiver_received_badly_formatted_push_message">התקבלה הודעת push בתבנית לא נכונה.</string>
   <string name="GcmReceiver_unsupported_push_version">גירסת push לא נתמכת</string>
-  <string name="GcmReceiver_received_push_message_with_unknown_version">התקבלה הודעה עם גרסה לא ידועה. האם אתה רוצה לעדכן את התוכנה?</string>
+  <string name="GcmReceiver_received_push_message_with_unknown_version">התקבלה הודעת push עם גרסה לא ידועה. האם אתה רוצה לעדכן את התוכנה?</string>
   <string name="MessageNotifier_d_pending_messages_require_validation">%d הודעות דורשות אימות</string>
-  <string name="MessageNotifier_pending_message_requires_validation">יש הודעות ממתינות לאימות.</string>
+  <string name="MessageNotifier_pending_message_requires_validation">יש הודעות הממתינות לאימות.</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">קיבלת הודעה הדורשת ממך לאמת אותה.</string>
   <string name="MessageNotifier_new_session_title">SMS מוצפן חדש</string>
   <string name="MessageNotifier_new_session__incoming_text">קיבלת הודעת SMS חדשה מוצפנת מ-%s. כל השיחות הנוספות יוצפנו באופן אוטומטי.</string>
   <string name="MessageNotifier_new_session__view_identity">הצג זהות</string>
-  <string name="MessageNotifier_new_session__outgoing_toast">הודעה ל-%s הוצפנה.</string>
+  <string name="MessageNotifier_new_session__outgoing_toast">ההודעה ל-%s הוצפנה.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">אין אפשרות לשחזר קבצים מצורפים מוצפנים עבור ההודעה הנכנסת.</string>
-  <string name="MessageReceiver_received_badly_encrypted_message">קיבל הודעה שהוצפנה לא נכון, או שההודעה הוצפנה עם מפתח לא ידוע.</string>
+  <string name="MessageReceiver_received_badly_encrypted_message">התקבלה הודעה שהוצפנה לא נכון, או שההודעה הוצפנה עם מפתח לא ידוע.</string>
   <string name="PendingIdentityItemView_received_s">התקבל %s</string>
   <string name="RegistrationActivity_select_your_country">בחר את המדינה שלך</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">עליך לציין את קוד המדינה שלך</string>
@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">קוד המדינה ומספר הטלפון שלך     </string>
   <string name="registration_activity__phone_number">מספר טלפון</string>
   <string name="registration_activity__register">הרשם</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">מדיניות הפרטיות</a></string>
   <string name="registration_problems__some_possible_problems_include">בעיות אפשריות כוללות:     </string>
   <string name="registration_problems__sms_interceptors">מיירטי SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">כמה תוכנות SMS צד שלישי, כמו Handcent או GoSMS, תופסות את כל הודעות ה-SMS. בדוק אם קיבלת הודעה שמתחילה ב-\"קודם ה-TextSecure שלך הוא:\", ובמקרה כזה אתה תצטרך להגדיר את התוכנה לאפשר להעביר הודעות SMS הלאה.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">העדפות WhisperPush</string>
   <string name="pref_registration_category__title">רישום</string>
   <string name="pref_other_category__title">אחר</string>
+  <string name="pref_menu__privacy_policy">מדיניות הפרטיות</string>
+  <string name="pref_menu__terms_of_service">תנאי שימוש</string>
   <string name="pref_register__title">הרשם</string>
   <string name="pref_register__summary">הירשם ל-WhisperPush כדי לאפשר SMS מוצפנים</string>
   <string name="pref_unregister__title">בטל רישום</string>

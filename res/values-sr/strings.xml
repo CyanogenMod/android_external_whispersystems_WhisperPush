@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">Ваша земља и телефонски број</string>
   <string name="registration_activity__phone_number">Телефонски број</string>
   <string name="registration_activity__register">Региструј се</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Privacy policy</a></string>
   <string name="registration_problems__some_possible_problems_include">Неки од могућих проблема су:</string>
   <string name="registration_problems__sms_interceptors">SMS пресретачи.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Неки клијенти трећих странака порука, као што је Handcent или GoSMS, понашају се лоше и врше пресретање свих долазних SMS порука. Проверите да ли сте примили текстуалну поруку која почиње са \'Your TextSecure verification code:\'  у ком случају ћете морати да конфигуришете апликацију текстуалних порука треће стране да пусти текстуалне поруке путем.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush подешавања</string>
   <string name="pref_registration_category__title">Регистрација</string>
   <string name="pref_other_category__title">Друго</string>
+  <string name="pref_menu__privacy_policy">Политика приватности</string>
+  <string name="pref_menu__terms_of_service">Услови употребе</string>
   <string name="pref_register__title">Региструј се</string>
   <string name="pref_register__summary">Региструјте WhisperPush да би сте омогућили шифровани SMS</string>
   <string name="pref_unregister__title">Одјавите</string>
