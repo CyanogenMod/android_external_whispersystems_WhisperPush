@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/background_pattern_repeat"
             android:fillViewport="true" >
 
     <FrameLayout
@@ -24,8 +23,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dip"
-                    android:layout_marginTop="10dip"
-                    android:background="@drawable/background_pane" >
+                    android:layout_marginTop="10dip" >
 
                 <ImageView
                         android:id="@+id/alert"
@@ -64,8 +62,7 @@
             <RelativeLayout android:id="@+id/voice_verification_layout"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dip"
-                            android:background="@drawable/background_pane">
+                            android:layout_marginBottom="10dip">
 
                 <ImageView android:id="@+id/telephone"
                            android:layout_width="wrap_content"
@@ -156,8 +153,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dip"
-                    android:layout_marginTop="10dip"
-                    android:background="@drawable/background_pane" >
+                    android:layout_marginTop="10dip">
 
                 <ImageView
                         android:id="@+id/connectivity_alert"
@@ -297,7 +293,6 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dip"
                     android:layout_marginTop="10dip"
-                    android:background="@drawable/background_pane"
                     android:gravity="center" >
 
                 <TableRow>
