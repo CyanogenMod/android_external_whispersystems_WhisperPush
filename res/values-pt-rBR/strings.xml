@@ -139,7 +139,7 @@
   <string name="registration_progress_notification__gms_update">Uma atualização é necessária para usar WhisperPush</string>
   <string name="pref_activity_title">Configurações de WhisperPush</string>
   <string name="pref_registration_category__title">Registro</string>
-  <string name="pref_other_category__title">Outro</string>
+  <string name="pref_other_category__title">Outros</string>
   <string name="pref_register__title">Registrar</string>
   <string name="pref_register__summary">Registre com WhisperPush para ativar SMS criptografado</string>
   <string name="pref_unregister__title">Desregistrar</string>

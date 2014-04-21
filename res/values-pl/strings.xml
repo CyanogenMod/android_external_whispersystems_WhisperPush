@@ -127,7 +127,6 @@
   <string name="verify_identity__invalid">Nieprawidłowy</string>
   <string name="verify_identity_activity__avatar_icon">Ikona awatara</string>
   <string name="view_new_identity_activity__verify_fingerprint">Ten kontakt wysłał Ci nową zaszyfrowaną wiadomość. Rozważ zadzwonienie i zweryfikowanie odcisku palca poprzez przeczytanie go na głos.</string>
-  <string name="view_new_identity_activity__continue">Kontynuuj</string>
   <string name="view_identity_activity_menu__compare">Porównaj</string>
   <string name="view_identity_activity_menu__scan_to_compare">Zeskanuj aby porównać</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">Przenieś zeskanowane do porównania</string>
@@ -139,8 +138,6 @@
   <string name="registration_progress_notification__gms_update">Aktualizacja jest wymagana do używania WhisperPush</string>
   <string name="pref_activity_title">Preferencje WhisperPush</string>
   <string name="pref_registration_category__title">Rejestracja</string>
-  <string name="pref_other_category__title">Inny</string>
-  <string name="pref_register__title">Zarejestruj</string>
   <string name="pref_register__summary">Zarejestruj się w WhisperPush aby aktywować szyfrowane SMS\'y</string>
   <string name="pref_unregister__title">Wyrejestruj</string>
   <string name="pref_unregister__summary">Wyrejestruj się w WhisperPush aby dezaktywować szyfrowane SMS\'y</string>
