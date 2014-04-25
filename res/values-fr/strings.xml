@@ -87,6 +87,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">LE CODE DE VOTRE PAYS ET VOTRE NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__register">Inscription</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Politique de confidentialité</a></string>
   <string name="registration_problems__some_possible_problems_include">Quelques problèmes possibles sont\u00A0:</string>
   <string name="registration_problems__sms_interceptors">Intercepteurs de SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Certains client de messages textes tiers, comme Handcent ou GoSMS, ont un mauvais comportement et interceptent tout les SMS entrants. Vérifiez si vous avez reçu un message commençant par \'Your TextSecure verification code:\'. Dans ce cas vous devez configurer votre client pour qu\'il laisse passer les messages au système.</string>
@@ -130,6 +131,7 @@
   <string name="verify_identity__invalid">Invalide</string>
   <string name="verify_identity_activity__avatar_icon">Avatar</string>
   <string name="view_new_identity_activity__verify_fingerprint">Ce contact vous a envoyé un nouveau message crypté. Envisager d\'appeler ce contact et de valider avec lui l\'empreinte digitale ci-dessous.</string>
+  <string name="view_new_identity_activity__continue">Continuer</string>
   <string name="view_identity_activity_menu__compare">Comparer</string>
   <string name="view_identity_activity_menu__scan_to_compare">Scanner pour comparer</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">Faites scanner pour comparer</string>
@@ -141,6 +143,10 @@
   <string name="registration_progress_notification__gms_update">Une mise à jour est nécessaire pour utiliser WhisperPush</string>
   <string name="pref_activity_title">Préférences WhisperPush</string>
   <string name="pref_registration_category__title">Inscription</string>
+  <string name="pref_other_category__title">Autres</string>
+  <string name="pref_menu__privacy_policy">Politique de confidentialité</string>
+  <string name="pref_menu__terms_of_service">Conditions d’utilisation</string>
+  <string name="pref_register__title">Inscription</string>
   <string name="pref_register__summary">S\'inscrire à WhisperPush pour activer les SMS cryptés</string>
   <string name="pref_unregister__title">Désinscription</string>
   <string name="pref_unregister__summary">Se désinscrire de WhisperPush pour désactiver les SMS cryptés</string>

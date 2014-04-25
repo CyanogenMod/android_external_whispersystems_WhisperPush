@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">JOU LAND KODE EN TELEFOONNOMMER&gt;</string>
   <string name="registration_activity__phone_number">TELEFOONNOMMER</string>
   <string name="registration_activity__register">Registreer</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Privaatheidsbeleid</a></string>
   <string name="registration_problems__some_possible_problems_include">Sommige moontlike probleme sluit in:</string>
   <string name="registration_problems__sms_interceptors">SMS onderskepers.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Sommige derde party sms kliënte, soos Handcent of GoSMS, gedra hulle sleg en onderskep alle inkomende SMS-boodskappe. Kyk om te sien of jy \'n SMS-boodskap wat begin met \'Jou TextSecure verifikasie kode:\' sien, in elke geval moet jy jou derde party sms program konfigureer om sms-boodskappe deur te laat</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush voorkeure</string>
   <string name="pref_registration_category__title">Registrasie</string>
   <string name="pref_other_category__title">Ander</string>
+  <string name="pref_menu__privacy_policy">Privaatheidsbeleid</string>
+  <string name="pref_menu__terms_of_service">Terme van diens</string>
   <string name="pref_register__title">Registreer</string>
   <string name="pref_register__summary">Registreer vir WhisperPush om geïnkripteer SMS te aktiveer.</string>
   <string name="pref_unregister__title">De-registrasie</string>

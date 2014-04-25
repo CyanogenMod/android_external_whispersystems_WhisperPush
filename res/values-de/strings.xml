@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">IHR LÄNDERCODE UND TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrieren</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Datenschutzerklärung</a></string>
   <string name="registration_problems__some_possible_problems_include">Mögliche Fehlerursachen:</string>
   <string name="registration_problems__sms_interceptors">SMS durch App abgefangen</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Einige SMS-Apps von Fremdanbietern, z.B. Handcent oder GoSMS, verhalten sich inkorrekt und fangen alle eingehenden SMS-Nachrichten ab. Bitte überprüfen Sie in Ihrer SMS-App, ob Sie eine Nachricht erhalten haben, die mit \'Your TextSecure verification code:\' beginnt. In diesem Fall müssen Sie Ihre SMS-App so konfigurieren, dass sie eingehende Nachrichten an andere Apps weiterleitet.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush-Einstellungen</string>
   <string name="pref_registration_category__title">Registrierung</string>
   <string name="pref_other_category__title">Andere Einstellungen</string>
+  <string name="pref_menu__privacy_policy">Datenschutzerklärung</string>
+  <string name="pref_menu__terms_of_service">Nutzungsbedingungen</string>
   <string name="pref_register__title">Registrieren</string>
   <string name="pref_register__summary">Bei WhisperPush registrieren, um verschlüsselte SMS zu aktivieren.</string>
   <string name="pref_unregister__title">Abmelden</string>

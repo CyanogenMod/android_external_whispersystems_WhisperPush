@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Privacybeleid</a></string>
   <string name="registration_problems__some_possible_problems_include">Enkele mogelijke problemen:</string>
   <string name="registration_problems__sms_interceptors">Onderscheppen van sms-berichten.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Enkele berichten-apps van derde partijen, zoals Handcent en GoSMS, gedragen zich onjuist en onderscheppen alle inkomende sms-berichten. Controleer of u een bericht heeft ontvangen dat begint met \'Your TextSecure verification code:\'. Indien dat het geval is, moet u uw berichten-app instellen om tekstberichten door te geven.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush</string>
   <string name="pref_registration_category__title">Registratie</string>
   <string name="pref_other_category__title">Meer</string>
+  <string name="pref_menu__privacy_policy">Privacybeleid</string>
+  <string name="pref_menu__terms_of_service">Gebruiksvoorwaarden</string>
   <string name="pref_register__title">Registreren</string>
   <string name="pref_register__summary">Registreren bij WhisperPush om versleutelde sms-berichten in te schakelen</string>
   <string name="pref_unregister__title">Afmelden</string>

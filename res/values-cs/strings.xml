@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">KÓD ZEMĚ A TELEFONNÍ ČÍSLO</string>
   <string name="registration_activity__phone_number">TELEFONNÍ ČÍSLO</string>
   <string name="registration_activity__register">Registrace</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Zásady ochrany osobních údajů</a></string>
   <string name="registration_problems__some_possible_problems_include">Některé možné problémy:</string>
   <string name="registration_problems__sms_interceptors">Narušitelé SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nějaké další systémy zasílání zpráv jako např. Handcent nebo GoSMS se chovají špatně a přijímají všechny příchozí SMS zprávy. Zkontrolujte, zda jste obdrželi textovou zprávu, která začíná \u201eYour TextSecure verification code:\u201c. V opačném případě budete muset nakonfigurovat tyto aplikace, aby propouštěly textové zprávy.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">Předvolby WhisperPush</string>
   <string name="pref_registration_category__title">Registrace</string>
   <string name="pref_other_category__title">Ostatní</string>
+  <string name="pref_menu__privacy_policy">Zásady ochrany osobních údajů</string>
+  <string name="pref_menu__terms_of_service">Podmínky služby</string>
   <string name="pref_register__title">Registrace</string>
   <string name="pref_register__summary">Zaregistrovat WhisperPush pro povolení šifrovaných SMS</string>
   <string name="pref_unregister__title">Zrušení registrace</string>
