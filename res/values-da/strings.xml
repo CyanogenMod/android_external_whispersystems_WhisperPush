@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrér</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Politik om personlige oplysninger</a></string>
   <string name="registration_problems__some_possible_problems_include">Nogle mulige problemer omfatter:</string>
   <string name="registration_problems__sms_interceptors">SMS-opfangere.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nogle tredjeparts-SMS-klienter, såsom Handcent eller GoSMS, opfører sig dårligt og opfanger alle indgående SMS-beskeder. Tjek, om du har modtaget en SMS, som starter med \'Your TextSecure verification code:\', i så fald vil du skulle konfigurere din tredjeparts-SMS-app til at lade SMS\'erne passere.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">Indstillinger for WhisperPush</string>
   <string name="pref_registration_category__title">Registrering</string>
   <string name="pref_other_category__title">Andet</string>
+  <string name="pref_menu__privacy_policy">Politik om personlige oplysninger</string>
+  <string name="pref_menu__terms_of_service">Vilkår for anvendelse</string>
   <string name="pref_register__title">Registrér</string>
   <string name="pref_register__summary">Registrér ved WhisperPush for at aktivere krypteret SMS.</string>
   <string name="pref_unregister__title">Afregistrér</string>

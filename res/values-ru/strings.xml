@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ И ТЕЛЕФОННЫЙ НОМЕР</string>
   <string name="registration_activity__phone_number">Телефонный номер</string>
   <string name="registration_activity__register">Регистрация</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Политика конфиденциальности</a></string>
   <string name="registration_problems__some_possible_problems_include">Возможные проблемы:</string>
   <string name="registration_problems__sms_interceptors">SMS перехватчики.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Некоторые приложения сообщений других разработчиков, такие как Handcent или GoSMS, срабатывают некорректно и перехватывают все входящие SMS-сообщения. Проверьте наличие полученных сообщений, которые начинаются с \"Ваш код доступа TextSecure\", если такие сообщения есть, вам нужно настроить ваше приложение сообщений других разработчиков для пропуска текстовых сообщений.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">Настройки WhisperPush</string>
   <string name="pref_registration_category__title">Регистрация</string>
   <string name="pref_other_category__title">Дополнительные функции</string>
+  <string name="pref_menu__privacy_policy">Политика конфиденциальности</string>
+  <string name="pref_menu__terms_of_service">Пользовательское соглашение</string>
   <string name="pref_register__title">Регистрация</string>
   <string name="pref_register__summary">Зарегистрироваться в WhisperPush для шифрования SMS-сообщений</string>
   <string name="pref_unregister__title">Отмена регистрации</string>

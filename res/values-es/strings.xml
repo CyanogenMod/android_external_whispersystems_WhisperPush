@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">TU CÓDIGO DE PAÍS Y NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__register">Registrar</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Política de privacidad</a></string>
   <string name="registration_problems__some_possible_problems_include">Se incluyen algunos problemas posibles:</string>
   <string name="registration_problems__sms_interceptors">Interceptores SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Algunas aplicaciones de terceros, como Handcent o GoSMS, pueden interceptar todos los mensajes SMS entrantes. Comprueba si has recibido un mensaje que empiece con \u00ABYour TextSecure verification code:\u00BB, en cuyo caso necesitarás configurar dicha aplicación para dejar pasar los mensajes SMS.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">Preferencias</string>
   <string name="pref_registration_category__title">Registro</string>
   <string name="pref_other_category__title">Otros</string>
+  <string name="pref_menu__privacy_policy">Política de privacidad</string>
+  <string name="pref_menu__terms_of_service">Términos de servicio</string>
   <string name="pref_register__title">Registrar</string>
   <string name="pref_register__summary">Registrar WhisperPush para habilitar el cifrado de SMS</string>
   <string name="pref_unregister__title">Quitar registro</string>

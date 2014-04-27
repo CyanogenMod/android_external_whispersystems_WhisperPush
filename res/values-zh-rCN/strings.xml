@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">您的国家/地区代码和电话号码</string>
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">隐私政策</a></string>
   <string name="registration_problems__some_possible_problems_include">一些可能的问题包括：</string>
   <string name="registration_problems__sms_interceptors">短信拦截器。</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">有些第三方短信客户端，如 Handcent 或 Go 短信，表现欠佳而且拦截所有短信。请检查是否收到以 \' 您 TextSecure 验证码：\' 开头的文本信息，在这种情况下您需要配置第三方短信应用以取消拦截短信。</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush 首选项</string>
   <string name="pref_registration_category__title">注册</string>
   <string name="pref_other_category__title">其他</string>
+  <string name="pref_menu__privacy_policy">隐私政策</string>
+  <string name="pref_menu__terms_of_service">服务条款</string>
   <string name="pref_register__title">注册</string>
   <string name="pref_register__summary">注册 WhisperPush 以启用短信加密</string>
   <string name="pref_unregister__title">取消注册</string>
