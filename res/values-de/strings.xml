@@ -54,9 +54,9 @@
   <string name="RegistrationProgressActivity_network_error">Netzwerkfehler</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Keine Verbindung möglich. Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen es erneut.</string>
   <string name="RegistrationProgressActivity_verification_failed">Überprüfung ist fehlgeschlagen</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der von Ihnen eingegebene Verifizierungscode ist falsch. Bitte versuchen sie es erneut.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der von Ihnen eingegebene Verifizierungscode ist falsch. Bitte versuchen Sie es erneut.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu oft einen falschen Verifizierungscode eingegeben. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu oft einen falschen Verifizierungscode eingegeben. Bitte warten Sie einen Moment, bevor Sie es erneut versuchen.</string>
   <string name="RegistrationProgressActivity_requesting_call">Anruf anfordern</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Anruf zur Verifizierung wird angefordert\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Serverfehler</string>
@@ -73,7 +73,7 @@
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Möchten Sie wirklich diese Indentität als ungültig markieren und somit alle zur Identität gehörenden ausstehenden Nachrichten verwerfen?</string>
   <string name="VerifyIdentityActivity_processing">Wird bearbeitet</string>
   <string name="VerifyIdentityActivity_discarding_messages">Nachrichten werden verworfen\u2026</string>
-  <string name="VerifyIdentityActivity_processing_identity_key">Identitätsschlüssel wird bearbeitet\u2026</string>
+  <string name="VerifyIdentityActivity_processing_identity_key">Identitätsschlüssel wird verarbeitet\u2026</string>
   <string name="ViewIdentityActivity_verified">Verifiziert</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches">Der eingescannte Schlüssel stimmt überein!</string>
   <string name="ViewIdentityActivity_not_verified">NICHT verifiziert</string>

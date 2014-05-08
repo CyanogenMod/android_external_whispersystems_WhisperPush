@@ -86,6 +86,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">ÜLKE KODUNUZ VE TELEFON NUMARANIZ</string>
   <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
   <string name="registration_activity__register">Kayıt Ol</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Gizlilik politikası</a></string>
   <string name="registration_problems__some_possible_problems_include">Bazı olası sorunlar şunlardır:</string>
   <string name="registration_problems__sms_interceptors">SMS Engelleyiciler.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Handcent veya GoSMS gibi bazı üçüncü parti mesajlaşma uygulamaları hatalı davranabilir ve gelen mesajları engelleyebilir. Eğer \'TextSecure doğrulama kodu:\' ile başlayan bir mesaj aldıysanız, mesajların düzgün gelmesini sağlamak için üçüncü parti mesaj uygulamasını yeniden yapılandırmanız gerekir.</string>
@@ -140,6 +141,8 @@
   <string name="pref_activity_title">WhisperPush Tercihleri</string>
   <string name="pref_registration_category__title">Kayıt</string>
   <string name="pref_other_category__title">Diğer</string>
+  <string name="pref_menu__privacy_policy">Gizlilik politikası</string>
+  <string name="pref_menu__terms_of_service">Hizmet Koşulları</string>
   <string name="pref_register__title">Kayıt Ol</string>
   <string name="pref_register__summary">Şifreli SMSi etkinleştirmek için WhisperPush\'a kayıt olun</string>
   <string name="pref_unregister__title">Kaydı kaldır</string>
