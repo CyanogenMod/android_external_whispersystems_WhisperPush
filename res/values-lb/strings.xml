@@ -17,7 +17,7 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="GcmReceiver_invalid_push_message">Ongëltege Push-Message</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Et gouf e falsch formatéierte Push-Message empfaangen.</string>
   <string name="GcmReceiver_received_push_message_with_unknown_version">Et gouf e Push-Message mat onbekannter Versioun empfaangen. Muss deng Client-App aktualiséiert ginn?</string>

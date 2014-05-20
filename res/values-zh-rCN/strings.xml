@@ -17,7 +17,7 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">请稍候。</string>
   <string name="GcmReceiver_invalid_push_message">无效的推送消息</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">收到的格式不正确的推送邮件。</string>
@@ -39,7 +39,7 @@
   <string name="RegistrationActivity_invalid_number">无效号码</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你指定的号码 (%s) 是无效的。</string>
   <string name="RegistrationActivity_unsupported">不支持</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，此设备不支持资料短信。运行 Android 4.0 版本以下的设备必须拥有一个 Google 账户。运行 Android 4.0 版本或以上的设备不需要 Google 帐户，但必须已安装 Google Play 商店。</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，此设备不支持资料短信。运行 Android 4.0 版本以下的设备必须拥有一个 Google 帐户。运行 Android 4.0 版本或以上的设备不需要 Google 帐户，但必须已安装 Google Play 商店。</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">我们将验证以下号码并与设备关联：\n\n%s\n\n 这个号码是否正确，是否在继续之前修改？</string>
   <string name="RegistrationActivity_continue">继续</string>
   <string name="RegistrationActivity_edit">编辑</string>

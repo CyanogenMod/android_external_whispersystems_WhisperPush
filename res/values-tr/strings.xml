@@ -17,20 +17,20 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">Lütfen bekleyin.</string>
   <string name="GcmReceiver_invalid_push_message">Geçersiz Push Mesajı</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Kötü biçimlenmiş push mesajı alındı.</string>
-  <string name="GcmReceiver_unsupported_push_version">Desteklenmeyen Push Versiyonu</string>
+  <string name="GcmReceiver_unsupported_push_version">Desteklenmeyen Push Sürümü</string>
   <string name="GcmReceiver_received_push_message_with_unknown_version">Bilinmeyen bir sürümde bir push mesajı alındı. İstemciyi güncellemeye ihtiyacınız var mı?</string>
   <string name="MessageNotifier_d_pending_messages_require_validation">%d bekleyen mesaj onaylama gerektiriyor</string>
   <string name="MessageNotifier_pending_message_requires_validation">Bekleyen mesaj doğrulama gerektiriyor.</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Doğrulamanızı gerektiren bir mesaj aldınız.</string>
   <string name="MessageNotifier_new_session_title">Yeni Şifreli SMS</string>
-  <string name="MessageNotifier_new_session__incoming_text">%s tarafından yeni şifrelenmiş SMS mesajı aldınız. Tüm sohbet otomatik olarak şifrelenecek.</string>
+  <string name="MessageNotifier_new_session__incoming_text">%s size yeni bir şifreli SMS mesajı gönderdi. Sohbetin geri kalanı otomatik olarak şifrelenecek.</string>
   <string name="MessageNotifier_new_session__view_identity">Kimliği gör</string>
-  <string name="MessageNotifier_new_session__outgoing_toast">%s alıcısına mesaj şifrelendi.</string>
-  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Gelen mesaj için şifreli ek alınamadı.</string>
+  <string name="MessageNotifier_new_session__outgoing_toast">%s için yazdığınız mesaj şifrelendi.</string>
+  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Gelen mesajın şifreli eki alınamadı.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Yanlış şifrelenmiş ya da olmayan bir oturumla şifrelenmiş mesaj alındı.</string>
   <string name="PendingIdentityItemView_received_s">%s alındı</string>
   <string name="RegistrationActivity_select_your_country">Ülkenizi Seçin</string>
@@ -40,11 +40,11 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Belirtmiş olduğunuz numara (%s) geçersizdir.</string>
   <string name="RegistrationActivity_unsupported">Desteklenmiyor</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Üzgünüz, bu cihaz internet üzerinden mesajlaşmayı desteklemiyor. Android 4.0 sürümü altındaki sistem çalıştıran cihazlar kayıtlı Google Hesabına sahip olmak zorundalar. Android 4.0 ya da üstü sürüme sahip cihazlar için Google Hesabına sahip olmalarına gerek yok ancak bu cihazlarda Play Store uygulaması kurulu olmak zorundadır.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Aşağıdaki numarayı şimdi bu cihazla ilişkilendirip doğrulayacağız:\n\n%s\n\nBu numara doğru mu, devam etmeden önce düzenlemek ister misiniz?</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Şimdi aşağıdaki numarayı doğrulayıp bu cihazla ilişkilendireceğiz:\n\n%s\n\nBu numara doğru mu yoksa devam etmeden önce düzeltmek ister misiniz?</string>
   <string name="RegistrationActivity_continue">Devam</string>
   <string name="RegistrationActivity_edit">Düzenle</string>
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure İle Bağlan</string>
-  <string name="RegistrationProblemsActivity_possible_problems">Olası Problemler</string>
+  <string name="RegistrationProblemsActivity_possible_problems">Olası Sorunlar</string>
   <string name="RegistrationProgressActivity_verifying_number">Numara doğrulanıyor</string>
   <string name="RegistrationProgressActivity_edit_s">%s düzenle</string>
   <string name="RegistrationProgressActivity_possible_problems">Olası problemler.</string>
@@ -52,7 +52,7 @@
   <string name="RegistrationProgressActivity_connecting">Bağlanıyor</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Doğrulama için bağlanılıyor\u2026</string>
   <string name="RegistrationProgressActivity_network_error">Ağ Hatası!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Bağlanılamadı. Lütfen ağ bağlantınızı kontrol edin ve tekrar deneyin.</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="RegistrationProgressActivity_verification_failed">Doğrulama Başarısız!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Doğrulama kodu yanlış gönderildi. Lütfen tekrar deneyin.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Çok fazla deneme</string>
@@ -62,15 +62,15 @@
   <string name="RegistrationProgressActivity_server_error">Sunucu Hatası</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Sunucu bir hatayla karşılaştı. Lütfen tekrar deneyin.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Çok Fazla İstek!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Zaten yakın zamanda bir sesli arama talep ettiniz. 20 dakika içinde başka bir tane talep edebilirsiniz.</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Zaten yakın zamanda bir sesli arama talep ettiniz. 20 dakika sonra başka bir tane talep edebilirsiniz.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Ses kodu doğrulanıyor\u2026</string>
   <string name="RegistrationService_registration_complete">Kayıt Tamamlandı</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Push mesajlaşma kaydı başarıyla tamamlandı.</string>
   <string name="RegistrationService_registration_error">Kayıt Hatası</string>
-  <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Push mesajlaşma kaydı bir sorunla karşılaştı.</string>
-  <string name="SmsServiceBridge_received_encrypted_attachment">Şifreli ek alındı, ancak size gösteremiyoruz çünkü Koush bir tembel.</string>
-  <string name="VerifyIdentityActivity_discard_messages">Mesajlar atılsın mı?</string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Bu kimliğin parmak izini geçersiz işaretlemeyi ve onunla ilişkili tim bekleyen mesajları atmayı istediğinize emin misiniz?</string>
+  <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Push mesajlaşma kayıt işlemi bir sorunla karşılaştı.</string>
+  <string name="SmsServiceBridge_received_encrypted_attachment">Şifreli ek alındı, ama Koush bir tembel olduğu için bunu gösteremiyoruz.</string>
+  <string name="VerifyIdentityActivity_discard_messages">Mesajlar iptal edilsin mi?</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Bu kimliğin parmak izini geçersiz olarak işaretlemek ve onunla ilişkili tüm bekleyen mesajları iptal etmek istediğinize emin misiniz?</string>
   <string name="VerifyIdentityActivity_processing">İşleniyor</string>
   <string name="VerifyIdentityActivity_discarding_messages">Mesajlar atılıyor\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Kimlik anahtarı işleniyor\u2026</string>
@@ -149,5 +149,5 @@
   <string name="pref_unregister__summary">Şifreli SMSi devre dışı bırakmak için WhisperPush\'tan kaydınızı silin</string>
   <string name="pref_unregister__progress_title">Kayıt siliniyor</string>
   <string name="pref_review_keys__title">Kimlik anahtarlarını incele</string>
-  <string name="pref_my_identity__title">Kimlik kartıma bak</string>
+  <string name="pref_my_identity__title">Kimlik anahtarıma bak</string>
 </resources>

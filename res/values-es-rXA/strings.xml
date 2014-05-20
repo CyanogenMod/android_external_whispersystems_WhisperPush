@@ -17,7 +17,7 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">Por favor, espera.</string>
   <string name="GcmReceiver_invalid_push_message">Mensaxe Push inválidu</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Recibióse un mensaxe Push con formatu malu.</string>
@@ -105,7 +105,7 @@
   <string name="registration_progress_activity__no_network_connectivity">Nun hai conexón de rede.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">El to preséu necesita coneutividá de rede pa usar les carauterístiques de TextSecure. Comprueba que ta correutamente coneutáu a 3G o Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restricción del tornafueos.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si tas coneutáu vía Wi-Fi, ye dable qu\'un tornafueos tea bloquiando l\'accesu al sirvidor de TextSecure. Prueba n\'otra rede o al traviés de datos móviles.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si tas coneutáu per aciu de Wi-Fi, ye dable qu\'un tornafueos tea bloquiando l\'accesu al sirvidor de TextSecure. Prueba n\'otra rede o al traviés de datos móviles.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure va verificar automáticamente el to númberu de teléfonu por aciu d\'un mensaxe SMS de confirmación.</string>
   <string name="registration_progress_activity__connecting">Coneutando\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Esperando la verificación per SMS\u2026</string>
@@ -120,7 +120,7 @@
   <string name="registration_completed_activity__registration_completed">Rexistru acabáu</string>
   <string name="registration_completed_activity__body">Rexistréstete con xeitu en TextSecure.</string>
   <string name="registration_completed_activity__register_again">Rexistrase otra vuelta</string>
-  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Anguaño nun tienes denguna identidá na to base de datos de confianza</string>
+  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Anguaño nun tienes nenguna identidá na to base de datos de confianza</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Nun hai mensaxes esperando validación.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">La güelga d\'identidá d\'esti contautu camudó, lo que, seique, quiera poder dicir que daquién ta intentando interceptar la to comunicación, o, a cencielles que\'l to contautu tien un teléfonu nuevu. Convendría que llamares a esti contautu y validar la güelga dixital d\'abaxo lleéndola en voz alta. Los mensaxes d\'esti contautu van retenese hasta que lu valides.</string>
   <string name="verify_identity_activity__their_fingerprint">La so buelga dixital:</string>
