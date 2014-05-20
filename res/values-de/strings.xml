@@ -17,12 +17,12 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">Bitte warten</string>
   <string name="GcmReceiver_invalid_push_message">Ungültige Push-Nachricht</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Eine falsch formatierte Push-Nachricht wurde empfangen</string>
-  <string name="GcmReceiver_unsupported_push_version">Nicht unterstützte Push-Version</string>
-  <string name="GcmReceiver_received_push_message_with_unknown_version">Eine Push-Nachricht mit unbekannter Version wurde empfangen. Ist Ihr Client aktuell?</string>
+  <string name="GcmReceiver_unsupported_push_version">Push-Version wird nicht unterstützt</string>
+  <string name="GcmReceiver_received_push_message_with_unknown_version">Push-Nachricht mit unbekannter Version empfangen. Ist Ihr Client aktuell?</string>
   <string name="MessageNotifier_d_pending_messages_require_validation">%d ausstehende Nachrichten benötigen Validierung</string>
   <string name="MessageNotifier_pending_message_requires_validation">Ausstehende Nachricht benötigt Validierung</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Sie haben eine Nachricht erhalten, die von Ihnen validiert werden muss</string>
@@ -41,7 +41,7 @@
   <string name="RegistrationActivity_unsupported">Nicht unterstützt</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Dieses Gerät unterstützt keine Daten-Nachrichten. Geräte mit einer Android-Version vor 4.0 müssen ein Google-Konto besitzen. Geräte mit einer Android-Version ab 4.0 müssen kein Google-Konto besitzen, aber die PlayStore-App muss installiert sein.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Im Folgenden wird überprüft, dass die folgende Nummer mit diesem Gerät verbunden ist:\n\n%s\n\nIst diese Nummer korrekt oder möchten Sie sie vor dem Fortfahren bearbeiten?</string>
-  <string name="RegistrationActivity_continue">Fortfahren</string>
+  <string name="RegistrationActivity_continue">Weiter</string>
   <string name="RegistrationActivity_edit">Bearbeiten</string>
   <string name="RegistrationActivity_connect_with_textsecure">Mit TextSecure verbinden</string>
   <string name="RegistrationProblemsActivity_possible_problems">Mögliche Fehlerursachen:</string>
@@ -54,9 +54,9 @@
   <string name="RegistrationProgressActivity_network_error">Netzwerkfehler</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Keine Verbindung möglich. Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen es erneut.</string>
   <string name="RegistrationProgressActivity_verification_failed">Überprüfung ist fehlgeschlagen</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der von Ihnen eingegebene Verifizierungscode ist falsch. Bitte versuchen Sie es erneut.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der eingegebene Verifizierungscode ist falsch. Bitte noch einmal versuchen.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu oft einen falschen Verifizierungscode eingegeben. Bitte warten Sie einen Moment, bevor Sie es erneut versuchen.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Der Verifizierungscode wurde zu oft falsch eingegeben. Bitte einen Moment warten, bevor Sie es erneut versuchen.</string>
   <string name="RegistrationProgressActivity_requesting_call">Anruf anfordern</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Anruf zur Verifizierung wird angefordert\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Serverfehler</string>
