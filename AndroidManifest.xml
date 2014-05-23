@@ -30,6 +30,9 @@
                  android:label="WhisperPush"
                  android:theme="@android:style/Theme.Holo">
 
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".ui.RegistrationActivity"
                   android:windowSoftInputMode="stateUnchanged"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">

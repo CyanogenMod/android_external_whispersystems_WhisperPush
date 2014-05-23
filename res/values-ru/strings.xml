@@ -17,7 +17,7 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">Пожалуйста, подождите.</string>
   <string name="GcmReceiver_invalid_push_message">Неправильное сообщение</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Получено сообщение в неверном формате</string>
@@ -68,15 +68,15 @@
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Регистрация Push-уведомлением успешно завершена.</string>
   <string name="RegistrationService_registration_error">Ошибка регистрации</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Во время регистрации Push-уведомлением произошла ошибка.</string>
-  <string name="SmsServiceBridge_received_encrypted_attachment">Получено зашифрованное вложение, но его невозможно отобразить, потому что Koush - бездельник.</string>
+  <string name="SmsServiceBridge_received_encrypted_attachment">Получено зашифрованное вложение, но его невозможно отобразить, потому что Koush — бездельник.</string>
   <string name="VerifyIdentityActivity_discard_messages">Удалить сообщения?</string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Вы уверены, что хотите отметить эту идентификационную подпись неверной и отменить все ожидающие сообщения, ассоциированные с ним?</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Вы уверены, что хотите отметить эту идентификационную подпись неверной и отменить все ожидающие сообщения, ассоциированные с ней?</string>
   <string name="VerifyIdentityActivity_processing">Обработка</string>
   <string name="VerifyIdentityActivity_discarding_messages">Удаление сообщений\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Обработка идентификационного ключа\u2026</string>
   <string name="ViewIdentityActivity_verified">Проверено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches">Просканированный ключ совпадает.</string>
-  <string name="ViewIdentityActivity_not_verified">НЕ проверено!</string>
+  <string name="ViewIdentityActivity_not_verified">НЕ подтверждено!</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">ВНИМАНИЕ, просканированный ключ не совпадает!</string>
   <string name="ViewIdentityActivity_no_scanned_key_found">При сканировании ключ не обнаружен!</string>
   <string name="country_selection_fragment__search">Поиск</string>
@@ -108,10 +108,10 @@
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Если вы подключены через wifi, возможно, сетевой экран блокирует доступ к серверу TextSecure. Попробуйте другую сеть мобильных данных.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure сейчас проверит ваш номер подтверждающим SMS-сообщением.</string>
   <string name="registration_progress_activity__connecting">Подключение\u2026</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Ожидание СМС для проверки\u2026</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Ожидание сообщения для проверки\u2026</string>
   <string name="registration_progress_activity__registering_with_server">Регистрация на сервере\u2026</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Это может занять какое-то время. Пожалуйста, наберитесь терпения, мы вам сообщим, когда проверка завершится.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">Истекло время ожидания TextSecure проверочной СМС.\n\n    </string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">Истекло время ожидания проверочного SMS-сообщения.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-проверка не удалась.</string>
   <string name="registration_progress_activity__generating_keys">Генерация ключей\u2026</string>
   <string name="registration_progress_activity__alert">Предупреждение</string>

@@ -17,7 +17,7 @@
      You should have received a copy of the GNU General Public License
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="generic__please_wait">Te rugăm să aștepți.</string>
   <string name="GcmReceiver_invalid_push_message">Mesaj Push invalid</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Mesajul push primit este formatat greșit.</string>
