@@ -41,7 +41,7 @@
   <string name="RegistrationActivity_unsupported">සහාය නොදක්වයි</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">කනගාටුයි, මෙම උපාංගය දත්ත පනිවිඩ යැවීම සඳහා සහාය නොදක්වයි. Android 4.0ට වඩා පැරණි අනුවාද ධාවනය වන උපාංග සඳහා ලියාපදිංචි කල ගූගල් ගිණුමක් අත්‍යාවශ්‍යය. Android 4.0 හෝ අලුත් අනුවාද ධාවනය වන උපාංග සඳහා ගූගල් ගිණුමක් අත්‍යාවශ්‍ය නැත, නමුත් Play Store යෙදුම ස්ථාපනය කර තිබිය යුතුය.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">අපි දැන් මතු සඳහන්වන අංකය මෙම උපාංගය සමග සම්බන්ධ දැයි පරීක්ෂා කෙරේ:\n\n%s\n\n මෙම අංකය නිවැරදිද, නැතිනම් පරීක්ෂාවට ප්‍රථම එය වෙනස් කිරීමට ඔබට අවශ්‍යද?</string>
-  <string name="RegistrationActivity_continue">කරගෙන යන්න</string>
+  <string name="RegistrationActivity_continue">ඉදිරියට</string>
   <string name="RegistrationActivity_edit">සකසන්න</string>
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure සමග සම්බන්ධ වෙන්න</string>
   <string name="RegistrationProblemsActivity_possible_problems">වියහැකි ගැටඵ</string>
@@ -128,7 +128,7 @@
   <string name="verify_identity__invalid">අවලංගුයි</string>
   <string name="verify_identity_activity__avatar_icon">මූර්ති අයිකනය</string>
   <string name="view_new_identity_activity__verify_fingerprint">මෙම සම්බන්ධතාවය නව ගුප්ත කේතිත පනිවිඩයක් ඔබට එවා ඇත. මෙම සම්බන්ධතාවය අමතා පහත ඇඟිලි සටහන තහවුරු කරගැනීමට එය හඬ නගා කියවීම පිලිබඳ සලකා බලන්න.</string>
-  <string name="view_new_identity_activity__continue">කරගෙන යන්න</string>
+  <string name="view_new_identity_activity__continue">ඉදිරියට</string>
   <string name="view_identity_activity_menu__compare">සසඳන්න</string>
   <string name="view_identity_activity_menu__scan_to_compare">සැසඳීමට සුපිරික්සන්න</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">සැසඳීම සඳහා සුපිරික්සනය කරගන්න</string>
