@@ -67,7 +67,7 @@
   <string name="RegistrationService_registration_complete">Registracija baigta</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">„Push“ susirašinėjimų registracija sėkmingai baigta.</string>
   <string name="RegistrationService_registration_error">Registracijos klaida</string>
-  <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">\"„Push“ susirašinėjimų registracijai iškilo problema.</string>
+  <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">„Push“ susirašinėjimų registracijai iškilo problema.</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">Gautas užšifruotas priedas, tačiau mes negalime jo parodyti, nes Koush yra tinginys.</string>
   <string name="VerifyIdentityActivity_discard_messages">Išmesti pranešimus?</string>
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Ar tikrai norite pažymėti šį tapatybės piršto antspaudą kaip negaliojantį ir išmesti visus laukiančius pranešimus susijusius su juo?</string>
@@ -89,7 +89,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Privatumo politika</a></string>
   <string name="registration_problems__some_possible_problems_include">Keletas galimų problemų:</string>
   <string name="registration_problems__sms_interceptors">SMS perėmėjai.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Kai kurie trečiųjų šalių susirašinėjimo klientai, tokie kaip „Handcent“ ar „GoSMS“, perima visus gaunamus SMS pranešimus. Patikrinkite, ar gavote tekstinį pranešimą, kuris prasideda su „Jūsų „TextSecure“ patvirtinimo kodu:“, tokiu atveju jums reikia sukonfigūruoti trečiosios šalies teksto susirašynėjimo programą kad tekstiniai pranešimai būtų gaunami.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Kai kurie trečiųjų šalių susirašinėjimo klientai, tokie kaip „Handcent“ ar „GoSMS“, perima visus gaunamus SMS pranešimus. Patikrinkite, ar gavote tekstinį pranešimą, kuris prasideda su Jūsų „TextSecure“ patvirtinimo kodu, tokiu atveju jums reikia sukonfigūruoti trečiosios šalies teksto susirašynėjimo programą kad tekstiniai pranešimai būtų gaunami.</string>
   <string name="registration_problems__incorrect_number">Neteisingas numeris.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Prašome įsitikinkite, kad įvedėte savo numerį teisingai, ir kad jis teisingai suformatuotas jūsų regione.</string>
   <string name="registration_problems__google_voice">Google Voice</string>

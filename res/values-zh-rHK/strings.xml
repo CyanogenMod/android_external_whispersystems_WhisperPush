@@ -26,11 +26,11 @@
   <string name="MessageNotifier_d_pending_messages_require_validation">%d 則待驗證的訊息</string>
   <string name="MessageNotifier_pending_message_requires_validation">有訊息待驗證。</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">您收到一則需要您驗證的訊息。</string>
-  <string name="MessageNotifier_new_session_title">新加密短訊</string>
+  <string name="MessageNotifier_new_session_title">新的加密短訊</string>
   <string name="MessageNotifier_new_session__incoming_text">你收到一則來自 %s 的新加密短訊，所有之後的對話都將被自動加密。</string>
   <string name="MessageNotifier_new_session__view_identity">檢視身份</string>
   <string name="MessageNotifier_new_session__outgoing_toast">傳送到 %s 的訊息已被加密。</string>
-  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">無法為傳入的短訊獲取加密的附件。</string>
+  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">無法從傳入的短訊獲取加密的附件。</string>
   <string name="MessageReceiver_received_badly_encrypted_message">收到錯誤加密的短訊，或不存在會話的加密短訊。</string>
   <string name="PendingIdentityItemView_received_s">已收到 %s</string>
   <string name="RegistrationActivity_select_your_country">選擇你的國家</string>
@@ -39,7 +39,7 @@
   <string name="RegistrationActivity_invalid_number">號碼無效</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你註明的號碼 (%s) 是無效的。</string>
   <string name="RegistrationActivity_unsupported">不支援的</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，這個裝置對數據短訊不支援。運行低於 4.0 版本的 Android 裝置要求有一個已註冊的 Google 帳戶。而運行 4.0 或更新版本的 Android裝置並不要求有一個 Google 帳戶，但必須安裝 Google Play 的應用程式。</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，這個裝置對數據短訊不支援。運行低於 4.0 版本的 Android 裝置要求有一個已註冊的 Google 帳戶。運行 4.0 或更新版本的 Android 裝置並不要求有一個 Google 帳戶，但必須安裝 Google Play 的應用程式。</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">我們將驗證以下號碼並與裝置關聯：\n\n%s\n\n 這個號碼是否正確，是否繼續之前修改？</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_edit">編輯</string>
@@ -48,11 +48,11 @@
   <string name="RegistrationProgressActivity_verifying_number">正在驗證號碼</string>
   <string name="RegistrationProgressActivity_edit_s">編輯 %s</string>
   <string name="RegistrationProgressActivity_possible_problems">可能出現的問題。</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">你必須先輸入你收到的代碼\u2026</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">您必須先輸入您收到的代碼\u2026</string>
   <string name="RegistrationProgressActivity_connecting">正在連接</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">正在連接驗證\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">網路錯誤！</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">無法連接，請檢查你的網路連接並再試一次。</string>
+  <string name="RegistrationProgressActivity_network_error">網絡錯誤！</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">無法連接，請檢查你的網絡連接並再試一次。</string>
   <string name="RegistrationProgressActivity_verification_failed">驗證失敗！</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">你提交的驗證碼不正確，請再試一次。</string>
   <string name="RegistrationProgressActivity_too_many_attempts">嘗試次數過多</string>
@@ -89,7 +89,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">私隱政策</a></string>
   <string name="registration_problems__some_possible_problems_include">一些可能的問題包括：</string>
   <string name="registration_problems__sms_interceptors">短訊攔截器。</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">有些第三方短訊客戶端，如 Handcent 或 Go 短訊，表現欠佳且可能攔截短訊。檢查是否收到開頭為「你的TextSecure 驗證碼：」的短訊。在這種情況下，你需要配置你的第三方短訊應用，讓短訊通過。</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">有些第三方短訊客戶端，如 Handcent 或 Go 短訊，表現欠佳且可能攔截短訊。檢查是否收到開頭為「你的 TextSecure 驗證碼：」的短訊。在這種情況下，你需要配置你所安裝的第三方短訊應用程式，讓短訊通過。</string>
   <string name="registration_problems__incorrect_number">號碼不正確。</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">請檢查以確保您輸入的電話號碼正確，並且符合您所在地區的格式。</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -102,10 +102,10 @@
   <string name="registration_progress_activity__connectivity_error">連接錯誤。</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure 無法連接到推送服務。</string>
   <string name="registration_progress_activity__some_possible_problems_include">一些可能的問題包括：</string>
-  <string name="registration_progress_activity__no_network_connectivity">沒有網路連接。</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">您的裝置需要網路連接才能使用此 TextSecure 功能。檢查以確保它已連接到 3G 或 Wi-Fi 無線網絡。</string>
+  <string name="registration_progress_activity__no_network_connectivity">沒有網絡連接。</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">您的裝置需要網絡連接才能使用此 TextSecure 功能。檢查以確保它已連接到 3G 或 Wi-Fi 無線網絡。</string>
   <string name="registration_progress_activity__restrictive_firewall">限制性的防火牆。</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">如果你已連接到 Wi-Fi，有可能是防火牆阻止對 TextSecure 伺服器的連接。嘗試其他網路或行動數據。</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">如果你已連線至 Wi-Fi，有可能是防火牆阻止對 TextSecure 伺服器的連線。嘗試其他網絡或流動數據。</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure 將會自動以確認短訊驗證您的號碼。</string>
   <string name="registration_progress_activity__connecting">正在連接\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">正在等待短訊驗證\u2026</string>
@@ -146,7 +146,7 @@
   <string name="pref_register__title">註冊</string>
   <string name="pref_register__summary">註冊 WhisperPush 啟用加密短訊</string>
   <string name="pref_unregister__title">撤消註冊</string>
-  <string name="pref_unregister__summary">從 WhisperPush 撤消註冊停用加密短訊</string>
+  <string name="pref_unregister__summary">從 WhisperPush 撤消註冊將停用加密短訊</string>
   <string name="pref_unregister__progress_title">正在撤消註冊</string>
   <string name="pref_review_keys__title">複審身份密鑰</string>
   <string name="pref_my_identity__title">檢視我的身份密鑰</string>
