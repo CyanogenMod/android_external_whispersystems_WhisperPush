@@ -17,8 +17,39 @@
 package org.whispersystems.whisperpush;
 
 import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+import org.whispersystems.whisperpush.gcm.GcmHelper;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
+import java.io.IOException;
 
 public class WhisperPush extends Application {
+
+    private static final String TAG = WhisperPush.class.getSimpleName();
+
+    private static final long MILLIS_PER_HOUR = 60L * 60L * 1000L;
+    private static final long MILLIS_PER_DAY = 24L * MILLIS_PER_HOUR;
+    private static final long UPDATE_INTERVAL = 7L * MILLIS_PER_DAY;
+
+    @Override
+    public void onCreate() {
+        long lastRegistered = WhisperPreferences.getGcmRegistrationTime(this);
+
+        if((lastRegistered + UPDATE_INTERVAL) < System.currentTimeMillis()) {
+            //It has been a week, reregister
+            launchGcmRegistration(this);
+        }
+    }
+
+    private static void launchGcmRegistration(Context context) {
+        try {
+            GcmHelper.updateRegistrationId(context);
+            WhisperPreferences.setGcmRegistrationTime(context, System.currentTimeMillis());
+        } catch (IOException e) {
+            Log.e(TAG, "GcmRecurringRegistration", e);
+        }
+    }
 
     private static boolean visible = false;
 

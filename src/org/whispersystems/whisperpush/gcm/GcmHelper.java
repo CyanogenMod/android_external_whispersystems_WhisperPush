@@ -72,6 +72,11 @@ public class GcmHelper {
         return registrationId;
     }
 
+    public static void updateRegistrationId(Context context) throws IOException {
+        String registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
+        setCurrentRegistrationId(context, registrationId);
+    }
+
     private static void setCurrentRegistrationId(Context context, String registrationId) {
         int currentVersion = getCurrentAppVersion(context);
         WhisperPreferences.setGcmRegistrationId(context, registrationId, currentVersion);
