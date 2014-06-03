@@ -64,10 +64,10 @@ public class GcmHelper {
     public static String getRegistrationId(Context context) throws IOException {
         String registrationId = getCurrentRegistrationId(context);
 
-        if (registrationId == null) {
+        //if (registrationId == null) {
             registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
             setCurrentRegistrationId(context, registrationId);
-        }
+        //}
 
         return registrationId;
     }
