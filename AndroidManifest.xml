@@ -28,6 +28,7 @@
     <application android:name=".WhisperPush"
                  android:icon="@drawable/icon"
                  android:label="WhisperPush"
+                 android:allowBackup="false"
                  android:theme="@android:style/Theme.Holo">
 
         <meta-data android:name="com.google.android.gms.version"
