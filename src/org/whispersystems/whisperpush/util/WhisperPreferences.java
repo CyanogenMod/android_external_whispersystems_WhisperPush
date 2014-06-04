@@ -18,6 +18,7 @@ package org.whispersystems.whisperpush.util;
 
 
 import android.content.Context;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Pair;
 
@@ -131,6 +132,10 @@ public class WhisperPreferences {
 
     public static void setGcmRegistrationTime(Context context, long timeSinceEpoch) {
         setLongPreference(context, PREF_GCM_REGISTRATION_TIME, timeSinceEpoch);
+    }
+
+    public static void resetPreferences(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
     }
 
     private static String getStringPreference(Context context, String key, String defaultValue) {

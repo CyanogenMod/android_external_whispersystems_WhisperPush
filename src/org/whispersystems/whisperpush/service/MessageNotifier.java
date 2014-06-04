@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import org.whispersystems.whisperpush.contacts.ContactsFactory;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
 import org.whispersystems.whisperpush.database.PendingApprovalDatabase;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
+import org.whispersystems.whisperpush.ui.ErrorAndResetActivity;
 import org.whispersystems.whisperpush.ui.VerifyIdentitiesActivity;
 import org.whispersystems.whisperpush.ui.VerifyIdentityActivity;
 import org.whispersystems.whisperpush.ui.ViewNewIdentityActivity;
@@ -66,6 +68,21 @@ public class MessageNotifier {
         }
     }
 
+    public static void notifyUnRegistered(Context context) {
+        Notification notification = new Notification.BigTextStyle(
+                new Notification.Builder(context)
+                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                android.R.drawable.ic_dialog_alert))
+                        .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, PreferenceActivity.class), 0))
+                        .setContentTitle(context.getString(R.string.MessageNotifier_user_unregistered_from_service_title))
+                        .setContentText(context.getString(R.string.MessageNotifier_user_unregistered_from_service_content))
+        ).bigText(context.getString(R.string.MessageNotifier_user_unregistered_from_service_content)).build();
+
+        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                .notify(NOTIFICATION_ID, notification);
+    }
+
     public static void notifyProblem(Context context, Contact contact, String description) {
         Notification notification = new Notification.BigTextStyle(
                 new Notification.Builder(context)
@@ -85,6 +102,21 @@ public class MessageNotifier {
                         .setSmallIcon(android.R.drawable.ic_dialog_alert)
                         .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                 android.R.drawable.ic_dialog_alert))
+                        .setContentTitle(title)
+                        .setContentText(description)
+        ).bigText(description).build();
+
+        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                .notify(PROBLEM_ID, notification);
+    }
+
+    public static void notifyProblemAndUnregister(Context context, String title, String description) {
+        Notification notification = new Notification.BigTextStyle(
+                new Notification.Builder(context)
+                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                android.R.drawable.ic_dialog_alert))
+                        .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ErrorAndResetActivity.class), 0))
                         .setContentTitle(title)
                         .setContentText(description)
         ).bigText(description).build();
