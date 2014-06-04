@@ -33,6 +33,7 @@ public class WhisperPreferences {
     private static final String PREF_LOCAL_NUMBER           = "pref_registered_number";
     private static final String PREF_PUSH_PASSWORD          = "pref_push_password";
     private static final String PREF_GCM_ID                 = "pref_gcm_id";
+    private static final String PREF_GCM_REGISTRATION_TIME  = "pref_gcm_reg_time";
     private static final String PREF_GCM_VERSION            = "pref_gcm_version";
     private static final String PREF_IDENTITY_PUBLIC_KEY    = "pref_identity_public";
     private static final String PREF_IDENTITY_PRIVATE_KEY   = "pref_identity_private";
@@ -122,6 +123,14 @@ public class WhisperPreferences {
                 .putString(PREF_GCM_ID, gcmId)
                 .putInt(PREF_GCM_VERSION, version)
                 .commit();
+    }
+
+    public static long getGcmRegistrationTime(Context context) {
+        return getLongPreference(context, PREF_GCM_REGISTRATION_TIME, -1);
+    }
+
+    public static void setGcmRegistrationTime(Context context, long timeSinceEpoch) {
+        setLongPreference(context, PREF_GCM_REGISTRATION_TIME, timeSinceEpoch);
     }
 
     private static String getStringPreference(Context context, String key, String defaultValue) {
