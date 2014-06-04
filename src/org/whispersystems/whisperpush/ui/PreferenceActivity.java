@@ -37,6 +37,7 @@ import android.view.MenuItem;
 
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.service.MessageNotifier;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -182,6 +183,7 @@ public class PreferenceActivity extends Activity {
 
                 @Override
                 protected void onPostExecute(Void result) {
+                    MessageNotifier.notifyUnRegistered(getActivity());
                     mProgressDialog.dismiss();
                     setupPreferences();
                 }

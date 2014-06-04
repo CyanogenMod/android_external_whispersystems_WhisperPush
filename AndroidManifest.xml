@@ -97,6 +97,7 @@
 
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
         <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
+        <service android:enabled="true" android:name=".service.UnregisterIntentService" android:exported="false"/>
 
         <receiver android:name=".sms.SmsListener"
                   android:enabled="true"
