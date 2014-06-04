@@ -66,7 +66,7 @@ public class GcmReceiver extends BroadcastReceiver {
         context.startService(serviceIntent);
       } catch (IOException e) {
         Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_invalid_push_message),
+        MessageNotifier.notifyProblemAndUnregister(context, context.getString(R.string.GcmReceiver_invalid_push_message),
                                       context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
       } catch (InvalidVersionException e) {
         Log.w("GcmReceiver", e);

@@ -133,6 +133,10 @@ public class WhisperPreferences {
         setLongPreference(context, PREF_GCM_REGISTRATION_TIME, timeSinceEpoch);
     }
 
+    public static void resetPreferences(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+    }
+
     private static String getStringPreference(Context context, String key, String defaultValue) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
     }
