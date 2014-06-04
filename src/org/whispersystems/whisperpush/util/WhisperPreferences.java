@@ -18,6 +18,7 @@ package org.whispersystems.whisperpush.util;
 
 
 import android.content.Context;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Pair;
 
@@ -122,6 +123,10 @@ public class WhisperPreferences {
                 .putString(PREF_GCM_ID, gcmId)
                 .putInt(PREF_GCM_VERSION, version)
                 .commit();
+    }
+
+    public static void resetPreferences(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
     }
 
     private static String getStringPreference(Context context, String key, String defaultValue) {
