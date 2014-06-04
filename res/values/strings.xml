@@ -24,6 +24,7 @@
     <string name="generic__please_wait">Please wait.</string>
 
     <!-- GcmReceiver -->
+    <string name="GcmReceiver_error">WhisperPush Error</string>
     <string name="GcmReceiver_invalid_push_message">Invalid Push Message</string>
     <string name="GcmReceiver_received_badly_formatted_push_message">Received badly formatted push message.</string>
     <string name="GcmReceiver_unsupported_push_version">Unsupported Push Version</string>
