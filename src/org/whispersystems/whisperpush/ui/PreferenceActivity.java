@@ -37,6 +37,7 @@ import android.view.MenuItem;
 
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.service.MessageNotifier;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -167,21 +168,24 @@ public class PreferenceActivity extends Activity {
             mProgressDialog.setIndeterminate(true);
             mProgressDialog.show();
 
-            new AsyncTask<Void, Void, Void>() {
+            new AsyncTask<Void, Void, Boolean>() {
                 @Override
-                protected Void doInBackground(Void... param) {
+                protected Boolean doInBackground(Void... param) {
                     PushServiceSocket socket = PushServiceSocketFactory.create(getActivity());
                     try {
                         socket.unregisterGcmId();
                     } catch (IOException e) {
-                        return null;
+                        return false;
                     }
                     WhisperPreferences.setRegistered(getActivity(), false);
-                    return null;
+                    return true;
                 }
 
                 @Override
-                protected void onPostExecute(Void result) {
+                protected void onPostExecute(Boolean result) {
+                    if(result) {
+                        MessageNotifier.notifyUnRegistered(getActivity());
+                    }
                     mProgressDialog.dismiss();
                     setupPreferences();
                 }

@@ -50,6 +50,9 @@
         <activity android:name=".ui.CountrySelectionActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+        <activity android:name=".ui.ErrorAndResetActivity"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
         <activity android:name=".ui.RegistrationProgressActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
