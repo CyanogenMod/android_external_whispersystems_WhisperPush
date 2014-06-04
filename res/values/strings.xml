@@ -18,12 +18,18 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- ErrorAndResetActivity Strings -->
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush has encountered a fatal error.</string>
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Due to data being out of sync between your device and the server, WhisperPush will need to reset to enable encrypted conversations.</string>
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Reset</string>
+
     <!-- Generic Strings -->
     <string translatable="false" name="generic__plus">+</string>
     <string translatable="false" name="generic__dot">•</string>
     <string name="generic__please_wait">Please wait.</string>
 
     <!-- GcmReceiver -->
+    <string name="GcmReceiver_error">WhisperPush Error</string>
     <string name="GcmReceiver_invalid_push_message">Invalid Push Message</string>
     <string name="GcmReceiver_received_badly_formatted_push_message">Received badly formatted push message.</string>
     <string name="GcmReceiver_unsupported_push_version">Unsupported Push Version</string>
@@ -37,6 +43,8 @@
     <string name="MessageNotifier_new_session__incoming_text">You have received a new encrypted SMS message from %s.  All further conversations will be automatically encrypted.</string>
     <string name="MessageNotifier_new_session__view_identity">View Identity</string>
     <string name="MessageNotifier_new_session__outgoing_toast">Message to %s was encrypted.</string>
+    <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush Unregistered</string>
+    <string name="MessageNotifier_user_unregistered_from_service_content">Tap to register WhisperPush and enable encrypted conversations.</string>
 
     <!-- MessageReceiver -->
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Unable to retrieve encrypted attachment for incoming message.</string>
