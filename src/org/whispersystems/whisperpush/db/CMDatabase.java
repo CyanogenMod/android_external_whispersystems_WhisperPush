@@ -89,6 +89,10 @@ public class CMDatabase {
         setActiveSession(token, true);
     }
 
+    public SQLiteDatabase getReadableDatabaseFromHelper() {
+        return mDatabaseHelper.getReadableDatabase();
+    }
+
     private class DatabaseHelper extends SQLiteOpenHelper {
 
         public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
