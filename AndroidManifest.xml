@@ -132,6 +132,11 @@
                   android:protectionLevel="signatureOrSystem"
                   android:exported="true" />
 
+        <provider android:authorities="org.whispersystems.whisperpush.sessionprovider"
+                  android:name=".db.ActiveSessionProvider"
+                  android:protectionLevel="signatureOrSystem"
+                  android:exported="true" />
+
     </application>
 
 </manifest>
