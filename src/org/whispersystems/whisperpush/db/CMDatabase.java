@@ -35,9 +35,9 @@ public class CMDatabase {
     private final String DATABASE_NAME = "cyanogenmod.db";
     private final int DATABASE_VERSION = 1;
 
-    private static final String ID = "_id";
-    private static final String TOKEN = "token";
-    private static final String ACTIVE_SESSION = "active_session";
+    public static final String ID = "_id";
+    public static final String TOKEN = "token";
+    public static final String ACTIVE_SESSION = "active_session";
 
     private static CMDatabase sInstance;
 
@@ -87,6 +87,10 @@ public class CMDatabase {
 
     public void setActiveSession(String token) {
         setActiveSession(token, true);
+    }
+
+    public SQLiteDatabase getReadableDatabaseFromHelper() {
+        return mDatabaseHelper.getReadableDatabase();
     }
 
     private class DatabaseHelper extends SQLiteOpenHelper {
