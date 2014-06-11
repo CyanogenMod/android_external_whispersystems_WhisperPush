@@ -53,6 +53,10 @@ public class ActiveSessionProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder)
     {
+        if (!WhisperPreferences.isRegistered(getContext())) {
+            return null;
+        }
+
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables("contacts");
 
