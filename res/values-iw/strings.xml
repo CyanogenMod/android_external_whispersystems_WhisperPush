@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush נתקל בשגיאה חמורה.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">בשל הנתונים המסונכרנים בין המכשיר והשרת, WhisperPush יצטרך להיאפס כדי לאפשר שיחות מוצפנות.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">אפס</string>
   <string name="generic__please_wait">נא להמתין.</string>
+  <string name="GcmReceiver_error">שגיאת WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">הודעת Push לא חוקית</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">התקבלה הודעת push בתבנית לא נכונה.</string>
   <string name="GcmReceiver_unsupported_push_version">גירסת push לא נתמכת</string>
@@ -30,10 +34,12 @@
   <string name="MessageNotifier_new_session__incoming_text">קיבלת הודעת SMS חדשה מוצפנת מ-%s. כל השיחות הנוספות יוצפנו באופן אוטומטי.</string>
   <string name="MessageNotifier_new_session__view_identity">הצג זהות</string>
   <string name="MessageNotifier_new_session__outgoing_toast">ההודעה ל-%s הוצפנה.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush לא רשום</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">הקש כדי לרשם את WhisperPush ולאפשר שיחות מוצפנות.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">אין אפשרות לשחזר קבצים מצורפים מוצפנים עבור ההודעה הנכנסת.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">התקבלה הודעה שהוצפנה לא נכון, או שההודעה הוצפנה עם מפתח לא ידוע.</string>
   <string name="PendingIdentityItemView_received_s">התקבל %s</string>
-  <string name="RegistrationActivity_select_your_country">בחר את המדינה שלך</string>
+  <string name="RegistrationActivity_select_your_country">בחר מדינה</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">עליך לציין את קוד המדינה שלך</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">עליך לציין את מספר הטלפון שלך</string>
   <string name="RegistrationActivity_invalid_number">מספר לא חוקי</string>
@@ -43,7 +49,7 @@
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">אנחנו עכשיו נוודא כי המספר הבא קשור למכשיר זה:\n\n%s\n\n האם המספר נכון, או שברצונכם לערוך אותו לפני שתמשיך?</string>
   <string name="RegistrationActivity_continue">המשך</string>
   <string name="RegistrationActivity_edit">ערוך</string>
-  <string name="RegistrationActivity_connect_with_textsecure">התחבר עם TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">צור קשר עם TextSecure</string>
   <string name="RegistrationProblemsActivity_possible_problems">בעיות אפשריות</string>
   <string name="RegistrationProgressActivity_verifying_number">מאמת מספר</string>
   <string name="RegistrationProgressActivity_edit_s">עריכה %s</string>
@@ -51,17 +57,17 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">עליך להזין את הקוד שקיבלת קודם\u2026</string>
   <string name="RegistrationProgressActivity_connecting">מתחבר</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">מתחבר לצורך אימות\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">שגיאת רשת!</string>
+  <string name="RegistrationProgressActivity_network_error">שגיאת רשת</string>
   <string name="RegistrationProgressActivity_unable_to_connect">אין אפשרות להתחבר. בדוק את חיבור הרשת ונסה שוב.</string>
-  <string name="RegistrationProgressActivity_verification_failed">אימות נכשל!</string>
+  <string name="RegistrationProgressActivity_verification_failed">אימות נכשל</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">קוד האימות שמסרת אינו נכון. נסה שוב.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">יותר מדי נסיונות</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">הכנסת קוד אימות שגוי יותר מדי פעמים. חכה דקה לפני ניסיון חדש.</string>
-  <string name="RegistrationProgressActivity_requesting_call">בקש שיחה</string>
+  <string name="RegistrationProgressActivity_requesting_call">מבקש שיחה\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">מבקש אימות שיחה נכנסת…</string>
   <string name="RegistrationProgressActivity_server_error">שגיאת שרת</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">השרת נתקל בשגיאה. נסה שוב.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">בקשות רבות מדי!</string>
+  <string name="RegistrationProgressActivity_too_many_requests">בקשות רבות מדי</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">כבר ביקשתה שיחת אימות לאחרונה. אתה יכול לבקש שיחה כל 20 דקות.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">בודק קוד קולי…</string>
   <string name="RegistrationService_registration_complete">הרשמה הושלמה</string>
@@ -74,11 +80,11 @@
   <string name="VerifyIdentityActivity_processing">מעבד</string>
   <string name="VerifyIdentityActivity_discarding_messages">מחיקת הודעות...</string>
   <string name="VerifyIdentityActivity_processing_identity_key">מעבד מפתח זהות...     </string>
-  <string name="ViewIdentityActivity_verified">אומת!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">המפתח הסרוק מתאים!</string>
-  <string name="ViewIdentityActivity_not_verified">לא מאומת!</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">אזהרה, המפתח הסרוק לא מתאים!</string>
-  <string name="ViewIdentityActivity_no_scanned_key_found">לא נמצא מפתח סרוק!</string>
+  <string name="ViewIdentityActivity_verified">מאומת</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">המפתח הסרוק מתאים</string>
+  <string name="ViewIdentityActivity_not_verified">לא מתאים</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">אזהרה, המפתח הסרוק לא מתאים</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">לא נמצא מפתח סרוק</string>
   <string name="country_selection_fragment__search">חיפוש</string>
   <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">אנא אשר את קוד המדינה ואת מספר הטלפון.     </string>
@@ -97,7 +103,7 @@
   <string name="registration_progress_activity__voice_verification">בדיקת קול</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure יכול גם להתקשר אליך בשביל אימות מספר. לחץ על \"התקשר אלי\" והכנס את 6 הספרות שאתה שומע.</string>
   <string name="registration_progress_activity__verify">אמת</string>
-  <string name="registration_progress_activity__call_me">התקשר אלי</string>
+  <string name="registration_progress_activity__call_me">התקשר אליי</string>
   <string name="registration_progress_activity__edit_number">עריכת מספר</string>
   <string name="registration_progress_activity__connectivity_error">שגיאת קישור.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure לא הצליח להתחבר לשירות ההודעות.</string>
@@ -133,8 +139,8 @@
   <string name="view_identity_activity_menu__scan_to_compare">סרוק להשוואה</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">קבל סריקה להשוואה</string>
   <string name="registration_progress_notification__title_registering">הרשמה באמצעות WhisperPush</string>
-  <string name="registration_progress_notification__title_complete">WhisperPush פועל</string>
-  <string name="registration_progress_notification__title_failure">רישום ל-WhisperPush נכשל</string>
+  <string name="registration_progress_notification__title_complete">WhisperPush פעיל</string>
+  <string name="registration_progress_notification__title_failure">ההרשמה ל-WhisperPush נכשלה</string>
   <string name="registration_progress_notification__complete">נרשם בהצלחה</string>
   <string name="registration_progress_notification__failure">אירעה שגיאה ברישום</string>
   <string name="registration_progress_notification__gms_update">עדכון נדרש כדי להשתמש ב-WhisperPush</string>

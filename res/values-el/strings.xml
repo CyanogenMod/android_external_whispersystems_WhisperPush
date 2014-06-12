@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">Το WhisperPush αντιμετώπισε ένα ανεπανόρθωτο σφάλμα.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Λόγω των δεδομένων που είναι εκτός συγχρονισμού μεταξύ της συσκευής σας και του διακομιστή, θα πρέπει να γίνει επαναφορά του WhisperPush για την ενεργοποίηση των κρυπτογραφημένων συνομιλιών.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Επαναφορά</string>
   <string name="generic__please_wait">Παρακαλώ περιμένετε.</string>
+  <string name="GcmReceiver_error">Σφάλμα WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">Μη έγκυρο μήνυμα push</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Ελήφθη μη έγκυρα μορφοποιημένο μήνυμα push.</string>
   <string name="GcmReceiver_unsupported_push_version">Μη υποστηριζόμενη έκδοση push</string>
@@ -30,6 +34,8 @@
   <string name="MessageNotifier_new_session__incoming_text">Έχετε λάβει ένα νέο κρυπτογραφημένο μήνυμα SMS από %s.  Όλες οι περαιτέρω συνομιλίες θα κρυπτογραφούνται αυτόματα.</string>
   <string name="MessageNotifier_new_session__view_identity">Προβολή ταυτότητας</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Το μήνυμα προς %s κρυπτογραφήθηκε.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">Μη εγγεγραμμένοι στο WhisperPush</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Πατήστε για να εγγραφείτε στο WhisperPush και να ενεργοποιήσετε τις κρυπτογραφημένες συνομιλίες.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Δεν είναι δυνατή η ανάκτηση του κρυπτογραφημένου συνημμένου για το εισερχόμενο μήνυμα.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Ελήφθη μη έγκυρα κρυπτογραφημένο μήνυμα ή μήνυμα κρυπτογραφημένο για ανύπαρκτη συνεδρία.</string>
   <string name="PendingIdentityItemView_received_s">Ελήφθη %s</string>
@@ -51,17 +57,17 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Πρέπει πρώτα να εισάγετε τον κωδικό που έχετε λάβει\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Σύνδεση</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Γίνεται σύνδεση για επαλήθευση\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">Σφάλμα δικτύου!</string>
+  <string name="RegistrationProgressActivity_network_error">Σφάλμα δικτύου</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Αδυναμία σύνδεσης. Ελέγξτε τη σύνδεση δικτύου σας και προσπαθήστε ξανά.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Αποτυχία επαλήθευσης!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Αποτυχία επαλήθευσης</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Ο κωδικός επαλήθευσης που υποβάλλατε είναι λάθος. Παρακαλώ δοκιμάστε ξανά.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Πάρα πολλές προσπάθειες</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Έχετε υποβάλλει λάθος κωδικό επαλήθευσης πάρα πολλές φορές. Παρακαλώ περιμένετε ένα λεπτό πριν προσπαθήσετε ξανά.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Αίτημα κλήσης</string>
+  <string name="RegistrationProgressActivity_requesting_call">Αίτημα κλήσης\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Γίνεται αίτημα εισερχόμενης κλήσης επαλήθευσης\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Σφάλμα διακομιστή</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Ο διακομιστής αντιμετώπισε ένα σφάλμα. Παρακαλώ προσπαθήστε ξανά.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Πάρα πολλά αιτήματα!</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Πάρα πολλά αιτήματα</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Έχετε ήδη ζητήσει πρόσφατα μια φωνητική κλήση. Μπορείτε να ζητήσετε μια άλλη σε 20 λεπτά.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Επαλήθευση κωδικού φωνητικής κλήσης\u2026</string>
   <string name="RegistrationService_registration_complete">Η εγγραφή ολοκληρώθηκε</string>
@@ -74,11 +80,11 @@
   <string name="VerifyIdentityActivity_processing">Επεξεργασία</string>
   <string name="VerifyIdentityActivity_discarding_messages">Απόρριψη μηνυμάτων\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Επεξεργασία κλειδιού ταυτότητας\u2026</string>
-  <string name="ViewIdentityActivity_verified">Επιβεβαιώθηκε!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">Το σαρωμένο κλειδί ταιριάζει!</string>
-  <string name="ViewIdentityActivity_not_verified">ΔΕΝ επιβεβαιώθηκε!</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">ΠΡΟΣΟΧΗ, το σαρωμένο κλειδί δεν ταιριάζει!</string>
-  <string name="ViewIdentityActivity_no_scanned_key_found">Δε βρέθηκε κλειδί!</string>
+  <string name="ViewIdentityActivity_verified">Επιβεβαιωμένος</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">Το σαρωμένο κλειδί ταιριάζει</string>
+  <string name="ViewIdentityActivity_not_verified">Μη επιβεβαιωμένος</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">ΠΡΟΣΟΧΗ, το σαρωμένο κλειδί δεν ταιριάζει</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">Δε βρέθηκε κλειδί</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>
   <string name="country_selection_fragment__loading_countries">Φόρτωση χωρών\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Παρακαλώ επιβεβαιώστε τον κωδικό χώρας και τον τηλεφωνικό αριθμό σας.</string>
@@ -97,7 +103,7 @@
   <string name="registration_progress_activity__voice_verification">Φωνητική επαλήθευση</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">Το TextSecure μπορεί επίσης να σας καλέσει για να επιβεβαιώσει τον αριθμό σας. Πατήστε \'Κάλεσέ με\' και εισάγετε τον εξαψήφιο κωδικό που θα ακούσετε παρακάτω.</string>
   <string name="registration_progress_activity__verify">Επαλήθευση</string>
-  <string name="registration_progress_activity__call_me">Κάλεσέ με</string>
+  <string name="registration_progress_activity__call_me">Τηλεφώνησέ μου</string>
   <string name="registration_progress_activity__edit_number">Επεξεργασία αριθμού</string>
   <string name="registration_progress_activity__connectivity_error">Σφάλμα συνδεσιμότητας.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">Δεν ήταν δυνατή η σύνδεση του TextSecure με την υπηρεσία push.</string>
@@ -133,7 +139,7 @@
   <string name="view_identity_activity_menu__scan_to_compare">Σαρώστε για σύγκριση</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">Επιτρέψτε να μας σαρώσουν για σύγκριση</string>
   <string name="registration_progress_notification__title_registering">Εγγραφή με το WhisperPush</string>
-  <string name="registration_progress_notification__title_complete">WhisperPush ενεργοποιημένο</string>
+  <string name="registration_progress_notification__title_complete">WhisperPush ενεργό</string>
   <string name="registration_progress_notification__title_failure">Η εγγραφή WhisperPush απέτυχε</string>
   <string name="registration_progress_notification__complete">Επιτυχής εγγραφή</string>
   <string name="registration_progress_notification__failure">Υπήρξε ένα πρόβλημα κατά την εγγραφή</string>

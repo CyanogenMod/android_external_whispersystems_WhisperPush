@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush egy végzetes hibát észlelt.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Mivel az adatoknak szinkronizálva kell lenniük a készülék és a szerver között, a WisherPush-nak vissza kell állítania magát, hogy engedélyezze a titkosított beszélgetéseket.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Visszaállítás</string>
   <string name="generic__please_wait">Kérjük, várjon.</string>
+  <string name="GcmReceiver_error">WhisperPush hiba</string>
   <string name="GcmReceiver_invalid_push_message">Érvénytelen Push Üzenet</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Rossz formátumú push üzenet érkezett.</string>
   <string name="GcmReceiver_unsupported_push_version">Nem támogatott Push verzió</string>
@@ -30,10 +34,12 @@
   <string name="MessageNotifier_new_session__incoming_text">%s feladótól egy új, titkosított SMS üzenetet kapott. Minden további beszélgetés automatikusan titkosítva lesz.</string>
   <string name="MessageNotifier_new_session__view_identity">Azonosító megtekintése</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Üzenet %s számára titkosítva.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">Nem regisztrált WisherPush</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Koppintson a WisherPush regisztrálásához, hogy engedélyezze a titkosított beszélgetéseket.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nem lehet fogadni a bejövő üzenet kódolt csatolmányát.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">A fogadott üzenet rosszul, vagy nem létező munkamenet számára lett kódolva.</string>
   <string name="PendingIdentityItemView_received_s">%s fogadva</string>
-  <string name="RegistrationActivity_select_your_country">Válassza ki országát.</string>
+  <string name="RegistrationActivity_select_your_country">Ország kiválasztása</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnia az országa előhívóját.</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Meg kell adnia a telefonszámát.</string>
   <string name="RegistrationActivity_invalid_number">Érvénytelen szám</string>
@@ -44,7 +50,7 @@
         Helyes a szám, vagy szeretne visszalépni és szerkeszteni, mielőtt folytatná?</string>
   <string name="RegistrationActivity_continue">Folytatás</string>
   <string name="RegistrationActivity_edit">Szerkesztés</string>
-  <string name="RegistrationActivity_connect_with_textsecure">Kapcsolódás TextSecure-ral</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Csatlakozás TextSecure-ral</string>
   <string name="RegistrationProblemsActivity_possible_problems">Lehetséges problémák</string>
   <string name="RegistrationProgressActivity_verifying_number">Szám ellenőrzése</string>
   <string name="RegistrationProgressActivity_edit_s">%s szerkesztése</string>
@@ -52,17 +58,17 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Először be kell írnia a kapott kódot\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Kapcsolódás</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Kapcsolódás ellenőrzéshez\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">Hálózati hiba!</string>
+  <string name="RegistrationProgressActivity_network_error">Hálózati hiba</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Nem sikerült csatlakozni. Ellenőrizze internetkapcsolatát, majd próbálja újra.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Ellenőrzés sikertelen!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Ellenőrzés sikertelen</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">A beküldött ellenőrző kód érvénytelen. Próbálja meg újra.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Túl sok próbálkozás történt</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Túl sokszor próbált meg érvénytelen ellenőrző kódot beküldeni. Várjon egy percet, mielőtt újra megpróbálja.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Hívás kérése</string>
+  <string name="RegistrationProgressActivity_requesting_call">Hívás kérése\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Bejövő ellenőrző hívás kezdeményezése\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Szerverhiba</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">A szerver hibába ütközött. Próbálja meg újra.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Túl sok kérés!</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Túl sok kérés</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Már kért hívást. A következőt 20 perc múlva kérheti.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Hang kód ellenőrzése\u2026</string>
   <string name="RegistrationService_registration_complete">Regisztráció kész</string>
@@ -75,11 +81,11 @@
   <string name="VerifyIdentityActivity_processing">Feldolgozás</string>
   <string name="VerifyIdentityActivity_discarding_messages">Üzenetek eldobása\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Azonosító feldolgozása\u2026</string>
-  <string name="ViewIdentityActivity_verified">Hitelesítve!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">A beolvasott kulcs egyezik!</string>
-  <string name="ViewIdentityActivity_not_verified">Nincs hitelesítve!</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">FIGYELEM, a beolvasott kulcs nem egyezik!</string>
-  <string name="ViewIdentityActivity_no_scanned_key_found">Nem található beolvasott kulcs!</string>
+  <string name="ViewIdentityActivity_verified">Megerősítve</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">A beolvasott kulcs egyezik</string>
+  <string name="ViewIdentityActivity_not_verified">Nincs megerősítve</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">FIGYELEM, a beolvasott kulcs nem egyezik</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">Nem található beolvasott kulcs</string>
   <string name="country_selection_fragment__search">Keresés</string>
   <string name="country_selection_fragment__loading_countries">Országok betöltése\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Erősítse meg előhívóját és telefonszámát.</string>
@@ -124,7 +130,7 @@
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Még nincs azonosítója a megbízható azonosítók adatbázisában.</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Nincs ellenőrzésre váró üzenet.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Az alábbi partnerek azonosítói megváltoztak. Ez azt jelenti, hogy valaki le akarja önöket hallgatni, vagy a partnereinek új telefonja van. Hívja fel őket és ellenőrizze az azonosítókat annak hangos felolvasásával. Az ellenőrzés végéig a partnerektől kapott üzenetek vissza lesznek tartva.</string>
-  <string name="verify_identity_activity__their_fingerprint">Azonosítóik:</string>
+  <string name="verify_identity_activity__their_fingerprint">Az ujjlenyomatuk:</string>
   <string name="verify_identity_activity__valid">Érvényes</string>
   <string name="verify_identity__invalid">Érvénytelen</string>
   <string name="verify_identity_activity__avatar_icon">Avatár ikon</string>
@@ -135,7 +141,7 @@
   <string name="view_identity_activity_menu__get_scanned_to_compare">Beolvastatás összehasonlításhoz</string>
   <string name="registration_progress_notification__title_registering">Regisztráció a WhisperPush-sal</string>
   <string name="registration_progress_notification__title_complete">WhisperPush engedélyezve</string>
-  <string name="registration_progress_notification__title_failure">Sikertelen WhisperPush regisztráció</string>
+  <string name="registration_progress_notification__title_failure">WhisperPush regisztráció sikertelen</string>
   <string name="registration_progress_notification__complete">Sikeres regisztráció</string>
   <string name="registration_progress_notification__failure">Hiba a regisztráció során</string>
   <string name="registration_progress_notification__gms_update">Frissítésre van szükség a WhisperPush használatához</string>
