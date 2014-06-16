@@ -73,8 +73,15 @@ public class ActiveSessionProvider extends ContentProvider {
         }
 
         // We're only going to return one row
-        // based off one number.
-        String[] newSelectionArg = new String[] { getTokenForAddress(selectionArgs[0]) };
+        // based off one number if the token
+        // is not null.
+        String selectionArg = getTokenForAddress(selectionArgs[0]);
+
+        if (selectionArg == null) {
+            return null;
+        }
+
+        String[] newSelectionArg = new String[] { selectionArg };
 
         CMDatabase database = CMDatabase.getInstance(getContext());
         Cursor cursor = queryBuilder.query(database.getReadableDatabaseFromHelper(), activeSessionColumn, selectionClause,
