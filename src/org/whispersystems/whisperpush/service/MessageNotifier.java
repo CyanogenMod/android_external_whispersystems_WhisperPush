@@ -96,6 +96,20 @@ public class MessageNotifier {
                 .notify(PROBLEM_ID, notification);
     }
 
+    public static void notifyBlacklisted(Context context, String number) {
+        Notification notification = new Notification.BigTextStyle(
+                new Notification.Builder(context)
+                        .setSmallIcon(R.drawable.ic_notify)
+                        .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.ic_notify))
+                        .setContentTitle(context.getString(R.string.MessageNotifier_user_received_message_from_blacklisted_number_title))
+                        .setContentText(String.format(context.getString(R.string.MessageNotifier_user_received_message_from_blacklisted_number_content), number))
+        ).bigText(String.format(context.getString(R.string.MessageNotifier_user_received_message_from_blacklisted_number_content), number)).build();
+
+        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                .notify(PROBLEM_ID, notification);
+    }
+
     public static void notifyProblem(Context context, String title, String description) {
         Notification notification = new Notification.BigTextStyle(
                 new Notification.Builder(context)
