@@ -45,6 +45,8 @@
     <string name="MessageNotifier_new_session__outgoing_toast">Message to %s was encrypted.</string>
     <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush unregistered</string>
     <string name="MessageNotifier_user_unregistered_from_service_content">Tap to register WhisperPush and enable encrypted conversations.</string>
+    <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blocked incoming message</string>
+    <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">An encrypted SMS message from %s received. Due to blacklist settings, the message has been blocked.</string>
 
     <!-- MessageReceiver -->
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Unable to retrieve encrypted attachment for incoming message.</string>
