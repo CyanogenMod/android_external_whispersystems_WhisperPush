@@ -129,6 +129,7 @@
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Actualmente no tienes ninguna identidad en tu base de datos de confianza</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">No hay mensajes pendientes que requieran validación.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">La huella digital de este contacto ha cambiado, lo que podría significar que alguien está tratando de interceptar la comunicación o que el contacto tiene un teléfono nuevo. Considera llamar a este contacto y validar la huella digital mediante su lectura en voz alta. Los mensajes de este contacto serán retenidos hasta su validación.</string>
+  <string name="verify_identity_activity__their_fingerprint">Huella digital remota:</string>
   <string name="verify_identity_activity__valid">Válida</string>
   <string name="verify_identity__invalid">Inválida</string>
   <string name="verify_identity_activity__avatar_icon">Imagen</string>
