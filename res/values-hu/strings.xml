@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Üzenet %s számára titkosítva.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">Nem regisztrált WisherPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Koppintson a WisherPush regisztrálásához, hogy engedélyezze a titkosított beszélgetéseket.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokkolt bejövő üzenet</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Titkosított SMS érkezett: %s. A tiltólista beállításai miatt az üzenet blokkolva lett.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nem lehet fogadni a bejövő üzenet kódolt csatolmányát.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">A fogadott üzenet rosszul, vagy nem létező munkamenet számára lett kódolva.</string>
   <string name="PendingIdentityItemView_received_s">%s fogadva</string>

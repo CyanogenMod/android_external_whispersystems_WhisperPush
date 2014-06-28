@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Mensagem para %s foi encriptada.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush não registado</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Toque para registar WhisperPush e ativar conversas encriptadas.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Mensagem de entrada bloqueada</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Foi recebida uma mensagem SMS encriptada de %s . Devido às configurações de lista negra, a mensagem foi bloqueada.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Não é possível recuperar o anexo encriptado da mensagem recebida.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Recebeu uma mensagem mal encriptada, ou mensagem encriptada para sessão não existente.</string>
   <string name="PendingIdentityItemView_received_s">%s recebidas</string>

@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Pranešimas %s buvo užšifruotas.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">„WhisperPush“ neregistruotas</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Bakstelėkite norėdami užsiregistruoti „WhisperPush“ ir įjungti užšifruotus pokalbius.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Užblokuotas gaunamas pranešimas</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Gautas užšifruotas SMS pranešimas iš %s. Dėl juodojo sąrašo nustatymų šis pranešimas buvo užblokuotas.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nepavyko gauti įeinančio pranešimo šifruoto priedo.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Gautas blogai užšifruotas pranešimas arba pranešimas užšifruotas neegzistuojančiai sesijai.</string>
   <string name="PendingIdentityItemView_received_s">Gautas %s</string>

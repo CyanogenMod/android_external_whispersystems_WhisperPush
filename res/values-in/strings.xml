@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Pesan ke %s dienkripsi.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush tidak terdaftar</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Tap untuk mendaftar WhisperPush dan mengaktifkan enkripsi percakapan.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Pesan masuk yang diblokir</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Sebuah pesan SMS terenkripsi dari %s diterima. Karena pengaturan blacklist, pesan telah diblokir.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Tidak bisa mengambil lampiran terenkripsi dari pesan masuk.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Diterima pesan terenkripsi buruk, atau pesan dienkripsi untuk sesi yang tidak ada.</string>
   <string name="PendingIdentityItemView_received_s">Diterima %s</string>

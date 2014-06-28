@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">%sට යැවූ පනිවිඩය ගුප්ත කේතනය කරන ලදී.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush ලියාපදිංචිය ඉවතලන ලදී</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">WhisperPush ලියාපදිංචි කර ගුප්ත කේතිත සංවාද සබල කිරීමට තට්ටු කරන්න.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">අවහිර කල පැමිණෙන පණිවිඩය</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s වෙතින් ගුප්ත කේතිත කෙටි පණිවිඩයක් ලැබුණි. අපලේඛණ සැකසීම් නිසා, එම පණිවිඩය අවහිර කෙරුණි.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">පැමිණෙන පනිවිඩයේ ගුප්ත කේතිත ඇමුණුම සොයා ලබාගැනීමට නොහැකිවිය.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">දුර්වල ලෙස ගුප්ත කේතිත, හෝ නොපවත්නා සැසියක් සඳහා ගුප්ත කේතිත පනිවිඩයක් ලැබුණි.</string>
   <string name="PendingIdentityItemView_received_s">%s ලැබුණි</string>

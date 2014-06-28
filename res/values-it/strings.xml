@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Il messaggio a %s è stato cifrato.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush non registrato</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Tocca per registrare WhisperPush e consentire conversazioni crittografate.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Bloccato messaggio in arrivo</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Ricevuto un messaggio SMS crittografato da %s. Grazie alle impostazioni della blacklist, il messaggio è stato bloccato.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Impossibile recuperare l\'allegato crittografato per il messaggio in entrata</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Ricevuto messaggio con errore di crittografia o relativo a sessione non esistente.</string>
   <string name="PendingIdentityItemView_received_s">Ricevuti %s</string>
