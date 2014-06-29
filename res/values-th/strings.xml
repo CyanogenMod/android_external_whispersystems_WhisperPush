@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">ข้อความไปยัง %s ถูกเข้ารหัส</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">ยกเลิกการลงทะเบียน WhisperPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">แตะเพื่อลงทะเบียน WhisperPush และเริ่มเข้ารหัสการสนทนา</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">บล็อกข้อความเข้า</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">ได้รับข้อความ SMS เข้ารหัสจาก %s แต่เนื่องจากบัญชีดำ ข้อความจะถูกบล็อก</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">ไม่สามารถรับสิ่งที่แนบมาที่มีการเข้ารหัสของข้อความที่กำลังเข้าได้</string>
   <string name="MessageReceiver_received_badly_encrypted_message">ได้รับการเข้ารหัสข้อความที่ผิดพลาดหรือการเข้ารหัสข้อความหมดอายุ</string>
   <string name="PendingIdentityItemView_received_s">ได้รับ %s</string>

@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Správa pre %s bola zašifrovaná.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush neregistrovaný</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Kliknite pre registráciu WhisperPush a povolenie šifrovaných konverzácií.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokovaná prichádzajúca správa</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Prijatá šifrovaná SMS správa od %s. Na základe pravidiel čiernej listiny bola správa zablokovaná.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nemožno načítať šifrovanú prílohu pre prichádzajúcu správu.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Prijatá zle zašifrovaná správa, alebo správa bola zašifrovaná pre neexistujúcu reláciu.</string>
   <string name="PendingIdentityItemView_received_s">Prijaté %s</string>

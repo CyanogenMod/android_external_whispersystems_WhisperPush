@@ -43,5 +43,18 @@
   <string name="RegistrationProgressActivity_connecting">接続中</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">認証のために接続中\u2026</string>
   <string name="RegistrationProgressActivity_unable_to_connect">接続できません。ネットワークの接続を確認してもう一度やり直してください。</string>
+  <string name="country_selection_fragment__search">検索</string>
+  <string name="country_selection_fragment__loading_countries">国を読み込み中\u2026</string>
+  <string name="registration_activity__please_confirm_your_country_code_and_phone_number">国番号と電話番号を確認してください。</string>
+  <string name="registration_activity__your_country">国</string>
+  <string name="registration_activity__your_country_code_and_phone_number">国番号と電話番号</string>
+  <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__register">登録</string>
+  <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">プライバシーポリシー</a></string>
+  <string name="pref_registration_category__title">登録</string>
+  <string name="pref_other_category__title">その他</string>
+  <string name="pref_menu__privacy_policy">プライバシーポリシー</string>
+  <string name="pref_menu__terms_of_service">利用規約</string>
+  <string name="pref_register__title">登録</string>
+  <string name="pref_register__summary">暗号化されたSMSを有効にするためにWhisperPushに登録する</string>
 </resources>

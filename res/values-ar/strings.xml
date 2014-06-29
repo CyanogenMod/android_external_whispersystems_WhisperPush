@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">تم تشفير الرسائل إلى%s.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush غير مسجل</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">اضغط لتسجيل WhisperPush وتمكين المحادثات المشفرة.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">حظر الرسائل الواردة</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">رسالة SMS مشفرة من %s واردة. بسبب إعدادات القائمة السوداء، تم حظر الرسالة.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">غير قادر على استرداد مرفق مشفر لرسالة واردة.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">تلقي رسالة مشفرة على نحو رديء، أو رسالة مشفرة للدورة غير موجودة.</string>
   <string name="PendingIdentityItemView_received_s">تلقي%s</string>

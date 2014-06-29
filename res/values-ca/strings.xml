@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">S\'ha encriptat el missatge per %s.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">No registrat a WhisperPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Pica per registrar-te a WhisperPush i habilitar les converses xifrades.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Missatge entrant bloquejat</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">S\'ha rebut un missatge SMS xifrat de %s. Degut als ajustaments de la llista negra, el missatge ha estat bloquejat.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">No s\'ha pogut recuperar l\'adjunt encriptat del missatge entrant.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">S\'ha rebut un missatge mal encriptat, o un missatge encriptat d\'una sessió no existent.</string>
   <string name="PendingIdentityItemView_received_s">Rebuts %s</string>

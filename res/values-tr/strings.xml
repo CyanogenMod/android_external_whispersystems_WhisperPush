@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">%s için yazdığınız mesaj şifrelendi.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">Kayıtsız WhisperPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">WhisperPush\'u kaydetmek ve şifreli sohbetleri etkinleştirmek için dokunun.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Gelen mesaj engellendi</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s şifrelenmiş bir SMS gönderdi. Kara liste ayarlarından dolayı mesaj engellendi.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Gelen mesajın şifreli eki alınamadı.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Yanlış şifrelenmiş ya da olmayan bir oturumla şifrelenmiş mesaj alındı.</string>
   <string name="PendingIdentityItemView_received_s">%s alındı</string>

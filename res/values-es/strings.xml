@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Mensaje para %s ha sido cifrado.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">Quitar registro WhisperPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Toca para registrar WhisperPush y habilitar las conversaciones cifradas.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Mensaje entrante bloqueado</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Un mensaje SMS cifrado de %s ha sido recibido. Debido a los ajustes de la lista negra, el mensaje ha sido bloqueado.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">No se puede recuperar el archivo adjunto cifrado para el mensaje entrante.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Recibido mensaje indescifrable o no perteneciente a ninguna sesión.</string>
   <string name="PendingIdentityItemView_received_s">Recibido %s</string>

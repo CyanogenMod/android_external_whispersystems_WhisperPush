@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">发送到 %s 的短信已加密</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">未注册 WhisperPush</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">点击注册 WhisperPush 并启用加密对话。</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">已拦截短信</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">接收到一条来自 %s 的加密短信。由于黑名单设置，该短信已被拦截。</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">无法为新消息检索加密附件。</string>
   <string name="MessageReceiver_received_badly_encrypted_message">收到加密不佳的信息，或为非现有会话加密的信息。</string>
   <string name="PendingIdentityItemView_received_s">已收到 %s</string>

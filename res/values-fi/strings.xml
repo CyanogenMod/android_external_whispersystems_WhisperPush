@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Viesti henkilölle/numeroon %s salattiin.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPushin rekisteröinti peruttu</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Napauta rekisteröidäksesi WhisperPushin ja ottaaksesi salatut keskustelut käyttöön.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Tuleva viesti estettiin</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Salattu tekstiviesti numerosta numerosta %s vastaanotettu. Mustan listan vuoksi viesti estettiin.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Salatussa viestissä olevaa liitetiedostoa ei voitu noutaa.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Vastaanotettiin väärin tai aiemman istunnon mukaisesti salattu viesti.</string>
   <string name="PendingIdentityItemView_received_s">Vastaanotettu %s</string>

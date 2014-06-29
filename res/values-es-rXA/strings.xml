@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Cifróse\'l mensaxe pa %s.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush ensin rexistrar</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Calca pa rexistrate en WhisperPush y habilitar les charres cifraes.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Mensaxe entrante bloquiáu</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Recibióse un mensaxe SMS cifráu de %s. Pola mor de los axustes de la llista prieta, el mensaxe bloquióse.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nun pudo recuperase l\'axuntu cifráu del mensaxe entrante.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Recibióse un mensaxe mal cifráu, o un mensaxe cifráu d\'una sesión que nun esiste.</string>
   <string name="PendingIdentityItemView_received_s">Recibíos %s</string>
