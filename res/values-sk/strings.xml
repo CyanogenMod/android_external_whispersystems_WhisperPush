@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">Vyskytla sa závažná chyba vo WhisperPush.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Kvôli údajom synchronizovaným medzi zariadením a serverom, sa musí WhisperPush obnoviť pre povolenie šifrovaných konverzácií.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Obnoviť</string>
   <string name="generic__please_wait">Prosím, čakajte.</string>
+  <string name="GcmReceiver_error">Chyba WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">Neplatná push správa</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Prijatá zle formátovaná push správa.</string>
   <string name="GcmReceiver_unsupported_push_version">Nepodporovaná push verzia</string>
@@ -28,8 +32,12 @@
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Obdržali ste správu, ktorú je potrebné overiť.</string>
   <string name="MessageNotifier_new_session_title">Nová šifrovaná SMS</string>
   <string name="MessageNotifier_new_session__incoming_text">Obdržali ste novú šifrovanú správu SMS od %s.  Všetky ďalšie rozhovory budú automaticky zašifrované.</string>
-  <string name="MessageNotifier_new_session__view_identity">Zobraziť totožnosť</string>
+  <string name="MessageNotifier_new_session__view_identity">Zobraziť identitu</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Správa pre %s bola zašifrovaná.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush neregistrovaný</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Kliknite pre registráciu WhisperPush a povolenie šifrovaných konverzácií.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokovaná prichádzajúca správa</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Prijatá šifrovaná SMS správa od %s. Na základe pravidiel čiernej listiny bola správa zablokovaná.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nemožno načítať šifrovanú prílohu pre prichádzajúcu správu.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Prijatá zle zašifrovaná správa, alebo správa bola zašifrovaná pre neexistujúcu reláciu.</string>
   <string name="PendingIdentityItemView_received_s">Prijaté %s</string>
@@ -51,17 +59,17 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Najprv musíte zadať kód, ktorý ste obdržali\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Pripájanie</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Pripájanie na overenie\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">Chyba siete!</string>
+  <string name="RegistrationProgressActivity_network_error">Chyba siete</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Nemožno sa pripojiť. Skontrolujte prosím pripojenie k sieti a skúste to znova.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Overovanie zlyhalo!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Overovanie zlyhalo</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Overovací kód, ktorý ste odoslali, je nesprávny. Skúste to prosím znova.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Príliš veľa pokusov</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Odoslali ste nesprávny overovací kód príliš veľa krát. Pred ďalším pokusom prosím počkajte.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Vyžiadanie hovoru</string>
+  <string name="RegistrationProgressActivity_requesting_call">Vyžadovanie hovoru\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Žiadosť o overenie prichádzajúceho hovoru\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Chyba servera</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Na serveri došlo k chybe. Prosím skúste to neskôr znova.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Príliš veľa žiadostí!</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Príliš veľa žiadostí</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Už ste nedávno požiadali o hlasový hovor. Budete môcť požiadať o ďalších 20 minút.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Overenie hlasového kódu\u2026</string>
   <string name="RegistrationService_registration_complete">Registrácia dokončená</string>
@@ -73,12 +81,12 @@
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Ste si istí, že chcete označiť odtlačok prsta ako neplatný a zamietnuť všetky čakajúce správy s ním spojené?</string>
   <string name="VerifyIdentityActivity_processing">Spracovávanie</string>
   <string name="VerifyIdentityActivity_discarding_messages">Odmietanie správ\u2026</string>
-  <string name="VerifyIdentityActivity_processing_identity_key">Prebieha spracovanie kľúča totožnosti\u2026</string>
-  <string name="ViewIdentityActivity_verified">Overené!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">Naskenované kľúče sa zhodujú!</string>
-  <string name="ViewIdentityActivity_not_verified">Neoverené!</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">UPOZORNENIE, naskenovaný kľúč sa nezhoduje!</string>
-  <string name="ViewIdentityActivity_no_scanned_key_found">Nenájdený naskenovaný kľúč</string>
+  <string name="VerifyIdentityActivity_processing_identity_key">Prebieha spracovanie kľúča identity\u2026</string>
+  <string name="ViewIdentityActivity_verified">Overené</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">Skenovaný kľúč sa zhoduje</string>
+  <string name="ViewIdentityActivity_not_verified">Neoverené</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">UPOZORNENIE, naskenovaný kľúč sa nezhoduje</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">Nenašiel sa skenovaný kľúč</string>
   <string name="country_selection_fragment__search">Hľadať</string>
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Prosím, potvrďte kód vašej krajiny a telefónne číslo.</string>
@@ -97,7 +105,7 @@
   <string name="registration_progress_activity__voice_verification">Hlasové overenie</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure Vám môžu zavolať pre overenie vášho telefónneho čísla. Stlačte tlačidlo \'Zavolať mi\' a nižšie zadajte kód, ktorý ste si vypočuli.</string>
   <string name="registration_progress_activity__verify">Overiť</string>
-  <string name="registration_progress_activity__call_me">Zavolať mi</string>
+  <string name="registration_progress_activity__call_me">Zavolaj mi</string>
   <string name="registration_progress_activity__edit_number">Upraviť číslo</string>
   <string name="registration_progress_activity__connectivity_error">Chyba pripojenia.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure sa nepodarilo pripojiť k službe push.</string>
@@ -123,7 +131,7 @@
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Nemáte v súčasnosti žiadne identity vo vašej overenej databáze.</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Žiadne čakajúce správy, ktoré vyžadujú overenie.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">V odtlačku tohto kontaktu došlo k zmene, ktorá by mohla znamenať, že niekto sa snaží zachytiť vašu komunikáciu alebo váš kontakt má nový telefón. Skúste zavolať tomuto kontaktu a overte odtlačok prsta jeho prečítaním. Správy od tohto kontaktu budú podržané až do overenia.</string>
-  <string name="verify_identity_activity__their_fingerprint">Ich odtlačok:</string>
+  <string name="verify_identity_activity__their_fingerprint">Ich odtlačok prstov:</string>
   <string name="verify_identity_activity__valid">Platné</string>
   <string name="verify_identity__invalid">Neplatné</string>
   <string name="verify_identity_activity__avatar_icon">Ikona avatara</string>
@@ -134,7 +142,7 @@
   <string name="view_identity_activity_menu__get_scanned_to_compare">Získať skenované pre porovnanie</string>
   <string name="registration_progress_notification__title_registering">Registrácia cez WhisperPush</string>
   <string name="registration_progress_notification__title_complete">WhisperPush povolený</string>
-  <string name="registration_progress_notification__title_failure">Registrácia cez WhisperPush zlyhala</string>
+  <string name="registration_progress_notification__title_failure">WhisperPush registrácia zlyhala</string>
   <string name="registration_progress_notification__complete">Úspešne zaregistrované</string>
   <string name="registration_progress_notification__failure">Vyskytol sa problém s registráciou</string>
   <string name="registration_progress_notification__gms_update">Vyžaduje sa aktualizácia, ak chcete používať WhisperPush</string>
@@ -148,6 +156,6 @@
   <string name="pref_unregister__title">Zrušiť registráciu</string>
   <string name="pref_unregister__summary">Zrušte registráciu cez WhisperPush pre zakázanie šifrovaných SMS</string>
   <string name="pref_unregister__progress_title">Ruší sa registrácia</string>
-  <string name="pref_review_keys__title">Zobraziť kľúče totožnosti</string>
-  <string name="pref_my_identity__title">Zobraz môj kľúč totožnosti</string>
+  <string name="pref_review_keys__title">Zobraziť kľúče identity</string>
+  <string name="pref_my_identity__title">Zobraz môj kľúč identity</string>
 </resources>

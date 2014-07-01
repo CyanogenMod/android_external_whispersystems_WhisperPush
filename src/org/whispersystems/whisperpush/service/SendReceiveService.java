@@ -42,7 +42,7 @@ public class SendReceiveService extends Service {
     public  static final String DESTINATION  = "destAddr";
 
     private final ExecutorService  executor    = Executors.newCachedThreadPool();
-    private final OutgoingSmsQueue outgoingQuue = OutgoingSmsQueue.getInstance();
+    private final OutgoingSmsQueue outgoingQueue = OutgoingSmsQueue.getInstance();
 
     private MessageSender   messageSender;
     private MessageReceiver messageReceiver;
@@ -64,7 +64,7 @@ public class SendReceiveService extends Service {
                         IncomingPushMessage message = intent.getParcelableExtra("message");
                         messageReceiver.handleReceiveMessage(message);
                     } else if (SEND_SMS.equals(intent.getAction())) {
-                        OutgoingMessageCandidate message = outgoingQuue.get();
+                        OutgoingMessageCandidate message = outgoingQueue.get();
                         messageSender.handleSendMessage(message);
                     }
                 }

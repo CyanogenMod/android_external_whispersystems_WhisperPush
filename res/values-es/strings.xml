@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush ha encontrado un error grave.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Debido a un problema con la sincronización de datos entre tu dispositivo y el servidor, es necesario restablecer WhisperPush para habilitar las conversaciones cifradas.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Restablecer</string>
   <string name="generic__please_wait">Espera por favor.</string>
+  <string name="GcmReceiver_error">Error de WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">Mensaje inválido</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Recibido un mensaje con formato inválido.</string>
   <string name="GcmReceiver_unsupported_push_version">Versión no soportada</string>
@@ -30,6 +34,10 @@
   <string name="MessageNotifier_new_session__incoming_text">Recibido un nuevo mensaje SMS cifrado de %s. Todas las conversaciones siguientes serán cifradas automáticamente.</string>
   <string name="MessageNotifier_new_session__view_identity">Mostrar identidad</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Mensaje para %s ha sido cifrado.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">Quitar registro WhisperPush</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Toca para registrar WhisperPush y habilitar las conversaciones cifradas.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Mensaje entrante bloqueado</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Un mensaje SMS cifrado de %s ha sido recibido. Debido a los ajustes de la lista negra, el mensaje ha sido bloqueado.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">No se puede recuperar el archivo adjunto cifrado para el mensaje entrante.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Recibido mensaje indescifrable o no perteneciente a ninguna sesión.</string>
   <string name="PendingIdentityItemView_received_s">Recibido %s</string>
@@ -51,20 +59,20 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Primeramente debes introducir el código que recibiste\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Conectando</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Conectando para verificación\u2026</string>
-  <string name="RegistrationProgressActivity_network_error">¡Error de red!</string>
+  <string name="RegistrationProgressActivity_network_error">Error de red</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Imposible conectar. Por favor, revisa tu conexión de datos e inténtalo nuevamente.</string>
-  <string name="RegistrationProgressActivity_verification_failed">¡Falló la verificación!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Falló la verificación</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">El código de verificación suministrado es incorrecto. Por favor, inténtalo nuevamente.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Demasiados intentos</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Has enviado un código de verificación incorrecto demasiadas veces. Por favor, espera un minuto antes de inténtalo nuevamente.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Solicitando llamada</string>
+  <string name="RegistrationProgressActivity_requesting_call">Solicitando llamada\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Solicitando llamada de verificación\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Error del servidor</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">El servidor encontró un error. Por favor, inténtalo nuevamente.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">¡Demasiadas solicitudes!</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Demasiadas peticiones</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ya has solicitado una llamada de voz recientemente. Podrás solicitar otra en 20 minutos.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verificando código de voz\u2026</string>
-  <string name="RegistrationService_registration_complete">Registro completo</string>
+  <string name="RegistrationService_registration_complete">Registro completado</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">El registro para mensajes Push ha sido completado con éxito.</string>
   <string name="RegistrationService_registration_error">Error de registro</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">El registro para mensajes Push ha encontrado un problema.</string>
@@ -74,11 +82,11 @@
   <string name="VerifyIdentityActivity_processing">Procesando</string>
   <string name="VerifyIdentityActivity_discarding_messages">Descartando mensajes\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Procesando clave de identidad\u2026</string>
-  <string name="ViewIdentityActivity_verified">¡Verificada!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">¡La clave explorada coincide!</string>
-  <string name="ViewIdentityActivity_not_verified">¡No verificada!</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">Aviso: ¡La clave explorada no coincide!</string>
-  <string name="ViewIdentityActivity_no_scanned_key_found">¡No se ha encontrado ninguna clave al explorar!</string>
+  <string name="ViewIdentityActivity_verified">Verificada</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">La clave escaneada coincide</string>
+  <string name="ViewIdentityActivity_not_verified">No verificada</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">Aviso: La clave escaneada no coincide</string>
+  <string name="ViewIdentityActivity_no_scanned_key_found">No se encontró una clave escaneada</string>
   <string name="country_selection_fragment__search">Búsqueda</string>
   <string name="country_selection_fragment__loading_countries">Cargando países\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Por favor, confirma tu país y número de teléfono.</string>
@@ -123,7 +131,7 @@
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Actualmente no tienes ninguna identidad en tu base de datos de confianza</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">No hay mensajes pendientes que requieran validación.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">La huella digital de este contacto ha cambiado, lo que podría significar que alguien está tratando de interceptar la comunicación o que el contacto tiene un teléfono nuevo. Considera llamar a este contacto y validar la huella digital mediante su lectura en voz alta. Los mensajes de este contacto serán retenidos hasta su validación.</string>
-  <string name="verify_identity_activity__their_fingerprint">Su huella digital:</string>
+  <string name="verify_identity_activity__their_fingerprint">Huella digital remota:</string>
   <string name="verify_identity_activity__valid">Válida</string>
   <string name="verify_identity__invalid">Inválida</string>
   <string name="verify_identity_activity__avatar_icon">Imagen</string>
@@ -138,7 +146,7 @@
   <string name="registration_progress_notification__complete">Registro completado</string>
   <string name="registration_progress_notification__failure">Ha habido un problema durante el registro</string>
   <string name="registration_progress_notification__gms_update">Se necesita una actualización para usar WhisperPush</string>
-  <string name="pref_activity_title">Preferencias</string>
+  <string name="pref_activity_title">Preferencias de WhisperPush</string>
   <string name="pref_registration_category__title">Registro</string>
   <string name="pref_other_category__title">Otros</string>
   <string name="pref_menu__privacy_policy">Política de privacidad</string>

@@ -18,7 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">Fatale fout opgetreden bij WhisperPush.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Als gevolg van niet-gesynchroniseerde gegevens tussen uw apparaat en de server moet WhisperPush gereset worden om versleutelde gesprekken te kunnen inschakelen.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Reset</string>
   <string name="generic__please_wait">Even geduld.</string>
+  <string name="GcmReceiver_error">WhisperPush-fout</string>
   <string name="GcmReceiver_invalid_push_message">Ongeldig push-bericht</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Onjuist opgemaakt push-bericht ontvangen.</string>
   <string name="GcmReceiver_unsupported_push_version">Push-versie niet ondersteund</string>
@@ -30,6 +34,10 @@
   <string name="MessageNotifier_new_session__incoming_text">U heeft een versleuteld sms-bericht ontvangen van %s. Alle volgende gesprekken zullen automatisch worden versleuteld.</string>
   <string name="MessageNotifier_new_session__view_identity">Identiteit bekijken</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Bericht naar %s is versleuteld.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">Afgemeld bij WhisperPush</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Tik om te registreren bij WhisperPush voor versleutelde gesprekken.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Bericht geblokkeerd</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Versleuteld sms-bericht van %s ontvangen. Vanwege de zwarte-lijst-instellingen is het bericht geblokkeerd.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Kan versleutelde bijlage van inkomend bericht niet ophalen.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Onjuist versleuteld bericht ontvangen of bericht versleuteld voor niet-bestaande sessie.</string>
   <string name="PendingIdentityItemView_received_s">%s ontvangen</string>
@@ -57,7 +65,7 @@
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De ingevoerde code is onjuist. Probeer het opnieuw.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Te veel pogingen</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Te vaak een onjuiste code ingevoerd. Probeer het over een minuut opnieuw.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Gesprek aanvragen</string>
+  <string name="RegistrationProgressActivity_requesting_call">Gesprek aanvragen\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Verificatiegesprek aanvragen\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Serverfout</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Er is een serverfout opgetreden. Probeer het opnieuw.</string>

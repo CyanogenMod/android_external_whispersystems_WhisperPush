@@ -7,6 +7,7 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_BLACKLIST"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -48,6 +49,9 @@
         <activity android:name=".ui.GooglePlayServicesUpdateActivity" />
 
         <activity android:name=".ui.CountrySelectionActivity"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+        <activity android:name=".ui.ErrorAndResetActivity"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".ui.RegistrationProgressActivity"
@@ -126,6 +130,11 @@
 
         <provider android:authorities="org.whispersystems.whisperpush.provider"
                   android:name=".attachments.AttachmentProvider"
+                  android:protectionLevel="signatureOrSystem"
+                  android:exported="true" />
+
+        <provider android:authorities="org.whispersystems.whisperpush.sessionprovider"
+                  android:name=".db.ActiveSessionProvider"
                   android:protectionLevel="signatureOrSystem"
                   android:exported="true" />
 

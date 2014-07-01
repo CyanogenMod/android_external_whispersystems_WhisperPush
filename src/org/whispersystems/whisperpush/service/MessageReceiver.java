@@ -20,6 +20,7 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.internal.telephony.util.BlacklistUtils;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -32,6 +33,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.contacts.Contact;
@@ -63,6 +65,11 @@ public class MessageReceiver {
     public void handleReceiveMessage(IncomingPushMessage message) {
         if (message == null)
             return;
+
+        if (isNumberBlackListed(message.getSource())) {
+            MessageNotifier.notifyBlacklisted(context, message.getSource());
+            return;
+        }
 
         if (!hasActiveSession(message.getSource())) {
             Log.d(TAG, "New session detected for " + message.getSource());
@@ -165,6 +172,9 @@ public class MessageReceiver {
         CMDatabase.getInstance(context).setActiveSession(token);
     }
 
-
-
+    private boolean isNumberBlackListed(String number) {
+        int type = BlacklistUtils.isListed(context,
+                PhoneNumberFormatter.formatNumberNational(number) , BlacklistUtils.BLOCK_MESSAGES);
+        return type != BlacklistUtils.MATCH_NONE;
+    }
 }

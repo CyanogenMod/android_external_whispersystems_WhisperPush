@@ -18,25 +18,35 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- ErrorAndResetActivity Strings -->
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush has encountered a fatal error.</string>
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Due to data being out of sync between your device and the server, WhisperPush will need to reset to enable encrypted conversations.</string>
+    <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Reset</string>
+
     <!-- Generic Strings -->
     <string translatable="false" name="generic__plus">+</string>
     <string translatable="false" name="generic__dot">•</string>
     <string name="generic__please_wait">Please wait.</string>
 
     <!-- GcmReceiver -->
-    <string name="GcmReceiver_invalid_push_message">Invalid Push Message</string>
+    <string name="GcmReceiver_error">WhisperPush error</string>
+    <string name="GcmReceiver_invalid_push_message">Invalid push message</string>
     <string name="GcmReceiver_received_badly_formatted_push_message">Received badly formatted push message.</string>
-    <string name="GcmReceiver_unsupported_push_version">Unsupported Push Version</string>
+    <string name="GcmReceiver_unsupported_push_version">Unsupported push version</string>
     <string name="GcmReceiver_received_push_message_with_unknown_version">Received push message with unknown version. Do you need to update your client?</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_pending_messages_require_validation">%d pending messages require validation</string>
     <string name="MessageNotifier_pending_message_requires_validation">Pending message requires verification.</string>
     <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">You have received a message that requires you to validate it.</string>
-    <string name="MessageNotifier_new_session_title">New Encrypted SMS</string>
+    <string name="MessageNotifier_new_session_title">New encrypted SMS</string>
     <string name="MessageNotifier_new_session__incoming_text">You have received a new encrypted SMS message from %s.  All further conversations will be automatically encrypted.</string>
-    <string name="MessageNotifier_new_session__view_identity">View Identity</string>
+    <string name="MessageNotifier_new_session__view_identity">View identity</string>
     <string name="MessageNotifier_new_session__outgoing_toast">Message to %s was encrypted.</string>
+    <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush unregistered</string>
+    <string name="MessageNotifier_user_unregistered_from_service_content">Tap to register WhisperPush and enable encrypted conversations.</string>
+    <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blocked incoming message</string>
+    <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">An encrypted SMS message from %s received. Due to blacklist settings, the message has been blocked.</string>
 
     <!-- MessageReceiver -->
     <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Unable to retrieve encrypted attachment for incoming message.</string>
@@ -46,7 +56,7 @@
     <string name="PendingIdentityItemView_received_s">Received %s</string>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_select_your_country">Select Your Country</string>
+    <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your country code</string>
     <string name="RegistrationActivity_you_must_specify_your_phone_number">You must specify your phone number</string>
     <string name="RegistrationActivity_invalid_number">Invalid number</string>
@@ -56,10 +66,10 @@
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">We will now verify that the following number is associated with this device:\n\n%s\n\n Is this number correct, or would you like to edit it before continuing?</string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
-    <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
+    <string name="RegistrationActivity_connect_with_textsecure">Connect with TextSecure</string>
 
     <!-- RegistrationProblemsActivity -->
-    <string name="RegistrationProblemsActivity_possible_problems">Possible Problems</string>
+    <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
 
     <!-- RegistrationProgressActivity -->
     <string name="RegistrationProgressActivity_verifying_number">Verifying number</string>
@@ -68,24 +78,24 @@
     <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first\u2026</string>
     <string name="RegistrationProgressActivity_connecting">Connecting</string>
     <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification\u2026</string>
-    <string name="RegistrationProgressActivity_network_error">Network Error!</string>
+    <string name="RegistrationProgressActivity_network_error">Network error</string>
     <string name="RegistrationProgressActivity_unable_to_connect">Unable to connect. Please check your network connection and try again.</string>
-    <string name="RegistrationProgressActivity_verification_failed">Verification Failed!</string>
+    <string name="RegistrationProgressActivity_verification_failed">Verification failed</string>
     <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">The verification code you submitted is incorrect. Please try again.</string>
     <string name="RegistrationProgressActivity_too_many_attempts">Too many attempts</string>
     <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">You\'ve submitted an incorrect verification code too many times. Please wait a minute before trying again.</string>
-    <string name="RegistrationProgressActivity_requesting_call">Requesting Call</string>
+    <string name="RegistrationProgressActivity_requesting_call">Requesting call\u2026</string>
     <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call\u2026</string>
-    <string name="RegistrationProgressActivity_server_error">Server Error</string>
+    <string name="RegistrationProgressActivity_server_error">Server error</string>
     <string name="RegistrationProgressActivity_the_server_encountered_an_error">The server encountered an error. Please try again.</string>
-    <string name="RegistrationProgressActivity_too_many_requests">Too Many Requests!</string>
+    <string name="RegistrationProgressActivity_too_many_requests">Too many requests</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code\u2026</string>
 
     <!-- RegistrationService -->
-    <string name="RegistrationService_registration_complete">Registration Complete</string>
+    <string name="RegistrationService_registration_complete">Registration complete</string>
     <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Push messaging registration has successfully completed.</string>
-    <string name="RegistrationService_registration_error">Registration Error</string>
+    <string name="RegistrationService_registration_error">Registration error</string>
     <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Push messaging registration has encountered a problem.</string>
 
     <!-- SmsServiceBridge -->
@@ -99,11 +109,11 @@
     <string name="VerifyIdentityActivity_processing_identity_key">Processing identity key\u2026</string>
 
     <!-- ViewIdentityActivity -->
-    <string name="ViewIdentityActivity_verified">Verified!</string>
-    <string name="ViewIdentityActivity_the_scanned_key_matches">The scanned key matches!</string>
-    <string name="ViewIdentityActivity_not_verified">NOT Verified!</string>
-    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">WARNING, the scanned key does not match!</string>
-    <string name="ViewIdentityActivity_no_scanned_key_found">No scanned key found!</string>
+    <string name="ViewIdentityActivity_verified">Verified</string>
+    <string name="ViewIdentityActivity_the_scanned_key_matches">The scanned key matches</string>
+    <string name="ViewIdentityActivity_not_verified">Not verified</string>
+    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">WARNING, the scanned key does not match</string>
+    <string name="ViewIdentityActivity_no_scanned_key_found">No scanned key found</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__search">Search</string>
@@ -127,10 +137,10 @@
     <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure will not work with Google Voice numbers.</string>
 
     <!-- registration_progress_activity -->
-    <string name="registration_progress_activity__voice_verification">Voice Verification</string>
+    <string name="registration_progress_activity__voice_verification">Voice verification</string>
     <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure can also call you to verify your number. Tap \'Call Me\' and enter the six digit code that you hear below.</string>
     <string name="registration_progress_activity__verify">Verify</string>
-    <string name="registration_progress_activity__call_me">Call Me</string>
+    <string name="registration_progress_activity__call_me">Call me</string>
     <string name="registration_progress_activity__edit_number">Edit number</string>
     <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
     <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure was unable to connect to the push service.</string>
@@ -153,9 +163,9 @@
     <string name="registration_progress_activity__timer_default" translatable="false">1:57</string>
 
     <!-- registration_completed_activity -->
-    <string name="registration_completed_activity__registration_completed">Registration Completed</string>
+    <string name="registration_completed_activity__registration_completed">Registration completed</string>
     <string name="registration_completed_activity__body">You have successfully registered with TextSecure.</string>
-    <string name="registration_completed_activity__register_again">Register Again</string>
+    <string name="registration_completed_activity__register_again">Register again</string>
 
     <!-- review_identities_activity -->
     <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identities in your trust database</string>
@@ -163,10 +173,10 @@
     <!-- verify_identities_activity -->
     <string name="verify_identities_activity__no_pending_messages_that_require_validation">No pending messages that require validation.</string>
     <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">This contact\'s identity fingerprint has changed, which could mean someone is trying to intercept your communication, or just that your contact has a new phone. Consider calling this contact and validating the fingerprint below by reading it aloud. Messages from this contact will be held until validated.</string>
-    <string name="verify_identity_activity__their_fingerprint">Their Fingerprint:</string>
+    <string name="verify_identity_activity__their_fingerprint">Their fingerprint:</string>
     <string name="verify_identity_activity__valid">Valid</string>
     <string name="verify_identity__invalid">Invalid</string>
-    <string name="verify_identity_activity__avatar_icon">Avatar Icon</string>
+    <string name="verify_identity_activity__avatar_icon">Avatar icon</string>
 
     <!-- view_new_identity_activity -->
     <string name="view_new_identity_activity__verify_fingerprint">This contact has sent you a new encrypted message. Consider calling this contact and validating the fingerprint below by reading it aloud.</string>
@@ -179,14 +189,14 @@
 
     <!-- registration_progress_notification -->
     <string name="registration_progress_notification__title_registering">Registering with WhisperPush</string>
-    <string name="registration_progress_notification__title_complete">WhisperPush Enabled</string>
-    <string name="registration_progress_notification__title_failure">WhisperPush Registration Failed</string>
+    <string name="registration_progress_notification__title_complete">WhisperPush enabled</string>
+    <string name="registration_progress_notification__title_failure">WhisperPush registration failed</string>
     <string name="registration_progress_notification__complete">Successfully registered</string>
     <string name="registration_progress_notification__failure">There was a problem registering</string>
     <string name="registration_progress_notification__gms_update">An update is required to use WhisperPush</string>
 
     <!-- preferences -->
-    <string name="pref_activity_title">WhisperPush Preferences</string>
+    <string name="pref_activity_title">WhisperPush preferences</string>
     <string name="pref_registration_category__title">Registration</string>
     <string name="pref_other_category__title">Other</string>
     <string name="pref_menu__privacy_policy">Privacy policy</string>
