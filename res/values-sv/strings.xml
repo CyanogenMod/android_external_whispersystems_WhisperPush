@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Meddelande till %s krypterades.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush oregistrerat</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Tryck för att registrera WhisperPush och aktivera krypterade konversationer.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blockerade inkommande meddelande</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Ett krypterat SMS från %s togs emot. På grund av inställningar för svartlistning har meddelandet spärrats.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Kan inte hämta krypterad bifogad fil i inkommande meddelande.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Mottog illa krypterat meddelande eller meddelande krypterat för icke existerande session.</string>
   <string name="PendingIdentityItemView_received_s">Mottogs %s</string>
