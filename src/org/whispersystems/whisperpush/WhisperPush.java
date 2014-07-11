@@ -18,6 +18,7 @@ package org.whispersystems.whisperpush;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
@@ -42,13 +43,27 @@ public class WhisperPush extends Application {
         }
     }
 
-    private static void launchGcmRegistration(Context context) {
-        try {
-            GcmHelper.getRegistrationId(context);
-            WhisperPreferences.setGcmRegistrationTime(context, System.currentTimeMillis());
-        } catch (IOException e) {
-            Log.e(TAG, "GcmRecurringRegistration", e);
-        }
+    private static void launchGcmRegistration(final Context context) {
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                try {
+                    GcmHelper.getRegistrationId(context);
+                    WhisperPreferences.setGcmRegistrationTime(context, System.currentTimeMillis());
+                    return true;
+                } catch (IOException e) {
+                    Log.e(TAG, "GcmRecurringRegistration", e);
+                }
+                return false;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (result) {
+                    Log.i(TAG, "GcmRecurringRegistration reregistered");
+                }
+            }
+        }.execute();
     }
 
     private static boolean visible = false;
