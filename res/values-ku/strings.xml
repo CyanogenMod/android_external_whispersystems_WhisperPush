@@ -47,7 +47,7 @@
   <string name="RegistrationActivity_invalid_number">ژمارەکە لەکارە نیە</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ئەم ژمارە تۆ دیاریت کرد (%s)لەکارا نیە .</string>
   <string name="RegistrationActivity_unsupported">پاڵپشتی ناکات</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">ببورە ئامێرەکە پاڵپشتی ناکات بۆ داتای نامە، ئەو ئامێرانەی کە وەشانەکانیان لە خواری ٤.٠ ە پێویستە خۆیان تۆمارکرابن لە هەژماری گووگڵ. ئەو ئامێرانەی کە وەشانی ٤.٠ و بەسەروەیان لەسەرە پێویست بە هەژماری گووگڵ ناکات.بەڵام ئەبێت بازاڕی Play Store دامەزرابێت.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">ببورە ئامێرەکە پاڵپشتی ناکات بۆ داتای نامە، ئەو ئامێرانەی کە وەشانەکانیان لە خواری 4.0 ە پێویستە خۆیان تۆمارکرابن لە هەژماری گووگڵ. ئەو ئامێرانەی کە وەشانی 4.0 و بەسەروەیان لەسەرە پێویست بە هەژماری گووگڵ ناکات.بەڵام ئەبێت بازاڕی Play Store دامەزرابێت.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">ئێمە ڕێگە بەم ژمارەیە نادەین لە خوارەوە بۆ ئەوەی لەگەڵ ئەم ئامێرە یەک بن.e:\n\n%s\n\n ئایە ئەم ژمارەیە ڕاستە,  یان ئەتەوێت پێشتریەکە دەستکاری بکەیت ?</string>
   <string name="RegistrationActivity_continue">بەردەوام</string>
   <string name="RegistrationActivity_edit">دەستکاری</string>
@@ -70,7 +70,7 @@
   <string name="RegistrationProgressActivity_server_error">هەڵە هەیە لە ڕاژەکاردا</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">هەڵەی ڕاژە. تکایە دوبارە هەوڵ بدەرەوە.</string>
   <string name="RegistrationProgressActivity_too_many_requests">داواکاری زۆر هەیە</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">پێشتر داوای تەلەفۆنی دەنگیت کردوە. ئەتوانیت دوای ٢٠ خولەکی تر داوایتر بکەیتەوە.</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">پێشتر داوای تەلەفۆنی دەنگیت کردوە. ئەتوانیت دوای 20 خولەکی تر داوایتر بکەیتەوە.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">دوای کۆدی دەنگی پەسەندکردن\u2026</string>
   <string name="RegistrationService_registration_complete">تۆمارکردن تەواوبوو</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">پاڵنانی نامە تۆمارکردن سەرکەوتوی تەواوبوو.</string>
@@ -111,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">لە توانانی ئەبوو کە بەڕاستی پاڵ بە خزمەتگوزاری بنات بۆ پەیوەندکردن.</string>
   <string name="registration_progress_activity__some_possible_problems_include">هەنێ هەڵە لەوانە:</string>
   <string name="registration_progress_activity__no_network_connectivity">تۆڕ نیە.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">ئامیرەکەت تۆڕی ئەوێت بۆ بەکارهێنانی شێوازی دەق. دڵنیا بکەوە کە ئامێرەکەت پەیوەندە بە ئەنتەرنێت یان ٣جی.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">ئامیرەکەت تۆڕی ئەوێت بۆ بەکارهێنانی شێوازی دەق. دڵنیا بکەوە کە ئامێرەکەت پەیوەندە بە ئەنتەرنێت یان 3جی.</string>
   <string name="registration_progress_activity__restrictive_firewall">تەنها دیواری بەرگری.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">ئەگەر پەیوەندیت کردوە بە Wi-Fi. لەوانەیە دیواری ئاگری ڕێگەکەی بلۆکردبێت بۆ ناردنی دەق.هەوڵی تۆڕێکی تر بدە.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">دەق ئێستا بە خۆکارانە ژمارەکەت ئەناسێنێت بۆ دڵنیاکردنەوە بە SMS نامەت بۆ دێت.</string>
@@ -134,7 +134,7 @@
   <string name="verify_identity_activity__their_fingerprint">پەنجەمۆری ئەوان:</string>
   <string name="verify_identity_activity__valid">لەکارە</string>
   <string name="verify_identity__invalid">لەکارنیە</string>
-  <string name="verify_identity_activity__avatar_icon">ئایکۆنی وێنۆچکە</string>
+  <string name="verify_identity_activity__avatar_icon">وێنۆچکه‌ی وێنۆچکە</string>
   <string name="view_new_identity_activity__verify_fingerprint">ناوەکان نێردرا بە نامە .تکایە تەلەفۆن بکە بۆ ناوەکان وە پەنچە مۆرەکەت بخوێنەوە بە دەنگی بەرز.</string>
   <string name="view_new_identity_activity__continue">بەردەوام</string>
   <string name="view_identity_activity_menu__compare">بەراوردکردن</string>
