@@ -67,7 +67,6 @@
   <string name="RegistrationProgressActivity_too_many_attempts">Túl sok próbálkozás történt</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Túl sokszor próbált meg érvénytelen ellenőrző kódot beküldeni. Várjon egy percet, mielőtt újra megpróbálja.</string>
   <string name="RegistrationProgressActivity_requesting_call">Hívás kérése\u2026</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Bejövő ellenőrző hívás kezdeményezése\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Szerverhiba</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">A szerver hibába ütközött. Próbálja meg újra.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Túl sok kérés</string>
@@ -98,7 +97,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Adatvédelmi nyilatkozat</a></string>
   <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma:</string>
   <string name="registration_problems__sms_interceptors">SMS elfogók.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Néhány SMS alkalmazás, mint például a Handcent, vagy a GoSMS rosszul viselkedik és elfog minden bejövő SMS üzenetet. Ellenőrizze, hogy nem kapott-e üzenetet, ami a \'Your TextSecure verification code:\' mondattal kezdődik. Ez esetben be kell állítania a harmadik féltől származó üzenetküldő alkalmazását, hogy engedje át az üzeneteket.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Néhány SMS alkalmazás, mint például a Handcent, vagy a GoSMS rosszul viselkedik és elfog minden bejövő SMS üzenetet. Ellenőrizze, hogy nem kapott-e üzenetet, ami a \"Your TextSecure verification code:\" mondattal kezdődik. Ez esetben be kell állítania a harmadik féltől származó üzenetküldő alkalmazását, hogy engedje át az üzeneteket.</string>
   <string name="registration_problems__incorrect_number">Érvénytelen szám.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Ellenőrizze, hogy jól adta-e meg a számát, és hogy azt megfelelően formázta.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -112,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">Nem sikerült csatlakozni a push szolgáltatáshoz.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Néhány lehetséges probléma:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nincs internetkapcsolat.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Az eszközének internetkapcsolatra van szüksége a TextSecure e funkciójának használatához. Ellenőrizze internetkapcsolatát.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Az eszközének internetkapcsolatra van szüksége a TextSecure ezen funkciójának használatához. Ellenőrizze internetkapcsolatát.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tűzfal blokkolja a kommunikációt.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Ha Wi-Fin kapcsolódik, lehetséges, hogy egy tűzfal blokkolja a TextSecure szerver elérését. Próbálkozzon másik hálózattal, vagy mobil internettel.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">A TextSecure most ellenőrzi a számát egy megerősítő SMS segítségével.</string>
@@ -155,7 +154,7 @@
   <string name="pref_register__title">Regisztráció</string>
   <string name="pref_register__summary">WhisperPush regisztrálás a titkosított SMS küldéshez</string>
   <string name="pref_unregister__title">Regisztráció törlése</string>
-  <string name="pref_unregister__summary">WhisperPush regisztráció törlése a titkosítatlan SMS-küldéshez</string>
+  <string name="pref_unregister__summary">WhisperPush regisztráció törlése a titkosítatlan SMS küldéshez</string>
   <string name="pref_unregister__progress_title">Regisztráció megszüntetése</string>
   <string name="pref_review_keys__title">Azonosító kulcsok áttekintése</string>
   <string name="pref_my_identity__title">Saját azonosító kulcs megtekintése</string>
