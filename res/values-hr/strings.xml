@@ -36,6 +36,8 @@
   <string name="MessageNotifier_new_session__outgoing_toast">Poruka za %s je kodirana.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush nije registriran</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Odaberi za WhisperPush registriranje i omogućavanje kodiranih razgovora.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokirane dolazne poruke</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Kodirana SMS poruka od %s primljena. Zbog postavki crne liste, poruka je blokirana.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nije moguće dohvatiti kodirani privitak za nadolazeću poruku.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Primljena loše kodirana poruka ili poruka kodirana za nepostojeću sesiju.</string>
   <string name="PendingIdentityItemView_received_s">Primljeno %s</string>

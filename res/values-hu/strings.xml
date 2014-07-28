@@ -42,8 +42,8 @@
   <string name="MessageReceiver_received_badly_encrypted_message">A fogadott üzenet rosszul, vagy nem létező munkamenet számára lett kódolva.</string>
   <string name="PendingIdentityItemView_received_s">%s fogadva</string>
   <string name="RegistrationActivity_select_your_country">Ország kiválasztása</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnia az országa előhívóját.</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Meg kell adnia a telefonszámát.</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnia az országa előhívóját</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Meg kell adnia a telefonszámát</string>
   <string name="RegistrationActivity_invalid_number">Érvénytelen szám</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">A megadott szám (%s) érvénytelen.</string>
   <string name="RegistrationActivity_unsupported">Nem támogatott</string>
@@ -98,7 +98,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Adatvédelmi nyilatkozat</a></string>
   <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma:</string>
   <string name="registration_problems__sms_interceptors">SMS elfogók.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Néhány SMS alkalmazás, mint például a Handcent, vagy a GoSMS rosszul viselkedik és elfog minden bejövő SMS üzenetet. Ellenőrizze, hogy nem kapott-e üzenetet, ami a \'Your TextSecure verification code:\' mondattal kezdődik. Ez esetben be kell állítania az üzenetküldő alkalmazását, hogy ne fogja ez az üzeneteket.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Néhány SMS alkalmazás, mint például a Handcent, vagy a GoSMS rosszul viselkedik és elfog minden bejövő SMS üzenetet. Ellenőrizze, hogy nem kapott-e üzenetet, ami a \'Your TextSecure verification code:\' mondattal kezdődik. Ez esetben be kell állítania a harmadik féltől származó üzenetküldő alkalmazását, hogy engedje át az üzeneteket.</string>
   <string name="registration_problems__incorrect_number">Érvénytelen szám.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Ellenőrizze, hogy jól adta-e meg a számát, és hogy azt megfelelően formázta.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -131,7 +131,7 @@
   <string name="registration_completed_activity__register_again">Újra regisztrálás</string>
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Még nincs azonosítója a megbízható azonosítók adatbázisában.</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Nincs ellenőrzésre váró üzenet.</string>
-  <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Az alábbi partnerek azonosítói megváltoztak. Ez azt jelenti, hogy valaki le akarja önöket hallgatni, vagy a partnereinek új telefonja van. Hívja fel őket és ellenőrizze az azonosítókat annak hangos felolvasásával. Az ellenőrzés végéig a partnerektől kapott üzenetek vissza lesznek tartva.</string>
+  <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Az alábbi partnerek ujjlenyomatai megváltoztak. Ez azt jelenti, hogy valaki le akarja önöket hallgatni, vagy a partnereinek új telefonja van. Hívja fel őket és ellenőrizze az azonosítókat annak hangos felolvasásával. Az ellenőrzés végéig a partnerektől kapott üzenetek vissza lesznek tartva.</string>
   <string name="verify_identity_activity__their_fingerprint">Az ujjlenyomatuk:</string>
   <string name="verify_identity_activity__valid">Érvényes</string>
   <string name="verify_identity__invalid">Érvénytelen</string>
@@ -153,7 +153,7 @@
   <string name="pref_menu__privacy_policy">Adatvédelmi nyilatkozat</string>
   <string name="pref_menu__terms_of_service">Felhasználási Feltételek</string>
   <string name="pref_register__title">Regisztráció</string>
-  <string name="pref_register__summary">WhisperPush regisztrálás a titkosított SMS-küldéshez</string>
+  <string name="pref_register__summary">WhisperPush regisztrálás a titkosított SMS küldéshez</string>
   <string name="pref_unregister__title">Regisztráció törlése</string>
   <string name="pref_unregister__summary">WhisperPush regisztráció törlése a titkosítatlan SMS-küldéshez</string>
   <string name="pref_unregister__progress_title">Regisztráció megszüntetése</string>
