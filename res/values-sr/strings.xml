@@ -19,9 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush је наишао на фаталну грешку.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Због података који су ван ​​синхронизације твог уређаја и сервера, WhisperPush ће морати да се ресетује да омогући шифроване конверзације.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Због података који су ван ​​синхронизације твог уређаја и сервера, WhisperPush ће морати да се ресетује да омогући шифроване преписке.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Ресетуј</string>
-  <string name="generic__please_wait">Молим сачекај.</string>
+  <string name="generic__please_wait">Молимо сачекај.</string>
   <string name="GcmReceiver_error">WhisperPush грешка</string>
   <string name="GcmReceiver_invalid_push_message">Неважећа Push порука</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Примљен неисправан формат push поруке.</string>
@@ -31,11 +31,11 @@
   <string name="MessageNotifier_pending_message_requires_validation">Порука на чекању захтева верификацију.</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Примио си поруку која захтева да је потврдиш.</string>
   <string name="MessageNotifier_new_session_title">Нови шифровани SMS</string>
-  <string name="MessageNotifier_new_session__incoming_text">Примио си нову шифровану SMS поруку од %s. Сви даљи разговори ће бити аутоматски шифровани.</string>
+  <string name="MessageNotifier_new_session__incoming_text">Примио си нову шифровану SMS поруку од %s. Све даље преписке ће бити аутоматски шифроване.</string>
   <string name="MessageNotifier_new_session__view_identity">Погледај идентитет</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Порука %s је шифрована.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush није регистрован</string>
-  <string name="MessageNotifier_user_unregistered_from_service_content">Додирни да региструјеш WhisperPush и омогућиш шифроване конверзације.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Додирни да региструјеш WhisperPush и омогућиш шифроване преписке.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Долазна порука блокирана</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Шифрована SMS порука од %s примљена. Због подешавања у црној листи, порука је блокирана.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Није могуће преузети шифроване додатке за долазне поруке.</string>
