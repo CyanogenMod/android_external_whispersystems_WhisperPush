@@ -64,7 +64,7 @@
   <string name="RegistrationProgressActivity_verification_failed">Verificatie mislukt</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De ingevoerde code is onjuist. Probeer het opnieuw.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Te veel pogingen</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Te vaak een onjuiste code ingevoerd. Probeer het over een minuut opnieuw.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Te vaak een onjuiste code ingevoerd. Probeer het straks opnieuw.</string>
   <string name="RegistrationProgressActivity_requesting_call">Gesprek aanvragen\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Verificatiegesprek aanvragen\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Serverfout</string>
