@@ -36,7 +36,7 @@
   <string name="MessageNotifier_new_session__outgoing_toast">傳送到 %s 的訊息已被加密。</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush 未註冊</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">點擊註冊 WhisperPush 並啟用加密會話。</string>
-  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">無法從傳入的短訊獲取加密的附件。</string>
+  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">無法從傳入的短訊擷取加密附件。</string>
   <string name="MessageReceiver_received_badly_encrypted_message">收到錯誤加密的短訊，或不存在會話的加密短訊。</string>
   <string name="PendingIdentityItemView_received_s">已收到 %s</string>
   <string name="RegistrationActivity_select_your_country">選擇您的國家</string>
@@ -131,7 +131,7 @@
   <string name="view_new_identity_activity__continue">繼續</string>
   <string name="view_identity_activity_menu__compare">比較</string>
   <string name="view_identity_activity_menu__scan_to_compare">掃描來進行比較</string>
-  <string name="view_identity_activity_menu__get_scanned_to_compare">獲得掃描用來比較</string>
+  <string name="view_identity_activity_menu__get_scanned_to_compare">掃描以進行比較</string>
   <string name="registration_progress_notification__title_registering">向 WhisperPush 註冊</string>
   <string name="registration_progress_notification__title_complete">WhisperPush 已啟用</string>
   <string name="registration_progress_notification__title_failure">WhisperPush 註冊失敗</string>
