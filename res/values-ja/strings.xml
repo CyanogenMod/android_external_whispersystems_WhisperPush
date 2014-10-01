@@ -113,7 +113,7 @@
   <string name="registration_progress_activity__no_network_connectivity">ネットワーク接続がありません。</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">TextSecureの機能を使用するにはネットワーク接続が必要です。3GまたはWi-Fiに接続しているか確認してください。</string>
   <string name="registration_progress_activity__restrictive_firewall">制限的なファイアーウォール。</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi経由で接続している場合、ファイアーウォールがTextSecureサーバーへのアクセスをブロックしている可能性があります。別のネットワークかモバイルデータでお試しください。</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi経由で接続している場合、ファイアーウォールがTextSecureサーバーへのアクセスをブロックしている可能性があります。別のネットワークまたはモバイルデータネットワークをお試しください。</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecureは確認のSMSメッセージを受信するとあなたの番号を自動的に認証します。</string>
   <string name="registration_progress_activity__connecting">接続中\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS認証を待機中\u2026</string>
@@ -152,9 +152,9 @@
   <string name="pref_menu__privacy_policy">プライバシーポリシー</string>
   <string name="pref_menu__terms_of_service">利用規約</string>
   <string name="pref_register__title">登録</string>
-  <string name="pref_register__summary">暗号化されたSMSを有効にするためにWhisperPushに登録する</string>
+  <string name="pref_register__summary">WhisperPushに登録して暗号化されたSMSを有効にする</string>
   <string name="pref_unregister__title">登録解除</string>
-  <string name="pref_unregister__summary">暗号化されたSMSを無効化するためにWhisperPushの登録を解除します。</string>
+  <string name="pref_unregister__summary">WhisperPushの登録を解除して暗号化されたSMSを無効にする</string>
   <string name="pref_unregister__progress_title">登録解除中</string>
   <string name="pref_review_keys__title">アイデンティティーキーを再表示</string>
   <string name="pref_my_identity__title">アイデンティティーキーを表示</string>

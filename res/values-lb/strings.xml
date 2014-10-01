@@ -22,6 +22,7 @@
   <string name="GcmReceiver_received_push_message_with_unknown_version">Et gouf e Push-Message mat onbekannter Versioun empfaangen. Muss deng Client-App aktualiséiert ginn?</string>
   <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Du hues e Message kritt dee validéiert muss ginn.</string>
   <string name="MessageNotifier_new_session__incoming_text">Du hues eng nei verschlësselt SMS vum %s kritt. All weider Konversatioune ginn automatesch verschlësselt.</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Du muss däi Lännercode uginn</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">D\'Telefonsnummer déi s du uginn hues (%s) ass ongëlteg.</string>
   <string name="RegistrationActivity_edit">Änneren</string>
   <string name="country_selection_fragment__search">Sichen</string>

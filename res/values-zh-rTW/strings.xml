@@ -18,6 +18,7 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush 發生了一個嚴重的錯誤。</string>
   <string name="generic__please_wait">請稍候。</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">收到錯誤格式的推送訊息。</string>
   <string name="GcmReceiver_received_push_message_with_unknown_version">收到未知版本的推送訊息，您要更新您的客戶端嗎？</string>
@@ -40,12 +41,17 @@
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">您輸入不正確的驗證碼次數過多，請稍後一分鐘再嘗試。</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">你最近已經請求了一個語音通話，你可以在二十分鐘內請求另一個。</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">收到加密的附件，但我們不能顯示它，因為 Koush 是個懶鬼。</string>
+  <string name="VerifyIdentityActivity_processing">正在處理</string>
+  <string name="ViewIdentityActivity_verified">已驗證</string>
   <string name="country_selection_fragment__search">搜尋</string>
+  <string name="registration_activity__your_country">您的國家</string>
   <string name="registration_activity__phone_number">電話號碼</string>
   <string name="registration_activity__register">註冊</string>
   <string name="registration_problems__some_possible_problems_include">一些可能的問題包括：</string>
   <string name="registration_problems__sms_interceptors">簡訊攔截器。</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">有些第三方簡訊客戶端，如 Handcent 或 Go 簡訊，表現欠佳且可能攔截簡訊。檢查是否收到開頭為「你的 TextSecure 驗證碼：」的短訊。在這種情況下，你需要配置你所安裝的第三方簡訊應用程式，讓簡訊通過。</string>
+  <string name="registration_problems__incorrect_number">不正確的號碼。</string>
+  <string name="registration_problems__google_voice">Google 語音服務</string>
   <string name="registration_progress_activity__verify">驗證</string>
   <string name="registration_progress_activity__edit_number">編輯號碼</string>
   <string name="registration_progress_activity__connectivity_error">連線錯誤。</string>
@@ -62,6 +68,8 @@
   <string name="view_new_identity_activity__continue">繼續</string>
   <string name="view_identity_activity_menu__compare">比較</string>
   <string name="pref_other_category__title">其他</string>
+  <string name="pref_menu__privacy_policy">隱私權政策</string>
+  <string name="pref_menu__terms_of_service">服務條款</string>
   <string name="pref_register__title">註冊</string>
   <string name="pref_register__summary">註冊 WhisperPush 啟用加密簡訊</string>
   <string name="pref_unregister__summary">從 WhisperPush 撤消註冊將停用加密簡訊</string>
