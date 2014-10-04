@@ -128,7 +128,6 @@
   <string name="registration_completed_activity__registration_completed">Qeydiyyat başa çatdı</string>
   <string name="registration_completed_activity__body">TextSecure ilə qeydiyyat uğurla başa çatdı.</string>
   <string name="registration_completed_activity__register_again">Yenidən qeydiyyatdan keç</string>
-  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Hazırda etibarlı məlumat bazanızda hər hansı bir şəxsiyyətiniz yoxdur</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Təsdiqləmə tələb edən gözləyən mesaj yoxdur.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Bu şəxsin şəxsiyyət barmaq izi dəyişilib, bu o deməkdir ki, ya kimsə sizin əlaqə qurmağınıza mane olur, yada həmin şəxs yeni telefon alıb. Bu şəxsə zəng etmək və aşağıdakı barmaq izini yüksək səslə oxuyaraq təsdiqlənməsini təmin etmək barədə fikirləşin. Bu şəxsdən gələn mesajlar təsdiqlənmə bitənədək gözlədiləcək.</string>
   <string name="verify_identity_activity__their_fingerprint">Parmaq izləri:</string>
