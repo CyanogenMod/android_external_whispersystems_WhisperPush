@@ -29,7 +29,7 @@
   <string name="GcmReceiver_received_push_message_with_unknown_version">Vastaanotettiin tuntemattoman version push-viesti. Tarvitseeko sinun päivittää sovelluksesi?</string>
   <string name="MessageNotifier_d_pending_messages_require_validation">%d viestiä odottaa vahvistusta</string>
   <string name="MessageNotifier_pending_message_requires_validation">Odottava viesti tarvitsee vahvistuksen.</string>
-  <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Olet vastaanottanut viestin joka tarvitsee vahvistuksen.</string>
+  <string name="MessageNotifier_you_have_received_a_message_that_requires_you_to_validate_it">Olet vastaanottanut viestin, joka tarvitsee vahvistuksen.</string>
   <string name="MessageNotifier_new_session_title">Uusi salattu tekstiviesti</string>
   <string name="MessageNotifier_new_session__incoming_text">Olet vastaanottanut uuden salatun tekstiviestin numerosta/henkilöltä %s. Kaikki tulevat viestit salataan automaattisesti.</string>
   <string name="MessageNotifier_new_session__view_identity">Katso identiteetti</string>
@@ -48,7 +48,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Määritetty numero (%s) on virheellinen.</string>
   <string name="RegistrationActivity_unsupported">Ei tueta</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Valitettavasti laite ei tue dataviestejä. Vanhemmissa Androidin versioissa kuin 4.0 on rekisteröitävä Google-tili. Versiossa 4.0 ja uudemmissa riittää, että Play-kauppa on asennettu.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Vahvistamme nyt että seuraava numero on käytössä tässä laitteessa:\n\n%s\n\n Onko tämä numero oikein, vai haluatko muokata sitä ennen jatkamista?</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Vahvistamme nyt, että seuraava numero on käytössä tässä laitteessa:\n\n%s\n\n Onko tämä numero oikein, vai haluatko muokata sitä ennen jatkamista?</string>
   <string name="RegistrationActivity_continue">Jatka</string>
   <string name="RegistrationActivity_edit">Muokkaa</string>
   <string name="RegistrationActivity_connect_with_textsecure">Yhdistä TextSecureen</string>
@@ -56,13 +56,13 @@
   <string name="RegistrationProgressActivity_verifying_number">Vahvistetaan numeroa</string>
   <string name="RegistrationProgressActivity_edit_s">Muokkaa %s</string>
   <string name="RegistrationProgressActivity_possible_problems">Mahdolliset ongelmat.</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Sinun tulee syöttää koodi jonka sait ensin\u2026</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Sinun tulee ensin syöttää koodi, jonka sait\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Yhdistetään</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Yhdistetään vahvistusta varten\u2026</string>
   <string name="RegistrationProgressActivity_network_error">Verkkovirhe</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Yhdistäminen ei onnistu. Tarkista verkkoyhteys ja yritä uudelleen.</string>
   <string name="RegistrationProgressActivity_verification_failed">Vahvistus epäonnistui</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Vahvistuskoodi jonka syötit on virheellinen. Yritä uudelleen.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Syöttämäsi vahvistuskoodi on virheellinen. Yritä uudelleen.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Liian monta yritystä</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Olet syöttänyt virheellisen vahvistuskoodin liian monta kertaa. Odota minuutti ennen kuin yrität uudelleen.</string>
   <string name="RegistrationProgressActivity_requesting_call">Pyydetään puhelua\u2026</string>
