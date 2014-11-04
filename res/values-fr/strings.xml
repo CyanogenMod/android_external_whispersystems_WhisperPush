@@ -111,12 +111,11 @@
   <string name="registration_progress_activity__connectivity_error">Erreur de connexion.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure n\'a pas réussi à se connecter au service push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Cela peut être causé par\u00A0:</string>
-  <string name="registration_progress_activity__no_network_connectivity">Pas de connexion de données.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion de données pour utiliser TextSecure. Vérifiez qu\'il est connecté en 3G ou en Wifi.</string>
+  <string name="registration_progress_activity__no_network_connectivity">Aucune connexion réseau.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion réseau pour utiliser TextSecure. Vérifiez qu\'il est connecté en 3G ou en Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Pare-feu restrictif.
     </string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si vous êtes connecté en wifi, il est possible qu\'un pare-feu bloque l\'accès au serveur TextSecure. Essayez un autre réseau ou la connexion mobile.
-    </string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si vous êtes connecté en Wi-Fi, il est possible qu\'un pare-feu bloque l\'accès au serveur TextSecure. Essayez un autre réseau ou la connexion mobile.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure va maintenant vérifier automatiquement votre numéro avec un SMS de confirmation.</string>
   <string name="registration_progress_activity__connecting">Connexion\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Attente du SMS de confirmation\u2026</string>
@@ -132,7 +131,7 @@
   <string name="registration_completed_activity__body">L\'inscription sur TextSecure s\'est déroulée correctement.</string>
   <string name="registration_completed_activity__register_again">Réinscription</string>
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Actuellement, vous n\'avez pas d\'identité dans votre base de confiance</string>
-  <string name="verify_identities_activity__no_pending_messages_that_require_validation">Aucun messages en attente nécessitant une validation.</string>
+  <string name="verify_identities_activity__no_pending_messages_that_require_validation">Aucun message en attente nécessitant une validation.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">L\'empreinte d\'identité de ce contact a changé. Cela peut vouloir dire que quelqu\'un essaie d\'intercepter cette communication, ou que votre contact a un nouveau téléphone. Vous devriez appeler ce contact et valider l\'empreinte d\'identité ci-dessous. Les messages de ce contact seront retenus en attente d\'une validation.</string>
   <string name="verify_identity_activity__their_fingerprint">Leur empreinte digitale\u00A0:</string>
   <string name="verify_identity_activity__valid">Valide</string>
