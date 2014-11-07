@@ -19,6 +19,7 @@ package org.whispersystems.whisperpush;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
