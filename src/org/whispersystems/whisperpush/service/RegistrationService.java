@@ -25,6 +25,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -35,6 +36,7 @@ import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
@@ -94,6 +96,10 @@ public class RegistrationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        // Add registration number to whitelist
+        TelephonyManager tm =
+                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        tm.addProtectedSmsAddress(getString(R.string.default_registration_number));
 
         registrationStateNotifier = new RegistrationStateNotifier(this);
         registrationTimerHandler = new RegistrationTimerHandler();

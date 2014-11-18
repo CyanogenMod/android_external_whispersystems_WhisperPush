@@ -46,7 +46,8 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
  */
 public class SmsListener extends BroadcastReceiver {
 
-    private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+    private static final String PROTECTED_SMS_RECEIVED_ACTION =
+            "android.provider.Telephony.ACTION_PROTECTED_SMS_RECEIVED";
     private static final String SMS_OUTGOING_ACTION = "android.intent.action.NEW_OUTGOING_SMS";
 
     private String getSmsMessageBodyFromIntent(Intent intent) {
@@ -110,7 +111,8 @@ public class SmsListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         DirectoryRefreshListener.schedule(context);
 
-        if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isIncomingChallenge(context, intent)) {
+        if (PROTECTED_SMS_RECEIVED_ACTION.equals(intent.getAction())
+                && isIncomingChallenge(context, intent)) {
             Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
             challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
             context.sendBroadcast(challengeIntent);
