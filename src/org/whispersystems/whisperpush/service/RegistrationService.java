@@ -42,6 +42,7 @@ import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.WhisperPush;
 
 import java.io.IOException;
 import java.util.List;
@@ -358,7 +359,7 @@ public class RegistrationService extends Service {
     private void setState(RegistrationState state) {
         this.registrationState = state;
 
-        if (registrationStateHandler != null) {
+        if (WhisperPush.isActivityVisible() && registrationStateHandler != null) {
             registrationStateHandler.obtainMessage(state.state, state).sendToTarget();
         } else {
             registrationStateNotifier.notify(state);
