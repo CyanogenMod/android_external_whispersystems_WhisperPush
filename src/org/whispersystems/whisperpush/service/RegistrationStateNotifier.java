@@ -117,6 +117,7 @@ public class RegistrationStateNotifier {
             cancelNotification();
             return;
         }
+        resetBuilder();
         handleVerify();
         builder.setProgress(100, progress, false);
         sendNotification();
