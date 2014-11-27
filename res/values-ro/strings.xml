@@ -23,7 +23,7 @@
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Resetare</string>
   <string name="generic__please_wait">Te rugăm să aștepți.</string>
   <string name="GcmReceiver_error">Eroare WisperPush</string>
-  <string name="GcmReceiver_invalid_push_message">Mesaj Push invalid</string>
+  <string name="GcmReceiver_invalid_push_message">Mesaj Push incorect</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Mesajul push primit este formatat greșit.</string>
   <string name="GcmReceiver_unsupported_push_version">Versiune Push neacceptată</string>
   <string name="GcmReceiver_received_push_message_with_unknown_version">Versiunea mesajului push primit nu este cunoscută. Trebuie să îți actualizezi clientul?</string>
@@ -44,8 +44,8 @@
   <string name="RegistrationActivity_select_your_country">Selectează țara</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să specificați codul țării dvs</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Trebuie să specifici numărul tău de telefon</string>
-  <string name="RegistrationActivity_invalid_number">Număr invalid</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul specificat (%s) este invalid.</string>
+  <string name="RegistrationActivity_invalid_number">Număr incorect</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul specificat (%s) este incorect.</string>
   <string name="RegistrationActivity_unsupported">Neacceptat</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Ne pare rău, acest dispozitiv nu este acceptat pentru mesaje de date. Dispozitivele care rulează versiuni de Android mai vechi de 4.0 trebuie să aibă un cont Google înregistrat. Dispozitivele care rulează Android 4.0 sau mai nou nu necesită un cont Google, dar trebuie să aibă aplicația Play Store instalată.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Acum vom verifica dacă numărul următor este asociat cu acest dispozitiv:\n\n%s\n\nEste acest număr corect, sau vrei să îl modifici înainte de a continua?</string>
@@ -78,7 +78,7 @@
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Înregistrarea mesajelor push a întâmpinat o problemă.</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">S-a primit un atașament criptat, dar nu îl putem afișa deoarece Koush este un leneș.</string>
   <string name="VerifyIdentityActivity_discard_messages">Înlăturați mesajele?</string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Esti sigur că vrei să marchezi această amprentă de identitate ca invalidă și să arunci toate mesajele în așteptare asociate cu aceasta?</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Sunteți sigur că vreți să marcați această amprentă de identitate ca incorectă și să anulați toate mesajele în așteptare asociate cu aceasta?</string>
   <string name="VerifyIdentityActivity_processing">Procesare</string>
   <string name="VerifyIdentityActivity_discarding_messages">Arunc mesajele\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Procesez cheia de identitate\u2026</string>
@@ -133,7 +133,7 @@
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Amprenta de identitate a acestei persoane sa schimbat, ceea ce ar putea însemna că cineva încearcă să intercepteze comunicațiile tale, sau doar că contactul tău are un nou telefon. Luați în considerare să apelați acestă persoană și să validați amprenta de mai jos prin citirea ei cu voce tare. Mesajele de la acest contact vor fi oprite până se face validarea.</string>
   <string name="verify_identity_activity__their_fingerprint">Amprenta lor:</string>
   <string name="verify_identity_activity__valid">Valid</string>
-  <string name="verify_identity__invalid">Invalid</string>
+  <string name="verify_identity__invalid">Incorect</string>
   <string name="verify_identity_activity__avatar_icon">Imagine avatar</string>
   <string name="view_new_identity_activity__verify_fingerprint">Contactul ți-a trimis un nou mesaj criptat. Luați în considerare să apelați acestă persoană și să validați amprenta de mai jos prin citirea ei cu voce tare.</string>
   <string name="view_new_identity_activity__continue">Continuare</string>
