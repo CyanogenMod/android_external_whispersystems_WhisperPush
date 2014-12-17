@@ -44,7 +44,6 @@
                         android:paddingLeft="4.0dip"
                         android:paddingRight="8.0dip"
                         android:text="@string/registration_progress_activity__sms_verification_failed"
-                        android:textColor="#333333"
                         android:textSize="16.0sp" />
 
                 <TextView
@@ -80,7 +79,6 @@
                           android:paddingLeft="4dip"
                           android:paddingRight="8dip"
                           android:text="@string/registration_progress_activity__voice_verification"
-                          android:textColor="#333333"
                           android:textSize="16sp"/>
 
                 <TextView android:id="@+id/telephone_text"
@@ -174,7 +172,6 @@
                         android:paddingLeft="4.0dip"
                         android:paddingRight="8.0dip"
                         android:text="@string/registration_progress_activity__connectivity_error"
-                        android:textColor="#333333"
                         android:textSize="16.0sp" />
 
                 <TextView

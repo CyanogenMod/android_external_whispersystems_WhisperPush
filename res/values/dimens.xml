@@ -14,15 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!-- ActionBar contentInsetStart -->
 <resources>
-    <style name="Theme.Main" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">@color/theme_primary</item>
-        <item name="android:colorPrimaryDark">@color/theme_primary_dark</item>
-        <item name="android:colorAccent">@color/theme_accent</item>
-        <item name="android:actionBarStyle">@style/Theme.ActionBar.SubSettings</item>
-    </style>
-
-    <style name="Theme.ActionBar.SubSettings" parent="@android:style/Widget.Material.Light.ActionBar.Solid">
-        <item name="android:contentInsetStart">@dimen/actionbar_subsettings_contentInsetStart</item>
-    </style>
+    <dimen name="actionbar_subsettings_contentInsetStart">72dp</dimen>
 </resources>

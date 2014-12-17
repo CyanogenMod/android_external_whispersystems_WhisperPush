@@ -196,7 +196,7 @@
     <string name="registration_progress_notification__gms_update">An update is required to use WhisperPush</string>
 
     <!-- preferences -->
-    <string name="pref_activity_title">WhisperPush preferences</string>
+    <string name="pref_activity_title">WhisperPush</string>
     <string name="pref_registration_category__title">Registration</string>
     <string name="pref_other_category__title">Other</string>
     <string name="pref_menu__privacy_policy">Privacy policy</string>

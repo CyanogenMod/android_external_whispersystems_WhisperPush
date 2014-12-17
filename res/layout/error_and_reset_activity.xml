@@ -31,7 +31,6 @@ limitations under the License.
     <TextView android:layout_height="wrap_content"
               android:layout_width="match_parent"
               android:text="@string/ErrorAndResetActivity_your_stored_data_is_out_of_sync_title"
-              android:textColor="#FF0000"
               android:paddingLeft="4dip"
               android:paddingRight="4dip"
               android:textSize="24.0sp"/>
