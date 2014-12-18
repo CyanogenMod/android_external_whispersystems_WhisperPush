@@ -45,6 +45,7 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
 import org.whispersystems.whisperpush.WhisperPush;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -100,7 +101,12 @@ public class RegistrationService extends Service {
         // Add registration number to whitelist
         TelephonyManager tm =
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        tm.addProtectedSmsAddress(getString(R.string.default_registration_number));
+
+        List<String> regNumbers = Arrays
+                .asList(getResources().getStringArray(R.array.default_registration_numbers));
+        for (String number : regNumbers) {
+            tm.addProtectedSmsAddress(number);
+        }
 
         registrationStateNotifier = new RegistrationStateNotifier(this);
         registrationTimerHandler = new RegistrationTimerHandler();

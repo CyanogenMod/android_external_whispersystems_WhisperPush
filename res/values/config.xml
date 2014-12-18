@@ -17,5 +17,9 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="default_registration_number">12064893444</string>
+    <string-array name="default_registration_numbers">
+        <item>+12064893444</item>
+        <item>12064893444</item>
+        <item>2064893444</item>
+    </string-array>
 </resources>
