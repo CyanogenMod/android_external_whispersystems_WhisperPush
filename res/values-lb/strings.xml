@@ -60,15 +60,15 @@
   <string name="RegistrationProgressActivity_connecting">Verbannen</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Verbanne fir eng Iwwerpréiwung\u2026</string>
   <string name="RegistrationProgressActivity_network_error">Netzwierk-Feeler</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Konnt net verbannen. Kontrolléier w.e.gl deng Netzwierverbindung a probéier nach eng Kéier.</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Konnt net verbannen. Kontrolléier w.e.g. deng Netzwierverbindung a probéier nees.</string>
   <string name="RegistrationProgressActivity_verification_failed">Verifikatioun feelgeschloen</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De Verifikatiounscode deen s du erageschéckt hues ass net korrekt. Probéier w.e.gl nach eng Kéier.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De Verifikatiounscode deen s du erageschéckt hues ass net korrekt. Probéier w.e.g. nees.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zevill Versich</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du hues ze dacks en ongëltege Verifizéierungscode erageschéckt. Waart w.e.gl eng Minutt ier s de nach eng Kéier probéiers.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du hues ze dacks en ongëltege Verifizéierungscode erageschéckt. Waart w.e.g. eng Minutt ier s de nees probéiers.</string>
   <string name="RegistrationProgressActivity_requesting_call">Uruff gëtt ugefrot\u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Verifizéierungs-Uruff gëtt ugefrot\u2026</string>
   <string name="RegistrationProgressActivity_server_error">Serverfeeler</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Um Server ass e Problem opgetruden. Probéier w.e.gl nach eng Kéier.</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Um Server ass e Problem opgetruden. Probéier w.e.g. nees.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Zevill Ufroen</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du hues schon en Uruff ugefrot. Du kanns an 20 Minutten nach een ufroen.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Sprooch-Code gëtt iwwerpréift\u2026</string>
@@ -97,7 +97,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Dateschutzerkläerung</a></string>
   <string name="registration_problems__some_possible_problems_include">Méiglech Feelerursaachen:</string>
   <string name="registration_problems__sms_interceptors">SMSen duerch d\'App offänken.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Verschidden SMS-Appe vun Drëtthiersteller, wéi z. B. Handcent oder GoSMS, verhale sech inkorrekt a fänken all erakommend SMS-Messagen of. Kuck w.e.g. ob an denger SMS-App e Message ukomm ass, dee mat \"Your TextSecure verification code\" ufänkt. An deem Fall muss du d\'SMS-App sou konfiguréieren, datt se erakommend Messagen un aner Appe weiderleet.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Verschidden SMS-Appe vun Drëtthiersteller, wéi z. B. Handcent oder GoSMS, verhale sech inkorrekt a fänken all erakommend SMS-Messagen of. Kuck w.e.g. ob an denger SMS-App e Message ukomm ass, dee mat \"Your TextSecure verification code\" ufänkt. An deem Fall muss du d\'SMS-App sou konfiguréieren, datt s\'erakommend Messagen un aner Appe weiderleet.</string>
   <string name="registration_problems__incorrect_number">Inkorrekt Nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Kontrolléier w.e.g. datt du d\'Nummer korrekt aginn hues, an datt se fir deng Regioun korrekt formatéiert ass.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -118,7 +118,7 @@
   <string name="registration_progress_activity__connecting">Connectéieren\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Waarden op d\'SMS-Verifikatioun\u2026</string>
   <string name="registration_progress_activity__registering_with_server">Registréierung mam Server\u2026</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dat kann e Moment daueren. E bësse Gedold w.e.g., mir soe Bescheed wann d\'Verifikatioune ofgeschloss ass.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dat kann e Moment daueren. E bësse Gedold w.e.g., mir soe Bescheed wann d\'Verifikatiounen ofgeschloss ass.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">Beim Empfänke vun der Verifikatiouns-SMS ass d\'Zäit iwwerschratt ginn.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-Verifikatioun feelgeschloen.</string>
   <string name="registration_progress_activity__generating_keys">D\'Schlëssele gi generéiert\u2026</string>
