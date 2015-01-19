@@ -19,9 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">Došlo k fatální chybě!</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Protože došlo k rozpadnutí synchronizace mezi zařízením a server, aplikaci WhisperPush musí obnovit šifrovanou konverzaci a proto je nutné ji restartovat.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Resartovat</string>
-  <string name="generic__please_wait">Prosím počkejte…</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Došlo ke ztrátě spojení mezi zařízením a serverem. Aby se obnovila šifrovaná konverzace, je potřeba restartovat aplikaci WhisperPush.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Restartovat</string>
+  <string name="generic__please_wait">Prosím počkejte\u2026</string>
   <string name="GcmReceiver_error">Chyba WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">Neplatná push zpráva</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Přijat chybný formát push zprávy.</string>
@@ -35,14 +35,14 @@
   <string name="MessageNotifier_new_session__view_identity">Zobrazit identitu</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Zpráva %s byla zašifrována.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhiperPush není zaregistrován</string>
-  <string name="MessageNotifier_user_unregistered_from_service_content">Dotykem provedete registraci aplikace WisperPush a tím bude povolená šifrovaná konverzace.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Dotykem provedete registraci aplikace WhisperPush a tím bude povolená šifrovaná konverzace.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokovaná příchozí zpráva</string>
-  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Přijata šifrovaná SMS zpráva od „%s“. Zpráva zablokována na základě pravidel černé listiny.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Na základě pravidel černé listiny byla šifrovaná SMS od „%s“ zablokována.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Nelze načíst šifrovanou přílohu pro příchozí zprávu.</string>
-  <string name="MessageReceiver_received_badly_encrypted_message">Špatně zašifrovaná zpráva nebo zpráva šifrována pro neexistující relaci.</string>
+  <string name="MessageReceiver_received_badly_encrypted_message">Byla přijata špatně zašifrovaná zpráva, nebo zpráva šifrovaná pro neexistující relaci.</string>
   <string name="PendingIdentityItemView_received_s">Přijata %s</string>
-  <string name="RegistrationActivity_select_your_country">Zvolte si zemi</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Je nutné zadat kód vaší země</string>
+  <string name="RegistrationActivity_select_your_country">Vyberte svou zemi</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadat kód vaší země</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Musíte zadat vaše telefonní číslo</string>
   <string name="RegistrationActivity_invalid_number">Neplatné číslo</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Číslo, které jste zadali (%s), je neplatné.</string>
@@ -74,7 +74,7 @@
   <string name="RegistrationProgressActivity_verifying_voice_code">Ověřování hlasového kódu\u2026</string>
   <string name="RegistrationService_registration_complete">Registrace dokončena</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Registrace Push zpráv úspěšně dokončena.</string>
-  <string name="RegistrationService_registration_error">Registrace selhala</string>
+  <string name="RegistrationService_registration_error">Chyba při registraci</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Při registraci Push zpráv došlo k problému.</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">Přijata šifrovaná příloha, ale nelze ji zobrazit, protože Koush je lenoch.</string>
   <string name="VerifyIdentityActivity_discard_messages">Zahodit zprávy?</string>
@@ -88,7 +88,7 @@
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">VAROVÁNÍ - nasnímaný klíč nesouhlasí!</string>
   <string name="ViewIdentityActivity_no_scanned_key_found">Nenalezen žádný nasnímaný klíč</string>
   <string name="country_selection_fragment__search">Hledat</string>
-  <string name="country_selection_fragment__loading_countries">Načítám země\u2026</string>
+  <string name="country_selection_fragment__loading_countries">Načítání zemí\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Potvrďte, prosím, kód vaší země a telefonní číslo.</string>
   <string name="registration_activity__your_country">VAŠE ZEMĚ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KÓD ZEMĚ A TELEFONNÍ ČÍSLO</string>
@@ -128,7 +128,7 @@
   <string name="registration_completed_activity__registration_completed">Registrace dokončena</string>
   <string name="registration_completed_activity__body">Byl jste úspěšně zaregistrován k TextSecure.</string>
   <string name="registration_completed_activity__register_again">Znovu registrovat</string>
-  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">V databázi důvěryhodných identity nejsou žádné záznamy</string>
+  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">V databázi důvěryhodných identit není žádný záznam</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Žádné zprávy, které vyžadují ověření.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Identita kontaktu změnila svůj \u201ebezpečnostní otisk\u201c, což může znamenat, že se někdo snaží narušit komunikaci a nebo, že kontakt změnil telefon. Zvažte zavolání kontaktu a ověření tohoto \u201ebezpečnostního otisku\u201c přímo přečtením nahlas. Veškeré zprávy budou pozastaveny, dokud nebude tento kontakt ověřen.</string>
   <string name="verify_identity_activity__their_fingerprint">Identifikace (fingerprint):</string>
@@ -154,7 +154,7 @@
   <string name="pref_register__title">Registrace</string>
   <string name="pref_register__summary">Zaregistrovat WhisperPush pro povolení šifrovaných SMS</string>
   <string name="pref_unregister__title">Zrušení registrace</string>
-  <string name="pref_unregister__summary">Odregistrace WhisperPush pro vypnutí šifrovaných SMS</string>
+  <string name="pref_unregister__summary">Zrušení registrace WhisperPush pro vypnutí šifrovaných SMS</string>
   <string name="pref_unregister__progress_title">Rušení registrace\u2026</string>
   <string name="pref_review_keys__title">Prohlédnout klíče identity</string>
   <string name="pref_my_identity__title">Zobrazit můj klíč identity</string>
