@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">„WhisperPush“ klaida</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Dėl duomenų kurie yra nesusinchronizuoti tarp jūsų prietaiso ir serverio reikės atkurti „WhisperPush“ tam kad įjungtumėte užšifruotus pokalbius.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Dėl duomenų kurie yra nesusinchronizuoti tarp jūsų įrenginio ir serverio reikės atkurti „WhisperPush“ tam kad įjungtumėte užšifruotus pokalbius.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Atkurti</string>
   <string name="generic__please_wait">Prašome palaukti</string>
   <string name="GcmReceiver_error">„WhisperPush“ klaida</string>
@@ -47,8 +47,8 @@
   <string name="RegistrationActivity_invalid_number">Neteisingas numeris</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numerį kurį nurodėte (%s) yra neteisingas.</string>
   <string name="RegistrationActivity_unsupported">Nepalaikoma</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Atsiprašome, šis prietaisas nėra palaikomas duomenų susirašinėjimams. Įrenginiai veikiantys „Android“ senesnių nei 4.0 versijų turi būti užregistruoti „Google“ paskyroje. Prietaisai veikiantys „Android“ 4.0 ar naujesni nereikalauja „Google“ paskyros, bet turi būti įdiegta „Play“ parduotuvė.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Mes dabar patikrinsime ar numeris yra susijęs su šiuo prietaisu: \n\n%s\n\n ar šis numeris teisingas, ar norėtumėte jį redaguoti, prieš tęsiant?</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Atsiprašome, šis įrenginys nėra palaikomas duomenų susirašinėjimams. Įrenginiai veikiantys „Android“ senesnių nei 4.0 versijų turi būti užregistruoti „Google“ paskyroje. Įrenginiai veikiantys „Android“ 4.0 ar naujesni nereikalauja „Google“ paskyros, bet turi būti įdiegta „Play“ parduotuvė.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Mes dabar patikrinsime ar numeris yra susijęs su šiuo įrenginiu: \n\n%s\n\n ar šis numeris teisingas, ar norėtumėte jį redaguoti, prieš tęsiant?</string>
   <string name="RegistrationActivity_continue">Tęsti</string>
   <string name="RegistrationActivity_edit">Redaguoti</string>
   <string name="RegistrationActivity_connect_with_textsecure">Prisijungti su „TextSecure“</string>
@@ -111,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">„TextSecure“ nepavyko prisijungti prie „Push“ paslaugos.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Keletas galimų problemų:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nėra tinklo ryšio.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Jūsų prietaisui reikalingas tinklo ryšys norint naudotis šia „TextSecure“ funkcija. Peržiūrėkite kad įsitikintumėte jog jūsų prietaisas yra prijungtas prie 3G ar „Wi-Fi“.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Jūsų įrenginiui reikalingas tinklo ryšys norint naudotis šia „TextSecure“ funkcija. Peržiūrėkite kad įsitikintumėte jog jūsų įrenginys yra prijungtas prie 3G ar „Wi-Fi“.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ribojanti ugniasienė.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Jei jūs esate prisijungęs per „Wi-Fi“ yra įmanoma, kad ugniasienė blokuoja prieiga prie „TextSecure“ serverio. Pabandykite kitą tinklą ar mobiliuosius duomenis.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">„TextSecure“ dabar automatiškai patikrins jūsų telefono numerį su patvirtinimu SMS žinute.</string>
