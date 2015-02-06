@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -277,7 +278,7 @@ public class RegistrationActivity extends Activity {
             if (countryFormatter == null)
                 return;
 
-            if (Util.isEmpty(s))
+            if (Util.isEmpty(s) || !TextUtils.isDigitsOnly(s))
                 return;
 
             countryFormatter.clear();
