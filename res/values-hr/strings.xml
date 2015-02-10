@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Uspješno registrirano</string>
   <string name="registration_progress_notification__failure">Pojavio se problem pri registriranju</string>
   <string name="registration_progress_notification__gms_update">Ažuriranje je potrebno da bi ste koristili WhisperPush</string>
-  <string name="pref_activity_title">WhisperPush Napredno</string>
   <string name="pref_registration_category__title">Registracija</string>
   <string name="pref_other_category__title">Ostalo</string>
   <string name="pref_menu__privacy_policy">Pravila privatnosti</string>

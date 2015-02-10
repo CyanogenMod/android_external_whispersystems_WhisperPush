@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Veiksmīgi reģistrēts</string>
   <string name="registration_progress_notification__failure">Reģistrējoties radās kļūda</string>
   <string name="registration_progress_notification__gms_update">Lai lietotu WhisperPush, ir nepieciešams atjaunojums</string>
-  <string name="pref_activity_title">WhisperPush iestatījumi</string>
   <string name="pref_registration_category__title">Reģistrācija</string>
   <string name="pref_other_category__title">Citi</string>
   <string name="pref_menu__privacy_policy">Privātuma politika</string>

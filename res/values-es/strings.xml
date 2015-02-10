@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Registro completado</string>
   <string name="registration_progress_notification__failure">Ha habido un problema durante el registro</string>
   <string name="registration_progress_notification__gms_update">Se necesita una actualización para usar WhisperPush</string>
-  <string name="pref_activity_title">Preferencias de WhisperPush</string>
   <string name="pref_registration_category__title">Registro</string>
   <string name="pref_other_category__title">Otros</string>
   <string name="pref_menu__privacy_policy">Política de privacidad</string>

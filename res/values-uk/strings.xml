@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Успішно зареєстровано</string>
   <string name="registration_progress_notification__failure">Помилка реєстрації</string>
   <string name="registration_progress_notification__gms_update">Необхідне оновлення щоб використовувати WhisperPush</string>
-  <string name="pref_activity_title">Налаштування WhisperPush</string>
   <string name="pref_registration_category__title">Реєстрація</string>
   <string name="pref_other_category__title">Інший</string>
   <string name="pref_menu__privacy_policy">Політика конфіденційності</string>

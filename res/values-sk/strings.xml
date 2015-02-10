@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Úspešne zaregistrované</string>
   <string name="registration_progress_notification__failure">Vyskytol sa problém s registráciou</string>
   <string name="registration_progress_notification__gms_update">Vyžaduje sa aktualizácia, ak chcete používať WhisperPush</string>
-  <string name="pref_activity_title">Nastavenia WhisperPush</string>
   <string name="pref_registration_category__title">Registrácia</string>
   <string name="pref_other_category__title">Ostatné</string>
   <string name="pref_menu__privacy_policy">Ochrana osobných údajov</string>

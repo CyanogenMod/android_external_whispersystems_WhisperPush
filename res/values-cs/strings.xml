@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Úspěšně zaregistrován</string>
   <string name="registration_progress_notification__failure">Došlo k chybě registrace</string>
   <string name="registration_progress_notification__gms_update">K používání WhisperPush je nutná aktualizace</string>
-  <string name="pref_activity_title">WhisperPush nastavení</string>
   <string name="pref_registration_category__title">Registrace</string>
   <string name="pref_other_category__title">Ostatní</string>
   <string name="pref_menu__privacy_policy">Zásady ochrany osobních údajů</string>

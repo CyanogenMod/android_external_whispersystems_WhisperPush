@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Pomyślnie zarejestrowano</string>
   <string name="registration_progress_notification__failure">Wystąpił problem podczas rejestracji</string>
   <string name="registration_progress_notification__gms_update">Aktualizacja jest wymagana do używania WhisperPush</string>
-  <string name="pref_activity_title">Preferencje WhisperPush</string>
   <string name="pref_registration_category__title">Rejestracja</string>
   <string name="pref_other_category__title">Inne</string>
   <string name="pref_menu__privacy_policy">Polityka prywatności</string>

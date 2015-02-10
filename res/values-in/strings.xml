@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Berhasil terdaftar</string>
   <string name="registration_progress_notification__failure">Ada masalah pada pendaftaran</string>
   <string name="registration_progress_notification__gms_update">Pembaruan diperlukan untuk menggunakan WhisperPush</string>
-  <string name="pref_activity_title">Pilihan WhisperPush</string>
   <string name="pref_registration_category__title">Pendaftaran</string>
   <string name="pref_other_category__title">Lainnya</string>
   <string name="pref_menu__privacy_policy">Kebijakan privasi</string>

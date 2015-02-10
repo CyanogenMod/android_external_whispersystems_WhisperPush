@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Registratie succesvol</string>
   <string name="registration_progress_notification__failure">Er was een probleem tijdens het registreren</string>
   <string name="registration_progress_notification__gms_update">Een update is vereist om WhisperPush te kunnen gebruiken</string>
-  <string name="pref_activity_title">WhisperPush</string>
   <string name="pref_registration_category__title">Registratie</string>
   <string name="pref_other_category__title">Meer</string>
   <string name="pref_menu__privacy_policy">Privacybeleid</string>

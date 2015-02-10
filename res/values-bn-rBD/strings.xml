@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">সফলভাবে নিবন্ধিত</string>
   <string name="registration_progress_notification__failure">নিবন্ধনে সমস্যা ছিল</string>
   <string name="registration_progress_notification__gms_update">WhisperPush ব্যবহার করতে আপডেট করা দরকার</string>
-  <string name="pref_activity_title">WhisperPush এর অগ্রাধিকার</string>
   <string name="pref_registration_category__title">নিবন্ধন</string>
   <string name="pref_other_category__title">অন্যান্য</string>
   <string name="pref_menu__privacy_policy">গোপনীয়তার নীতিমালা</string>

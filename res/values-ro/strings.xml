@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Înregistrarea a reușit</string>
   <string name="registration_progress_notification__failure">A apărut o problemă la înregistrare</string>
   <string name="registration_progress_notification__gms_update">O actualizare este necesară pentru a utiliza WhisperPush</string>
-  <string name="pref_activity_title">Preferințe WhisperPush</string>
   <string name="pref_registration_category__title">Înregistrare</string>
   <string name="pref_other_category__title">Alte</string>
   <string name="pref_menu__privacy_policy">Politica de confidențialitate</string>

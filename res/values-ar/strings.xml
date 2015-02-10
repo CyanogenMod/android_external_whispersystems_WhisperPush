@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">سجلت بنجاح</string>
   <string name="registration_progress_notification__failure">توجد مشكلة في تسجيل</string>
   <string name="registration_progress_notification__gms_update">مطلوب تحديث استخدام WhisperPush</string>
-  <string name="pref_activity_title">تفضيلات WhisperPush</string>
   <string name="pref_registration_category__title">تسجيل</string>
   <string name="pref_other_category__title">الأخرى</string>
   <string name="pref_menu__privacy_policy">سياسة الخصوصية</string>

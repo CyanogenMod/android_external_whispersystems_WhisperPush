@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Rekisteröity onnistuneesti</string>
   <string name="registration_progress_notification__failure">Ongelma rekisteröitäessä</string>
   <string name="registration_progress_notification__gms_update">Päivitys tarvitaan ennen WhisperPushin käyttöä</string>
-  <string name="pref_activity_title">WhisperPushin asetukset</string>
   <string name="pref_registration_category__title">Rekisteröinti</string>
   <string name="pref_other_category__title">Muu</string>
   <string name="pref_menu__privacy_policy">Tietosuojakäytäntö</string>

@@ -35,7 +35,7 @@
   <string name="MessageNotifier_new_session__view_identity">Şəxsiyyəti göstər</string>
   <string name="MessageNotifier_new_session__outgoing_toast">%s üçün yazılan şifrələnib.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">Qeydiyyatyatsız WhisperPush</string>
-  <string name="MessageNotifier_user_unregistered_from_service_content">WhisperPush\'u qeyd etmək və şifrələnmiş söhbətləri aktivləşdirmək üçün toxunun.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">WhisperPush qeydiyyatından keçmək və şifrələnmiş söhbətləri fəallaşdırmaq üçün toxunun.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Gələn mesaj əngəlləndi</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s şifrələnmiş SMS göndərdi. Qara siyahı tənzimləməsinə görə mesaj əngəllənib.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Gələn mesajdan şifrələnmiş əlavəni almaq mümkün olmadı.</string>
@@ -130,7 +130,7 @@
   <string name="registration_completed_activity__register_again">Yenidən qeydiyyatdan keç</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Təsdiqləmə tələb edən gözləyən mesaj yoxdur.</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Bu şəxsin şəxsiyyət barmaq izi dəyişilib, bu o deməkdir ki, ya kimsə sizin əlaqə qurmağınıza mane olur, yada həmin şəxs yeni telefon alıb. Bu şəxsə zəng etmək və aşağıdakı barmaq izini yüksək səslə oxuyaraq təsdiqlənməsini təmin etmək barədə fikirləşin. Bu şəxsdən gələn mesajlar təsdiqlənmə bitənədək gözlədiləcək.</string>
-  <string name="verify_identity_activity__their_fingerprint">Parmaq izləri:</string>
+  <string name="verify_identity_activity__their_fingerprint">Barmaq izləri:</string>
   <string name="verify_identity_activity__valid">Etibarlı</string>
   <string name="verify_identity__invalid">Etibarsız</string>
   <string name="verify_identity_activity__avatar_icon">Avatar təsviri</string>
@@ -145,15 +145,14 @@
   <string name="registration_progress_notification__complete">Qeydiyyat uğurla başa çatdı</string>
   <string name="registration_progress_notification__failure">Qeydiyyatda problem oldu</string>
   <string name="registration_progress_notification__gms_update">WhisperPush istifadəsi üçün yeniləmə lazımdır</string>
-  <string name="pref_activity_title">WhisperPush seçimləri</string>
   <string name="pref_registration_category__title">Qeydiyyat</string>
   <string name="pref_other_category__title">Digər</string>
   <string name="pref_menu__privacy_policy">Gizlilik siyasəti</string>
   <string name="pref_menu__terms_of_service">Xidmət Şərtləri</string>
   <string name="pref_register__title">Qeydiyyatdan keç</string>
-  <string name="pref_register__summary">Şifrəli SMSi aktivləşdirmək üçün WhisperPush\'da qeydiyyatdan keçin</string>
+  <string name="pref_register__summary">Şifrəli SMSi fəallaşdırmaq üçün WhisperPush\'da qeydiyyatdan keçin</string>
   <string name="pref_unregister__title">Qeydiyyatı sil</string>
-  <string name="pref_unregister__summary">Şifrəli SMS\'i bağlamaq üçün WhisperPush\'dan qeydiyyatı silin</string>
+  <string name="pref_unregister__summary">Şifrəli SMS\'i ləğv etmək üçün WhisperPush\'dan qeydiyyatı silin</string>
   <string name="pref_unregister__progress_title">Qeydiyyat silinir</string>
   <string name="pref_review_keys__title">Şəxsiyyət açarlarına baxış</string>
   <string name="pref_my_identity__title">Şəxsiyyət açarımı göstər</string>
