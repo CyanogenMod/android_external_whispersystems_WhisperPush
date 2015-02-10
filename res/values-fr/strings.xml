@@ -112,7 +112,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure n\'a pas réussi à se connecter au service push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Cela peut être causé par\u00A0:</string>
   <string name="registration_progress_activity__no_network_connectivity">Aucune connexion réseau.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion réseau pour utiliser TextSecure. Vérifiez qu\'il est connecté en 3G ou en Wifi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion au réseau pour utiliser TextSecure. Vérifiez qu\'il est connecté en 3G ou en Wi\u2011Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Pare-feu restrictif.
     </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si vous êtes connecté en Wi-Fi, il est possible qu\'un pare-feu bloque l\'accès au serveur TextSecure. Essayez un autre réseau ou la connexion mobile.</string>
@@ -148,7 +148,6 @@
   <string name="registration_progress_notification__complete">Enregistré avec succès</string>
   <string name="registration_progress_notification__failure">Il y a eu un problème à l\'enregistrement</string>
   <string name="registration_progress_notification__gms_update">Une mise à jour est nécessaire pour utiliser WhisperPush</string>
-  <string name="pref_activity_title">Paramètres WhisperPush</string>
   <string name="pref_registration_category__title">Inscription</string>
   <string name="pref_other_category__title">Autres</string>
   <string name="pref_menu__privacy_policy">Politique de confidentialité</string>

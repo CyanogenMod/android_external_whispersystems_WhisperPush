@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Başarıyla kaydedildi</string>
   <string name="registration_progress_notification__failure">Kayıtta bir sorun oldu</string>
   <string name="registration_progress_notification__gms_update">WhisperPush kullanmak için bir güncelleme gerekiyor</string>
-  <string name="pref_activity_title">WhisperPush tercihleri</string>
   <string name="pref_registration_category__title">Kayıt</string>
   <string name="pref_other_category__title">Diğer</string>
   <string name="pref_menu__privacy_policy">Gizlilik politikası</string>

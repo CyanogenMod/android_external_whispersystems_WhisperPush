@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Регистрация завершена</string>
   <string name="registration_progress_notification__failure">Не удалось выполнить регистрацию</string>
   <string name="registration_progress_notification__gms_update">Для работы WhisperPush требуется обновление</string>
-  <string name="pref_activity_title">Настройки WhisperPush</string>
   <string name="pref_registration_category__title">Регистрация</string>
   <string name="pref_other_category__title">Дополнительные функции</string>
   <string name="pref_menu__privacy_policy">Политика конфиденциальности</string>

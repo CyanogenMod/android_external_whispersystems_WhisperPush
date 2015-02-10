@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">성공적으로 등록되었습니다</string>
   <string name="registration_progress_notification__failure">등록 도중 문제가 발생했습니다</string>
   <string name="registration_progress_notification__gms_update">WhisperPush의 업데이트가 필요합니다</string>
-  <string name="pref_activity_title">WhisperPush 설정</string>
   <string name="pref_registration_category__title">등록</string>
   <string name="pref_other_category__title">기타</string>
   <string name="pref_menu__privacy_policy">개인 정보 보호 정책</string>

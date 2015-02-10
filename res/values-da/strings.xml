@@ -146,7 +146,6 @@
   <string name="registration_progress_notification__complete">Registrering udført</string>
   <string name="registration_progress_notification__failure">Der var et problem med registrering</string>
   <string name="registration_progress_notification__gms_update">En opdatering er nødvendig for at bruge WhisperPush</string>
-  <string name="pref_activity_title">Indstillinger for WhisperPush</string>
   <string name="pref_registration_category__title">Registrering</string>
   <string name="pref_other_category__title">Andet</string>
   <string name="pref_menu__privacy_policy">Politik om personlige oplysninger</string>
