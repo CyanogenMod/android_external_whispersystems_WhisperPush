@@ -47,7 +47,7 @@
   <string name="RegistrationActivity_invalid_number">Ongëlteg Nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">D\'Telefonsnummer déi s du uginn hues (%s) ass ongëlteg.</string>
   <string name="RegistrationActivity_unsupported">Net ënnerstëtzt</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Leider ënnerstëtzt dësen Apparat keng Datemessagen. Apparater déi eng Android-Versioun benotzen déi méi al ass wéi 4.0 mussen e registréierte Google-Kont hunn. Apparater mat Android 4.0 oder méi nei brauche kee Google-Kont, mee d\'Play-Store-App muss installéiert sinn.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Leider ënnerstëtzt dësen Apparat keng Datemessagen. Apparater déi eng Android-Versioun benotzen déi méi al ass wéi 4.0 mussen e registréierte Google-Kont hunn. Apparater mat Android 4.0 oder méi nei brauche kee Google-Kont, mä d\'Play-Store-App muss installéiert sinn.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Mir verifizéieren elo datt déi folgend Nummer mat dësem Apparat assozéiert ass:\n\n%s\n\nAss d\'Nummer korrekt oder wëlls de se nach eemol änneren?</string>
   <string name="RegistrationActivity_continue">Weider</string>
   <string name="RegistrationActivity_edit">Änneren</string>

@@ -136,7 +136,7 @@
   <string name="verify_identity_activity__valid">Érvényes</string>
   <string name="verify_identity__invalid">Érvénytelen</string>
   <string name="verify_identity_activity__avatar_icon">Avatár ikon</string>
-  <string name="view_new_identity_activity__verify_fingerprint">Ez a kapcsolat egy új titkosított üzenetet küldött. Vegye fontolóra, hogy felhívja a kapcsolatot és érvényesíti az az alábbi ujjlenyomatot hangos felolvasással!</string>
+  <string name="view_new_identity_activity__verify_fingerprint">Ez a névjegy egy új titkosított üzenetet küldött. Vegye fontolóra, hogy felhívja a küldőt és érvényesíti az az alábbi ujjlenyomatot hangos felolvasással!</string>
   <string name="view_new_identity_activity__continue">Folytatás</string>
   <string name="view_identity_activity_menu__compare">Összehasonlítás</string>
   <string name="view_identity_activity_menu__scan_to_compare">Beolvasás összehasonlításhoz</string>
