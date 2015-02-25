@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush ciddi xətayla qarşılaşdı.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Server ilə cihazınız arasında məlumat sinxronizasiyası baş tutmadığına görə şifrələnmiş söhbətləri aktivləşdirmək üçün WhisperPush sıfırlanmalıdır.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Server ilə cihazınız arasındakı verilənlər eyniləşdirilə bilmədiyinə görə şifrələnmiş söhbətləri fəallaşdırmaq üçün WhisperPush sıfırlanmalıdır.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Sıfırla</string>
   <string name="generic__please_wait">Xahiş edirik gözləyin.</string>
   <string name="GcmReceiver_error">WhisperPush səhvi</string>
@@ -47,7 +47,7 @@
   <string name="RegistrationActivity_invalid_number">Yanlış nömrə</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Dəqiqləşdirilən nömrə (%s) yanlışdır.</string>
   <string name="RegistrationActivity_unsupported">Dəstəklənmir</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Bağışlayın, bu cihaz məlumat bağlantısı ilə mesajlaşmanı dəstəkləmir. Android 4.0 versiyasından əvvəlki proqram təminatına malik cihazlarda qeydiyyatdan keçmiş bir Google hesabı olmalıdır. Android 4.0 və ya daha yuxarı versiyalarda çalışan cihazlar üçün qeydiyyatlı bir Google hesabı lazım deyil, ancaq Play Store tətbiqetməsi yüklü olmalıdır.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Bağışlayın, bu cihaz verilənlər bağlantısı ilə mesajlaşmanı dəstəkləmir. Android 4.0 versiyasından əvvəlki proqram təminatına malik cihazlarda qeydiyyatdan keçmiş bir Google hesabı olmalıdır. Android 4.0 və ya daha yuxarı versiyalarda çalışan cihazlar üçün qeydiyyatlı bir Google hesabı lazım deyil, ancaq Play Store tətbiqetməsi yüklü olmalıdır.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Biz indi aşağıdakı nömrəni təsdiqləyib bu cihazla bağlayacayıq:\n\n%s\n\n Bu nömrə doğrudur yoxsa davam etməzdən əvvəl düzəliş etmək istərdiniz?</string>
   <string name="RegistrationActivity_continue">Davam</string>
   <string name="RegistrationActivity_edit">Düzəliş et</string>
