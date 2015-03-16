@@ -35,7 +35,7 @@
   <string name="MessageNotifier_new_session__view_identity">Identität anzeigen</string>
   <string name="MessageNotifier_new_session__outgoing_toast">Nachricht an %s wurde verschlüsselt</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">Von WhisperPush abgemeldet</string>
-  <string name="MessageNotifier_user_unregistered_from_service_content">Tippen Sie, um WhisperPush zu registrieren und verschlüsselte SMS/MMS zu ermöglichen.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Tippen Sie, um WhisperPush zu registrieren und verschlüsselte Konversationen zu ermöglichen.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Eingehende Nachricht abgewiesen</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Die eingehende verschlüsselte Nachricht von %s wurde auf Grund der Sperrlisten-Einstellungen unterdrückt.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Der verschlüsselte Anhang der eingehenden Nachricht kann nicht empfangen werden</string>
