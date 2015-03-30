@@ -113,7 +113,7 @@
   <string name="registration_progress_activity__no_network_connectivity">Şəbəkə bağlantısı yoxdur.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Bu TextSecure özəlliyindən istifadə etmək üçün şəbəkə bağlantısı lazımdır. 3G və ya Wifi bağlantısını yoxlayın.</string>
   <string name="registration_progress_activity__restrictive_firewall">Məhdudlaşdırıcı təhlükəsizlik divarı.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Əgər wifi\'a bağlanmısınızsa, təhlükəsizlik divarı TextSecure serverinə girişinizi əngəlləyə bilər. Başqa bir şəbəkə və ya mobil verilənlər bağlantısını yoxlayın.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Əgər wifi ilə bağlanmısınızsa, təhlükəsizlik divarı TextSecure serverinə girişinizi əngəlləyə bilər. Başqa bir şəbəkə və ya mobil verilənlər bağlantısını yoxlayın.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure təsdiqləmə SMS\'i ilə nömrənizi avtomatik olaraq təsdiqləyəcək.</string>
   <string name="registration_progress_activity__connecting">Bağlanır\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS təsdiqləməsi gözlənilir\u2026</string>
