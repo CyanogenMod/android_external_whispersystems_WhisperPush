@@ -151,9 +151,9 @@
   <string name="pref_menu__privacy_policy">מדיניות הפרטיות</string>
   <string name="pref_menu__terms_of_service">תנאי שימוש</string>
   <string name="pref_register__title">הרשם</string>
-  <string name="pref_register__summary">הירשם ל-WhisperPush כדי לאפשר SMS מוצפנים</string>
+  <string name="pref_register__summary">הירשם ל-WhisperPush כדי להפעיל את הצפנת ה-SMS</string>
   <string name="pref_unregister__title">בטל רישום</string>
-  <string name="pref_unregister__summary">ביטול רישום מ-WhisperPush כדי לבטל את ה-SMS המוצפן</string>
+  <string name="pref_unregister__summary">ביטול רישום מ-WhisperPush כדי לבטל את הצפנת ה-SMS</string>
   <string name="pref_unregister__progress_title">מבטל רישום</string>
   <string name="pref_review_keys__title">צפה במפתחות זיהוי</string>
   <string name="pref_my_identity__title">צפה במפתח הזהות שלי</string>
