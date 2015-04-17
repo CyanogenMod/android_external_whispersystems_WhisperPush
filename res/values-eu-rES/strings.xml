@@ -97,7 +97,7 @@
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Pribatutasun politika</a></string>
   <string name="registration_problems__some_possible_problems_include">Arazo posible batzuk:</string>
   <string name="registration_problems__sms_interceptors">SMS oztopatzaileak.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Hirugarrengoen aplikazio batzuk, Handcent edo GoSMS kasu, sartzen diren SMS guztiak bidean oztopatu ditzakete. \u00ABYour TextSecure verification code:\u00BB hasiera duen mezu bat jaso duzula egiaztatu. Baiezkoan, hirugarrengoen aplikazioa SMS-ak pasatzen uzteko konfiguratu beharko duzu.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Hirugarrengoen aplikazio batzuk, Handcent edo GoSMS kasu, sartzen diren SMS guztiak bidean oztopatu ditzakete. \u00ABYour TextSecure verification code:\u00BB hasiera duen mezu bat jaso duzula egiaztatu. Baiezkoan, hirugarrengoen aplikazioa SMSak pasatzen uzteko konfiguratu beharko duzu.</string>
   <string name="registration_problems__incorrect_number">Zenbaki okerra.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Mesedez, telefono zenbakia ondo idatzi duzula egiaztatu, baita zure eskualdearentzako formatu zuzena duela ere.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
