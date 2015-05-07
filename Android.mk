@@ -14,6 +14,6 @@ LOCAL_PROGUARD_ENABLED := disabled
 LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 LOCAL_AAPT_FLAGS := --extra-packages com.google.android.gms -S $(LOCAL_PATH)/../../google/google_play_services/libproject/google-play-services_lib/res --auto-add-overlay
 
-LOCAL_STATIC_JAVA_LIBRARIES := play TextSecureLibrary
+LOCAL_STATIC_JAVA_LIBRARIES := play textsecure-android
 
 include $(BUILD_PACKAGE)
