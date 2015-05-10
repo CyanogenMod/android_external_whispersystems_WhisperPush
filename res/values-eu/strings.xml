@@ -111,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure ez da push zerbitzuarekin konektatzeko gai izan.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Arazo posible batzuk:</string>
   <string name="registration_progress_activity__no_network_connectivity">Sare konektibitaterik ez.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Zure gailuak sare konektibitatea behar du TextSecure ezaugarri hau erabiltzearren. Egiaztatu Wi-Fi-ra edo 3G bidez konektatuta dagoela.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Zure gailuak sare konektibitatea behar du TextSecure ezaugarri hau erabiltzeko. Egiaztatu Wi-Fi edo 3G bidez konektatuta dagoela.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall-ak mugatua.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi bidez konektaturik bazaude, firewall batek TextSecure zerbitzarirako sarbidea oztopatzen egotea izan liteke. Saiatu zaitez beste sare batekin edo datu mugikorren bidez.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">Orain TextSecure-k zure telefono zenbakia automatikoki egiaztatuko du egiaztapen SMS baten bidez.</string>
