@@ -16,24 +16,22 @@
  */
 package org.whispersystems.whisperpush.ui;
 
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.contacts.Contact;
+import org.whispersystems.whisperpush.contacts.ContactsFactory;
+
 import android.content.Context;
 import android.os.Handler;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
-import android.util.Pair;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.contacts.Contact;
-import org.whispersystems.whisperpush.contacts.ContactsFactory;
 
 
 public class PendingIdentityItemView extends RelativeLayout
@@ -64,15 +62,15 @@ public class PendingIdentityItemView extends RelativeLayout
         this.contactBadge = (QuickContactBadge) findViewById(R.id.contact_photo_badge);
     }
 
-    public void set(IncomingPushMessage message) {
+    public void set(TextSecureEnvelope message) {
         try {
             this.contact     = ContactsFactory.getContactFromNumber(getContext(), message.getSource(), true);
-            this.identityKey = new PreKeyWhisperMessage(message.getBody()).getIdentityKey();
+            this.identityKey = new PreKeyWhisperMessage(message.getMessage()).getIdentityKey();
 
             identityName.setText(contact.getNumber());
             details.setText(String.format(getContext().getString(R.string.PendingIdentityItemView_received_s),
                     DateUtils.getRelativeTimeSpanString(getContext(),
-                            message.getTimestampMillis(),
+                            message.getTimestamp(),
                             false)));
             contactBadge.setImageBitmap(contact.getAvatar());
             contactBadge.assignContactFromPhone(contact.getNumber(), true);

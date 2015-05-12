@@ -21,7 +21,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.whisperpush.database.DatabaseFactory;
+import org.whispersystems.whisperpush.database.PendingApprovalDatabase;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 
@@ -36,8 +38,9 @@ import java.util.concurrent.Executors;
  */
 public class SendReceiveService extends Service {
 
-    public static final String RECEIVE_SMS = "org.whispersystems.SendReceiveService.RECEIVE_SMS";
-    public static final String SEND_SMS    = "org.whispersystems.SendReceiveService.SEND_SMS";
+    public static final String RCV_NOTIFICATION = "org.whispersystems.SendReceiveService.RCV_NOTIFICATION";
+    public static final String RCV_PENDING      = "org.whispersystems.SendReceiveService.RCV_PENDING";
+    public static final String SEND_SMS         = "org.whispersystems.SendReceiveService.SEND_SMS";
 
     public  static final String DESTINATION  = "destAddr";
 
@@ -53,17 +56,25 @@ public class SendReceiveService extends Service {
         this.messageReceiver = new MessageReceiver(this);
     }
 
-
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         if (intent != null) {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    if (RECEIVE_SMS.equals(intent.getAction())) {
-                        IncomingPushMessage message = intent.getParcelableExtra("message");
-                        messageReceiver.handleReceiveMessage(message);
-                    } else if (SEND_SMS.equals(intent.getAction())) {
+                    String action = intent.getAction();
+                    if (RCV_NOTIFICATION.equals(action)) {
+                        messageReceiver.handleNotification();
+                    } else if (RCV_PENDING.equals(action)) {
+                        long messageId = intent.getLongExtra("message_id", 0);
+                        PendingApprovalDatabase database = DatabaseFactory.
+                                getPendingApprovalDatabase(getApplicationContext());
+                        TextSecureEnvelope message = database.get(messageId);
+                        if(message != null) {
+                            database.delete(messageId);
+                            messageReceiver.handleEnvelope(message, true);
+                        }
+                    } else if (SEND_SMS.equals(action)) {
                         OutgoingMessageCandidate message = outgoingQueue.get();
                         messageSender.handleSendMessage(message);
                     }
@@ -78,5 +89,4 @@ public class SendReceiveService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
 }

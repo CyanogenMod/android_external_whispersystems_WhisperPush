@@ -46,7 +46,6 @@ public class DatabaseFactory {
         this.pendingApprovalDatabase = new PendingApprovalDatabase(context, databaseHelper);
     }
 
-
     public static CanonicalAddressDatabase getAddressDatabase(Context context) {
         return getInstance(context).addressDatabase;
     }

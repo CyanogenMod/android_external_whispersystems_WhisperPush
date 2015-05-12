@@ -30,8 +30,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.crypto.MasterSecret;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
 import org.whispersystems.whisperpush.database.IdentityDatabase;
@@ -63,7 +63,7 @@ public class ReviewIdentitiesActivity extends ListActivity
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         Intent viewIntent = new Intent(this, ViewIdentityActivity.class);
-        viewIntent.putExtra("identity_key", ((IdentityKeyItemView)view).getIdentityKey());
+        viewIntent.putExtra("identity_key", ((IdentityKeyItemView)view).getIdentityKey().serialize());
         startActivity(viewIntent);
     }
 
