@@ -19,9 +19,8 @@ package org.whispersystems.whisperpush.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import javax.crypto.KeyGenerator;
@@ -29,7 +28,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * This mainly exists as a placeholder, and for TextSecure-library
@@ -58,7 +56,7 @@ public class MasterSecretUtil {
     private static MasterSecret generateMasterSecret(Context context) {
         byte[] encryptionSecret = generateEncryptionSecret();
         byte[] macSecret        = generateMacSecret();
-        byte[] masterSecret     = Util.combine(encryptionSecret, macSecret);
+        byte[] masterSecret     = Util.join(encryptionSecret, macSecret);
 
         WhisperPreferences.setMasterSecret(context, Base64.encodeBytes(masterSecret));
 
@@ -114,13 +112,4 @@ public class MasterSecretUtil {
             return null;
         }
     }
-
-    private static byte[] generateSalt() throws NoSuchAlgorithmException {
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt         = new byte[8];
-        random.nextBytes(salt);
-
-        return salt;
-    }
-
 }

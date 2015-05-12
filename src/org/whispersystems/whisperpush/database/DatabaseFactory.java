@@ -42,10 +42,9 @@ public class DatabaseFactory {
         DatabaseHelper databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
 
         this.identityDatabase        = new IdentityDatabase(context, databaseHelper);
-        this.addressDatabase         = new CanonicalAddressDatabase(context, databaseHelper);
+        this.addressDatabase         = new CanonicalAddressDatabase(databaseHelper);
         this.pendingApprovalDatabase = new PendingApprovalDatabase(context, databaseHelper);
     }
-
 
     public static CanonicalAddressDatabase getAddressDatabase(Context context) {
         return getInstance(context).addressDatabase;
