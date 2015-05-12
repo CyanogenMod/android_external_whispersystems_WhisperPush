@@ -23,9 +23,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,13 +55,14 @@ public class PendingApprovalDatabase {
         this.databaseHelper = databaseHelper;
     }
 
-    public long insert(IncomingPushMessage message) {
+    public long insert(TextSecureEnvelope envelope) {
+        TextSecureMessage message;
         ContentValues values = new ContentValues();
-        values.put(TYPE, message.getType());
-        values.put(SOURCE, message.getSource());
+        values.put(TYPE, envelope.getType());
+        values.put(SOURCE, envelope.getSource());
         values.put(DESTINATIONS, Util.join(message.getDestinations(), ","));
         values.put(BODY, Base64.encodeBytes(message.getBody()));
-        values.put(TIMESTAMP, message.getTimestampMillis());
+        values.put(TIMESTAMP, envelope.getTimestamp());
 
         long result = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
         context.getContentResolver().notifyChange(CHANGE_URI, null);
