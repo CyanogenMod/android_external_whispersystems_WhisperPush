@@ -23,10 +23,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import org.whispersystems.textsecure.util.FutureTaskListener;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
-
 import java.util.HashSet;
+
+import org.whispersystems.whisperpush.util.FutureTaskListener;
+import org.whispersystems.whisperpush.util.ListenableFutureTask;
 
 public class Contact implements Parcelable {
 

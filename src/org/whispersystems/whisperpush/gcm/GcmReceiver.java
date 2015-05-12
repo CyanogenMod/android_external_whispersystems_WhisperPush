@@ -17,26 +17,18 @@
 package org.whispersystems.whisperpush.gcm;
 
 
+import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
+import org.whispersystems.whisperpush.service.SendReceiveService;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.JsonSyntaxException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
-import org.whispersystems.whisperpush.service.MessageNotifier;
-import org.whispersystems.whisperpush.service.SendReceiveService;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
 
 /**
  * The broadcast receiver that handles GCM events, such as incoming GCM messages.
@@ -44,37 +36,40 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  */
 public class GcmReceiver extends BroadcastReceiver {
+  private static final String TAG = "GcmReceiver";
+
   @Override
   public void onReceive(Context context, Intent intent) {
     DirectoryRefreshListener.schedule(context);
     GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(gcm.getMessageType(intent))) {
-      try {
-        String data = intent.getStringExtra("message");
+      Log.d(TAG, "GCM message...");
 
-        if (Util.isEmpty(data))
-          return;
-
-        String                       signalingKey     = WhisperPreferences.getSignalingKey(context);
-        IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, signalingKey);
-        IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
-
-        Intent serviceIntent = new Intent(context, SendReceiveService.class);
-        serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
-        serviceIntent.putExtra("message", message);
-        context.startService(serviceIntent);
-      } catch (IOException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblemAndUnregister(context, context.getString(R.string.GcmReceiver_error),
-                context.getString(R.string.GcmReceiver_invalid_push_message) + "\n" + context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
-      } catch (InvalidVersionException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_error),
-                context.getString(R.string.GcmReceiver_received_badly_formatted_push_message) + "\n" + context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
+      if (!WhisperPreferences.isRegistered(context)) {
+        Log.w(TAG, "Not push registered!");
+        return;
       }
+
+      String messageData = intent.getStringExtra("message");
+      String receiptData = intent.getStringExtra("receipt");
+
+      if      (!TextUtils.isEmpty(messageData)) handleReceivedMessage(context, messageData);
+      else if (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
+      else if (intent.hasExtra("notification")) handleReceivedNotification(context);
     }
 
     setResultCode(Activity.RESULT_OK);
+  }
+
+  private void handleReceivedNotification(Context context) {
+    // FIXME: figure out the right thing to do here
+  }
+
+  private void handleReceivedMessage(Context context, String message) {
+    Intent serviceIntent = new Intent(context, SendReceiveService.class);
+    serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
+    serviceIntent.putExtra("message", message);
+    context.startService(serviceIntent);
   }
 }

@@ -22,8 +22,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-
 /**
  * I would rather not modify the TextSecure library, so this database exists to store
  * values that are specific to CyanogenMod.
