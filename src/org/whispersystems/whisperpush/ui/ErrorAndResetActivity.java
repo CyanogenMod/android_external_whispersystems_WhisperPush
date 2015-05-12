@@ -17,6 +17,14 @@
 
 package org.whispersystems.whisperpush.ui;
 
+import java.io.IOException;
+
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperServiceFactory;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,12 +32,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
 
 public class ErrorAndResetActivity extends Activity {
 
@@ -64,9 +66,10 @@ public class ErrorAndResetActivity extends Activity {
         new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... param) {
-                PushServiceSocket socket = PushServiceSocketFactory.create(ErrorAndResetActivity.this);
+                TextSecureAccountManager manager =
+                        WhisperServiceFactory.createAccountManager(getApplicationContext());
                 try {
-                    socket.unregisterGcmId();
+                    manager.setGcmId(Optional.<String>absent()); // unregister
                 } catch (IOException e) {
                     return false;
                 }

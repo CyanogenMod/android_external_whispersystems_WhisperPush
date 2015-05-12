@@ -17,13 +17,10 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- TODO test server number, may change for real server? -->
     <string-array name="default_registration_numbers">
-        <item>+12064893444</item>
-        <item>12064893444</item>
-        <item>2064893444</item>
-        <!-- for Indonesia -->
-        <item>+6285718812868</item>
-        <item>085718812868</item>
-        <item>85718812868</item>
+        <item>+14122128916</item>
+        <item>14122128916</item>
+        <item>4122128916</item>
     </string-array>
 </resources>
