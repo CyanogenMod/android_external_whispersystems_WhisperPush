@@ -16,15 +16,14 @@
  */
 package org.whispersystems.whisperpush.attachments;
 
-import android.content.Context;
-
-import org.whispersystems.textsecure.util.Util;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import org.whispersystems.textsecure.internal.util.Util;
+
+import android.content.Context;
 
 /**
  * The manager responsible for storing and retrieving received attachments.

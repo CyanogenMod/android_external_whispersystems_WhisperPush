@@ -17,21 +17,10 @@
 package org.whispersystems.whisperpush.ui;
 
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
-import org.whispersystems.textsecure.zxing.integration.IntentResult;
 import org.whispersystems.whisperpush.R;
+
+import android.os.Bundle;
+import android.widget.TextView;
 
 /**
  * Activity for displaying an identity key.
