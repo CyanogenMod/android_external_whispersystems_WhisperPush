@@ -24,7 +24,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;

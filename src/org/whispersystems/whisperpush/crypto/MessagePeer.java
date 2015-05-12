@@ -18,7 +18,6 @@ package org.whispersystems.whisperpush.crypto;
 
 import android.content.Context;
 
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
 
 public class MessagePeer implements CanonicalRecipientAddress {

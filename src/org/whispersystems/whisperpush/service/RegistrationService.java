@@ -28,20 +28,25 @@ import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PreKeyUtil;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
+import org.whispersystems.whisperpush.crypto.MasterSecret;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
+import org.whispersystems.whisperpush.crypto.PreKeyUtil;
+import org.whispersystems.whisperpush.directory.Directory;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperServiceFactory;
 import org.whispersystems.whisperpush.WhisperPush;
 
 import java.io.IOException;
@@ -184,7 +189,7 @@ public class RegistrationService extends Service {
 
         new Thread() {
             public void run() {
-                Context     context       = RegistrationService.this;
+                Context      context      = RegistrationService.this;
                 MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(context);
 
                 if (!IdentityKeyUtil.hasIdentityKey(context)) {
@@ -254,7 +259,9 @@ public class RegistrationService extends Service {
             initializePreKeyGenerator();
 
             setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-            PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
+            TextSecureAccountManager manager = WhisperServiceFactory.
+                    initAccountManager(getApplicationContext(), number, password);
+            manager.
             socket.createAccount(false);
 
             setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
@@ -282,22 +289,23 @@ public class RegistrationService extends Service {
         }
     }
 
-    private void handleCommonRegistration(PushServiceSocket socket, String number)
+    private void handleCommonRegistration(TextSecureAccountManager manager, String number)
             throws IOException
     {
         setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-        MasterSecret       masterSecret  = MasterSecretUtil.getMasterSecret(this);
-        List<PreKeyRecord> records       = waitForPreKeys(masterSecret);
-        PreKeyRecord       lastResortKey = PreKeyUtil.generateLastResortKey(this, masterSecret);
-        IdentityKey        identityKey   = IdentityKeyUtil.getIdentityKey(this);
-        socket.registerPreKeys(identityKey, lastResortKey, records);
+        MasterSecret       masterSecret    = MasterSecretUtil.getMasterSecret(this);
+        List<PreKeyRecord> records         = waitForPreKeys(masterSecret);
+        PreKeyRecord       lastResortKey   = PreKeyUtil.generateLastResortKey(this, masterSecret);
+        IdentityKeyPair    identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
+        SignedPreKeyRecord signedPreKey    = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKeyPair);
+        manager.setPreKeys(identityKeyPair.getPublicKey(), lastResortKey, signedPreKey, records);
 
         setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
         String gcmRegistrationId = GcmHelper.getRegistrationId(this);
-        socket.registerGcmId(gcmRegistrationId);
+        manager.setGcmId(Optional.of(gcmRegistrationId));
 
         Set<String>               eligibleContactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
-        List<ContactTokenDetails> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
+        List<ContactTokenDetails> activeTokens          = manager.getContacts(eligibleContactTokens);
 
         if (activeTokens != null) {
             for (ContactTokenDetails activeToken : activeTokens) {
