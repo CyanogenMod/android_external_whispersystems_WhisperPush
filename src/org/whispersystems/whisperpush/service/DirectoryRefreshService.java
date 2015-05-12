@@ -16,6 +16,20 @@
  */
 package org.whispersystems.whisperpush.service;
 
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.whisperpush.directory.Directory;
+import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -23,21 +37,10 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 public class DirectoryRefreshService extends Service {
 
     public  static final String REFRESH_ACTION = "org.whispersystems.whisperpush.REFRESH_ACTION";
-
+    private static final String TAG = "DirectoryRefreshService";
     private static final Executor executor = Executors.newSingleThreadExecutor();
 
     @Override
@@ -53,6 +56,7 @@ public class DirectoryRefreshService extends Service {
         return null;
     }
 
+    @SuppressLint("Wakelock") // released in RefreshRunnable.run
     private void handleRefreshAction() {
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Directory Refresh");
@@ -72,7 +76,7 @@ public class DirectoryRefreshService extends Service {
 
         public void run() {
             try {
-                Log.w("DirectoryRefreshService", "Refreshing directory...");
+                Log.w(TAG, "Refreshing directory...");
                 Directory         directory   = Directory.getInstance(context);
                 String            localNumber = WhisperPreferences.getLocalNumber(context);
                 PushServiceSocket socket      = PushServiceSocketFactory.create(context);
@@ -88,7 +92,13 @@ public class DirectoryRefreshService extends Service {
                     directory.setTokens(activeTokens, eligibleContactTokens);
                 }
 
-                Log.w("DirectoryRefreshService", "Directory refresh complete...");
+                Log.w(TAG, "Directory refresh complete...");
+            } catch (NonSuccessfulResponseCodeException e) {
+                // FIXME Auto-generated catch block
+                Log.e(TAG, "non successful response", e);
+            } catch (PushNetworkException e) {
+                // FIXME Auto-generated catch block
+                Log.e(TAG, "push network failed", e);
             } finally {
                 if (wakeLock != null && wakeLock.isHeld())
                     wakeLock.release();

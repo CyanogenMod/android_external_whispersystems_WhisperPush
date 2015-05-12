@@ -24,9 +24,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.directory.Directory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 public class ActiveSessionProvider extends ContentProvider {

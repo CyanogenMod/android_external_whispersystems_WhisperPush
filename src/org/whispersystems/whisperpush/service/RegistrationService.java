@@ -28,19 +28,16 @@ import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PreKeyUtil;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
+import org.whispersystems.whisperpush.directory.Directory;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 import org.whispersystems.whisperpush.WhisperPush;
 
@@ -289,7 +286,7 @@ public class RegistrationService extends Service {
         MasterSecret       masterSecret  = MasterSecretUtil.getMasterSecret(this);
         List<PreKeyRecord> records       = waitForPreKeys(masterSecret);
         PreKeyRecord       lastResortKey = PreKeyUtil.generateLastResortKey(this, masterSecret);
-        IdentityKey        identityKey   = IdentityKeyUtil.getIdentityKey(this);
+        org.whispersystems.libaxolotl.IdentityKey        identityKey   = IdentityKeyUtil.getIdentityKey(this);
         socket.registerPreKeys(identityKey, lastResortKey, records);
 
         setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
