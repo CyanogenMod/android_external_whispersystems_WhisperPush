@@ -24,10 +24,10 @@ import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.directory.Directory;
+import org.whispersystems.whisperpush.directory.NotInDirectoryException;
 import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
 import org.whispersystems.whisperpush.service.RegistrationService;
 import org.whispersystems.whisperpush.service.SendReceiveService;

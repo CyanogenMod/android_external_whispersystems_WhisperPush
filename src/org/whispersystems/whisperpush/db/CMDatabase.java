@@ -21,8 +21,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import android.text.TextUtils;
 
 /**
  * I would rather not modify the TextSecure library, so this database exists to store
@@ -33,15 +32,14 @@ import org.whispersystems.textsecure.directory.NotInDirectoryException;
 public class CMDatabase {
 
     private final String DATABASE_NAME = "cyanogenmod.db";
-    private final int DATABASE_VERSION = 1;
+    private final int DATABASE_VERSION = 2;
 
     public static final String ID = "_id";
-    public static final String TOKEN = "token";
+    public static final String NUMBER = "number";
     public static final String ACTIVE_SESSION = "active_session";
 
     private static CMDatabase sInstance;
 
-    private final Context mContext;
     private final DatabaseHelper mDatabaseHelper;
 
     public synchronized static CMDatabase getInstance(Context context) {
@@ -52,12 +50,11 @@ public class CMDatabase {
     }
 
     public CMDatabase(Context context) {
-        mContext = context;
         this.mDatabaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public boolean hasActiveSession(String token) {
-        if (token == null || token.length() == 0) {
+    public boolean hasActiveSession(String number) {
+        if (TextUtils.isEmpty(number)) {
             return false;
         }
 
@@ -65,8 +62,8 @@ public class CMDatabase {
         Cursor cursor = null;
 
         try {
-            cursor = db.query("contacts", new String[]{ACTIVE_SESSION}, TOKEN + " = ?",
-                    new String[]{token}, null, null, null);
+            cursor = db.query("contacts", new String[]{ACTIVE_SESSION}, NUMBER + " = ?",
+                    new String[]{number}, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
                 return cursor.getInt(0) == 1;
             } else {
@@ -77,16 +74,16 @@ public class CMDatabase {
         }
     }
 
-    public void setActiveSession(String token, boolean hasActiveSession) {
+    public void setActiveSession(String number, boolean hasActiveSession) {
         SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(TOKEN, token);
+        values.put(NUMBER, number);
         values.put(ACTIVE_SESSION, hasActiveSession ? 1 : 0);
         db.replace("contacts", null, values);
     }
 
-    public void setActiveSession(String token) {
-        setActiveSession(token, true);
+    public void setActiveSession(String number) {
+        setActiveSession(number, true);
     }
 
     public SQLiteDatabase getReadableDatabaseFromHelper() {
@@ -103,12 +100,19 @@ public class CMDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE contacts (" + ID + " INTEGER PRIMARY KEY, " +
-                    TOKEN + " TEXT UNIQUE, " +
+                    NUMBER + " TEXT UNIQUE, " +
                     ACTIVE_SESSION + " INTEGER DEFAULT 0);");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            if (oldVersion < DATABASE_VERSION) {
+                // FIXME: if we figure out a migration solutions from our old server to
+                // Moxie's server, then we should do something more graceful here, or at
+                // least warn users - WF
+                db.execSQL("DROP TABLE contacts;");
+                onCreate(db);
+            }
         }
     }
 }

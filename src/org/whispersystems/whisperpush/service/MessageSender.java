@@ -16,33 +16,32 @@
  */
 package org.whispersystems.whisperpush.service;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.directory.Directory;
+import org.whispersystems.whisperpush.directory.NotInDirectoryException;
+import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperServiceFactory;
+import org.whispersystems.whisperpush.util.StatsUtils;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver.PendingResult;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
-
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
-import org.whispersystems.whisperpush.crypto.WhisperCipher;
-import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
-import org.whispersystems.whisperpush.util.StatsUtils;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
-import java.util.List;
 
 public class MessageSender {
 
@@ -56,7 +55,7 @@ public class MessageSender {
     }
 
     public void handleSendMessage(OutgoingMessageCandidate candidate) {
-        Log.w("MessageSender", "Got outgoing message candidate: " + candidate);
+        Log.d("MessageSender", "Got outgoing message candidate");
 
         if (candidate == null)
             return;
@@ -71,13 +70,16 @@ public class MessageSender {
         }
 
         try {
-            List<String>      messageParts    = sendIntent.getStringArrayListExtra(PARTS);
-            String            localNumber     = WhisperPreferences.getLocalNumber(context);
-            PushDestination   pushDestination = PushDestination.create(context, localNumber, destination);
-            PushServiceSocket socket          = PushServiceSocketFactory.create(context);
-            PushBody          body            = getEncryptedMessage(pushDestination, messageParts);
-
-            socket.sendMessage(pushDestination, body);
+            List<String>            messageParts = sendIntent.getStringArrayListExtra(PARTS);
+            // put destination in same format as was passed by isRegistered User above
+            String                  localNumber  = WhisperPreferences.getLocalNumber(context);
+            String                  e164number   = PhoneNumberFormatter.formatNumber(destination, localNumber);
+            TextSecureAddress       address      = new TextSecureAddress(e164number);
+            TextSecureMessageSender sender       = WhisperServiceFactory.createMessageSender(context);
+            TextSecureMessage       body         = TextSecureMessage.newBuilder()
+                                                                    .withBody(TextUtils.join("", messageParts))
+                                                                    .build();
+            sender.sendMessage(address, body);
 
             notifySendComplete(sendIntent);
             completeSendOperation(candidate);
@@ -85,6 +87,9 @@ public class MessageSender {
             Log.w("MessageSender", e);
             abortSendOperation(candidate);
         } catch (InvalidNumberException e) {
+            Log.w("MessageSender", e);
+            abortSendOperation(candidate);
+        } catch (UntrustedIdentityException e) {
             Log.w("MessageSender", e);
             abortSendOperation(candidate);
         }
@@ -123,19 +128,6 @@ public class MessageSender {
         }
     }
 
-    private PushBody getEncryptedMessage(PushDestination pushDestination,
-                                         List<String> messageParts)
-            throws IOException
-    {
-        PushServiceSocket socket        = PushServiceSocketFactory.create(context);
-        String            message       = Util.join(messageParts, "");
-        byte[]            plaintext     = PushMessageContent.newBuilder().setBody(message).build().toByteArray();
-        MasterSecret      masterSecret  = MasterSecretUtil.getMasterSecret(context);
-        WhisperCipher     whisperCipher = new WhisperCipher(context, masterSecret, pushDestination);
-
-        return whisperCipher.getEncryptedMessage(socket, plaintext);
-    }
-
     private boolean isRegisteredUser(String number) {
         Log.w("MessageSender", "Number to canonicalize: " + number);
         String    localNumber = WhisperPreferences.getLocalNumber(context);
@@ -158,17 +150,17 @@ public class MessageSender {
             return directory.isActiveNumber(e164number);
         } catch (NotInDirectoryException e) {
             try {
-                PushServiceSocket   socket              = PushServiceSocketFactory.create(context);
+                TextSecureAccountManager      manager = WhisperServiceFactory.createAccountManager(context);
                 Log.w("MessageSender", "Getting contact token for: " + e164number);
-                String              contactToken        = directory.getToken(e164number);
-                ContactTokenDetails contactTokenDetails = socket.getContactTokenDetails(contactToken);
+                Optional<ContactTokenDetails> details = manager.getContact(e164number);
 
-                if (contactTokenDetails != null) {
-                    directory.setToken(contactTokenDetails, true);
+                if (details.isPresent()) {
+                    directory.setNumber(details.get(), true);
                     return true;
                 } else {
-                    contactTokenDetails = new ContactTokenDetails(contactToken);
-                    directory.setToken(contactTokenDetails, false);
+                    // FIXME: figure out what to do here
+                    //contactTokenDetails = new ContactTokenDetails(contactToken);
+                    //directory.setToken(contactTokenDetails, false);
                     return false;
                 }
             } catch (IOException e1) {
@@ -177,6 +169,4 @@ public class MessageSender {
             }
         }
     }
-
-
 }

@@ -44,11 +44,9 @@ public class CanonicalAddressDatabase {
     private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String, Long>());
     private final Map<Long,String> numberCache  = Collections.synchronizedMap(new HashMap<Long,String>());
 
-    private final Context context;
     private final SQLiteOpenHelper databaseHelper;
 
-    public CanonicalAddressDatabase(Context context, SQLiteOpenHelper databaseHelper) {
-        this.context        = context.getApplicationContext();
+    public CanonicalAddressDatabase(SQLiteOpenHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
 
