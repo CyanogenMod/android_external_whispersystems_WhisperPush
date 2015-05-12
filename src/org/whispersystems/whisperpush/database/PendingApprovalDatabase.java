@@ -16,19 +16,17 @@
  */
 package org.whispersystems.whisperpush.database;
 
+import java.io.IOException;
+
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.internal.util.Base64;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
-
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
-
-import java.io.IOException;
-import java.util.List;
 
 public class PendingApprovalDatabase {
 
@@ -39,12 +37,21 @@ public class PendingApprovalDatabase {
     public  static final String ID           = "_id";
     public  static final String TYPE         = "type";
     public  static final String SOURCE       = "source";
-    public  static final String DESTINATIONS = "destinations";
+    public  static final String DEVICE       = "device";
+    public  static final String RELAY        = "relay";
     public  static final String BODY         = "body";
     public  static final String TIMESTAMP    = "timestamp";
 
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-            TYPE + " INTEGER, " + SOURCE + " TEXT, " + DESTINATIONS + " TEXT, " + BODY + " TEXT, " + TIMESTAMP + " INTEGER);";
+    // TextSecureEnvelope(int type, String source, int sourceDevice, String relay, long timestamp, byte[] message)
+    public static final String CREATE_TABLE =
+        "CREATE TABLE " + TABLE_NAME + " (" +
+            ID + " INTEGER PRIMARY KEY, " +
+            TYPE + " INTEGER, " +
+            SOURCE + " TEXT, " +
+            DEVICE + " INTEGER, " +
+            RELAY + " TEXT, " +
+            BODY + " TEXT, " +
+            TIMESTAMP + " INTEGER);";
 
     private final Context context;
     private final SQLiteOpenHelper databaseHelper;
@@ -54,13 +61,14 @@ public class PendingApprovalDatabase {
         this.databaseHelper = databaseHelper;
     }
 
-    public long insert(IncomingPushMessage message) {
+    public long insert(TextSecureEnvelope envelope) {
         ContentValues values = new ContentValues();
-        values.put(TYPE, message.getType());
-        values.put(SOURCE, message.getSource());
-        values.put(DESTINATIONS, Util.join(message.getDestinations(), ","));
-        values.put(BODY, Base64.encodeBytes(message.getBody()));
-        values.put(TIMESTAMP, message.getTimestampMillis());
+        values.put(TYPE, envelope.getType());
+        values.put(SOURCE, envelope.getSource());
+        values.put(DEVICE, envelope.getSourceDevice());
+        values.put(RELAY, envelope.getRelay());
+        values.put(BODY, Base64.encodeBytes(envelope.getMessage()));
+        values.put(TIMESTAMP, envelope.getTimestamp());
 
         long result = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
         context.getContentResolver().notifyChange(CHANGE_URI, null);
@@ -89,6 +97,14 @@ public class PendingApprovalDatabase {
         context.getContentResolver().notifyChange(CHANGE_URI, null);
     }
 
+    public TextSecureEnvelope get(long id) {
+        Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME,
+                null, ID + "=?", new String[] {id+""}, null, null, null);
+        Reader reader = readerFor(cursor);
+        try { return reader.getNext(); }
+        finally { reader.close(); }
+    }
+
     public Reader readerFor(Cursor cursor) {
         return new Reader(cursor);
     }
@@ -100,21 +116,22 @@ public class PendingApprovalDatabase {
             this.cursor = cursor;
         }
 
-        public IncomingPushMessage getCurrent() {
+        public TextSecureEnvelope getCurrent() {
             try {
-                int          type         = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
-                String       source       = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
-                List<String> destinations = Util.split(cursor.getString(cursor.getColumnIndexOrThrow(DESTINATIONS)), ",");
-                byte[]       body         = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY)));
-                long         timestamp    = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
+                int    type      = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
+                String source    = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
+                int    device    = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE));
+                String relay     = cursor.getString(cursor.getColumnIndexOrThrow(RELAY));
+                long   timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
+                byte[] body      = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY)));
 
-                return new IncomingPushMessage(type, source, destinations, body, timestamp);
+                return new TextSecureEnvelope(type, source, device, relay, timestamp, body);
             } catch (IOException e) {
                 throw new AssertionError(e);
             }
         }
 
-        public IncomingPushMessage getNext() {
+        public TextSecureEnvelope getNext() {
             if (cursor == null || !cursor.moveToNext())
                 return null;
 
@@ -133,6 +150,4 @@ public class PendingApprovalDatabase {
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
     }
-
 }
-

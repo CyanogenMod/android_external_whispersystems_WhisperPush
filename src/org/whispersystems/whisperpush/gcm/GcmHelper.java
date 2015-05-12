@@ -62,6 +62,7 @@ public class GcmHelper {
     }
 
     public static String getRegistrationId(Context context) throws IOException {
+        // FIMXE: should update to use the new style for handling GCM messages
         String registrationId = GoogleCloudMessaging.getInstance(context).register(Release.GCM_SENDER_ID);
         setCurrentRegistrationId(context, registrationId);
         return registrationId;

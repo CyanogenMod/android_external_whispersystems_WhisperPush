@@ -47,13 +47,13 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 /**
- * The register account activity.  Prompts ths user for their registration information
+ * The register account activity.  Prompts this user for their registration information
  * and begins the account registration process.
  *
  * @author Moxie Marlinspike
@@ -194,14 +194,14 @@ public class RegistrationActivity extends Activity {
         public void onClick(View v) {
             final RegistrationActivity self = RegistrationActivity.this;
 
-            if (Util.isEmpty(countryCode.getText())) {
+            if (TextUtils.isEmpty(countryCode.getText())) {
                 Toast.makeText(self,
                         getString(R.string.RegistrationActivity_you_must_specify_your_country_code),
                         Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if (Util.isEmpty(number.getText())) {
+            if (TextUtils.isEmpty(number.getText())) {
                 Toast.makeText(self,
                         getString(R.string.RegistrationActivity_you_must_specify_your_phone_number),
                         Toast.LENGTH_LONG).show();
@@ -245,7 +245,7 @@ public class RegistrationActivity extends Activity {
     private class CountryCodeChangedListener implements TextWatcher {
         @Override
         public void afterTextChanged(Editable s) {
-            if (Util.isEmpty(s)) {
+            if (TextUtils.isEmpty(s)) {
                 setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
                 countryFormatter = null;
                 return;
@@ -278,7 +278,7 @@ public class RegistrationActivity extends Activity {
             if (countryFormatter == null)
                 return;
 
-            if (Util.isEmpty(s) || !TextUtils.isDigitsOnly(s))
+            if (TextUtils.isEmpty(s) || !TextUtils.isDigitsOnly(s))
                 return;
 
             countryFormatter.clear();

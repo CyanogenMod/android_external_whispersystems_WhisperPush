@@ -16,12 +16,20 @@
  */
 package org.whispersystems.whisperpush.ui;
 
+import java.io.IOException;
+
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.service.MessageNotifier;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperServiceFactory;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,14 +42,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.service.MessageNotifier;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
 
 public class PreferenceActivity extends Activity {
 
@@ -171,9 +171,10 @@ public class PreferenceActivity extends Activity {
             new AsyncTask<Void, Void, Boolean>() {
                 @Override
                 protected Boolean doInBackground(Void... param) {
-                    PushServiceSocket socket = PushServiceSocketFactory.create(getActivity());
+                    TextSecureAccountManager manager =
+                            WhisperServiceFactory.createAccountManager(getActivity());
                     try {
-                        socket.unregisterGcmId();
+                        manager.setGcmId(Optional.<String>absent()); // unregister
                     } catch (IOException e) {
                         return false;
                     }

@@ -25,9 +25,9 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.util.LruCache;
 
-import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.util.LinkedBlockingLifoQueue;
+import org.whispersystems.whisperpush.util.ListenableFutureTask;
 
 import java.io.InputStream;
 import java.util.concurrent.Callable;

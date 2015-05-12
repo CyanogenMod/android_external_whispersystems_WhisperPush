@@ -17,17 +17,16 @@
 
 package org.whispersystems.whisperpush.db;
 
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 public class ActiveSessionProvider extends ContentProvider {
 
@@ -36,11 +35,8 @@ public class ActiveSessionProvider extends ContentProvider {
     public static final String AUTHORITY = "org.whispersystems.whisperpush.sessionprovider";
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 
-    private Directory mDirectory;
-
     @Override
     public boolean onCreate() {
-        mDirectory = Directory.getInstance(getContext());
         return true;
     }
 
@@ -61,7 +57,7 @@ public class ActiveSessionProvider extends ContentProvider {
         queryBuilder.setTables("contacts");
 
         String[] activeSessionColumn = new String[] { CMDatabase.ACTIVE_SESSION };
-        String selectionClause = CMDatabase.TOKEN + " = ?";
+        String selectionClause = CMDatabase.NUMBER + " = ?";
 
         if (selectionArgs == null || selectionArgs.length < 1) {
             Log.w(TAG, "No selection args in query");
@@ -75,7 +71,7 @@ public class ActiveSessionProvider extends ContentProvider {
         // We're only going to return one row
         // based off one number if the token
         // is not null.
-        String selectionArg = getTokenForAddress(selectionArgs[0]);
+        String selectionArg = formatNumber(selectionArgs[0]);
 
         if (selectionArg == null) {
             return null;
@@ -84,7 +80,8 @@ public class ActiveSessionProvider extends ContentProvider {
         String[] newSelectionArg = new String[] { selectionArg };
 
         CMDatabase database = CMDatabase.getInstance(getContext());
-        Cursor cursor = queryBuilder.query(database.getReadableDatabaseFromHelper(), activeSessionColumn, selectionClause,
+        Cursor cursor = queryBuilder.query(database.getReadableDatabaseFromHelper(),
+                activeSessionColumn, selectionClause,
                 newSelectionArg , null, null, sortOrder);
         return cursor;
     }
@@ -104,7 +101,7 @@ public class ActiveSessionProvider extends ContentProvider {
         return 0;
     }
 
-    private String getTokenForAddress(String number) {
+    private String formatNumber(String number) {
         String localNumber = WhisperPreferences.getLocalNumber(getContext());
         String e164number;
         try {
@@ -118,6 +115,6 @@ public class ActiveSessionProvider extends ContentProvider {
             return null;
         }
 
-        return mDirectory.getToken(e164number);
+        return e164number;
     }
 }
