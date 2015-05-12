@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (C) 2014 The CyanogenMod Project
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,22 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.whispersystems.whisperpush.crypto;
+package org.whispersystems.whisperpush.directory;
 
-import android.content.Context;
-
-import org.whispersystems.whisperpush.database.DatabaseFactory;
-
-public class MessagePeer {
-
-    private final long canonicalAddress;
-
-    public MessagePeer(Context context, String canonicalPeerNumber) {
-        this.canonicalAddress = DatabaseFactory.getAddressDatabase(context)
-                .getCanonicalAddressFromNumber(canonicalPeerNumber);
-    }
-
-    public long getCanonicalAddress(Context context) {
-        return canonicalAddress;
-    }
+@SuppressWarnings("serial")
+public class NotInDirectoryException extends Throwable {
 }

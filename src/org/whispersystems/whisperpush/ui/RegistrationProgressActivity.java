@@ -16,13 +16,25 @@
  */
 package org.whispersystems.whisperpush.ui;
 
+import java.io.IOException;
+
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.WhisperPush;
+import org.whispersystems.whisperpush.service.RegistrationService;
+import org.whispersystems.whisperpush.service.RegistrationService.RegistrationState;
+import org.whispersystems.whisperpush.util.Util;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.whisperpush.util.WhisperServiceFactory;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -44,19 +56,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.WhisperPush;
-import org.whispersystems.whisperpush.service.RegistrationService;
-import org.whispersystems.whisperpush.service.RegistrationService.RegistrationState;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
 
 /**
  * The View that sits in front of a RegistrationService, displaying the current registration
@@ -498,8 +497,10 @@ public class RegistrationProgressActivity extends Activity {
                 @Override
                 protected Integer doInBackground(Void... params) {
                     try {
-                        PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-                        socket.verifyAccount(code, signalingKey);
+                        TextSecureAccountManager manager =
+                                WhisperServiceFactory.createAccountManager(getApplicationContext());
+                        manager.verifyAccount(code, signalingKey, false,
+                                WhisperPreferences.getInstallId(getApplicationContext()));
                         return SUCCESS;
                     } catch (RateLimitException e) {
                         Log.w("RegistrationProgressActivity", e);
@@ -584,8 +585,9 @@ public class RegistrationProgressActivity extends Activity {
                 @Override
                 protected Integer doInBackground(Void... params) {
                     try {
-                        PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-                        socket.createAccount(true);
+                        TextSecureAccountManager manager =
+                                WhisperServiceFactory.createAccountManager(getApplicationContext());
+                        manager.requestVoiceVerificationCode();
 
                         return SUCCESS;
                     } catch (RateLimitException e) {
