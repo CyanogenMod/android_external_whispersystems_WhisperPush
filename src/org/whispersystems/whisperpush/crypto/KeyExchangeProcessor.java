@@ -19,22 +19,18 @@ package org.whispersystems.whisperpush.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.crypto.ratchet.RatchetingSession;
-import org.whispersystems.textsecure.push.PreKeyEntity;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
-import org.whispersystems.textsecure.storage.InvalidKeyIdException;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.storage.Session;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
-import org.whispersystems.textsecure.util.Medium;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.util.Medium;
+import org.whispersystems.textsecure.internal.push.PreKeyEntity;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
 
 public class KeyExchangeProcessor {

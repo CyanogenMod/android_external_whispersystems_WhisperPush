@@ -21,19 +21,15 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.internal.telephony.util.BlacklistUtils;
-import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushDestination;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.contacts.Contact;

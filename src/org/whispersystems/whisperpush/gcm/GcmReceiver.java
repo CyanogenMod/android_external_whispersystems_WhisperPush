@@ -24,12 +24,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.JsonSyntaxException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Util;
+
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
 import org.whispersystems.whisperpush.service.MessageNotifier;

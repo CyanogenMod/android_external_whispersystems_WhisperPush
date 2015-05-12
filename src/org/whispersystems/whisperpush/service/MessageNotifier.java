@@ -27,13 +27,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.OutgoingPushMessage;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
 import org.whispersystems.whisperpush.contacts.ContactsFactory;

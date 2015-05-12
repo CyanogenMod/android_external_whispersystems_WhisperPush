@@ -35,7 +35,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.service.MessageNotifier;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;

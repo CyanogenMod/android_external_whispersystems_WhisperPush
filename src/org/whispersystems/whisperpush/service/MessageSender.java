@@ -23,22 +23,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
 import java.util.List;

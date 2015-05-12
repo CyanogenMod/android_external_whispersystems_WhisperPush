@@ -18,7 +18,7 @@ package org.whispersystems.whisperpush.util;
 
 import android.content.Context;
 
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 
 import java.io.InputStream;

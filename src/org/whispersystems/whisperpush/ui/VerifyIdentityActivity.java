@@ -30,13 +30,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
@@ -104,7 +101,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
         private final Context      context;
         private final Contact      contact;
-        private final IdentityKey  identityKey;
+        private final org.whispersystems.libaxolotl.IdentityKey  identityKey;
 
         private ProgressDialog progressDialog;
 

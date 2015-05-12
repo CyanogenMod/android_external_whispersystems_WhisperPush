@@ -19,9 +19,8 @@ package org.whispersystems.whisperpush.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import javax.crypto.KeyGenerator;
@@ -58,7 +57,7 @@ public class MasterSecretUtil {
     private static MasterSecret generateMasterSecret(Context context) {
         byte[] encryptionSecret = generateEncryptionSecret();
         byte[] macSecret        = generateMacSecret();
-        byte[] masterSecret     = Util.combine(encryptionSecret, macSecret);
+        byte[] masterSecret     = Util.join(encryptionSecret, macSecret);
 
         WhisperPreferences.setMasterSecret(context, Base64.encodeBytes(masterSecret));
 

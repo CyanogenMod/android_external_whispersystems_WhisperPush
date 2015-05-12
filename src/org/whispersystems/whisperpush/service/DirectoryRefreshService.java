@@ -23,9 +23,9 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.whisperpush.contacts.ContactsFactory.ContactDetails;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
@@ -78,7 +78,7 @@ public class DirectoryRefreshService extends Service {
                 PushServiceSocket socket      = PushServiceSocketFactory.create(context);
 
                 Set<String>               eligibleContactTokens = directory.getPushEligibleContactTokens(localNumber);
-                List<ContactTokenDetails> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
+                List<ContactDetails> activeTokens          = socket.retrieveDirectory(eligibleContactTokens);
 
                 if (activeTokens != null) {
                     for (ContactTokenDetails activeToken : activeTokens) {
