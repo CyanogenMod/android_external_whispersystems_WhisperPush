@@ -16,15 +16,15 @@
  */
 package org.whispersystems.whisperpush;
 
-import android.app.Application;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.telephony.TelephonyManager;
-import android.util.Log;
+import java.io.IOException;
+
 import org.whispersystems.whisperpush.gcm.GcmHelper;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
-import java.io.IOException;
+import android.app.Application;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class WhisperPush extends Application {
 

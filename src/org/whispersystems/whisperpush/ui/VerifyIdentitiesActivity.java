@@ -61,7 +61,7 @@ public class VerifyIdentitiesActivity extends ListActivity
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         Intent viewIntent = new Intent(this, VerifyIdentityActivity.class);
-        viewIntent.putExtra("identity_key", ((PendingIdentityItemView)view).getIdentityKey());
+        viewIntent.putExtra("identity_key", ((PendingIdentityItemView)view).getIdentityKey().serialize());
         viewIntent.putExtra("contact", ((PendingIdentityItemView)view).getContact());
         startActivity(viewIntent);
     }
