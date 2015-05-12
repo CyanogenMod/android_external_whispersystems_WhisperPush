@@ -16,36 +16,38 @@
  */
 package org.whispersystems.whisperpush.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.List;
+
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.contacts.Contact;
+import org.whispersystems.whisperpush.contacts.ContactsFactory;
+import org.whispersystems.whisperpush.service.MessageNotifier;
+
 import android.content.Context;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 import android.util.Pair;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.LinkedList;
-import java.util.List;
 import com.android.internal.telephony.ISms;
-
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.contacts.Contact;
-import org.whispersystems.whisperpush.contacts.ContactsFactory;
-import org.whispersystems.whisperpush.service.MessageNotifier;
 
 /**
  * A helper class to handle the WhisperPush --> System Framework binding.
  */
 public class SmsServiceBridge {
 
-    public static void receivedPushMessage(Context context, String source, List<String> destinations,
-                                           String message, List<Pair<String,String>> attachments,
-                                           long timestampSent)
+    public static void receivedPushMessage(
+            Context context, String source, Optional<String> message,
+            List<Pair<String,String>> attachments, long timestampSent)
     {
         try {
-            Class  serviceManager = Class.forName("android.os.ServiceManager");
-            Method getService     = serviceManager.getMethod("getService", String.class);
-            ISms   framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
+            Class<?> serviceManager = Class.forName("android.os.ServiceManager");
+            Method   getService     = serviceManager.getMethod("getService", String.class);
+            ISms     framework      = ISms.Stub.asInterface((IBinder) getService.invoke(null, "isms"));
 
             if (attachments != null && attachments.size() != 0) {
                 Contact contact = ContactsFactory.getContactFromNumber(context, source, false);
@@ -67,12 +69,11 @@ public class SmsServiceBridge {
         }
     }
 
-    private static List<String> getAsList(String message) {
-        List<String> messages = new LinkedList<String>();
-        messages.add(message == null ? "" : message);
-        return messages;
+    private static List<String> getAsList(Optional<String> message) {
+        return Collections.singletonList(message.or(""));
     }
 
+    @SuppressWarnings("unused") // keep for debugging
     private static void logReceived(String source, List<String> destinations, String message,
                                     List<Pair<String,String>> attachments, long timestampSent)
     {
