@@ -18,7 +18,7 @@ package org.whispersystems.whisperpush.attachments;
 
 import android.content.Context;
 
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

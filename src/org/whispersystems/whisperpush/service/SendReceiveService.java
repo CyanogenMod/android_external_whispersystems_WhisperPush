@@ -21,7 +21,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 
@@ -53,7 +52,6 @@ public class SendReceiveService extends Service {
         this.messageReceiver = new MessageReceiver(this);
     }
 
-
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         if (intent != null) {
@@ -61,7 +59,7 @@ public class SendReceiveService extends Service {
                 @Override
                 public void run() {
                     if (RECEIVE_SMS.equals(intent.getAction())) {
-                        IncomingPushMessage message = intent.getParcelableExtra("message");
+                        String message = intent.getStringExtra("message");
                         messageReceiver.handleReceiveMessage(message);
                     } else if (SEND_SMS.equals(intent.getAction())) {
                         OutgoingMessageCandidate message = outgoingQueue.get();
@@ -78,5 +76,4 @@ public class SendReceiveService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
 }

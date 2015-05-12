@@ -25,12 +25,12 @@ import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
-import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.whisperpush.crypto.MasterCipher;
+import org.whispersystems.whisperpush.crypto.MasterSecret;
+import org.whispersystems.whisperpush.crypto.MessagePeer;
 
 import java.io.IOException;
 
@@ -63,7 +63,7 @@ public class IdentityDatabase {
         this.databaseHelper = databaseHelper;
     }
 
-    public boolean isFreshIdentity(CanonicalRecipientAddress address) {
+    public boolean isFreshIdentity(MessagePeer address) {
         SQLiteDatabase database  = databaseHelper.getReadableDatabase();
         long           addressId = address.getCanonicalAddress(context);
         Cursor         cursor    = null;
@@ -80,7 +80,7 @@ public class IdentityDatabase {
     }
 
     public boolean isValidIdentity(MasterSecret masterSecret,
-                                   CanonicalRecipientAddress address,
+                                   MessagePeer address,
                                    IdentityKey theirIdentity)
     {
         SQLiteDatabase database     = databaseHelper.getReadableDatabase();
@@ -129,7 +129,7 @@ public class IdentityDatabase {
     }
 
     public void saveIdentity(MasterSecret masterSecret,
-                             CanonicalRecipientAddress address,
+                             MessagePeer address,
                              IdentityKey identityKey)
     {
         SQLiteDatabase database          = databaseHelper.getWritableDatabase();
