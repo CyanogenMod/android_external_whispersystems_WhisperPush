@@ -17,6 +17,10 @@
 package org.whispersystems.whisperpush.gcm;
 
 
+import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
+import org.whispersystems.whisperpush.service.SendReceiveService;
+import org.whispersystems.whisperpush.util.WhisperPreferences;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,19 +28,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.JsonSyntaxException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.whisperpush.R;
-import org.whispersystems.whisperpush.service.DirectoryRefreshListener;
-import org.whispersystems.whisperpush.service.MessageNotifier;
-import org.whispersystems.whisperpush.service.SendReceiveService;
-import org.whispersystems.whisperpush.util.WhisperPreferences;
-
-import java.io.IOException;
 
 /**
  * The broadcast receiver that handles GCM events, such as incoming GCM messages.
@@ -44,37 +35,46 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  */
 public class GcmReceiver extends BroadcastReceiver {
+  private static final String TAG = "GcmReceiver";
+
   @Override
   public void onReceive(Context context, Intent intent) {
     DirectoryRefreshListener.schedule(context);
     GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(gcm.getMessageType(intent))) {
-      try {
-        String data = intent.getStringExtra("message");
+      Log.d(TAG, "GCM message...");
 
-        if (Util.isEmpty(data))
-          return;
+      if (!WhisperPreferences.isRegistered(context)) {
+        Log.w(TAG, "Not push registered!");
+        return;
+      }
 
-        String                       signalingKey     = WhisperPreferences.getSignalingKey(context);
-        IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, signalingKey);
-        IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
+      boolean isMessage = intent.hasExtra("message");
+      boolean isReceipt = intent.hasExtra("receipt");
+      boolean isNotification = intent.hasExtra("notification");
 
-        Intent serviceIntent = new Intent(context, SendReceiveService.class);
-        serviceIntent.setAction(SendReceiveService.RECEIVE_SMS);
-        serviceIntent.putExtra("message", message);
-        context.startService(serviceIntent);
-      } catch (IOException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblemAndUnregister(context, context.getString(R.string.GcmReceiver_error),
-                context.getString(R.string.GcmReceiver_invalid_push_message) + "\n" + context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
-      } catch (InvalidVersionException e) {
-        Log.w("GcmReceiver", e);
-        MessageNotifier.notifyProblem(context, context.getString(R.string.GcmReceiver_error),
-                context.getString(R.string.GcmReceiver_received_badly_formatted_push_message) + "\n" + context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
+      // According to Moxie, no message bodies should be delivered
+      // over GCM anymore, only notifications to fetch messages.
+      // but just in case we see something different, do some
+      // logging here - WF
+      if (isMessage) {
+          Log.w(TAG, "received unexpected message via GCM");
+      }
+      if (isReceipt) {
+          Log.w(TAG, "received unexpected receipt via GCM");
+      }
+      if (isNotification || isMessage || isReceipt) {
+          handleReceivedNotification(context);
       }
     }
 
     setResultCode(Activity.RESULT_OK);
+  }
+
+  private void handleReceivedNotification(Context context) {
+    Intent serviceIntent = new Intent(context, SendReceiveService.class);
+    serviceIntent.setAction(SendReceiveService.RCV_NOTIFICATION);
+    context.startService(serviceIntent);
   }
 }

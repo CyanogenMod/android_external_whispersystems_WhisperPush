@@ -16,21 +16,18 @@
  */
 package org.whispersystems.whisperpush.crypto;
 
-import android.content.Context;
-import android.util.Log;
+import java.io.IOException;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
-import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
-import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
+import org.whispersystems.libaxolotl.util.KeyHelper;
+import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
-import java.io.IOException;
+import android.content.Context;
+import android.util.Log;
 
 /**
  * Responsible for generating, loading, and storing the identity
@@ -39,9 +36,8 @@ import java.io.IOException;
 public class IdentityKeyUtil {
 
     public static boolean hasIdentityKey(Context context) {
-        return
-                WhisperPreferences.getIdentityKeyPrivate(context) != null &&
-                        WhisperPreferences.getIdentityKeyPublic(context) != null;
+        return WhisperPreferences.getIdentityKeyPrivate(context) != null &&
+               WhisperPreferences.getIdentityKeyPublic(context)  != null;
     }
 
     public static IdentityKey getIdentityKey(Context context) {
@@ -68,7 +64,7 @@ public class IdentityKeyUtil {
             MasterCipher masterCipher    = new MasterCipher(masterSecret);
             IdentityKey  publicKey       = getIdentityKey(context);
             byte[]       privateKeyBytes = Base64.decode(WhisperPreferences.getIdentityKeyPrivate(context));
-            ECPrivateKey privateKey      = masterCipher.decryptKey(publicKey.getPublicKey().getType(), privateKeyBytes);
+            ECPrivateKey privateKey      = masterCipher.decryptKey(privateKeyBytes);
 
             return new IdentityKeyPair(publicKey, privateKey);
         } catch (IOException e) {
@@ -89,11 +85,10 @@ public class IdentityKeyUtil {
     }
 
     public static void generateIdentityKeys(Context context, MasterSecret masterSecret) {
-        MasterCipher masterCipher         = new MasterCipher(masterSecret);
-        ECKeyPair    keyPair              = Curve.generateKeyPairForType(Curve.DJB_TYPE);
-        IdentityKey  identityKey          = new IdentityKey(keyPair.getPublicKey());
-        byte[]       serializedPublicKey  = identityKey.serialize();
-        byte[]       serializedPrivateKey = masterCipher.encryptKey(keyPair.getPrivateKey());
+        MasterCipher    masterCipher         = new MasterCipher(masterSecret);
+        IdentityKeyPair identityKey          = KeyHelper.generateIdentityKeyPair();
+        byte[]          serializedPublicKey  = identityKey.getPublicKey().serialize();
+        byte[]          serializedPrivateKey = masterCipher.encryptKey(identityKey.getPrivateKey());
 
         WhisperPreferences.setIdentityKeyPublic(context, Base64.encodeBytes(serializedPublicKey));
         WhisperPreferences.setIdentityKeyPrivate(context, Base64.encodeBytes(serializedPrivateKey));
