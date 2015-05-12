@@ -68,7 +68,7 @@ public class RegistrationStateNotifier {
         manager.cancel(NOTIFICATION_ID);
     }
 
-    private void attachPendingIntent(Class clazz) {
+    private void attachPendingIntent(Class<?> clazz) {
         builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, clazz), 0));
     }
 

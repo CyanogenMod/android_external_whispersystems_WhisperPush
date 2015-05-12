@@ -40,6 +40,7 @@ public class WhisperPreferences {
     private static final String PREF_MASTER_SECRET          = "pref_master_secret";
     private static final String PREF_SIGNALING_KEY          = "pref_signaling_key";
     private static final String PREF_DIRECTORY_REFRESH_TIME = "pref_directory_refresh";
+    private static final String PREF_INSTALL_ID             = "pref_install_id";
 
     public static long getDirectoryRefreshTime(Context context) {
         return getLongPreference(context, PREF_DIRECTORY_REFRESH_TIME, 0);
@@ -133,6 +134,14 @@ public class WhisperPreferences {
         setLongPreference(context, PREF_GCM_REGISTRATION_TIME, timeSinceEpoch);
     }
 
+    public static void setInstallId(Context context, int installId) {
+        setIntegerPreference(context, PREF_INSTALL_ID, installId);
+    }
+
+    public static int getInstallId(Context context) {
+        return getIntegerPreference(context, PREF_INSTALL_ID, 0);
+    }
+
     public static void resetPreferences(Context context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
     }
@@ -157,6 +166,10 @@ public class WhisperPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
     }
 
+    private static void setIntegerPreference(Context context, String key, int value) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
+    }
+
     private static long getLongPreference(Context context, String key, long defaultValue) {
         return PreferenceManager.getDefaultSharedPreferences(context).getLong(key, defaultValue);
     }
@@ -164,5 +177,4 @@ public class WhisperPreferences {
     private static void setLongPreference(Context context, String key, long value) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
     }
-
 }

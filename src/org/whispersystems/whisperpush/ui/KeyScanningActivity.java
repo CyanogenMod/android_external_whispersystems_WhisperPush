@@ -24,12 +24,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
-import org.whispersystems.textsecure.zxing.integration.IntentResult;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.whisperpush.R;
+import org.whispersystems.whisperpush.util.Util;
+import org.whispersystems.whisperpush.zxing.IntentIntegrator;
+import org.whispersystems.whisperpush.zxing.IntentResult;
 
 public abstract class KeyScanningActivity extends Activity {
 
@@ -37,7 +37,7 @@ public abstract class KeyScanningActivity extends Activity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        this.identityKey = getIntent().getParcelableExtra("identity_key");
+        this.identityKey = Util.deserializeIdentityKey(getIntent());
     }
 
     @Override

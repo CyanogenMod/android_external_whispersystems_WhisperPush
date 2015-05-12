@@ -30,15 +30,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
+import org.whispersystems.whisperpush.crypto.MasterSecret;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.MessagePeer;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
@@ -104,7 +103,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
         private final Context      context;
         private final Contact      contact;
-        private final IdentityKey  identityKey;
+        private final org.whispersystems.libaxolotl.IdentityKey  identityKey;
 
         private ProgressDialog progressDialog;
 
@@ -131,11 +130,11 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
                 cursor = database.getPending(contact.getNumber());
 
                 PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
-                IncomingPushMessage message;
+                TextSecureEnvelope message;
 
                 while ((message = reader.getNext()) != null) {
                     try {
-                        PreKeyWhisperMessage keyExchangeMessage = new PreKeyWhisperMessage(message.getBody());
+                        PreKeyWhisperMessage keyExchangeMessage = new PreKeyWhisperMessage(message.getMessage());
 
                         if (keyExchangeMessage.getIdentityKey().equals(identityKey)) {
                             database.delete(reader.getCurrentId());
@@ -201,18 +200,17 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
             Cursor                         cursor = database.getPending(contact.getNumber());
             PendingApprovalDatabase.Reader reader = database.readerFor(cursor);
 
-            IncomingPushMessage message;
+            TextSecureEnvelope message;
 
             while ((message = reader.getNext()) != null) {
                 try {
-                    PreKeyWhisperMessage keyExchange = new PreKeyWhisperMessage(message.getBody());
+                    PreKeyWhisperMessage keyExchange = new PreKeyWhisperMessage(message.getMessage());
 
                     if (keyExchange.getIdentityKey().equals(identityKey)) {
                         Intent intent = new Intent(context, SendReceiveService.class);
-                        intent.setAction(SendReceiveService.RECEIVE_SMS);
-                        intent.putExtra("message", message);
+                        intent.setAction(SendReceiveService.RCV_PENDING);
+                        intent.putExtra("message_id", reader.getCurrentId());
                         context.startService(intent);
-                        database.delete(reader.getCurrentId());
                     }
                 } catch (InvalidVersionException e) {
                     Log.w("VerifyIdentityActivity", e);
