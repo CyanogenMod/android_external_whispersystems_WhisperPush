@@ -27,13 +27,10 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.OutgoingPushMessage;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.contacts.Contact;
 import org.whispersystems.whisperpush.contacts.ContactsFactory;
@@ -155,7 +152,7 @@ public class MessageNotifier {
 
         Notification.InboxStyle style = new Notification.InboxStyle();
 
-        IncomingPushMessage message;
+        TextSecureEnvelope message;
 
         while ((message = reader.getNext()) != null) {
             style.addLine(message.getSource());
@@ -174,15 +171,14 @@ public class MessageNotifier {
             PendingApprovalDatabase.Reader reader = DatabaseFactory.getPendingApprovalDatabase(context)
                     .readerFor(cursor);
 
-            IncomingPushMessage  message = reader.getNext();
-            Contact              contact = ContactsFactory.getContactFromNumber(context,
-                    message.getSource(),
-                    false);
+            TextSecureEnvelope message = reader.getNext();
+            Contact            contact = ContactsFactory.
+                    getContactFromNumber(context, message.getSource(), false);
 
             Notification.Builder builder = new Notification.Builder(context);
 
             Intent intent = new Intent(context, VerifyIdentityActivity.class);
-            intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getBody()).getIdentityKey());
+            intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getMessage()).getIdentityKey().serialize());
             intent.putExtra("contact", contact);
             intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
@@ -206,14 +202,12 @@ public class MessageNotifier {
                 .cancel(NOTIFICATION_ID);
     }
 
-    public static void notifyNewSessionIncoming(Context context, IncomingPushMessage message) {
+    public static void notifyNewSessionIncoming(Context context, TextSecureEnvelope message) {
         Notification.Builder builder = new Notification.Builder(context);
-
         try {
             Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
-
             Intent intent = new Intent(context, ViewNewIdentityActivity.class);
-            intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getBody()).getIdentityKey());
+            intent.putExtra("identity_key", new PreKeyWhisperMessage(message.getMessage()).getIdentityKey().serialize());
             intent.putExtra("contact", contact);
             intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
             PendingIntent verifyPi = PendingIntent.getActivity(context, 0, intent, 0);

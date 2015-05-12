@@ -21,34 +21,45 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.internal.telephony.util.BlacklistUtils;
-import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushDestination;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+
+import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.attachments.AttachmentManager;
 import org.whispersystems.whisperpush.contacts.Contact;
 import org.whispersystems.whisperpush.contacts.ContactsFactory;
 import org.whispersystems.whisperpush.crypto.IdentityMismatchException;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
-import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.database.DatabaseFactory;
+import org.whispersystems.whisperpush.database.WPAxolotlStore;
 import org.whispersystems.whisperpush.db.CMDatabase;
-import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.directory.Directory;
+import org.whispersystems.whisperpush.directory.NotInDirectoryException;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,8 +72,59 @@ public class MessageReceiver {
     public MessageReceiver(Context context) {
         this.context = context;
     }
+    
+    public void handleReceiveMessage(String message) {
+        try {
+            String             sessionKey = WhisperPreferences.getSignalingKey(context);
+            TextSecureEnvelope envelope   = new TextSecureEnvelope(message, sessionKey);
 
-    public void handleReceiveMessage(IncomingPushMessage message) {
+            handleEnvelope(envelope, true);
+        } catch (IOException e) {
+            Log.w(TAG, e);
+            MessageNotifier.notifyProblemAndUnregister(context,
+                context.getString(R.string.GcmReceiver_error),
+                context.getString(R.string.GcmReceiver_invalid_push_message)
+                + "\n" +
+                context.getString(R.string.GcmReceiver_received_badly_formatted_push_message));
+        } catch (InvalidVersionException e) {
+            Log.w(TAG, e);
+            MessageNotifier.notifyProblem(context,
+                context.getString(R.string.GcmReceiver_error),
+                context.getString(R.string.GcmReceiver_received_badly_formatted_push_message)
+                + "\n" +
+                context.getString(R.string.GcmReceiver_received_push_message_with_unknown_version));
+        }
+    }
+
+    public void handleEnvelope(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {
+        if (!isActiveNumber(context, envelope.getSource())) {
+          Directory directory                     = Directory.getInstance(context);
+          ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
+          contactTokenDetails.setNumber(envelope.getSource());
+
+          directory.setNumber(contactTokenDetails, true);
+        }
+
+        if (envelope.isReceipt()) handleReceipt(envelope);
+        else                      handleMessage(envelope, sendExplicitReceipt);
+    }
+
+    private boolean isActiveNumber(Context context, String e164number) {
+        try {
+            return Directory.getInstance(context).isActiveNumber(e164number);
+        } catch (NotInDirectoryException e) {
+            return false;
+        }
+    }
+
+    private void handleReceipt(TextSecureEnvelope envelope) {
+        Log.w(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
+        // FIXME: don't know what to do with receipt
+        //DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(envelope.getSource(),
+        //                                                                         envelope.getTimestamp());
+    }
+
+    public void handleMessage(TextSecureEnvelope message, boolean sendExplicitReceipt) {
         if (message == null)
             return;
 
@@ -79,12 +141,14 @@ public class MessageReceiver {
         updateDirectoryIfNecessary(message);
 
         try {
-            PushMessageContent         content     = getPlaintext(message);
+            TextSecureMessage          content     = getPlaintext(message);
             List<Pair<String, String>> attachments = new LinkedList<Pair<String, String>>();
+            
+            Optional<List<TextSecureAttachment>> attach = content.getAttachments();
 
-            if (content.getAttachmentsCount() > 0) {
+            if (attach.isPresent()) {
                 try {
-                    attachments = retrieveAttachments(message.getRelay(), content.getAttachmentsList());
+                    attachments = retrieveAttachments(message.getRelay(), attach.get());
                 } catch (IOException e) {
                     Log.w("MessageReceiver", e);
                     Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
@@ -93,64 +157,56 @@ public class MessageReceiver {
                 }
             }
 
-            SmsServiceBridge.receivedPushMessage(context, message.getSource(), message.getDestinations(),
-                    content.getBody(), attachments,
-                    message.getTimestampMillis());
+            SmsServiceBridge.receivedPushMessage(context, message.getSource(), content.getBody(),
+                                                 attachments, message.getTimestamp());
         } catch (IdentityMismatchException e) {
-            Log.w("MessageReceiver", e);
+            Log.w(TAG, e);
             DatabaseFactory.getPendingApprovalDatabase(context).insert(message);
             MessageNotifier.updateNotifications(context);
         } catch (InvalidMessageException e) {
-            Log.w("MessageReceiver", e);
+            Log.w(TAG, e);
             Contact contact = ContactsFactory.getContactFromNumber(context, message.getSource(), false);
             MessageNotifier.notifyProblem(context, contact,
                     context.getString(R.string.MessageReceiver_received_badly_encrypted_message));
         }
     }
 
-    private PushMessageContent getPlaintext(IncomingPushMessage message)
+    private TextSecureMessage getPlaintext(TextSecureEnvelope envelope)
             throws IdentityMismatchException, InvalidMessageException
     {
         try {
-            MasterSecret    masterSecret    = MasterSecretUtil.getMasterSecret(context);
-            String          localNumber     = WhisperPreferences.getLocalNumber(context);
-            PushDestination pushDestination = PushDestination.create(context, localNumber, message.getSource());
-            WhisperCipher   whisperCipher   = new WhisperCipher(context, masterSecret, pushDestination);
-
-            return whisperCipher.getDecryptedMessage(message);
-        } catch (InvalidNumberException e) {
-            throw new InvalidMessageException(e);
+            WPAxolotlStore store = WPAxolotlStore.getInstance(context);
+            TextSecureCipher cipher = new TextSecureCipher(store);
+            return cipher.decrypt(envelope);
+        } catch (Exception e) {
+            if (e instanceof IdentityMismatchException) {
+                throw (IdentityMismatchException)e;
+            } else {
+                // FIXME: not the best error handling approach?
+                throw new InvalidMessageException(e.getMessage(), e);
+            }
         }
     }
 
-    private List<Pair<String, String>> retrieveAttachments(String relay, List<AttachmentPointer> attachments)
+    private List<Pair<String, String>> retrieveAttachments(String relay, List<TextSecureAttachment> list)
             throws IOException, InvalidMessageException
     {
         AttachmentManager          attachmentManager = AttachmentManager.getInstance(context);
-        PushServiceSocket          socket            = PushServiceSocketFactory.create(context);
         List<Pair<String, String>> results           = new LinkedList<Pair<String, String>>();
 
-        for (AttachmentPointer attachment : attachments) {
-            byte[]                      key              = attachment.getKey().toByteArray();
-            File                        file             = socket.retrieveAttachment(relay, attachment.getId());
-            AttachmentCipherInputStream attachmentStream = new AttachmentCipherInputStream(file, key);
-            String                      storedToken      = attachmentManager.store(attachmentStream);
-
-            file.delete();
-            results.add(new Pair<String, String>(storedToken, attachment.getContentType()));
+        for (TextSecureAttachment attachment : list) {
+            InputStream stream      = attachment.asStream().getInputStream();
+            String      storedToken = attachmentManager.store(stream);
+            results.add(Pair.create(storedToken, attachment.getContentType()));
         }
 
         return results;
     }
 
-    private void updateDirectoryIfNecessary(IncomingPushMessage message) {
+    private void updateDirectoryIfNecessary(TextSecureEnvelope message) {
         if (!isActiveNumber(message.getSource())) {
             Directory           directory           = Directory.getInstance(context);
-            String              contactToken        = directory.getToken(message.getSource());
-            String              relay               = message.getRelay();
-            ContactTokenDetails contactTokenDetails = new ContactTokenDetails(contactToken, relay);
-
-            directory.setToken(contactTokenDetails, true);
+            directory.setActiveNumberAndRelay(message.getSource(), message.getRelay());
         }
     }
 
@@ -163,18 +219,19 @@ public class MessageReceiver {
     }
 
     private boolean hasActiveSession(String e164number) {
-        String token = Directory.getInstance(context).getToken(e164number);
-        return CMDatabase.getInstance(context).hasActiveSession(token);
+        return CMDatabase.getInstance(context).hasActiveSession(e164number);
     }
 
     private void setActiveSession(String e164number) {
-        String token = Directory.getInstance(context).getToken(e164number);
-        CMDatabase.getInstance(context).setActiveSession(token);
+        CMDatabase.getInstance(context).setActiveSession(e164number);
     }
 
     private boolean isNumberBlackListed(String number) {
-        int type = BlacklistUtils.isListed(context,
-                PhoneNumberFormatter.formatNumberNational(number) , BlacklistUtils.BLOCK_MESSAGES);
+        //FIXME: not sure if new code is equivalent to old code
+        //String formatted = PhoneNumberFormatter.formatNumberNational(number);
+        String local     = WhisperPreferences.getLocalNumber(context);
+        String formatted = PhoneNumberFormatter.formatE164(local, number);
+        int type = BlacklistUtils.isListed(context, formatted, BlacklistUtils.BLOCK_MESSAGES);
         return type != BlacklistUtils.MATCH_NONE;
     }
 }

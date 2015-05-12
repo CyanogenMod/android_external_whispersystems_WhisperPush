@@ -18,12 +18,12 @@ package org.whispersystems.whisperpush.util;
 
 import android.content.Context;
 
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.whisperpush.R;
 
 import java.io.InputStream;
 
-public class WhisperPushTrustStore implements PushServiceSocket.TrustStore {
+public class WhisperPushTrustStore implements TrustStore {
 
     private final Context context;
 
