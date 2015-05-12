@@ -23,11 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 /**
  * Loader that builds a list of all the countries and their respective country codes

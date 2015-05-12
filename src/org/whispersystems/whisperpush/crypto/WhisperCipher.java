@@ -21,25 +21,18 @@ import android.util.Log;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PreKeyEntity;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
-import org.whispersystems.textsecure.push.PushMessage;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
-import org.whispersystems.textsecure.storage.InvalidKeyIdException;
-import org.whispersystems.textsecure.storage.Session;
-
 import java.io.IOException;
+
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.internal.push.PreKeyEntity;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 
 public class WhisperCipher {
 

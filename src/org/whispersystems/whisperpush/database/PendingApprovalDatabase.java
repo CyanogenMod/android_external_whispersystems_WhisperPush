@@ -23,9 +23,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
 import java.util.List;

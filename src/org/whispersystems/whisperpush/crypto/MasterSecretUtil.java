@@ -19,9 +19,8 @@ package org.whispersystems.whisperpush.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import javax.crypto.KeyGenerator;

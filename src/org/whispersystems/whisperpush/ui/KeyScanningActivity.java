@@ -24,11 +24,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
-import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
-import org.whispersystems.textsecure.zxing.integration.IntentResult;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.textsecure.internal.util.Base64;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.R;
 
 public abstract class KeyScanningActivity extends Activity {

@@ -47,8 +47,8 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 

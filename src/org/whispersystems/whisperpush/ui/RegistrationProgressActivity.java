@@ -45,10 +45,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.WhisperPush;
 import org.whispersystems.whisperpush.service.RegistrationService;
