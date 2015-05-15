@@ -33,11 +33,11 @@
   <string name="MessageNotifier_new_session_title">SMS enkriptatu berria</string>
   <string name="MessageNotifier_new_session__incoming_text">%s-ren SMS zifratu berri bat jaso duzu. Hurrengo elkarrizketak automatikoki zifratu egingo dira.</string>
   <string name="MessageNotifier_new_session__view_identity">Nortasuna erakutsi</string>
-  <string name="MessageNotifier_new_session__outgoing_toast">%s-(r)entzako mezua zifratu egin da.</string>
+  <string name="MessageNotifier_new_session__outgoing_toast">%s(r)entzako mezua zifratu egin da.</string>
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush-eko izen ematea ezabatu</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Sakatu WhisperPush-en izena emateko eta elkarrizketa zifratuak gaitzeko.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Sartzeko zegoen mezua blokeatu da</string>
-  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s -(r)en SMS mezu zifratua jaso da. Zerrenda beltzeko ezarpenak direla eta, mezua blokeatu egin da.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s(r)en SMS mezu zifratua jaso da. Zerrenda beltzeko ezarpenak direla eta, mezua blokeatu egin da.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Ezin da heldu den mezuari atxikituriko fitxategia berreskuratu.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Gaizki zifraturiko edo existitzen ez den saio batentzako zifraturiko mezua jaso da.</string>
   <string name="PendingIdentityItemView_received_s">%s Jasota</string>
@@ -111,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure ez da push zerbitzuarekin konektatzeko gai izan.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Arazo posible batzuk:</string>
   <string name="registration_progress_activity__no_network_connectivity">Sare konektibitaterik ez.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Zure gailuak sare konektibitatea behar du TextSecure ezaugarri hau erabiltzearren. Egiaztatu Wi-Fi-ra edo 3G bidez konektatuta dagoela.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Zure gailuak sare konektibitatea behar du TextSecure ezaugarri hau erabiltzeko. Egiaztatu Wi-Fi edo 3G bidez konektatuta dagoela.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall-ak mugatua.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi bidez konektaturik bazaude, firewall batek TextSecure zerbitzarirako sarbidea oztopatzen egotea izan liteke. Saiatu zaitez beste sare batekin edo datu mugikorren bidez.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">Orain TextSecure-k zure telefono zenbakia automatikoki egiaztatuko du egiaztapen SMS baten bidez.</string>
@@ -139,7 +139,6 @@
   <string name="view_new_identity_activity__continue">Jarraitu</string>
   <string name="view_identity_activity_menu__compare">Konparatu</string>
   <string name="view_identity_activity_menu__scan_to_compare">Konparatzeko behatu</string>
-  <string name="view_identity_activity_menu__get_scanned_to_compare">Konparatzeko behaketa baimendu</string>
   <string name="registration_progress_notification__title_registering">WhisperPush-en izena ematen</string>
   <string name="registration_progress_notification__title_complete">WhisperPush gaituta</string>
   <string name="registration_progress_notification__title_failure">WhisperPush-en izena emateak huts egin du</string>
