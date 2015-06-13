@@ -38,7 +38,8 @@ public class WhisperPush extends Application {
     public void onCreate() {
         long lastRegistered = WhisperPreferences.getGcmRegistrationTime(this);
 
-        if((lastRegistered + UPDATE_INTERVAL) < System.currentTimeMillis()) {
+        if(lastRegistered != -1
+                && (lastRegistered + UPDATE_INTERVAL) < System.currentTimeMillis()) {
             //It has been a week, reregister
             launchGcmRegistration(this);
         }
