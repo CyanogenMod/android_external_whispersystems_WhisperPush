@@ -99,7 +99,7 @@
   <string name="registration_problems__sms_interceptors">SMSen duerch d\'App offänken.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Verschidden SMS-Appe vun Drëtthiersteller, wéi z. B. Handcent oder GoSMS, verhale sech inkorrekt a fänken all erakommend SMS-Messagen of. Kuck w.e.g. ob an denger SMS-App e Message ukomm ass, dee mat \"Your TextSecure verification code\" ufänkt. An deem Fall muss du d\'SMS-App sou konfiguréieren, datt s\'erakommend Messagen un aner Appe weiderleet.</string>
   <string name="registration_problems__incorrect_number">Inkorrekt Nummer.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Kontrolléier w.e.g. datt du d\'Nummer korrekt aginn hues, an datt se fir deng Regioun korrekt formatéiert ass.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Kontrolléier w.e.g. datt s du d\'Nummer korrekt aginn hues, an datt se fir deng Regioun korrekt formatéiert ass.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure funktionéiert net mat \"Google Voice\"-Nummeren.</string>
   <string name="registration_progress_activity__voice_verification">Sprooch-Verifizéierung</string>
