@@ -77,7 +77,7 @@
   <string name="RegistrationService_registration_error">Akatsa izena ematean</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Push mezularitzarako izen emateak akats batekin topo egin du.</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">Zifraturiko eranskina jaso da baina ezin da bistaratu momentuz.</string>
-  <string name="VerifyIdentityActivity_discard_messages">Mezuak baztertu?</string>
+  <string name="VerifyIdentityActivity_discard_messages">Baztertu mezuak?</string>
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Ziur identitate honen aztarna digitala baliogabe gisa markatu nahi duzula eta berari lotutako zain dauden mezu guztiak baztertu nahi dituzula?</string>
   <string name="VerifyIdentityActivity_processing">Prozesatzen</string>
   <string name="VerifyIdentityActivity_discarding_messages">Mezuak baztertzen\u2026</string>
