@@ -6,6 +6,7 @@ LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
+LOCAL_SRC_FILES += $(call find-other-aidl-files, src)
 
 LOCAL_PACKAGE_NAME := WhisperPush
 LOCAL_CERTIFICATE := platform
