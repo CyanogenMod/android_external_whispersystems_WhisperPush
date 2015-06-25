@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.whispersystems.whisperpush">
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="17"/>
+    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="21"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
@@ -26,6 +27,10 @@
     <uses-permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE" />
 
     <permission android:name="org.whispersystems.whisperpush.permissions.REGISTER"
+                android:protectionLevel="signatureOrSystem" />
+
+    <permission android:name="org.whispersystems.whisperpush.permission.UPGRADE"
+                androidprv:allowViaWhitelist="true"
                 android:protectionLevel="signature" />
 
     <application android:name=".WhisperPush"
@@ -101,6 +106,11 @@
                  android:exported="true"
                  android:name=".service.RegistrationService"
                  android:permission="org.whispersystems.whisperpush.permissions.REGISTER"/>
+
+        <service android:enabled="true"
+                 android:exported="true"
+                 android:name=".service.UpgradeService"
+                 android:permission="org.whispersystems.whisperpush.permission.UPGRADE"/>
 
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
         <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
