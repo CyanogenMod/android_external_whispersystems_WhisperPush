@@ -26,7 +26,10 @@
     <uses-permission android:name="org.whispersystems.whisperpush.permission.C2D_MESSAGE" />
 
     <permission android:name="org.whispersystems.whisperpush.permissions.REGISTER"
-                android:protectionLevel="signature" />
+                android:protectionLevel="system" />
+
+    <permission android:name="org.whispersystems.whisperpush.permission.UPGRADE"
+                 android:protectionLevel="signature" />
 
     <application android:name=".WhisperPush"
                  android:icon="@drawable/icon"
@@ -101,6 +104,11 @@
                  android:exported="true"
                  android:name=".service.RegistrationService"
                  android:permission="org.whispersystems.whisperpush.permissions.REGISTER"/>
+
+        <service android:enabled="true"
+                 android:exported="true"
+                 android:name=".service.UpgradeService"
+                 android:permission="org.whispersystems.whisperpush.permission.UPGRADE"/>
 
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
         <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
