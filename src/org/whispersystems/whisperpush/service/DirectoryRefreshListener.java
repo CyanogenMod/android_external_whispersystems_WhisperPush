@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import org.whispersystems.whisperpush.util.StatsUtils;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 public class DirectoryRefreshListener extends BroadcastReceiver {
@@ -30,7 +31,9 @@ public class DirectoryRefreshListener extends BroadcastReceiver {
     private static final String REFRESH_EVENT = "org.whispersystems.whisperpush.DIRECTORY_REFRESH";
     private static final String BOOT_EVENT    = Intent.ACTION_BOOT_COMPLETED;
 
-    private static final long   INTERVAL      = 24 * 60 * 60 * 1000; // 24 hours.
+    private static final long   DAY           = 24 * 60 * 60 * 1000; // 24 hours.
+    private static final long   INTERVAL      = DAY;
+    private static final long   WEEK          = DAY * 7;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -40,10 +43,23 @@ public class DirectoryRefreshListener extends BroadcastReceiver {
 
     private void handleBootEvent(Context context) {
         schedule(context);
+        sendStats(context);
     }
 
     private void handleRefreshAction(Context context) {
         schedule(context);
+        sendStats(context);
+    }
+
+    private void sendStats(Context context) {
+        if (!WhisperPreferences.isRegistered(context)) { return; }
+        long time = WhisperPreferences.getNextStatTime(context);
+        long now = System.currentTimeMillis();
+        if(time <= now) {
+            long next = ((time < 0) ? now : time) + WEEK;
+            WhisperPreferences.setNextStateTime(context, next);
+            StatsUtils.sendWeeklyActiveUserEvent(context);
+        }
     }
 
     public static void schedule(Context context) {
@@ -71,5 +87,4 @@ public class DirectoryRefreshListener extends BroadcastReceiver {
 
         WhisperPreferences.setDirectoryRefreshTime(context, time);
     }
-
 }

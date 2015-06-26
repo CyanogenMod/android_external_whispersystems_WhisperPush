@@ -38,6 +38,7 @@ import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.crypto.WhisperCipher;
 import org.whispersystems.whisperpush.sms.OutgoingSmsQueue.OutgoingMessageCandidate;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
+import org.whispersystems.whisperpush.util.StatsUtils;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.IOException;
@@ -94,6 +95,10 @@ public class MessageSender {
         pendingResult.abortBroadcast();
         pendingResult.setResultCode(Activity.RESULT_CANCELED);
         pendingResult.finish();
+
+        if (StatsUtils.isStatsActive(context)) {
+            WhisperPreferences.setWasActive(context, true);
+        }
     }
 
     private void abortSendOperation(OutgoingMessageCandidate candidate) {
