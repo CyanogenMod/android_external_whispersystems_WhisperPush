@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.whispersystems.whisperpush">
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="17"/>
+    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="21"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
