@@ -40,6 +40,8 @@ public class WhisperPreferences {
     private static final String PREF_MASTER_SECRET          = "pref_master_secret";
     private static final String PREF_SIGNALING_KEY          = "pref_signaling_key";
     private static final String PREF_DIRECTORY_REFRESH_TIME = "pref_directory_refresh";
+    private static final String PREF_WAS_ACTIVE             = "pref_was_active";
+    private static final String PREF_NEXT_STAT_TIME         = "pref_next_stat_time";
 
     public static long getDirectoryRefreshTime(Context context) {
         return getLongPreference(context, PREF_DIRECTORY_REFRESH_TIME, 0);
@@ -131,6 +133,22 @@ public class WhisperPreferences {
 
     public static void setGcmRegistrationTime(Context context, long timeSinceEpoch) {
         setLongPreference(context, PREF_GCM_REGISTRATION_TIME, timeSinceEpoch);
+    }
+
+    public static boolean getWasActive(Context context) {
+        return getBooleanPreference(context, PREF_WAS_ACTIVE, false);
+    }
+
+    public static void setWasActive(Context context, boolean active) {
+        setBooleanPreference(context, PREF_WAS_ACTIVE, active);
+    }
+
+    public static long getNextStatTime(Context context) {
+        return getLongPreference(context, PREF_NEXT_STAT_TIME, -1);
+    }
+
+    public static void setNextStateTime(Context context, long timeSinceEpoch) {
+        setLongPreference(context, PREF_NEXT_STAT_TIME, timeSinceEpoch);
     }
 
     public static void resetPreferences(Context context) {
