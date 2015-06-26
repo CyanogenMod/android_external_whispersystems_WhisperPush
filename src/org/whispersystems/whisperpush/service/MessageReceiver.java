@@ -21,6 +21,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.internal.telephony.util.BlacklistUtils;
+
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -45,6 +46,7 @@ import org.whispersystems.whisperpush.database.DatabaseFactory;
 import org.whispersystems.whisperpush.db.CMDatabase;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.SmsServiceBridge;
+import org.whispersystems.whisperpush.util.StatsUtils;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 
 import java.io.File;
@@ -96,6 +98,10 @@ public class MessageReceiver {
             SmsServiceBridge.receivedPushMessage(context, message.getSource(), message.getDestinations(),
                     content.getBody(), attachments,
                     message.getTimestampMillis());
+
+            if (StatsUtils.isStatsActive(context)) {
+                WhisperPreferences.setWasActive(context, true);
+            }
         } catch (IdentityMismatchException e) {
             Log.w("MessageReceiver", e);
             DatabaseFactory.getPendingApprovalDatabase(context).insert(message);
