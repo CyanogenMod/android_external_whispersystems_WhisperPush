@@ -153,7 +153,7 @@
   <string name="pref_register__title">Registri</string>
   <string name="pref_register__summary">Register por WhisperPush por ebligi ĉifritajn SMS mesaĝojn</string>
   <string name="pref_unregister__title">Malregistri</string>
-  <string name="pref_unregister__summary">Malregistrado el WhisperPush or malebligi ĉifritajn SMSojn</string>
+  <string name="pref_unregister__summary">Malregistrado el WhisperPush or malŝalti ĉifritajn SMSojn</string>
   <string name="pref_unregister__progress_title">Malregistrado</string>
   <string name="pref_review_keys__title">Kontroli identoŝlosilojn</string>
   <string name="pref_my_identity__title">Vidi mian identoŝlosilon</string>
