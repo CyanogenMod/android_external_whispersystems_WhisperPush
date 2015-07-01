@@ -54,7 +54,7 @@
   <string name="RegistrationActivity_connect_with_textsecure">התחבר עם TextSecure</string>
   <string name="RegistrationProblemsActivity_possible_problems">בעיות אפשריות</string>
   <string name="RegistrationProgressActivity_verifying_number">מאמת מספר</string>
-  <string name="RegistrationProgressActivity_edit_s">עריכה %s</string>
+  <string name="RegistrationProgressActivity_edit_s">עריכת %s</string>
   <string name="RegistrationProgressActivity_possible_problems">בעיות אפשריות.</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">עליך להזין את הקוד שקיבלת קודם כל\u2026</string>
   <string name="RegistrationProgressActivity_connecting">מתחבר</string>
