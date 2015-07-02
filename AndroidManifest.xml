@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.INTERCEPT_SMS"/>
     <uses-permission android:name="android.permission.MODIFY_PROTECTED_SMS_LIST"/>
     <uses-permission android:name="android.permission.RECEIVE_PROTECTED_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.BROADCAST_SMS"
                      tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -116,12 +117,20 @@
         <service android:enabled="true" android:name=".service.SendReceiveService"/>
         <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
 
-        <receiver android:name=".sms.SmsListener"
+        <receiver android:name=".sms.OutgoingSmsListener"
                   android:enabled="true"
                   android:exported="true">
             <intent-filter android:priority="2147483647">
-                <action android:name="android.provider.Telephony.ACTION_PROTECTED_SMS_RECEIVED"/>
                 <action android:name="android.intent.action.NEW_OUTGOING_SMS"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".sms.IncomingSmsListener"
+                  android:enabled="false"
+                  android:exported="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.provider.Telephony.ACTION_PROTECTED_SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
 

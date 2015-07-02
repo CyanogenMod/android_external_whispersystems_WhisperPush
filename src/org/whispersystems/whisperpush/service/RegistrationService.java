@@ -18,9 +18,11 @@ package org.whispersystems.whisperpush.service;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
@@ -40,6 +42,7 @@ import org.whispersystems.whisperpush.R;
 import org.whispersystems.whisperpush.crypto.IdentityKeyUtil;
 import org.whispersystems.whisperpush.crypto.MasterSecretUtil;
 import org.whispersystems.whisperpush.gcm.GcmHelper;
+import org.whispersystems.whisperpush.sms.IncomingSmsListener;
 import org.whispersystems.whisperpush.util.PushServiceSocketFactory;
 import org.whispersystems.whisperpush.util.WhisperPreferences;
 import org.whispersystems.whisperpush.WhisperPush;
@@ -170,10 +173,20 @@ public class RegistrationService extends Service {
     }
 
     private void initializeChallengeListener() {
-        this.challenge      = null;
+        challenge         = null;
         challengeReceiver = new ChallengeReceiver();
         IntentFilter filter = new IntentFilter(CHALLENGE_EVENT);
         registerReceiver(challengeReceiver, filter);
+        enableSmsListener(true);
+    }
+
+    private void enableSmsListener(boolean enable) {
+        ComponentName incomingSms = new ComponentName(this, IncomingSmsListener.class);
+        int state = enable
+            ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            : PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
+        getPackageManager().setComponentEnabledSetting(
+            incomingSms, state, PackageManager.DONT_KILL_APP);
     }
 
     private void initializePreKeyGenerator() {
@@ -205,6 +218,7 @@ public class RegistrationService extends Service {
 
     private synchronized void shutdownChallengeListener() {
         if (challengeReceiver != null) {
+            enableSmsListener(false);
             unregisterReceiver(challengeReceiver);
             challengeReceiver = null;
         }
