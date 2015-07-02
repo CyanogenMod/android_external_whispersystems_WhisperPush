@@ -20,6 +20,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -44,35 +45,9 @@ import org.whispersystems.whisperpush.util.WhisperPreferences;
  *
  * @author Moxie Marlinspike
  */
-public class SmsListener extends BroadcastReceiver {
+public class OutgoingSmsListener extends BroadcastReceiver {
 
-    private static final String PROTECTED_SMS_RECEIVED_ACTION =
-            "android.provider.Telephony.ACTION_PROTECTED_SMS_RECEIVED";
     private static final String SMS_OUTGOING_ACTION = "android.intent.action.NEW_OUTGOING_SMS";
-
-    private String getSmsMessageBodyFromIntent(Intent intent) {
-        Bundle bundle             = intent.getExtras();
-        Object[] pdus             = (Object[])bundle.get("pdus");
-        StringBuilder bodyBuilder = new StringBuilder();
-
-        if (pdus == null)
-            return null;
-
-        for (Object pdu : pdus)
-            bodyBuilder.append(SmsMessage.createFromPdu((byte[]) pdu).getDisplayMessageBody());
-
-        return bodyBuilder.toString();
-    }
-
-    private boolean isIncomingChallenge(Context context, Intent intent) {
-        String messageBody = getSmsMessageBodyFromIntent(intent);
-
-        if (messageBody == null)
-            return false;
-
-        return messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
-                WhisperPreferences.isVerifying(context);
-    }
 
     private boolean isRelevantOutgoingMessage(Context context, Intent intent) {
         String destination = intent.getStringExtra(SendReceiveService.DESTINATION);
@@ -99,26 +74,13 @@ public class SmsListener extends BroadcastReceiver {
         }
     }
 
-    private String parseChallenge(Intent intent) {
-        String messageBody    = getSmsMessageBodyFromIntent(intent);
-        String[] messageParts = messageBody.split(":");
-        String[] codeParts    = messageParts[1].trim().split("-");
-
-        return codeParts[0] + codeParts[1];
-    }
-
     @Override
     public void onReceive(Context context, Intent intent) {
         DirectoryRefreshListener.schedule(context);
 
-        if (PROTECTED_SMS_RECEIVED_ACTION.equals(intent.getAction())
-                && isIncomingChallenge(context, intent)) {
-            Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-            challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
-            context.sendBroadcast(challengeIntent);
+        String action = intent.getAction();
 
-            abortBroadcast();
-        } else if (SMS_OUTGOING_ACTION.equals(intent.getAction()) && isRelevantOutgoingMessage(context, intent)) {
+        if (SMS_OUTGOING_ACTION.equals(action) && isRelevantOutgoingMessage(context, intent)) {
             PendingResult            pendingResult = goAsync();
             OutgoingMessageCandidate candidate     = new OutgoingMessageCandidate(intent, pendingResult);
 
