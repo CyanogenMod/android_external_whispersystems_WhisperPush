@@ -103,11 +103,11 @@
   <string name="registration_problems__google_voice">Google Voice</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure לא יעבוד עם מספרי Google Voice.</string>
   <string name="registration_progress_activity__voice_verification">אימות קולי</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure יכול גם להתקשר אליך בשביל אימות מספר. לחץ על \"התקשר אלי\" והכנס את 6 הספרות שאתה שומע.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure יכול גם להתקשר אליך לאימות מספרך. לחץ על \"התקשר אלי\" והכנס את 6 הספרות שאתה שומע.</string>
   <string name="registration_progress_activity__verify">אמת</string>
   <string name="registration_progress_activity__call_me">התקשר אליי</string>
   <string name="registration_progress_activity__edit_number">עריכת מספר</string>
-  <string name="registration_progress_activity__connectivity_error">שגיאת קישור.</string>
+  <string name="registration_progress_activity__connectivity_error">שגיאת חיבור.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure לא הצליח להתחבר לשירות ההודעות.</string>
   <string name="registration_progress_activity__some_possible_problems_include">כמה בעיות אפשריות, כולל:</string>
   <string name="registration_progress_activity__no_network_connectivity">אין חיבור רשת.</string>
@@ -117,7 +117,7 @@
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure יוודא כעת באופן אוטומטי את המספר שלך באמצעות הודעת SMS.</string>
   <string name="registration_progress_activity__connecting">מתחבר\u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">ממתין לאימות SMS\u2026</string>
-  <string name="registration_progress_activity__registering_with_server">הרשמה עם השרת\u2026</string>
+  <string name="registration_progress_activity__registering_with_server">נרשם עם השרת\u2026</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">זה יכול לקחת קצת זמן. המתן בסבלנות, ואנחנו נודיע לך על השלמת התהליך.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">TextSecure נסגר בעת ההמתנה להודעת האימות.</string>
   <string name="registration_progress_activity__sms_verification_failed">אימות SMS נכשל.</string>

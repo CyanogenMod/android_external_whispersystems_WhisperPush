@@ -56,13 +56,13 @@
   <string name="RegistrationProgressActivity_verifying_number">번호 확인 중</string>
   <string name="RegistrationProgressActivity_edit_s">%s 편집</string>
   <string name="RegistrationProgressActivity_possible_problems">가능한 문제.</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">먼저 수신한 코드를 입력해주세요\u2026</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">먼저 수신한 코드를 입력해 주십시오\u2026</string>
   <string name="RegistrationProgressActivity_connecting">연결 중</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">확인을 위해 접속 중\u2026</string>
   <string name="RegistrationProgressActivity_network_error">네트워크 오류</string>
   <string name="RegistrationProgressActivity_unable_to_connect">연결할 수 없습니다. 네트워크 연결을 확인 하고 다시 시도 하십시오.</string>
   <string name="RegistrationProgressActivity_verification_failed">확인 실패</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">입력하신 확인 코드가 올바르지 않습니다. 다시 시도해주세요.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">입력하신 확인 코드가 올바르지 않습니다. 다시 시도해 주십시오.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">너무 많이 시도하였습니다</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">잘못된 확인 코드를 너무 많이 입력했습니다. 잠시 후에 다시 시도하세요.</string>
   <string name="RegistrationProgressActivity_requesting_call">전화 요청 중\u2026</string>
@@ -111,7 +111,7 @@
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure가 푸시 서비스에 연결할 수 없었습니다.</string>
   <string name="registration_progress_activity__some_possible_problems_include">예상되는 문제점:</string>
   <string name="registration_progress_activity__no_network_connectivity">네트워크에 연결되지 않음.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">TextSecure 기능을 사용하려면 네트워크에 연결되어 있어야 합니다. 장치가 3G 혹은 Wi-Fi에 연결되어 있는지 확인해주세요.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">TextSecure 기능을 사용하려면 네트워크에 연결되어 있어야 합니다. 장치가 3G 혹은 Wi-Fi에 연결되어 있는지 확인해 주십시오.</string>
   <string name="registration_progress_activity__restrictive_firewall">방화벽 제한.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi를 통해 연결중이라면, TextSecure 서버로의 접근을 차단하는 방화벽이 설정되어 있을 수 있습니다. 다른 네트워크나 모바일 데이터를 통해 연결해보십시오.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure가 이제 인증 SMS 메시지로 당신의 번호를 확인할 것입니다.</string>
