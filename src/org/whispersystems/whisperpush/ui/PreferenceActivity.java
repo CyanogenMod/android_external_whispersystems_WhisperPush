@@ -45,8 +45,8 @@ import java.io.IOException;
 
 public class PreferenceActivity extends Activity {
 
-    private static final String PRIVACY_POLICY_URL = "http://www.cyanogenmod.org/docs/privacy";
-    private static final String TERMS_OF_SERVICE_URL = "http://www.cyanogenmod.org/docs/terms";
+    private static final String PRIVACY_POLICY_URL = "https://cyngn.com/legal/privacy-policy";
+    private static final String TERMS_OF_SERVICE_URL = "https://cyngn.com/legal/terms-of-use";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
