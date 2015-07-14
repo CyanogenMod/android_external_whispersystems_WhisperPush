@@ -49,12 +49,16 @@ public class WhisperPush extends Application {
         new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
-                try {
-                    GcmHelper.getRegistrationId(context);
-                    WhisperPreferences.setGcmRegistrationTime(context, System.currentTimeMillis());
-                    return true;
-                } catch (IOException e) {
-                    Log.e(TAG, "GcmRecurringRegistration", e);
+                long lastRegistered = WhisperPreferences.getGcmRegistrationTime(context);
+
+                if(lastRegistered != -1) {
+                    try {
+                        GcmHelper.getRegistrationId(context);
+                        WhisperPreferences.setGcmRegistrationTime(context, System.currentTimeMillis());
+                        return true;
+                    } catch (IOException e) {
+                        Log.e(TAG, "GcmRecurringRegistration", e);
+                    }
                 }
                 return false;
             }
