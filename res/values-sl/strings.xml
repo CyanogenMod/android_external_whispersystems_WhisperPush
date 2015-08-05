@@ -98,7 +98,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Politika zasebnosti</a></string>
   <string name="registration_problems__some_possible_problems_include">Nekatere možne težave vključujejo:</string>
   <string name="registration_problems__sms_interceptors">Prestrezniki SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nekateri odjemalci za sporočila SMS tretjih oseb, kot sta Handcent ali GoSMS, se slabo vedejo in prestrežejo vsa dohodna sporočila SMS. Preverite, ali ste prejeli SMS, ki se začne z \'Vaša potrditvena koda TextSecure:\', v katerem primeru boste morali nastaviti svojo aplikacijo za sporočila SMS tretje osebe, da omogoči prenos sporočil.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nekateri odjemalci za sporočila SMS tretjih oseb, kot sta Handcent ali GoSMS, se slabo vedejo in prestrežejo vsa dohodna sporočila SMS. Preverite, ali ste prejeli SMS, ki se začne z \'Vaša potrditvena koda TextSecure:\', v katerem primeru boste morali nastaviti svoj program za sporočila SMS tretje osebe, da omogoči prenos sporočil.</string>
   <string name="registration_problems__incorrect_number">Nepravilna številka.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Preverite, ali ste pravilno vnesli svojo številko in da je pravilno oblikovana za vaše območje.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -148,7 +148,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="registration_progress_notification__failure">Pri registraciji se je pojavila napaka</string>
   <string name="registration_progress_notification__gms_update">Za uporabo storitve WhisperPush je zahtevana posodobitev</string>
   <string name="pref_registration_category__title">Registracija</string>
-  <string name="pref_other_category__title">Drugo</string>
+  <string name="pref_other_category__title">Ostalo</string>
   <string name="pref_menu__privacy_policy">Politika zasebnosti</string>
   <string name="pref_menu__terms_of_service">Pogoji uporabe</string>
   <string name="pref_register__title">Registracija</string>

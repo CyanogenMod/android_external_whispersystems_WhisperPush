@@ -48,7 +48,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ನೀವು ಸೂಚಿಸಿರುವ ಸಂಖ್ಯೆ (%s) ಅಮಾನ್ಯವಾಗಿದೆ.</string>
   <string name="RegistrationActivity_unsupported">ಬೆಂಬಲಿತವಾಗಿಲ್ಲ</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">ಕ್ಷಮಿಸಿ, ಈ ಸಾಧನವು ಡೇಟಾ ಮೆಸೆಜಿಂಗನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. 4.0ಗಿಂತ ಹಳೆಯ ಆಂಡ್ರಾಯ್ಡ್ ಆವೃತ್ತಿಯಲ್ಲಿ ಚಲಿಸುವ ಸಾಧನಗಳಿಗೆ ನೋಂದಾಯಿತ ಗೂಗಲ್ ಖಾತೆಯನ್ನು ಹೊಂದಿರುವ ಅಗತ್ಯವಿದೆ. ಆಂಡ್ರಾಯ್ಡ್ 4.0ಗಿಂತ ಹೊಸತರಲ್ಲಿ ಚಲಿಸುವ ಸಾಧನಗಳಿಗೆ ಗೂಗಲ್ ಖಾತೆಯ ಅವಶ್ಯಕತೆಯಿಲ್ಲ. ಆದರೆ ಪ್ಲೇ ಸ್ಟೋರ್ ಸ್ಥಾಪಿಸಿರತಕ್ಕದ್ದು.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">ನಾವು ಈಗ ಈ ಸಾಧನದೊಂದಿಗೆ ಕೆಳಗಿರುವ ಸಂಖ್ಯೆಯು ಜೊತೆಗೂಡಿಸಿದೆಯೆ ಎಂದು ಪರಿಶೀಲಿಸುತ್ತೇವೆ:\n\n%s\n\n ಈ ಸಂಖ್ಯೆ ಸರಿಯೇ ಅಥವಾ ಮುಂದುವರೆಯುವುದಕ್ಕೂ ಮೊದಲು ಸಂಪಾದಿಸಲು ಬಯಸುವಿರಾ?</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">ನಾವು ಈಗ ಈ ಸಾಧನದೊಂದಿಗೆ ಕೆಳಗಿರುವ ಸಂಖ್ಯೆಯು ಜೊತೆಗೂಡಿದೆಯೆ ಎಂದು ಪರಿಶೀಲಿಸುತ್ತೇವೆ:\n\n%s\n\n ಈ ಸಂಖ್ಯೆ ಸರಿಯೇ ಅಥವಾ ಮುಂದುವರೆಯುವುದಕ್ಕೂ ಮೊದಲು ಸಂಪಾದಿಸಲು ಬಯಸುವಿರಾ?</string>
   <string name="RegistrationActivity_continue">ಮುಂದುವರೆ</string>
   <string name="RegistrationActivity_edit">ಸಂಪಾದಿಸಿ</string>
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure ಜೊತೆ ಸಂಪರ್ಕಿಸು</string>
