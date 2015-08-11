@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush a întâmpinat o eroare fatală.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Din cauză că datele nu sunt sincronizate între dispozitivul tău și server. WhisperPush va necesita resetare pentru a activa conversațiile criptate.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Din cauză că datele nu sunt sincronizate între dispozitivul tău și server, WhisperPush va necesita resetare pentru a activa conversațiile criptate.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Resetare</string>
   <string name="generic__please_wait">Te rugăm să aștepți.</string>
   <string name="GcmReceiver_error">Eroare WisperPush</string>
@@ -37,7 +37,7 @@
   <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush neînregistrat</string>
   <string name="MessageNotifier_user_unregistered_from_service_content">Apasăpentru a înregistra WhisperPush și pentru a activa conversațiile criptate.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Mesaj primit blocat</string>
-  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Un mesaj SMS criptat primit de la %s. Datorită setărilor de listă neagra, mesajul a fost blocat.</string>
+  <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Un mesaj SMS criptat primit de la %s. Datorită setărilor de listă neagră, mesajul a fost blocat.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Imposibil de preluat atașamentul criptat pentru mesajul primit.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Mesajul primit este criptat greșit sau mesajul este criptat pentru o sesiune inexistentă.</string>
   <string name="PendingIdentityItemView_received_s">Primit %s</string>
@@ -74,7 +74,7 @@
   <string name="RegistrationProgressActivity_verifying_voice_code">Verificare cod voce\u2026</string>
   <string name="RegistrationService_registration_complete">Înregistrarea a fost finalizată</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Înregistrarea mesajelor push sa finalizat cu succes.</string>
-  <string name="RegistrationService_registration_error">Eroare de Înregistrare</string>
+  <string name="RegistrationService_registration_error">Eroare de înregistrare</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Înregistrarea mesajelor push a întâmpinat o problemă.</string>
   <string name="SmsServiceBridge_received_encrypted_attachment">S-a primit un atașament criptat, dar nu îl putem afișa deoarece Koush este un leneș.</string>
   <string name="VerifyIdentityActivity_discard_messages">Înlăturați mesajele?</string>
@@ -83,12 +83,12 @@
   <string name="VerifyIdentityActivity_discarding_messages">Arunc mesajele\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">Procesez cheia de identitate\u2026</string>
   <string name="ViewIdentityActivity_verified">Verificat</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches">Cheia scanata se potrivește</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches">Cheia scanată se potrivește</string>
   <string name="ViewIdentityActivity_not_verified">Neverificat</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">AVERTISMENT, cheia scanată nu se potrivește</string>
   <string name="ViewIdentityActivity_no_scanned_key_found">Nu a fost gasită nicio cheie scanată</string>
   <string name="country_selection_fragment__search">Căutare</string>
-  <string name="country_selection_fragment__loading_countries">Încarcare țări\u2026</string>
+  <string name="country_selection_fragment__loading_countries">Încărcare țări\u2026</string>
   <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Vă rugăm să confirmați codul țării dvs și numărul de telefon.</string>
   <string name="registration_activity__your_country">ȚARA DVS</string>
   <string name="registration_activity__your_country_code_and_phone_number">CODUL ȚĂRII DVS ȘI NR DE TELEFON</string>
@@ -130,12 +130,12 @@
   <string name="registration_completed_activity__register_again">Înregistrează-te din nou</string>
   <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Momentan nu ai identități în baza ta de încredere</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">Fără mesaje în așteptare care să necesite validare.</string>
-  <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Amprenta de identitate a acestei persoane sa schimbat, ceea ce ar putea însemna că cineva încearcă să intercepteze comunicațiile tale, sau doar că contactul tău are un nou telefon. Luați în considerare să apelați acestă persoană și să validați amprenta de mai jos prin citirea ei cu voce tare. Mesajele de la acest contact vor fi oprite până se face validarea.</string>
+  <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">Amprenta de identitate a acestei persoane s-a schimbat, ceea ce ar putea însemna că cineva încearcă să intercepteze comunicațiile tale, sau doar că contactul tău are un nou telefon. Luați în considerare să apelați acestă persoană și să validați amprenta de mai jos prin citirea ei cu voce tare. Mesajele de la acest contact vor fi oprite până se face validarea.</string>
   <string name="verify_identity_activity__their_fingerprint">Amprenta lor:</string>
   <string name="verify_identity_activity__valid">Valid</string>
   <string name="verify_identity__invalid">Incorect</string>
   <string name="verify_identity_activity__avatar_icon">Imagine avatar</string>
-  <string name="view_new_identity_activity__verify_fingerprint">Contactul ți-a trimis un nou mesaj criptat. Luați în considerare să apelați acestă persoană și să validați amprenta de mai jos prin citirea ei cu voce tare.</string>
+  <string name="view_new_identity_activity__verify_fingerprint">Contactul ți-a trimis un nou mesaj criptat. Luați în considerare să apelați această persoană și să validați amprenta de mai jos prin citirea ei cu voce tare.</string>
   <string name="view_new_identity_activity__continue">Continuare</string>
   <string name="view_identity_activity_menu__compare">Compară</string>
   <string name="view_identity_activity_menu__scan_to_compare">Scanează pentru a compara</string>
@@ -147,7 +147,7 @@
   <string name="registration_progress_notification__failure">A apărut o problemă la înregistrare</string>
   <string name="registration_progress_notification__gms_update">O actualizare este necesară pentru a utiliza WhisperPush</string>
   <string name="pref_registration_category__title">Înregistrare</string>
-  <string name="pref_other_category__title">Alte</string>
+  <string name="pref_other_category__title">Altele</string>
   <string name="pref_menu__privacy_policy">Politica de confidențialitate</string>
   <string name="pref_menu__terms_of_service">Termenii serviciului</string>
   <string name="pref_register__title">Înregistrează</string>

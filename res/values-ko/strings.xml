@@ -89,10 +89,10 @@
   <string name="ViewIdentityActivity_no_scanned_key_found">검색된 키를 찾을 수 없습니다</string>
   <string name="country_selection_fragment__search">검색</string>
   <string name="country_selection_fragment__loading_countries">국가 불러오는 중\u2026</string>
-  <string name="registration_activity__please_confirm_your_country_code_and_phone_number">국가 코드와 전화 번호를 확인 하시기 바랍니다.</string>
+  <string name="registration_activity__please_confirm_your_country_code_and_phone_number">국가 코드와 전화번호를 확인 하시기 바랍니다.</string>
   <string name="registration_activity__your_country">귀하의 국가</string>
-  <string name="registration_activity__your_country_code_and_phone_number">국가 번호와 전화 번호</string>
-  <string name="registration_activity__phone_number">전화 번호</string>
+  <string name="registration_activity__your_country_code_and_phone_number">국가 번호와 전화번호</string>
+  <string name="registration_activity__phone_number">전화번호</string>
   <string name="registration_activity__register">등록</string>
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">개인 정보 보호 정책</a></string>
   <string name="registration_problems__some_possible_problems_include">아래와 같은 문제들이 발생했을 수 있습니다:</string>
