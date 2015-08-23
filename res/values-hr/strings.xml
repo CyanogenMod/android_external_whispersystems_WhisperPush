@@ -18,12 +18,12 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush je naišao na fatalnu pogrešku.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Zbog nemogućnosti sinkroniziranja podataka između vašeg uređaja i servera, WhisperPush će trebati ponovno pokretanje za omogućavanje kodiranih razgovora.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Ponovno postavljanje</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush je naišao na kobnu grešku.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Zbog nemogućnosti sinkroniziranja podataka između vašeg uređaja i poslužitelja, WhisperPush će trebati ponovno pokretanje za omogućavanje kodiranih razgovora.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Ponovno postavi</string>
   <string name="generic__please_wait">Molimo pričekajte.</string>
-  <string name="GcmReceiver_error">WhisperPush pogreška</string>
-  <string name="GcmReceiver_invalid_push_message">Pogrešna \"Push\" poruka</string>
+  <string name="GcmReceiver_error">WhisperPush greška</string>
+  <string name="GcmReceiver_invalid_push_message">Pogrešna \"push\" poruka</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Primljena pogrešno formirana \"push\" poruka.</string>
   <string name="GcmReceiver_unsupported_push_version">Push verzija nije podržana</string>
   <string name="GcmReceiver_received_push_message_with_unknown_version">Primljena \"push\" poruka s nepoznatom verzijom. Trebate li ažurirati ?</string>
