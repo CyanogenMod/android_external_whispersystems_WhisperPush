@@ -148,7 +148,7 @@
   <string name="registration_progress_notification__gms_update">O actualizare este necesară pentru a utiliza WhisperPush</string>
   <string name="pref_activity_title">Preferințe WhisperPush</string>
   <string name="pref_registration_category__title">Înregistrare</string>
-  <string name="pref_other_category__title">Alte</string>
+  <string name="pref_other_category__title">Altele</string>
   <string name="pref_menu__privacy_policy">Politica de confidențialitate</string>
   <string name="pref_menu__terms_of_service">Termenii serviciului</string>
   <string name="pref_register__title">Înregistrează</string>

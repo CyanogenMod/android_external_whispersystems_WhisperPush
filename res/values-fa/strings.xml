@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush با خطای مهلک مواجه شده است.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">بازنشانی</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">تنظیم مجدد</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">متاسفانه این دستگاه از پیام‌رسانی داده‌ها پشتیبانی نمی‌کند. دستگاه‌هایی با نسخه اندروید کمتر از ۴.۰ باید یک حساب گوگل داشته باشند. دستگاه‌هایی با نسخه اندروید ۴.۰ به بالا نیازی به حساب گوگل نداشته ولی باید برنامه گوگل مارکت را نصب کنند.</string>
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy"> سیاست حفظ حریم خصوصی</a></string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">اگر شما به وای‌فای متصل هستید، این امکان وجود دارد که دیوار آتشین مانع دسترسی شما به سرور TextSecure شود. شبکه یا داده همراه دیگری را امتحان کنید.</string>
