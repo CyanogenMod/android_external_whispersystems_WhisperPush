@@ -18,9 +18,9 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush با خطای مهلک مواجه شده است.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">هماهنگی بین داده دستگاه شما و سرور قطع شده است، WhisperPush برای فعال کردن رمزنگاری ارتباط باید راه‌اندازی مجدد شود.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">بازنشانی</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush با خطایی بسیار بد مواجه شده است.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">به خاطر همگام نبودن داده‌ها بین دستگاه شما و سرور، WhisperPush برای فعال کردن رمزنگاری ارتباط باید مجددا تنظیم شود.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">تنظیم مجدد</string>
   <string name="generic__please_wait">لطفا صبر کنید.</string>
   <string name="GcmReceiver_error">خطای WhisperPush</string>
   <string name="GcmReceiver_invalid_push_message">پیام push نامعتبر</string>

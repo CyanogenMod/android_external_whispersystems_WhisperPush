@@ -112,7 +112,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure se ni mogel povezati na potisno storitev.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Nekatere možne težave vključujejo:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ni povezave z omrežjem.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaša naprava potrebuje omrežno povezavo, da lahko uporabi funkcijo TextSecure. Preverite, da je povezana na 3G ali Wifi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaša naprava potrebuje omrežno povezavo, da lahko uporabi značilnost TextSecure. Preverite, da je povezana na 3G ali Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Omejevalen požarni zid.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Če ste povezani preko omrežja Wifi, je možno, da požarni zid blokira dostop do strežnika TextSecure. Poskusite z drugim omrežjem ali mobilnimi podatki.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure bo sedaj samodejno preveril vašo številko s potrditvenim sporočilom SMS.</string>
