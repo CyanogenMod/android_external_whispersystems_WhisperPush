@@ -63,9 +63,9 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="RegistrationProgressActivity_network_error">Omrežna napaka</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Ni mogoče vzpostaviti povezave. Preverite omrežno povezavo in poskusite znova.</string>
   <string name="RegistrationProgressActivity_verification_failed">Preverjanje je spodletelo</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Potrditvena koda, ki ste jo vpisali je nepravilna. Poskusite znova.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Koda za preverjanje, ki ste jo vpisali je nepravilna. Poskusite znova.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Preveč poskusov</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Napačno potrditveno kodo ste vnesli prevečkrat. Počakajte minuto, preden poskusite znova.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Napačno kodo za preverjanje ste vnesli prevečkrat. Počakajte minuto, preden poskusite znova.</string>
   <string name="RegistrationProgressActivity_requesting_call">Zahtevanje klica \u2026</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Zahtevanje dohodnega klica za preverjanje \u2026</string>
   <string name="RegistrationProgressActivity_server_error">Napaka strežnika</string>
@@ -98,7 +98,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="registration_activity__privacy_policy"><a href="http://www.cyanogenmod.org/docs/privacy">Politika zasebnosti</a></string>
   <string name="registration_problems__some_possible_problems_include">Nekatere možne težave vključujejo:</string>
   <string name="registration_problems__sms_interceptors">Prestrezniki SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nekateri odjemalci za sporočila SMS tretjih oseb, kot sta Handcent ali GoSMS, se slabo vedejo in prestrežejo vsa dohodna sporočila SMS. Preverite, ali ste prejeli SMS, ki se začne z \'Vaša potrditvena koda TextSecure:\', v katerem primeru boste morali nastaviti svoj program za sporočila SMS tretje osebe, da omogoči prenos sporočil.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Nekateri odjemalci za sporočila SMS tretjih oseb, kot sta Handcent ali GoSMS, se slabo vedejo in prestrežejo vsa dohodna sporočila SMS. Preverite, ali ste prejeli SMS, ki se začne z \'Vaša koda za preverjanje TextSecure:\', v katerem primeru boste morali nastaviti svoj program za sporočila SMS tretje osebe, da omogoči prenos sporočil.</string>
   <string name="registration_problems__incorrect_number">Nepravilna številka.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Preverite, ali ste pravilno vnesli svojo številko in da je pravilno oblikovana za vaše območje.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -115,7 +115,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaša naprava potrebuje omrežno povezavo, da lahko uporabi značilnost TextSecure. Preverite, da je povezana na 3G ali Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Omejevalen požarni zid.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Če ste povezani preko omrežja Wifi, je možno, da požarni zid blokira dostop do strežnika TextSecure. Poskusite z drugim omrežjem ali mobilnimi podatki.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure bo sedaj samodejno preveril vašo številko s potrditvenim sporočilom SMS.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure bo sedaj samodejno preveril vašo številko s sporočilom SMS za preverjanje.</string>
   <string name="registration_progress_activity__connecting">Povezovanje \u2026</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čakanje na preverjanje SMS \u2026</string>
   <string name="registration_progress_activity__registering_with_server">Registriranje s strežnikom \u2026</string>
