@@ -152,9 +152,9 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="pref_menu__privacy_policy">Politika zasebnosti</string>
   <string name="pref_menu__terms_of_service">Pogoji uporabe</string>
   <string name="pref_register__title">Registracija</string>
-  <string name="pref_register__summary">Registrirajte se s storitvijo WhisperPush, da omogočite šifrirane SMS-e</string>
+  <string name="pref_register__summary">Registrirajte se v storitev WhisperPush, da omogočite šifrirane SMS-e</string>
   <string name="pref_unregister__title">Preklic registracije</string>
-  <string name="pref_unregister__summary">Prekličite registracijo s storitvijo WhisperPush, da onemogočite šifrirane SMS-e</string>
+  <string name="pref_unregister__summary">Prekličite registracijo v storitev WhisperPush, da onemogočite šifrirane SMS-e</string>
   <string name="pref_unregister__progress_title">Preklicevanje registracije</string>
   <string name="pref_review_keys__title">Preglej identitetne ključe</string>
   <string name="pref_my_identity__title">Pokaži moj identifikacijski ključ</string>
