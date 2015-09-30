@@ -22,8 +22,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.UserHandle;
-import android.provider.Settings;
 import android.util.Log;
+
+import cyanogenmod.providers.CMSettings;
 
 public class StatsUtils {
     private static final String STATS_PACKAGE = "com.cyngn.stats";
@@ -36,8 +37,8 @@ public class StatsUtils {
     }
 
     public static boolean isStatsCollectionEnabled(Context context) {
-        return Settings.Secure.getInt(context.getContentResolver(),
-                Settings.Secure.STATS_COLLECTION, 1) != 0;
+        return CMSettings.Secure.getInt(context.getContentResolver(),
+                CMSettings.Secure.STATS_COLLECTION, 1) != 0;
     }
 
     public static boolean isStatsPackageInstalled(Context context) {
