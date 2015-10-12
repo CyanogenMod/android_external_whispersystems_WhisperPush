@@ -18,11 +18,11 @@
      along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush-ek akats larri bat aurkitu du.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Gailuaren eta zerbitzariaren arteko datuen sinkronizazioaren akats baten ondorioz, elkarrizketa zifratuak gaitzeko WhisperPush berrezartzea beharrezkoa da.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPushek errore larri bat aurkitu du.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Gailuaren eta zerbitzariaren arteko datuak sinkroniaz kanpo daudenez, WhisperPush berrezartzea beharrezkoa da elkarrizketa zifratuak gaitzeko.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Leheneratu</string>
   <string name="generic__please_wait">Itxaron mesedez.</string>
-  <string name="GcmReceiver_error">WhisperPush-en akatsa</string>
+  <string name="GcmReceiver_error">WhisperPush errorea</string>
   <string name="GcmReceiver_invalid_push_message">Push mezu baliogabea</string>
   <string name="GcmReceiver_received_badly_formatted_push_message">Formatu baliogabedun push mezua jaso da.</string>
   <string name="GcmReceiver_unsupported_push_version">Push bertsio ez onartua</string>
@@ -34,8 +34,8 @@
   <string name="MessageNotifier_new_session__incoming_text">%s(r)en SMS zifratu berri bat jaso duzu. Hurrengo elkarrizketak automatikoki zifratu egingo dira.</string>
   <string name="MessageNotifier_new_session__view_identity">Ikusi identitatea</string>
   <string name="MessageNotifier_new_session__outgoing_toast">%s(r)entzako mezua zifratu egin da.</string>
-  <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPush-eko izen ematea ezabatu</string>
-  <string name="MessageNotifier_user_unregistered_from_service_content">Sakatu WhisperPush-en izena emateko eta elkarrizketa zifratuak gaitzeko.</string>
+  <string name="MessageNotifier_user_unregistered_from_service_title">WhisperPushen izena eman gabe</string>
+  <string name="MessageNotifier_user_unregistered_from_service_content">Sakatu WhisperPushen izena emateko eta elkarrizketa zifratuak gaitzeko.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Sartzeko zegoen mezua blokeatu da</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">%s(r)en SMS mezu zifratua jaso da. Zerrenda beltzeko ezarpenak direla eta, mezua blokeatu egin da.</string>
   <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Ezin izan da zifratutako eranskina jasotako mezutik berreskuratu.</string>
@@ -140,18 +140,18 @@
   <string name="view_identity_activity_menu__compare">Konparatu</string>
   <string name="view_identity_activity_menu__scan_to_compare">Konparatzeko behatu</string>
   <string name="view_identity_activity_menu__get_scanned_to_compare">Konparatzeko behaketa baimendu</string>
-  <string name="registration_progress_notification__title_registering">WhisperPush-en izena ematen</string>
+  <string name="registration_progress_notification__title_registering">WhisperPushen izena ematen</string>
   <string name="registration_progress_notification__title_complete">WhisperPush gaituta</string>
-  <string name="registration_progress_notification__title_failure">WhisperPush-en izena emateak huts egin du</string>
+  <string name="registration_progress_notification__title_failure">WhisperPushen izena emateak huts egin du</string>
   <string name="registration_progress_notification__complete">Izen ematea ondo burutu da</string>
   <string name="registration_progress_notification__failure">Izena ematean arazo bat egon da</string>
-  <string name="registration_progress_notification__gms_update">WhisperPush erabiltzeko eguneratzea beharrezkoa da</string>
+  <string name="registration_progress_notification__gms_update">Eguneratzea ezinbestekoa da WhisperPush erabiltzeko</string>
   <string name="pref_registration_category__title">Izena ematea</string>
   <string name="pref_other_category__title">Beste batzuk</string>
   <string name="pref_menu__privacy_policy">Pribatutasun politika</string>
   <string name="pref_menu__terms_of_service">Zerbitzuaren baldintzak</string>
   <string name="pref_register__title">Eman izena</string>
-  <string name="pref_register__summary">Eman izena WhisperPushen SMS zifratzea gaitzeko</string>
+  <string name="pref_register__summary">Eman izena WhisperPushen SMS zifratuak gaitzeko</string>
   <string name="pref_unregister__title">Izen ematea ezabatu</string>
   <string name="pref_unregister__summary">Utzi WhisperPush SMS zifratzea ezgaitzeko</string>
   <string name="pref_unregister__progress_title">Izen ematea ezabatzen</string>
