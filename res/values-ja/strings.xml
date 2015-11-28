@@ -128,7 +128,7 @@
   <string name="registration_completed_activity__registration_completed">登録が完了しました</string>
   <string name="registration_completed_activity__body">TextSecureへの登録が完了しました。</string>
   <string name="registration_completed_activity__register_again">再登録</string>
-  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">信頼されたデータベースに現在識別キーはありません</string>
+  <string name="review_identities_activity__you_don_t_currently_have_any_identity_keys_in_your_trust_database">現在信頼されたデータベースに識別キーはありません</string>
   <string name="verify_identities_activity__no_pending_messages_that_require_validation">検証が必要な保留中のメッセージはありません。</string>
   <string name="verify_identity_activity__this_contacts_identity_fingerprint_has_changed">この連絡先の識別フィンガープリントは変更されています。これは誰かがコミュニケーションを傍受しようとしているか、単に連絡先の相手が新しい携帯電話を手に入れただけという可能性もあります。この連絡先に電話して、以下のフィンガープリントを読み上げて認証するかどうか慎重に判断してください。この連絡先からのメッセージは認証されるまでは保留されます。</string>
   <string name="verify_identity_activity__their_fingerprint">相手のフィンガープリント:</string>
