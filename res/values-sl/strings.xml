@@ -38,7 +38,7 @@
   <string name="MessageNotifier_user_unregistered_from_service_content">Tapnite, če želite registrirati WhisperPush in omogočiti šifrirane pogovore.</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_title">Blokirano dohodno sporočilo</string>
   <string name="MessageNotifier_user_received_message_from_blacklisted_number_content">Prejeto šifrirano sporočilo SMS od %s. Zaradi nastavitev črnega seznama je bilo sporočilo blokirano.</string>
-  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Ni bilo mogoče pridobiti šifrirane priponke dohodnega sporočila.</string>
+  <string name="MessageReceiver_unable_to_retrieve_encrypted_attachment_for_incoming_message">Ni bilo mogoče pridobiti šifrirane priloge dohodnega sporočila.</string>
   <string name="MessageReceiver_received_badly_encrypted_message">Prejeto slabo šifrirano sporočilo, oziroma sporočilo šifrirano za neobstoječo sejo.</string>
   <string name="PendingIdentityItemView_received_s">Prejeto %s</string>
   <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
@@ -77,7 +77,7 @@ Ali je ta številka pravilna ali jo želite urediti pred nadaljevanjem?</string>
   <string name="RegistrationService_push_messaging_registration_has_successfully_completed">Registracija potisnega sporočanja se je uspešno končala.</string>
   <string name="RegistrationService_registration_error">Napaka pri registraciji</string>
   <string name="RegistrationService_push_messaging_registration_has_encountered_a_problem">Registracija potisnega sporočanja je naletela na težavo.</string>
-  <string name="SmsServiceBridge_received_encrypted_attachment">Prejeta šifrirana priponka, ampak je ni mogoče prikazati, ker je Koush lenuh.</string>
+  <string name="SmsServiceBridge_received_encrypted_attachment">Prejeta šifrirana priloga, ampak je ni mogoče prikazati, ker je Koush lenuh.</string>
   <string name="VerifyIdentityActivity_discard_messages">Zavrzi sporočila?</string>
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">Ali ste prepričani, da želite ta prstni odtis identitete označiti kot neveljaven in zavreči vsa čakajoča sporočila, ki so njim povezana?</string>
   <string name="VerifyIdentityActivity_processing">Obdelovanje</string>

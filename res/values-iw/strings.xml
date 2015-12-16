@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush נתקל בשגיאה חמורה.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">בשל הנתונים המסונכרנים בין המכשיר והשרת, WhisperPush יצטרך להתאפס על מנת שניתן יהיה לבצע שיחות מוצפנות.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">בשל אי סנכרון בין נתוני המכשיר והשרת, WhisperPush יצטרך להתאפס על מנת שניתן יהיה לבצע שיחות מוצפנות.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">אפס</string>
   <string name="generic__please_wait">אנא המתן.</string>
   <string name="GcmReceiver_error">שגיאת WhisperPush</string>
@@ -80,9 +80,9 @@
   <string name="VerifyIdentityActivity_discard_messages">למחוק הודעות?</string>
   <string name="VerifyIdentityActivity_are_you_sure_you_would_like_to_mark_this_identity_fingerprint_as_invalid_and_discard">האם אתה בטוח שאתה רוצה לסמן חתימה זו כלא בתוקף ולמחוק את כל ההודעות הממתינות המשויכות אליה?</string>
   <string name="VerifyIdentityActivity_processing">מעבד</string>
-  <string name="VerifyIdentityActivity_discarding_messages">מחיקת הודעות\u2026</string>
+  <string name="VerifyIdentityActivity_discarding_messages">מוחק הודעות\u2026</string>
   <string name="VerifyIdentityActivity_processing_identity_key">מעבד מפתח זהות\u2026</string>
-  <string name="ViewIdentityActivity_verified">מאומת</string>
+  <string name="ViewIdentityActivity_verified">אומת</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches">המפתח שנסרק מתאים</string>
   <string name="ViewIdentityActivity_not_verified">לא אומת</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match">אזהרה, המפתח הסרוק לא מתאים</string>
@@ -156,5 +156,5 @@
   <string name="pref_unregister__summary">בטל רישום מ-WhisperPush כדי להפסיק הצפנות SMS</string>
   <string name="pref_unregister__progress_title">מבטל רישום</string>
   <string name="pref_review_keys__title">הצג מפתחות זיהוי</string>
-  <string name="pref_my_identity__title">צפה במפתח הזיהוי שלי</string>
+  <string name="pref_my_identity__title">הצג את מפתח הזיהוי שלי</string>
 </resources>

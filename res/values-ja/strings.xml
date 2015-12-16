@@ -107,7 +107,7 @@
   <string name="registration_progress_activity__verify">認証</string>
   <string name="registration_progress_activity__call_me">音声認証</string>
   <string name="registration_progress_activity__edit_number">番号を編集</string>
-  <string name="registration_progress_activity__connectivity_error">接続エラー。</string>
+  <string name="registration_progress_activity__connectivity_error">接続エラーが発生しました。</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecureはプッシュサービスに接続できませんでした。</string>
   <string name="registration_progress_activity__some_possible_problems_include">考えられる問題:</string>
   <string name="registration_progress_activity__no_network_connectivity">ネットワーク接続がありません。</string>
