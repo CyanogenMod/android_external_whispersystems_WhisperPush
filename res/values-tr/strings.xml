@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_title">WhisperPush ciddi bir hatayla karşılaştı.</string>
-  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Sunucu ve cihazınız arasındaki veri eşitlenemediğinden dolayı, şifreli sohbetleri etkinleştirmek için WhisperPush\'u sıfırlamanız gerekir.</string>
+  <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_context">Sunucu ve cihazınız arasındaki verinin eşitlenememesi nedeniyle, şifreli sohbetleri etkinleştirmek için WhisperPush\'u sıfırlamanız gerekir.</string>
   <string name="ErrorAndResetActivity_your_stored_data_is_out_of_sync_button">Sıfırla</string>
   <string name="generic__please_wait">Lütfen bekleyin.</string>
   <string name="GcmReceiver_error">WhisperPush hatası</string>
